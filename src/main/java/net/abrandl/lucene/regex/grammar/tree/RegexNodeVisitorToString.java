@@ -36,17 +36,17 @@ public class RegexNodeVisitorToString implements
 
 	@Override
 	public String visit(ZeroOrMore zeroOrMore) {
-		return String.format("%s*", zeroOrMore.getChild().accept(this));
+		return String.format("%s*", zeroOrMore.getFirstChild().accept(this));
 	}
 
 	@Override
 	public String visit(OneOrMore oneOrMore) {
-		return String.format("%s+", oneOrMore.getChild().accept(this));
+		return String.format("%s+", oneOrMore.getFirstChild().accept(this));
 	}
 
 	@Override
 	public String visit(Optional optional) {
-		return String.format("%s?", optional.getChild().accept(this));
+		return String.format("%s?", optional.getFirstChild().accept(this));
 	}
 	
 	@Override

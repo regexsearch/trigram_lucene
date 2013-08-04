@@ -6,10 +6,6 @@ public class OneOrMore extends RegexNode {
 		addChild(node);
 	}
 	
-	public RegexNode getChild() {
-		return getChildren().get(0);
-	}
-
 	@Override
 	public <A> A accept(RegexNodeVisitor<A> visitor) {
 		return visitor.visit(this);

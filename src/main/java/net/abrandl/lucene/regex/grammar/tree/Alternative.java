@@ -4,17 +4,9 @@ public class Alternative extends RegexNode {
 
 	public Alternative(RegexNode... alternatives) {
 		super();
-		for (RegexNode alternative : alternatives) {
-			if (alternative != null) {
-				addChild(alternative);
-			}
-		}
+		addChildren(alternatives);
 	}
 	
-	public Alternative() {
-		super();
-	}
-
 	@Override
 	public <A> A accept(RegexNodeVisitor<A> visitor) {
 		return visitor.visit(this);

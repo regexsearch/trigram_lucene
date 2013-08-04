@@ -1,5 +1,7 @@
 package net.abrandl.lucene.regex.grammar.tree;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,15 +9,23 @@ public abstract class RegexNode {
 
 	private RegexNode parent;
 	private List<RegexNode> children;
-	
+
 	public RegexNode() {
-		super();
 		children = new LinkedList<RegexNode>();
 	}
 
 	public void addChild(RegexNode node) {
+		checkNotNull(node);
+
 		children.add(node);
 		node.setParent(this);
+	}
+
+	public void addChildren(RegexNode[] nodes) {
+		checkNotNull(nodes);
+		for (RegexNode node : nodes) {
+			addChild(node);
+		}
 	}
 
 	public void setParent(RegexNode parent) {
@@ -29,16 +39,20 @@ public abstract class RegexNode {
 	public List<RegexNode> getChildren() {
 		return children;
 	}
-	
+
+	public RegexNode getFirstChild() {
+		if (children.isEmpty()) {
+			return null;
+		} else {
+			return children.get(0);
+		}
+	}
+
 	public boolean isRoot() {
 		return parent == null;
 	}
-	
+
 	public abstract <A> A accept(RegexNodeVisitor<A> visitor);
-	
-	public void simplify() {
-		
-	}
 
 	@Override
 	public int hashCode() {
@@ -71,5 +85,5 @@ public abstract class RegexNode {
 			return false;
 		return true;
 	}
-	
+
 }
