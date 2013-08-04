@@ -29,6 +29,40 @@ package net.abrandl.lucene.regex.grammar;
 package net.abrandl.lucene.regex.grammar;
 }
 
+@parser::members {
+private RegexParsingException exception = null;
+
+@Override
+public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+	String hdr = getErrorHeader(e);
+	String msg = getErrorMessage(e, tokenNames);
+	exception = new RegexParsingException(hdr + ":" + msg);
+}
+
+public void checkErrors() throws RegexParsingException {
+	if (exception != null) {
+		throw exception;
+	}
+}
+}
+
+@lexer::members {
+private RegexParsingException exception = null;
+
+@Override
+public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+	String hdr = getErrorHeader(e);
+	String msg = getErrorMessage(e, tokenNames);
+	exception = new RegexParsingException(hdr + ":" + msg);
+}
+
+public void checkErrors() throws RegexParsingException {
+	if (exception != null) {
+		throw exception;
+	}
+}
+}
+
 parse
   :
   regex EOF

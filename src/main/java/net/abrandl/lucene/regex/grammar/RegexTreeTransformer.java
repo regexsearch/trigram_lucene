@@ -1,7 +1,6 @@
 package net.abrandl.lucene.regex.grammar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import net.abrandl.lucene.regex.grammar.tree.Alternative;
@@ -22,19 +21,26 @@ import org.antlr.runtime.tree.CommonTree;
 public class RegexTreeTransformer {
 
 	public static RegexTreeTransformer parse(String regex)
-			throws RecognitionException {
+			throws RegexParsingException {
 		return new RegexTreeTransformer(regex);
 	}
 
 	private RegexParser parser;
 	private CommonTree tree;
 
-	private RegexTreeTransformer(String input) throws RecognitionException {
+	private RegexTreeTransformer(String input) throws RegexParsingException {
 		super();
 		RegexLexer regexLexer = new RegexLexer(new ANTLRStringStream(input));
 		parser = new RegexParser(new CommonTokenStream(regexLexer));
 
-		tree = (CommonTree) parser.parse().getTree();
+		try {
+			tree = (CommonTree) parser.parse().getTree();
+		} catch (RecognitionException e) {
+			throw new RegexParsingException(e);
+		}
+
+		regexLexer.checkErrors();
+		parser.checkErrors();
 	}
 
 	public String toString() {

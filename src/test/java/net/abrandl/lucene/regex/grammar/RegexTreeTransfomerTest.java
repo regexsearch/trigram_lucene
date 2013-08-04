@@ -1,63 +1,60 @@
 package net.abrandl.lucene.regex.grammar;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import net.abrandl.lucene.regex.grammar.tree.DotAny;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
 import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToString;
-import static org.hamcrest.Matchers.*;
 
-import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 public class RegexTreeTransfomerTest {
-	
+
 	private boolean debug = true;
 
 	@Test
-	public void literals() throws RecognitionException {
+	public void literals() throws RegexParsingException {
 		assertIdenticalTransform("foo");
 		assertIdenticalTransform("a");
 	}
 
 	@Test
-	public void emptyString() throws RecognitionException {
+	public void emptyString() throws RegexParsingException {
 		assertIdenticalTransform("", true);
 	}
 
 	@Test
-	public void alternative() throws RecognitionException {
+	public void alternative() throws RegexParsingException {
 		assertIdenticalTransform("foo|bar|bla");
 		assertIdenticalTransform("(foo|bar)bla");
 	}
 
 	@Test
-	public void oneOrMore() throws RecognitionException {
+	public void oneOrMore() throws RegexParsingException {
 		assertIdenticalTransform("a+");
 		assertIdenticalTransform("(foo)+");
 	}
 
 	@Test
-	public void testZeroOrMore() throws RecognitionException {
+	public void testZeroOrMore() throws RegexParsingException {
 		assertIdenticalTransform("a*");
 		assertIdenticalTransform("(foo)*");
 	}
-	
-	@Test
-	public void testOptional() throws RecognitionException {
-		assertIdenticalTransform("a?");
-		assertIdenticalTransform("(foo)?");
-	}	
 
 	@Test
-	public void testNestedGroups() throws RecognitionException {
+	public void testOptional() throws RegexParsingException {
+		assertIdenticalTransform("a?");
+		assertIdenticalTransform("(foo)?");
+	}
+
+	@Test
+	public void testNestedGroups() throws RegexParsingException {
 		assertIdenticalTransform("(foo|bar)+bla");
 		assertIdenticalTransform("(foo|bar)+bla*");
 		assertIdenticalTransform("((foo|bar)+(bla)*)+");
 	}
 
 	@Test
-	public void dotAny() throws RecognitionException {
+	public void dotAny() throws RegexParsingException {
 		String regex = ".";
 		RegexTreeTransformer parser = RegexTreeTransformer.parse(regex);
 		RegexNode tree = parser.getRegexTree();
@@ -65,13 +62,18 @@ public class RegexTreeTransfomerTest {
 		assertEquals(DotAny.class, tree.getChildren().get(0).getClass());
 	}
 
+	@Test(expected = RegexParsingException.class)
+	public void invalidInput() throws RegexParsingException {
+		RegexTreeTransformer.parse(")I'm(invalid+input*");
+	}
+
 	private void assertIdenticalTransform(String regex)
-			throws RecognitionException {
+			throws RegexParsingException {
 		assertIdenticalTransform(regex, true);
 	}
 
 	private void assertIdenticalTransform(String regex, boolean debug)
-			throws RecognitionException {
+			throws RegexParsingException {
 		RegexTreeTransformer parser = RegexTreeTransformer.parse(regex);
 		RegexNode tree = parser.getRegexTree();
 
@@ -81,7 +83,7 @@ public class RegexTreeTransfomerTest {
 
 		assertEquals(regex, transformed);
 	}
-	
+
 	private void debug(String regex, RegexTreeTransformer parser, RegexNode tree) {
 		String transformed = tree.accept(new RegexNodeVisitorToString());
 		if (debug) {
@@ -94,7 +96,7 @@ public class RegexTreeTransfomerTest {
 			System.out.println(transformed);
 			System.out
 					.println("***************************************************************************************************");
-		}		
+		}
 	}
 
 }

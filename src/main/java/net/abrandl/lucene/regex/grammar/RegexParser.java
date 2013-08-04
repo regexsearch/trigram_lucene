@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g 2013-08-04 15:39:44
+// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g 2013-08-04 15:53:54
 
 package net.abrandl.lucene.regex.grammar;
 
@@ -186,6 +186,22 @@ public TreeAdaptor getTreeAdaptor() {
     public String getGrammarFileName() { return "/home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g"; }
 
 
+    private RegexParsingException exception = null;
+
+    @Override
+    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+    	String hdr = getErrorHeader(e);
+    	String msg = getErrorMessage(e, tokenNames);
+    	exception = new RegexParsingException(hdr + ":" + msg);
+    }
+
+    public void checkErrors() throws RegexParsingException {
+    	if (exception != null) {
+    		throw exception;
+    	}
+    }
+
+
     public static class parse_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
@@ -193,7 +209,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "parse"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:32:1: parse : regex EOF -> regex ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:66:1: parse : regex EOF -> regex ;
     public final RegexParser.parse_return parse() throws RecognitionException {
         RegexParser.parse_return retval = new RegexParser.parse_return();
         retval.start = input.LT(1);
@@ -209,17 +225,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_EOF=new RewriteRuleTokenStream(adaptor,"token EOF");
         RewriteRuleSubtreeStream stream_regex=new RewriteRuleSubtreeStream(adaptor,"rule regex");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:33:3: ( regex EOF -> regex )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:34:3: regex EOF
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:67:3: ( regex EOF -> regex )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:68:3: regex EOF
             {
-            pushFollow(FOLLOW_regex_in_parse133);
+            pushFollow(FOLLOW_regex_in_parse151);
             regex1=regex();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_regex.add(regex1.getTree());
 
-            EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_parse135); if (state.failed) return retval; 
+            EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_parse153); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EOF.add(EOF2);
 
 
@@ -236,7 +252,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 35:5: -> regex
+            // 69:5: -> regex
             {
                 adaptor.addChild(root_0, stream_regex.nextTree());
 
@@ -279,7 +295,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "regex"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:42:1: regex : ( first_alternative -> first_alternative ) ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )? ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:76:1: regex : ( first_alternative -> first_alternative ) ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )? ;
     public final RegexParser.regex_return regex() throws RecognitionException {
         RegexParser.regex_return retval = new RegexParser.regex_return();
         retval.start = input.LT(1);
@@ -298,13 +314,13 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_first_alternative=new RewriteRuleSubtreeStream(adaptor,"rule first_alternative");
         RewriteRuleSubtreeStream stream_concatenation=new RewriteRuleSubtreeStream(adaptor,"rule concatenation");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:43:3: ( ( first_alternative -> first_alternative ) ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )? )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:44:3: ( first_alternative -> first_alternative ) ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )?
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:77:3: ( ( first_alternative -> first_alternative ) ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )? )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:78:3: ( first_alternative -> first_alternative ) ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )?
             {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:44:3: ( first_alternative -> first_alternative )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:44:4: first_alternative
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:78:3: ( first_alternative -> first_alternative )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:78:4: first_alternative
             {
-            pushFollow(FOLLOW_first_alternative_in_regex163);
+            pushFollow(FOLLOW_first_alternative_in_regex181);
             first_alternative3=first_alternative();
 
             state._fsp--;
@@ -324,7 +340,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 45:7: -> first_alternative
+            // 79:7: -> first_alternative
             {
                 adaptor.addChild(root_0, stream_first_alternative.nextTree());
 
@@ -337,7 +353,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:46:3: ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )?
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:80:3: ( ( '|' concatenation )+ -> ^( ALTERNATIVE first_alternative ( concatenation )+ ) )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -346,9 +362,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:47:5: ( '|' concatenation )+
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:81:5: ( '|' concatenation )+
                     {
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:47:5: ( '|' concatenation )+
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:81:5: ( '|' concatenation )+
                     int cnt1=0;
                     loop1:
                     do {
@@ -362,13 +378,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:47:6: '|' concatenation
+                    	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:81:6: '|' concatenation
                     	    {
-                    	    char_literal4=(Token)match(input,Pipe,FOLLOW_Pipe_in_regex185); if (state.failed) return retval; 
+                    	    char_literal4=(Token)match(input,Pipe,FOLLOW_Pipe_in_regex203); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_Pipe.add(char_literal4);
 
 
-                    	    pushFollow(FOLLOW_concatenation_in_regex187);
+                    	    pushFollow(FOLLOW_concatenation_in_regex205);
                     	    concatenation5=concatenation();
 
                     	    state._fsp--;
@@ -402,9 +418,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 48:7: -> ^( ALTERNATIVE first_alternative ( concatenation )+ )
+                    // 82:7: -> ^( ALTERNATIVE first_alternative ( concatenation )+ )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:49:9: ^( ALTERNATIVE first_alternative ( concatenation )+ )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:83:9: ^( ALTERNATIVE first_alternative ( concatenation )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -470,7 +486,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "first_alternative"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:53:1: first_alternative : concatenation ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:87:1: first_alternative : concatenation ;
     public final RegexParser.first_alternative_return first_alternative() throws RecognitionException {
         RegexParser.first_alternative_return retval = new RegexParser.first_alternative_return();
         retval.start = input.LT(1);
@@ -483,13 +499,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:54:3: ( concatenation )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:55:3: concatenation
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:88:3: ( concatenation )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:89:3: concatenation
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_concatenation_in_first_alternative234);
+            pushFollow(FOLLOW_concatenation_in_first_alternative252);
             concatenation6=concatenation();
 
             state._fsp--;
@@ -529,7 +545,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "concatenation"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:58:1: concatenation : ( element )* -> ^( CONCATENATION ( element )* ) ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:92:1: concatenation : ( element )* -> ^( CONCATENATION ( element )* ) ;
     public final RegexParser.concatenation_return concatenation() throws RecognitionException {
         RegexParser.concatenation_return retval = new RegexParser.concatenation_return();
         retval.start = input.LT(1);
@@ -542,10 +558,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_element=new RewriteRuleSubtreeStream(adaptor,"rule element");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:59:3: ( ( element )* -> ^( CONCATENATION ( element )* ) )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:60:3: ( element )*
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:93:3: ( ( element )* -> ^( CONCATENATION ( element )* ) )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:94:3: ( element )*
             {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:60:3: ( element )*
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:94:3: ( element )*
             loop3:
             do {
                 int alt3=2;
@@ -558,9 +574,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt3) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:60:3: element
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:94:3: element
             	    {
-            	    pushFollow(FOLLOW_element_in_concatenation249);
+            	    pushFollow(FOLLOW_element_in_concatenation267);
             	    element7=element();
 
             	    state._fsp--;
@@ -589,16 +605,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 61:5: -> ^( CONCATENATION ( element )* )
+            // 95:5: -> ^( CONCATENATION ( element )* )
             {
-                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:62:7: ^( CONCATENATION ( element )* )
+                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:96:7: ^( CONCATENATION ( element )* )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
                 (Object)adaptor.create(CONCATENATION, "CONCATENATION")
                 , root_1);
 
-                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:62:23: ( element )*
+                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:96:23: ( element )*
                 while ( stream_element.hasNext() ) {
                     adaptor.addChild(root_1, stream_element.nextTree());
 
@@ -647,7 +663,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "element"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:65:1: element : ( atom '+' -> ^( ONEORMORE atom ) | atom '*' -> ^( ZEROORMORE atom ) | atom '?' -> ^( OPTIONAL atom ) | atom -> ^( ELEMENT atom ) );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:99:1: element : ( atom '+' -> ^( ONEORMORE atom ) | atom '*' -> ^( ZEROORMORE atom ) | atom '?' -> ^( OPTIONAL atom ) | atom -> ^( ELEMENT atom ) );
     public final RegexParser.element_return element() throws RecognitionException {
         RegexParser.element_return retval = new RegexParser.element_return();
         retval.start = input.LT(1);
@@ -675,7 +691,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_Star=new RewriteRuleTokenStream(adaptor,"token Star");
         RewriteRuleSubtreeStream stream_atom=new RewriteRuleSubtreeStream(adaptor,"rule atom");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:66:3: ( atom '+' -> ^( ONEORMORE atom ) | atom '*' -> ^( ZEROORMORE atom ) | atom '?' -> ^( OPTIONAL atom ) | atom -> ^( ELEMENT atom ) )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:100:3: ( atom '+' -> ^( ONEORMORE atom ) | atom '*' -> ^( ZEROORMORE atom ) | atom '?' -> ^( OPTIONAL atom ) | atom -> ^( ELEMENT atom ) )
             int alt4=4;
             switch ( input.LA(1) ) {
             case ALC:
@@ -853,16 +869,16 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt4) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:67:3: atom '+'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:101:3: atom '+'
                     {
-                    pushFollow(FOLLOW_atom_in_element284);
+                    pushFollow(FOLLOW_atom_in_element302);
                     atom8=atom();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_atom.add(atom8.getTree());
 
-                    char_literal9=(Token)match(input,Plus,FOLLOW_Plus_in_element286); if (state.failed) return retval; 
+                    char_literal9=(Token)match(input,Plus,FOLLOW_Plus_in_element304); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Plus.add(char_literal9);
 
 
@@ -879,9 +895,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 68:5: -> ^( ONEORMORE atom )
+                    // 102:5: -> ^( ONEORMORE atom )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:69:7: ^( ONEORMORE atom )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:103:7: ^( ONEORMORE atom )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -902,16 +918,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:70:5: atom '*'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:104:5: atom '*'
                     {
-                    pushFollow(FOLLOW_atom_in_element310);
+                    pushFollow(FOLLOW_atom_in_element328);
                     atom10=atom();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_atom.add(atom10.getTree());
 
-                    char_literal11=(Token)match(input,Star,FOLLOW_Star_in_element312); if (state.failed) return retval; 
+                    char_literal11=(Token)match(input,Star,FOLLOW_Star_in_element330); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Star.add(char_literal11);
 
 
@@ -928,9 +944,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 71:5: -> ^( ZEROORMORE atom )
+                    // 105:5: -> ^( ZEROORMORE atom )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:72:7: ^( ZEROORMORE atom )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:106:7: ^( ZEROORMORE atom )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -951,16 +967,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:73:5: atom '?'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:107:5: atom '?'
                     {
-                    pushFollow(FOLLOW_atom_in_element336);
+                    pushFollow(FOLLOW_atom_in_element354);
                     atom12=atom();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_atom.add(atom12.getTree());
 
-                    char_literal13=(Token)match(input,QuestionMark,FOLLOW_QuestionMark_in_element338); if (state.failed) return retval; 
+                    char_literal13=(Token)match(input,QuestionMark,FOLLOW_QuestionMark_in_element356); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_QuestionMark.add(char_literal13);
 
 
@@ -977,9 +993,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 74:5: -> ^( OPTIONAL atom )
+                    // 108:5: -> ^( OPTIONAL atom )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:75:7: ^( OPTIONAL atom )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:109:7: ^( OPTIONAL atom )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -1000,9 +1016,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:76:5: atom
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:110:5: atom
                     {
-                    pushFollow(FOLLOW_atom_in_element362);
+                    pushFollow(FOLLOW_atom_in_element380);
                     atom14=atom();
 
                     state._fsp--;
@@ -1022,9 +1038,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 77:5: -> ^( ELEMENT atom )
+                    // 111:5: -> ^( ELEMENT atom )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:78:7: ^( ELEMENT atom )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:112:7: ^( ELEMENT atom )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -1077,7 +1093,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "quantifier"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:88:1: quantifier : ( '+' -> ^( ONEORMORE ) | '*' -> ^( ZEROORMORE ) );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:122:1: quantifier : ( '+' -> ^( ONEORMORE ) | '*' -> ^( ZEROORMORE ) );
     public final RegexParser.quantifier_return quantifier() throws RecognitionException {
         RegexParser.quantifier_return retval = new RegexParser.quantifier_return();
         retval.start = input.LT(1);
@@ -1094,7 +1110,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_Star=new RewriteRuleTokenStream(adaptor,"token Star");
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:89:3: ( '+' -> ^( ONEORMORE ) | '*' -> ^( ZEROORMORE ) )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:123:3: ( '+' -> ^( ONEORMORE ) | '*' -> ^( ZEROORMORE ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1114,9 +1130,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt5) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:90:3: '+'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:124:3: '+'
                     {
-                    char_literal15=(Token)match(input,Plus,FOLLOW_Plus_in_quantifier402); if (state.failed) return retval; 
+                    char_literal15=(Token)match(input,Plus,FOLLOW_Plus_in_quantifier420); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Plus.add(char_literal15);
 
 
@@ -1133,9 +1149,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 91:5: -> ^( ONEORMORE )
+                    // 125:5: -> ^( ONEORMORE )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:92:7: ^( ONEORMORE )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:126:7: ^( ONEORMORE )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -1154,9 +1170,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:93:5: '*'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:127:5: '*'
                     {
-                    char_literal16=(Token)match(input,Star,FOLLOW_Star_in_quantifier424); if (state.failed) return retval; 
+                    char_literal16=(Token)match(input,Star,FOLLOW_Star_in_quantifier442); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Star.add(char_literal16);
 
 
@@ -1173,9 +1189,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 94:5: -> ^( ZEROORMORE )
+                    // 128:5: -> ^( ZEROORMORE )
                     {
-                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:95:7: ^( ZEROORMORE )
+                        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:129:7: ^( ZEROORMORE )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -1226,7 +1242,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "group"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:98:1: group : '(' regex ')' -> ^( GROUP regex ) ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:132:1: group : '(' regex ')' -> ^( GROUP regex ) ;
     public final RegexParser.group_return group() throws RecognitionException {
         RegexParser.group_return retval = new RegexParser.group_return();
         retval.start = input.LT(1);
@@ -1245,21 +1261,21 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_OpenParen=new RewriteRuleTokenStream(adaptor,"token OpenParen");
         RewriteRuleSubtreeStream stream_regex=new RewriteRuleSubtreeStream(adaptor,"rule regex");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:99:3: ( '(' regex ')' -> ^( GROUP regex ) )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:100:3: '(' regex ')'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:133:3: ( '(' regex ')' -> ^( GROUP regex ) )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:134:3: '(' regex ')'
             {
-            char_literal17=(Token)match(input,OpenParen,FOLLOW_OpenParen_in_group455); if (state.failed) return retval; 
+            char_literal17=(Token)match(input,OpenParen,FOLLOW_OpenParen_in_group473); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_OpenParen.add(char_literal17);
 
 
-            pushFollow(FOLLOW_regex_in_group457);
+            pushFollow(FOLLOW_regex_in_group475);
             regex18=regex();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_regex.add(regex18.getTree());
 
-            char_literal19=(Token)match(input,CloseParen,FOLLOW_CloseParen_in_group459); if (state.failed) return retval; 
+            char_literal19=(Token)match(input,CloseParen,FOLLOW_CloseParen_in_group477); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CloseParen.add(char_literal19);
 
 
@@ -1276,9 +1292,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 101:5: -> ^( GROUP regex )
+            // 135:5: -> ^( GROUP regex )
             {
-                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:102:7: ^( GROUP regex )
+                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:136:7: ^( GROUP regex )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -1329,7 +1345,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "atom"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:105:1: atom : ( literal | group | dotany );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:139:1: atom : ( literal | group | dotany );
     public final RegexParser.atom_return atom() throws RecognitionException {
         RegexParser.atom_return retval = new RegexParser.atom_return();
         retval.start = input.LT(1);
@@ -1346,7 +1362,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:106:3: ( literal | group | dotany )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:140:3: ( literal | group | dotany )
             int alt6=3;
             switch ( input.LA(1) ) {
             case ALC:
@@ -1436,12 +1452,12 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt6) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:107:3: literal
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:141:3: literal
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_literal_in_atom492);
+                    pushFollow(FOLLOW_literal_in_atom510);
                     literal20=literal();
 
                     state._fsp--;
@@ -1451,12 +1467,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:108:5: group
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:142:5: group
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_group_in_atom498);
+                    pushFollow(FOLLOW_group_in_atom516);
                     group21=group();
 
                     state._fsp--;
@@ -1466,12 +1482,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:109:5: dotany
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:143:5: dotany
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_dotany_in_atom504);
+                    pushFollow(FOLLOW_dotany_in_atom522);
                     dotany22=dotany();
 
                     state._fsp--;
@@ -1513,7 +1529,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "dotany"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:112:1: dotany : Dot -> ^( DOTANY ) ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:146:1: dotany : Dot -> ^( DOTANY ) ;
     public final RegexParser.dotany_return dotany() throws RecognitionException {
         RegexParser.dotany_return retval = new RegexParser.dotany_return();
         retval.start = input.LT(1);
@@ -1527,10 +1543,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_Dot=new RewriteRuleTokenStream(adaptor,"token Dot");
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:113:3: ( Dot -> ^( DOTANY ) )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:114:3: Dot
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:147:3: ( Dot -> ^( DOTANY ) )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:148:3: Dot
             {
-            Dot23=(Token)match(input,Dot,FOLLOW_Dot_in_dotany519); if (state.failed) return retval; 
+            Dot23=(Token)match(input,Dot,FOLLOW_Dot_in_dotany537); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_Dot.add(Dot23);
 
 
@@ -1547,9 +1563,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 115:5: -> ^( DOTANY )
+            // 149:5: -> ^( DOTANY )
             {
-                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:116:7: ^( DOTANY )
+                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:150:7: ^( DOTANY )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -1598,7 +1614,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "literal"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:119:1: literal : ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:153:1: literal : ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] );
     public final RegexParser.literal_return literal() throws RecognitionException {
         RegexParser.literal_return retval = new RegexParser.literal_return();
         retval.start = input.LT(1);
@@ -1614,7 +1630,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_digit=new RewriteRuleSubtreeStream(adaptor,"rule digit");
         RewriteRuleSubtreeStream stream_letter=new RewriteRuleSubtreeStream(adaptor,"rule letter");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:120:3: ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:154:3: ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1634,9 +1650,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt7) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:121:3: letter
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:155:3: letter
                     {
-                    pushFollow(FOLLOW_letter_in_literal550);
+                    pushFollow(FOLLOW_letter_in_literal568);
                     letter24=letter();
 
                     state._fsp--;
@@ -1656,7 +1672,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 122:5: -> LITERAL[$letter.text]
+                    // 156:5: -> LITERAL[$letter.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (letter24!=null?input.toString(letter24.start,letter24.stop):null))
@@ -1671,9 +1687,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:123:5: digit
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:157:5: digit
                     {
-                    pushFollow(FOLLOW_digit_in_literal565);
+                    pushFollow(FOLLOW_digit_in_literal583);
                     digit25=digit();
 
                     state._fsp--;
@@ -1693,7 +1709,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 124:5: -> LITERAL[$digit.text]
+                    // 158:5: -> LITERAL[$digit.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (digit25!=null?input.toString(digit25.start,digit25.stop):null))
@@ -1740,7 +1756,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "number"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:127:1: number : digits -> NUMBER[$digits.text] ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:161:1: number : digits -> NUMBER[$digits.text] ;
     public final RegexParser.number_return number() throws RecognitionException {
         RegexParser.number_return retval = new RegexParser.number_return();
         retval.start = input.LT(1);
@@ -1753,10 +1769,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_digits=new RewriteRuleSubtreeStream(adaptor,"rule digits");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:128:3: ( digits -> NUMBER[$digits.text] )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:129:3: digits
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:162:3: ( digits -> NUMBER[$digits.text] )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:163:3: digits
             {
-            pushFollow(FOLLOW_digits_in_number589);
+            pushFollow(FOLLOW_digits_in_number607);
             digits26=digits();
 
             state._fsp--;
@@ -1776,7 +1792,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 130:5: -> NUMBER[$digits.text]
+            // 164:5: -> NUMBER[$digits.text]
             {
                 adaptor.addChild(root_0, 
                 (Object)adaptor.create(NUMBER, (digits26!=null?input.toString(digits26.start,digits26.stop):null))
@@ -1821,7 +1837,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "digits"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:133:1: digits : ( digit )+ ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:167:1: digits : ( digit )+ ;
     public final RegexParser.digits_return digits() throws RecognitionException {
         RegexParser.digits_return retval = new RegexParser.digits_return();
         retval.start = input.LT(1);
@@ -1834,13 +1850,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:134:3: ( ( digit )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:135:3: ( digit )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:168:3: ( ( digit )+ )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:169:3: ( digit )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:135:3: ( digit )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:169:3: ( digit )+
             int cnt8=0;
             loop8:
             do {
@@ -1854,9 +1870,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt8) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:135:3: digit
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:169:3: digit
             	    {
-            	    pushFollow(FOLLOW_digit_in_digits613);
+            	    pushFollow(FOLLOW_digit_in_digits631);
             	    digit27=digit();
 
             	    state._fsp--;
@@ -1910,7 +1926,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "digit"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:138:1: digit : ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:172:1: digit : ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 );
     public final RegexParser.digit_return digit() throws RecognitionException {
         RegexParser.digit_return retval = new RegexParser.digit_return();
         retval.start = input.LT(1);
@@ -1923,7 +1939,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set28_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:139:3: ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:173:3: ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -1979,7 +1995,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "name"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:152:1: name : letters -> NAME[$letters.text] ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:186:1: name : letters -> NAME[$letters.text] ;
     public final RegexParser.name_return name() throws RecognitionException {
         RegexParser.name_return retval = new RegexParser.name_return();
         retval.start = input.LT(1);
@@ -1992,10 +2008,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_letters=new RewriteRuleSubtreeStream(adaptor,"rule letters");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:153:3: ( letters -> NAME[$letters.text] )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:154:3: letters
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:187:3: ( letters -> NAME[$letters.text] )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:188:3: letters
             {
-            pushFollow(FOLLOW_letters_in_name698);
+            pushFollow(FOLLOW_letters_in_name716);
             letters29=letters();
 
             state._fsp--;
@@ -2015,7 +2031,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 155:5: -> NAME[$letters.text]
+            // 189:5: -> NAME[$letters.text]
             {
                 adaptor.addChild(root_0, 
                 (Object)adaptor.create(NAME, (letters29!=null?input.toString(letters29.start,letters29.stop):null))
@@ -2060,7 +2076,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "letters"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:158:1: letters : ( letter )+ ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:192:1: letters : ( letter )+ ;
     public final RegexParser.letters_return letters() throws RecognitionException {
         RegexParser.letters_return retval = new RegexParser.letters_return();
         retval.start = input.LT(1);
@@ -2073,13 +2089,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:159:3: ( ( letter )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:160:3: ( letter )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:193:3: ( ( letter )+ )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:194:3: ( letter )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:160:3: ( letter )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:194:3: ( letter )+
             int cnt9=0;
             loop9:
             do {
@@ -2093,9 +2109,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt9) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:160:3: letter
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:194:3: letter
             	    {
-            	    pushFollow(FOLLOW_letter_in_letters722);
+            	    pushFollow(FOLLOW_letter_in_letters740);
             	    letter30=letter();
 
             	    state._fsp--;
@@ -2149,7 +2165,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "non_close_parens"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:163:1: non_close_parens : ( non_close_paren )+ ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:197:1: non_close_parens : ( non_close_paren )+ ;
     public final RegexParser.non_close_parens_return non_close_parens() throws RecognitionException {
         RegexParser.non_close_parens_return retval = new RegexParser.non_close_parens_return();
         retval.start = input.LT(1);
@@ -2162,13 +2178,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:164:3: ( ( non_close_paren )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:165:3: ( non_close_paren )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:198:3: ( ( non_close_paren )+ )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:199:3: ( non_close_paren )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:165:3: ( non_close_paren )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:199:3: ( non_close_paren )+
             int cnt10=0;
             loop10:
             do {
@@ -2182,9 +2198,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt10) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:165:3: non_close_paren
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:199:3: non_close_paren
             	    {
-            	    pushFollow(FOLLOW_non_close_paren_in_non_close_parens738);
+            	    pushFollow(FOLLOW_non_close_paren_in_non_close_parens756);
             	    non_close_paren31=non_close_paren();
 
             	    state._fsp--;
@@ -2238,7 +2254,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "non_close_paren"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:168:1: non_close_paren : ~ CloseParen ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:202:1: non_close_paren : ~ CloseParen ;
     public final RegexParser.non_close_paren_return non_close_paren() throws RecognitionException {
         RegexParser.non_close_paren_return retval = new RegexParser.non_close_paren_return();
         retval.start = input.LT(1);
@@ -2251,7 +2267,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set32_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:169:3: (~ CloseParen )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:203:3: (~ CloseParen )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -2307,7 +2323,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "letter"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:173:1: letter : ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:207:1: letter : ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC );
     public final RegexParser.letter_return letter() throws RecognitionException {
         RegexParser.letter_return retval = new RegexParser.letter_return();
         retval.start = input.LT(1);
@@ -2320,7 +2336,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set33_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:174:3: ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:208:3: ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -2370,16 +2386,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred4_Regex
     public final void synpred4_Regex_fragment() throws RecognitionException {
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:67:3: ( atom '+' )
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:67:3: atom '+'
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:101:3: ( atom '+' )
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:101:3: atom '+'
         {
-        pushFollow(FOLLOW_atom_in_synpred4_Regex284);
+        pushFollow(FOLLOW_atom_in_synpred4_Regex302);
         atom();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,Plus,FOLLOW_Plus_in_synpred4_Regex286); if (state.failed) return ;
+        match(input,Plus,FOLLOW_Plus_in_synpred4_Regex304); if (state.failed) return ;
 
         }
 
@@ -2388,16 +2404,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred5_Regex
     public final void synpred5_Regex_fragment() throws RecognitionException {
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:70:5: ( atom '*' )
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:70:5: atom '*'
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:104:5: ( atom '*' )
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:104:5: atom '*'
         {
-        pushFollow(FOLLOW_atom_in_synpred5_Regex310);
+        pushFollow(FOLLOW_atom_in_synpred5_Regex328);
         atom();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,Star,FOLLOW_Star_in_synpred5_Regex312); if (state.failed) return ;
+        match(input,Star,FOLLOW_Star_in_synpred5_Regex330); if (state.failed) return ;
 
         }
 
@@ -2406,16 +2422,16 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred6_Regex
     public final void synpred6_Regex_fragment() throws RecognitionException {
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:73:5: ( atom '?' )
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:73:5: atom '?'
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:107:5: ( atom '?' )
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/net/abrandl/lucene/regex/grammar/Regex.g:107:5: atom '?'
         {
-        pushFollow(FOLLOW_atom_in_synpred6_Regex336);
+        pushFollow(FOLLOW_atom_in_synpred6_Regex354);
         atom();
 
         state._fsp--;
         if (state.failed) return ;
 
-        match(input,QuestionMark,FOLLOW_QuestionMark_in_synpred6_Regex338); if (state.failed) return ;
+        match(input,QuestionMark,FOLLOW_QuestionMark_in_synpred6_Regex356); if (state.failed) return ;
 
         }
 
@@ -2470,41 +2486,41 @@ public TreeAdaptor getTreeAdaptor() {
 
  
 
-    public static final BitSet FOLLOW_regex_in_parse133 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_parse135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_first_alternative_in_regex163 = new BitSet(new long[]{0x0000000000000002L,0x0000010000000000L});
-    public static final BitSet FOLLOW_Pipe_in_regex185 = new BitSet(new long[]{0x35602D7FF0051890L,0x9B0D99D240036DF8L,0x000000000000378DL});
-    public static final BitSet FOLLOW_concatenation_in_regex187 = new BitSet(new long[]{0x0000000000000002L,0x0000010000000000L});
-    public static final BitSet FOLLOW_concatenation_in_first_alternative234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_element_in_concatenation249 = new BitSet(new long[]{0x35602D7FF0051892L,0x9B0D98D240036DF8L,0x000000000000378DL});
-    public static final BitSet FOLLOW_atom_in_element284 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-    public static final BitSet FOLLOW_Plus_in_element286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_element310 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
-    public static final BitSet FOLLOW_Star_in_element312 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_element336 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_QuestionMark_in_element338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_element362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Plus_in_quantifier402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Star_in_quantifier424 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OpenParen_in_group455 = new BitSet(new long[]{0x35602D7FF0051890L,0x9B0D98D240036DF8L,0x000000000000378DL});
-    public static final BitSet FOLLOW_regex_in_group457 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CloseParen_in_group459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_atom492 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_group_in_atom498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dotany_in_atom504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Dot_in_dotany519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_letter_in_literal550 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digit_in_literal565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digits_in_number589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digit_in_digits613 = new BitSet(new long[]{0x0000003FF0000002L});
-    public static final BitSet FOLLOW_letters_in_name698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_letter_in_letters722 = new BitSet(new long[]{0x3560294000051892L,0x9B0D98C240036DF8L,0x000000000000378DL});
-    public static final BitSet FOLLOW_non_close_paren_in_non_close_parens738 = new BitSet(new long[]{0xFFFFFFFFFEFFFFF2L,0xFFFFFFFFFFFFFFFFL,0x0000000000003FFFL});
-    public static final BitSet FOLLOW_atom_in_synpred4_Regex284 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-    public static final BitSet FOLLOW_Plus_in_synpred4_Regex286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_synpred5_Regex310 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
-    public static final BitSet FOLLOW_Star_in_synpred5_Regex312 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_synpred6_Regex336 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_QuestionMark_in_synpred6_Regex338 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_regex_in_parse151 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_parse153 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_first_alternative_in_regex181 = new BitSet(new long[]{0x0000000000000002L,0x0000010000000000L});
+    public static final BitSet FOLLOW_Pipe_in_regex203 = new BitSet(new long[]{0x35602D7FF0051890L,0x9B0D99D240036DF8L,0x000000000000378DL});
+    public static final BitSet FOLLOW_concatenation_in_regex205 = new BitSet(new long[]{0x0000000000000002L,0x0000010000000000L});
+    public static final BitSet FOLLOW_concatenation_in_first_alternative252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_element_in_concatenation267 = new BitSet(new long[]{0x35602D7FF0051892L,0x9B0D98D240036DF8L,0x000000000000378DL});
+    public static final BitSet FOLLOW_atom_in_element302 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_Plus_in_element304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_element328 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
+    public static final BitSet FOLLOW_Star_in_element330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_element354 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
+    public static final BitSet FOLLOW_QuestionMark_in_element356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_element380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Plus_in_quantifier420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Star_in_quantifier442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OpenParen_in_group473 = new BitSet(new long[]{0x35602D7FF0051890L,0x9B0D98D240036DF8L,0x000000000000378DL});
+    public static final BitSet FOLLOW_regex_in_group475 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CloseParen_in_group477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_atom510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_group_in_atom516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dotany_in_atom522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Dot_in_dotany537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_letter_in_literal568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digit_in_literal583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digits_in_number607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digit_in_digits631 = new BitSet(new long[]{0x0000003FF0000002L});
+    public static final BitSet FOLLOW_letters_in_name716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_letter_in_letters740 = new BitSet(new long[]{0x3560294000051892L,0x9B0D98C240036DF8L,0x000000000000378DL});
+    public static final BitSet FOLLOW_non_close_paren_in_non_close_parens756 = new BitSet(new long[]{0xFFFFFFFFFEFFFFF2L,0xFFFFFFFFFFFFFFFFL,0x0000000000003FFFL});
+    public static final BitSet FOLLOW_atom_in_synpred4_Regex302 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_Plus_in_synpred4_Regex304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_synpred5_Regex328 = new BitSet(new long[]{0x0000000000000000L,0x0020000000000000L});
+    public static final BitSet FOLLOW_Star_in_synpred5_Regex330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_synpred6_Regex354 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
+    public static final BitSet FOLLOW_QuestionMark_in_synpred6_Regex356 = new BitSet(new long[]{0x0000000000000002L});
 
 }
