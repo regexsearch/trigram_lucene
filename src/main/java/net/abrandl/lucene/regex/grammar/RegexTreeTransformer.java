@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.abrandl.lucene.regex.grammar.tree.Alternative;
+import net.abrandl.lucene.regex.grammar.tree.CharacterClass;
+import net.abrandl.lucene.regex.grammar.tree.CharacterRange;
 import net.abrandl.lucene.regex.grammar.tree.Concatenation;
 import net.abrandl.lucene.regex.grammar.tree.DotAny;
 import net.abrandl.lucene.regex.grammar.tree.Literal;
@@ -77,6 +79,23 @@ public class RegexTreeTransformer {
 			return new DotAny();
 		case RegexParser.OPTIONAL:
 			return new Optional(childTrees[0]);
+		case RegexParser.CHARACTER_CLASS:
+			CharacterRange[] ranges = new CharacterRange[childCount];
+			for (int i = 0; i < childTrees.length; i++) {
+				if (!(childTrees[i] instanceof CharacterRange)) {
+					throw new RuntimeException(
+							"something has gone badly wrong.");
+				}
+				ranges[i] = (CharacterRange) childTrees[i];
+			}
+			return new CharacterClass(ranges);
+		case RegexParser.RANGE:
+
+			char start = ((Literal) childTrees[0]).getChars().charAt(0);
+			char end = ((Literal) childTrees[1]).getChars().charAt(0);
+
+			return new CharacterRange(start, end);
+
 		case RegexParser.ELEMENT:
 			if (childCount == 1) {
 				// only atom given
@@ -88,7 +107,8 @@ public class RegexTreeTransformer {
 			return new Literal(inputTree.getText());
 		default:
 			throw new RuntimeException("not yet implemented type: "
-					+ inputTree.getType());
+					+ inputTree.getType() + ", "
+					+ RegexParser.tokenNames[inputTree.getType()]);
 		}
 	}
 

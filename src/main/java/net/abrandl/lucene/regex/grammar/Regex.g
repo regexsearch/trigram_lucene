@@ -19,6 +19,8 @@ tokens {
   ZEROORMORE;
   DOTANY;
   OPTIONAL;
+  CHARACTER_CLASS;
+  RANGE;
 }
 
 @parser::header {
@@ -112,13 +114,6 @@ element
       ^(ELEMENT atom)
   ;
 
-//element
-//  :
-//  atom quantifier?
-//    ->
-//      ^(ELEMENT atom quantifier?)
-//  ;
-
 quantifier
   :
   '+'
@@ -141,6 +136,7 @@ atom
   literal
   | group
   | dotany
+  | character_class
   ;
 
 dotany
@@ -149,6 +145,28 @@ dotany
     ->
       ^(DOTANY)
   ;
+
+// CHARACTER CLASSES
+//
+//         [...]       positive character class
+//         [x-y]       range (can be used for hex characters)
+
+character_class
+  :
+  CharacterClassStart cc_atom+ CharacterClassEnd
+    ->
+      ^(CHARACTER_CLASS cc_atom+)
+  ;
+
+cc_atom
+  :
+  literal Hyphen literal
+    ->
+      ^(RANGE literal literal)
+  | literal
+  ;
+
+// END character class
 
 literal
   :

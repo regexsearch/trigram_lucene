@@ -63,6 +63,15 @@ public class RegexNodeVisitorToString implements
 	public String visit(DotAny dotAny) {
 		return ".";
 	}
-	
+
+	@Override
+	public String visit(CharacterClass characterClass) {
+		return String.format("[%s]", join(characterClass.getChildren(), ""));
+	}
+
+	@Override
+	public String visit(CharacterRange characterRange) {
+		return String.format("%s-%s", characterRange.getStart(), characterRange.getEnd());
+	}
 	
 }

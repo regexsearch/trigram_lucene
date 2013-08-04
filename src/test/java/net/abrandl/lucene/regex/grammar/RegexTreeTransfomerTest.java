@@ -67,6 +67,13 @@ public class RegexTreeTransfomerTest {
 		RegexTreeTransformer.parse(")I'm(invalid+input*");
 	}
 
+	@Test
+	public void characterClass() throws RegexParsingException {
+		assertIdenticalTransform("[a-z]");
+		assertIdenticalTransform("[a-z0-9]");
+		assertIdenticalTransform("[a-z]");
+	}
+
 	private void assertIdenticalTransform(String regex)
 			throws RegexParsingException {
 		assertIdenticalTransform(regex, true);

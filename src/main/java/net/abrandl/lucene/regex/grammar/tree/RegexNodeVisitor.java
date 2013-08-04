@@ -18,4 +18,8 @@ public interface RegexNodeVisitor<A> {
 
 	A visit(DotAny dotAny);
 
+	A visit(CharacterClass characterClass);
+
+	A visit(CharacterRange characterRange);
+
 }
