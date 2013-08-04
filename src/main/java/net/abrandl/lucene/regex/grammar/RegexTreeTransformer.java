@@ -53,11 +53,12 @@ public class RegexTreeTransformer {
 		return builder.toString();
 	}
 
-	public RegexNode getRegexTree() {
+	public RegexNode getRegexTree() throws RegexParsingException {
 		return buildRegexTree(tree);
 	}
 
-	private RegexNode buildRegexTree(CommonTree inputTree) {
+	private RegexNode buildRegexTree(CommonTree inputTree)
+			throws RegexParsingException {
 		final int childCount = inputTree.getChildCount();
 		final int tokenType = inputTree.getType();
 
@@ -83,8 +84,9 @@ public class RegexTreeTransformer {
 			CharacterRange[] ranges = new CharacterRange[childCount];
 			for (int i = 0; i < childTrees.length; i++) {
 				if (!(childTrees[i] instanceof CharacterRange)) {
-					throw new RuntimeException(
-							"something has gone badly wrong.");
+					throw new RegexParsingException(
+							"Only expected children of type CharacterRange here, others given:"
+									+ childTrees[i].getClass());
 				}
 				ranges[i] = (CharacterRange) childTrees[i];
 			}
@@ -114,7 +116,7 @@ public class RegexTreeTransformer {
 
 	@SuppressWarnings("unchecked")
 	private void buildRegexTreeForChildren(CommonTree parent,
-			RegexNode[] childTrees) {
+			RegexNode[] childTrees) throws RegexParsingException {
 		if (parent.getChildren() != null) {
 			int childIndex = 0;
 			for (CommonTree child : (List<CommonTree>) parent.getChildren()) {
