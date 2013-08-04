@@ -70,7 +70,7 @@ public class RegexTreeTransfomerTest {
 	@Test
 	public void characterClass() throws RegexParsingException {
 		assertIdenticalTransform("[a-z]");
-		assertIdenticalTransform("[a-z0-9]");
+		assertIdenticalTransform("[a-b0-9e-z]");
 		assertIdenticalTransform("[a-z]");
 	}
 
