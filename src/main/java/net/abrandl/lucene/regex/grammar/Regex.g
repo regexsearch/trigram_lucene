@@ -69,6 +69,7 @@ parse
   :
   regex EOF
     -> regex
+  | subject_boundary
   ;
 
 // ALTERNATION
@@ -167,6 +168,21 @@ cc_atom
   ;
 
 // END character class
+
+// boundaries
+
+// just ignore subject boundary for the time being
+subject_boundary
+  :
+  '^' regex
+    -> regex
+  | regex '$'
+    -> regex
+  | '^' regex '$'
+    -> regex
+  ;
+
+// END boundaries
 
 literal
   :

@@ -19,7 +19,7 @@ public class RegexTreeTransfomerTest {
 
 	@Test
 	public void emptyString() throws RegexParsingException {
-		assertIdenticalTransform("", true);
+		assertIdenticalTransform("");
 	}
 
 	@Test
@@ -74,12 +74,15 @@ public class RegexTreeTransfomerTest {
 		assertIdenticalTransform("[a-z]");
 	}
 
-	private void assertIdenticalTransform(String regex)
-			throws RegexParsingException {
-		assertIdenticalTransform(regex, true);
+	@Test
+	public void ignoreSubjectBoundaries() throws RegexParsingException {
+		assertTransform("^foo", "foo");
+		assertTransform("foo$", "foo");
+		assertTransform("^foo$", "foo");
+		assertTransform("^(bla?|foo+)*$", "(bla?|foo+)*");
 	}
 
-	private void assertIdenticalTransform(String regex, boolean debug)
+	private void assertTransform(String regex, String expectedTransformation)
 			throws RegexParsingException {
 		RegexTreeTransformer parser = RegexTreeTransformer.parse(regex);
 		RegexNode tree = parser.getRegexTree();
@@ -88,7 +91,13 @@ public class RegexTreeTransfomerTest {
 
 		debug(regex, parser, tree);
 
-		assertEquals(regex, transformed);
+		assertEquals(expectedTransformation, transformed);
+	}
+
+	private void assertIdenticalTransform(String regex)
+			throws RegexParsingException {
+
+		assertTransform(regex, regex);
 	}
 
 	private void debug(String regex, RegexTreeTransformer parser, RegexNode tree) {
