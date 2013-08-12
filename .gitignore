@@ -1,2 +1,4 @@
 .settings/
 target/
+src/main/java/net/abrandl/lucene/regex/grammar/RegexLexer.java
+src/main/java/net/abrandl/lucene/regex/grammar/RegexParser.java
