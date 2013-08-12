@@ -7,6 +7,17 @@ import java.util.Set;
 
 public class StringSet implements Iterable<String> {
 
+	private final static StringSet emptyString = new StringSet("");
+	private final static StringSet emptySet = new StringSet();
+
+	public final static StringSet emptyStringOnly() {
+		return emptyString;
+	}
+
+	public final static StringSet unknownSet() {
+		return emptySet;
+	}
+
 	private final Set<String> strings;
 
 	private static Set<String> toSet(String... strings) {
@@ -17,7 +28,7 @@ public class StringSet implements Iterable<String> {
 		return set;
 	}
 
-	public StringSet(Set<String> strings) {
+	private StringSet(Set<String> strings) {
 		this.strings = Collections.unmodifiableSet(strings);
 	}
 
@@ -27,6 +38,10 @@ public class StringSet implements Iterable<String> {
 
 	public StringSet() {
 		this.strings = Collections.emptySet();
+	}
+
+	public boolean isKnown() {
+		return !strings.isEmpty();
 	}
 
 	public Set<String> getStrings() {
@@ -53,6 +68,36 @@ public class StringSet implements Iterable<String> {
 			}
 		}
 		return new StringSet(join);
+	}
+
+	@Override
+	public String toString() {
+		return strings.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((strings == null) ? 0 : strings.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StringSet other = (StringSet) obj;
+		if (strings == null) {
+			if (other.strings != null)
+				return false;
+		} else if (!strings.equals(other.strings))
+			return false;
+		return true;
 	}
 
 }
