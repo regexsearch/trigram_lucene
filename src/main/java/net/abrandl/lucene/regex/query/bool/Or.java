@@ -1,11 +1,11 @@
 package net.abrandl.lucene.regex.query.bool;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 
 public class Or extends InnerExpressionNode {
 
-	public Or(List<Expression> children) {
+	public Or(Collection<Expression> children) {
 		super(children);
 	}
 

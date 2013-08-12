@@ -1,10 +1,10 @@
 package net.abrandl.lucene.regex.query.bool;
 
-import java.util.List;
+import java.util.Collection;
 
 public class And extends InnerExpressionNode {
 
-	public And(List<Expression> children) {
+	public And(Collection<Expression> children) {
 		super(children);
 	}
 

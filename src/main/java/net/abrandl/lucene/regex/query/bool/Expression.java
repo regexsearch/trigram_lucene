@@ -1,14 +1,14 @@
 package net.abrandl.lucene.regex.query.bool;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Expression {
 
 	public abstract <ReturnType> ReturnType accept(ExpressionVisitor<ReturnType> visitor);
 
 	final public static Expression and(String... strings) {
-		List<Expression> literals = new LinkedList<Expression>();
+		Set<Expression> literals = new HashSet<Expression>(strings.length, 1.0f);
 		for (String s : strings) {
 			literals.add(new Literal(s));
 		}
@@ -16,7 +16,7 @@ public abstract class Expression {
 	}
 
 	final public static Expression or(String... strings) {
-		List<Expression> literals = new LinkedList<Expression>();
+		Set<Expression> literals = new HashSet<Expression>(strings.length, 1.0f);
 		for (String s : strings) {
 			literals.add(new Literal(s));
 		}
@@ -24,7 +24,7 @@ public abstract class Expression {
 	}
 
 	public Expression and(Expression... other) {
-		List<Expression> all = new LinkedList<Expression>();
+		Set<Expression> all = new HashSet<Expression>(other.length + 1, 1.0f);
 		all.add(this);
 		for (Expression e : other) {
 			all.add(e);
@@ -33,7 +33,7 @@ public abstract class Expression {
 	}
 
 	public Expression or(Expression... other) {
-		List<Expression> all = new LinkedList<Expression>();
+		Set<Expression> all = new HashSet<Expression>(other.length + 1, 1.0f);
 		all.add(this);
 		for (Expression e : other) {
 			all.add(e);

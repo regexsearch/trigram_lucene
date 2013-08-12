@@ -1,20 +1,20 @@
 package net.abrandl.lucene.regex.query.bool;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 abstract class InnerExpressionNode extends Expression implements Iterable<Expression> {
 
-	final List<Expression> children;
+	final Collection<Expression> children;
 
-	InnerExpressionNode(List<Expression> children) {
+	InnerExpressionNode(Collection<Expression> children) {
 		super();
 		this.children = children;
 	}
 
 	InnerExpressionNode(Expression... children) {
-		this(new LinkedList<Expression>());
+		this(new HashSet<Expression>(children.length));
 		for (Expression e : children) {
 			this.children.add(e);
 		}
