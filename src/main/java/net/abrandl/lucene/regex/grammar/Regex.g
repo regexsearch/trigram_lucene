@@ -26,6 +26,11 @@ tokens {
 @parser::header {
 package net.abrandl.lucene.regex.grammar;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
+
+/*
+* Based on insights (and partly also grammar code) taken from
+* https://github.com/bkiers/PCREParser
+*/
 }
 
 @lexer::header {
