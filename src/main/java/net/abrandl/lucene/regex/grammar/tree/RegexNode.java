@@ -1,14 +1,15 @@
 package net.abrandl.lucene.regex.grammar.tree;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class RegexNode {
 
 	private RegexNode parent;
-	private List<RegexNode> children;
+	private final List<RegexNode> children;
 
 	public RegexNode() {
 		children = new LinkedList<RegexNode>();
@@ -52,38 +53,15 @@ public abstract class RegexNode {
 		return parent == null;
 	}
 
+	public void collectMembers(Collection<RegexNode> nodes) {
+		nodes.add(this);
+		for (RegexNode child : children) {
+			if (!nodes.contains(child)) {
+				child.collectMembers(nodes);
+			}
+		}
+	}
+
 	public abstract <A> A accept(RegexNodeVisitor<A> visitor);
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((children == null) ? 0 : children.hashCode());
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RegexNode other = (RegexNode) obj;
-		if (children == null) {
-			if (other.children != null)
-				return false;
-		} else if (!children.equals(other.children))
-			return false;
-		if (parent == null) {
-			if (other.parent != null)
-				return false;
-		} else if (!parent.equals(other.parent))
-			return false;
-		return true;
-	}
 
 }

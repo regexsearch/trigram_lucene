@@ -1,15 +1,22 @@
 package net.abrandl.lucene.regex.grammar;
 
+import java.util.Collection;
+
+import net.abrandl.lucene.regex.grammar.tree.*;
+
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+
+import static org.hamcrest.CoreMatchers.not;
+
 import static org.junit.Assert.assertEquals;
-import net.abrandl.lucene.regex.grammar.tree.DotAny;
-import net.abrandl.lucene.regex.grammar.tree.RegexNode;
-import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToString;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
 public class RegexTreeTransfomerTest {
 
-	private boolean debug = true;
+	private final boolean debug = true;
 
 	@Test
 	public void literals() throws RegexParsingException {
@@ -56,9 +63,7 @@ public class RegexTreeTransfomerTest {
 	@Test
 	public void dotAny() throws RegexParsingException {
 		String regex = ".";
-		RegexTreeTransformer parser = RegexTreeTransformer.parse(regex);
-		RegexNode tree = parser.getRegexTree();
-		debug(regex, parser, tree);
+		RegexNode tree = parse(regex);
 		assertEquals(DotAny.class, tree.getChildren().get(0).getClass());
 	}
 
@@ -82,21 +87,87 @@ public class RegexTreeTransfomerTest {
 		assertTransform("^(bla?|foo+)*$", "(bla?|foo+)*");
 	}
 
-	private void assertTransform(String regex, String expectedTransformation)
-			throws RegexParsingException {
+	@Test
+	public void allowEscapedSpecialChars() throws RegexParsingException {
+		assertTransform("\\^foobla", "^foobla");
+		assertTransform("foo\\.bla", "foo.bla");
+	}
+
+	@Test
+	public void escapedCharactersShouldHaveNoSpecialMeaning() throws RegexParsingException {
+		regexTreeShouldNotInclude(DotAny.class, "foo\\.bla");
+	}
+
+	@Test
+	public void escapedStarShouldHaveNoSpecialMeaning() throws RegexParsingException {
+		regexTreeShouldNotInclude(ZeroOrMore.class, "foo\\*bla");
+	}
+
+	@Test
+	public void escapedPlusShouldHaveNoSpecialMeaning() throws RegexParsingException {
+		regexTreeShouldNotInclude(OneOrMore.class, "(foobla)\\+");
+	}
+
+	@Test
+	public void escapedParensShouldHaveNoSpecialMeaning() throws RegexParsingException {
+		regexTreeShouldNotInclude(MatchGroup.class, "\\(foobla\\)");
+	}
+
+	@Test
+	public void escapedBackslashesShouldBeALiteral() throws RegexParsingException {
+		String regex = "foo\\\\*bla";
+		RegexNode tree = parse(regex);
+		assertThat(tree, new IncludesRegexNodeType(ZeroOrMore.class));
+	}
+
+	@Test
+	public void shouldIgnoreSubjectStartBoundary() throws RegexParsingException {
+		assertTransform("^subject", "subject");
+	}
+
+	private void regexTreeShouldNotInclude(Class<? extends RegexNode> type, String regex) throws RegexParsingException {
+		RegexNode tree = parse(regex);
+		assertThat(tree, not(new IncludesRegexNodeType(type)));
+	}
+
+	private RegexNode parse(String regex) throws RegexParsingException {
 		RegexTreeTransformer parser = RegexTreeTransformer.parse(regex);
 		RegexNode tree = parser.getRegexTree();
 
-		String transformed = tree.accept(new RegexNodeVisitorToString());
-
 		debug(regex, parser, tree);
+		return tree;
+	}
 
+	private static class IncludesRegexNodeType extends BaseMatcher<RegexNode> {
+
+		private final Class<? extends RegexNode> nodeType;
+
+		public IncludesRegexNodeType(Class<? extends RegexNode> nodeType) {
+			super();
+			this.nodeType = nodeType;
+		}
+
+		@Override
+		public boolean matches(Object arg0) {
+			RegexNode tree = (RegexNode) arg0;
+			Collection<Class<? extends RegexNode>> types = tree.accept(new RegexNodeVisitorTypeCollector());
+			return types.contains(nodeType);
+		}
+
+		@Override
+		public void describeTo(Description arg0) {
+			arg0.appendText("tree should include a node of type").appendValue(nodeType);
+		}
+
+	}
+
+	private void assertTransform(String regex, String expectedTransformation) throws RegexParsingException {
+		RegexNode tree = parse(regex);
+		String transformed = tree.accept(new RegexNodeVisitorToString());
 		assertEquals(expectedTransformation, transformed);
 	}
 
-	private void assertIdenticalTransform(String regex)
-			throws RegexParsingException {
-
+	private void assertIdenticalTransform(String regex) throws RegexParsingException {
 		assertTransform(regex, regex);
 	}
 

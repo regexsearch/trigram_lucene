@@ -3,8 +3,7 @@ package net.abrandl.lucene.regex.grammar.tree;
 import java.util.Iterator;
 import java.util.List;
 
-public class RegexNodeVisitorToString implements
-		RegexNodeVisitor<String> {
+public class RegexNodeVisitorToString implements RegexNodeVisitor<String> {
 	@Override
 	public String visit(Alternative alternative) {
 		return join(alternative.getChildren(), "|");
@@ -16,13 +15,13 @@ public class RegexNodeVisitorToString implements
 			RegexNode node = iterator.next();
 			String nodeString = node.accept(this);
 			builder.append(nodeString);
-			
+
 			if (iterator.hasNext()) {
 				builder.append(separator);
 			}
 		}
 	}
-	
+
 	private String join(List<RegexNode> nodes, String separator) {
 		StringBuilder builder = new StringBuilder();
 		join(nodes, separator, builder);
@@ -48,7 +47,7 @@ public class RegexNodeVisitorToString implements
 	public String visit(Optional optional) {
 		return String.format("%s?", optional.getFirstChild().accept(this));
 	}
-	
+
 	@Override
 	public String visit(MatchGroup matchGroup) {
 		return String.format("(%s)", join(matchGroup.getChildren(), ""));
@@ -73,5 +72,5 @@ public class RegexNodeVisitorToString implements
 	public String visit(CharacterRange characterRange) {
 		return String.format("%s-%s", characterRange.getStart(), characterRange.getEnd());
 	}
-	
+
 }

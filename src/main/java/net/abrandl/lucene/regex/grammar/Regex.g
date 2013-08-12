@@ -172,6 +172,7 @@ cc_atom
 // boundaries
 
 // just ignore subject boundary for the time being
+
 subject_boundary
   :
   '^' regex
@@ -190,6 +191,10 @@ literal
     -> LITERAL[$letter.text]
   | digit
     -> LITERAL[$digit.text]
+  | Quoted
+    -> LITERAL[$Quoted.text]
+  | BlockQuoted
+    -> LITERAL[$BlockQuoted.text]
   ;
 
 number
