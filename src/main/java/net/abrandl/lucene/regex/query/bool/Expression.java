@@ -29,6 +29,10 @@ public abstract class Expression {
 		return new Or(literals);
 	}
 
+	final public static Expression any() {
+		return Any.instance();
+	}
+
 	public Expression and(Expression... other) {
 		Set<Expression> all = new HashSet<Expression>(other.length + 1, 1.0f);
 		all.add(this);

@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 abstract class InnerExpressionNode extends Expression implements Iterable<Expression> {
 
-	final Collection<Expression> children;
+	final protected Collection<Expression> children;
 
 	InnerExpressionNode(Collection<Expression> children) {
 		super();
@@ -23,6 +23,10 @@ abstract class InnerExpressionNode extends Expression implements Iterable<Expres
 	@Override
 	public Iterator<Expression> iterator() {
 		return children.iterator();
+	}
+
+	protected Collection<Expression> getChildren() {
+		return children;
 	}
 
 	@Override

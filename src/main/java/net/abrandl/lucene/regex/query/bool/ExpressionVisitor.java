@@ -8,4 +8,6 @@ public interface ExpressionVisitor<ReturnType> {
 
 	ReturnType visit(Literal query);
 
+	ReturnType visit(Any any);
+
 }
