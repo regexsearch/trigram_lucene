@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+// TODO: CharacterRange should be internal to CharacterClass, not reside in the tree
 public class CharacterClass extends RegexNode {
 
 	public CharacterClass(CharacterRange... ranges) {
