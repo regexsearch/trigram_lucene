@@ -3,31 +3,20 @@ package net.abrandl.lucene.regex.grammar;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.abrandl.lucene.regex.grammar.tree.Alternative;
-import net.abrandl.lucene.regex.grammar.tree.CharacterClass;
-import net.abrandl.lucene.regex.grammar.tree.CharacterRange;
-import net.abrandl.lucene.regex.grammar.tree.Concatenation;
-import net.abrandl.lucene.regex.grammar.tree.DotAny;
-import net.abrandl.lucene.regex.grammar.tree.Literal;
-import net.abrandl.lucene.regex.grammar.tree.MatchGroup;
-import net.abrandl.lucene.regex.grammar.tree.OneOrMore;
-import net.abrandl.lucene.regex.grammar.tree.Optional;
-import net.abrandl.lucene.regex.grammar.tree.RegexNode;
-import net.abrandl.lucene.regex.grammar.tree.ZeroOrMore;
+import net.abrandl.lucene.regex.grammar.tree.*;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 
-public class RegexTreeTransformer {
+class RegexTreeTransformer {
 
-	public static RegexTreeTransformer parse(String regex)
-			throws RegexParsingException {
+	static RegexTreeTransformer parse(String regex) throws RegexParsingException {
 		return new RegexTreeTransformer(regex);
 	}
 
-	private RegexParser parser;
+	private final RegexParser parser;
 	private CommonTree tree;
 
 	private RegexTreeTransformer(String input) throws RegexParsingException {
@@ -45,6 +34,7 @@ public class RegexTreeTransformer {
 		parser.checkErrors();
 	}
 
+	@Override
 	public String toString() {
 
 		StringBuilder builder = new StringBuilder();
@@ -57,8 +47,7 @@ public class RegexTreeTransformer {
 		return buildRegexTree(tree);
 	}
 
-	private RegexNode buildRegexTree(CommonTree inputTree)
-			throws RegexParsingException {
+	private RegexNode buildRegexTree(CommonTree inputTree) throws RegexParsingException {
 		final int childCount = inputTree.getChildCount();
 		final int tokenType = inputTree.getType();
 
@@ -84,9 +73,8 @@ public class RegexTreeTransformer {
 			CharacterRange[] ranges = new CharacterRange[childCount];
 			for (int i = 0; i < childTrees.length; i++) {
 				if (!(childTrees[i] instanceof CharacterRange)) {
-					throw new RegexParsingException(
-							"Only expected children of type CharacterRange here, others given:"
-									+ childTrees[i].getClass());
+					throw new RegexParsingException("Only expected children of type CharacterRange here, others given:"
+							+ childTrees[i].getClass());
 				}
 				ranges[i] = (CharacterRange) childTrees[i];
 			}
@@ -108,15 +96,13 @@ public class RegexTreeTransformer {
 		case RegexParser.LITERAL:
 			return new Literal(inputTree.getText());
 		default:
-			throw new RuntimeException("not yet implemented type: "
-					+ inputTree.getType() + ", "
+			throw new RuntimeException("not yet implemented type: " + inputTree.getType() + ", "
 					+ RegexParser.tokenNames[inputTree.getType()]);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private void buildRegexTreeForChildren(CommonTree parent,
-			RegexNode[] childTrees) throws RegexParsingException {
+	private void buildRegexTreeForChildren(CommonTree parent, RegexNode[] childTrees) throws RegexParsingException {
 		if (parent.getChildren() != null) {
 			int childIndex = 0;
 			for (CommonTree child : (List<CommonTree>) parent.getChildren()) {
@@ -138,8 +124,7 @@ public class RegexTreeTransformer {
 
 		while (!childListStack.isEmpty()) {
 
-			List<CommonTree> childStack = childListStack.get(childListStack
-					.size() - 1);
+			List<CommonTree> childStack = childListStack.get(childListStack.size() - 1);
 
 			if (childStack.isEmpty()) {
 				childListStack.remove(childListStack.size() - 1);
@@ -149,22 +134,17 @@ public class RegexTreeTransformer {
 				String indent = "";
 
 				for (int i = 0; i < childListStack.size() - 1; i++) {
-					indent += (childListStack.get(i).size() > 0) ? "|  "
-							: "   ";
+					indent += (childListStack.get(i).size() > 0) ? "|  " : "   ";
 				}
 
 				String tokenName = RegexParser.tokenNames[tree.getType()];
 				String tokenText = tree.getText();
 
-				builder.append(indent)
-						.append(childStack.isEmpty() ? "'- " : "|- ")
-						.append(tokenName)
-						.append(!tokenName.equals(tokenText) ? "='"
-								+ tree.getText() + "'" : "").append("\n");
+				builder.append(indent).append(childStack.isEmpty() ? "'- " : "|- ").append(tokenName)
+						.append(!tokenName.equals(tokenText) ? "='" + tree.getText() + "'" : "").append("\n");
 
 				if (tree.getChildCount() > 0) {
-					childListStack.add(new ArrayList<CommonTree>(
-							(List<CommonTree>) tree.getChildren()));
+					childListStack.add(new ArrayList<CommonTree>(tree.getChildren()));
 				}
 			}
 		}

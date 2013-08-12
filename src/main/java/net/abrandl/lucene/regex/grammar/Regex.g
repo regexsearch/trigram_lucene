@@ -25,6 +25,7 @@ tokens {
 
 @parser::header {
 package net.abrandl.lucene.regex.grammar;
+import net.abrandl.lucene.regex.grammar.tree.RegexNode;
 }
 
 @lexer::header {
@@ -45,6 +46,16 @@ public void checkErrors() throws RegexParsingException {
 	if (exception != null) {
 		throw exception;
 	}
+}
+
+/**
+* Parses a given regex into an abstract parse tree.
+* @param regex regular expression
+* @returns parse tree of given regex
+* @throws RegexParsingException when an invalid/unrecognized regex was given
+**/
+public static RegexNode parse(String regex) throws RegexParsingException {
+	return RegexTreeTransformer.parse(regex).getRegexTree();
 }
 }
 
@@ -383,25 +394,25 @@ FormFeed
 NewLine
   :
   '\n' 
-       {
-        setText("\n");
-       }
+      {
+       setText("\n");
+      }
   ;
 
 CarriageReturn
   :
   '\r' 
-       {
-        setText("\r");
-       }
+      {
+       setText("\r");
+      }
   ;
 
 Tab
   :
   '\t' 
-       {
-        setText("\t");
-       }
+      {
+       setText("\t");
+      }
   ;
 
 Backslash
