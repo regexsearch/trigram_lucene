@@ -7,6 +7,12 @@ public abstract class Expression {
 
 	public abstract <ReturnType> ReturnType accept(ExpressionVisitor<ReturnType> visitor);
 
+	@Override
+	public abstract boolean equals(Object o);
+
+	@Override
+	public abstract int hashCode();
+
 	final public static Expression and(String... strings) {
 		Set<Expression> literals = new HashSet<Expression>(strings.length, 1.0f);
 		for (String s : strings) {
