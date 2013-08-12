@@ -170,20 +170,17 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 
 	@Override
 	public ExtractionResult visit(DotAny dotAny) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("not yet implemented.");
 	}
 
 	@Override
 	public ExtractionResult visit(CharacterClass characterClass) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("not yet implemented.");
 	}
 
 	@Override
 	public ExtractionResult visit(CharacterRange characterRange) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("not yet implemented.");
 	}
 
 	@Override
