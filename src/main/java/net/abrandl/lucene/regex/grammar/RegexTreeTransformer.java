@@ -44,7 +44,12 @@ class RegexTreeTransformer {
 	}
 
 	public RegexNode getRegexTree() throws RegexParsingException {
-		return buildRegexTree(tree);
+		RegexNode result = buildRegexTree(tree);
+		if (result instanceof Concatenation && result.getChildren().isEmpty()) {
+			// special case: use Empty
+			result = new Empty();
+		}
+		return result;
 	}
 
 	private RegexNode buildRegexTree(CommonTree inputTree) throws RegexParsingException {

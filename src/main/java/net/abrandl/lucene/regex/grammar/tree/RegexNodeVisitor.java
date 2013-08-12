@@ -7,7 +7,7 @@ public interface RegexNodeVisitor<A> {
 	A visit(Alternative alternative);
 
 	A visit(ZeroOrMore zeroOrMore);
-	
+
 	A visit(Optional optional);
 
 	A visit(Concatenation concatenation);
@@ -21,5 +21,7 @@ public interface RegexNodeVisitor<A> {
 	A visit(CharacterClass characterClass);
 
 	A visit(CharacterRange characterRange);
+
+	A visit(Empty empty);
 
 }

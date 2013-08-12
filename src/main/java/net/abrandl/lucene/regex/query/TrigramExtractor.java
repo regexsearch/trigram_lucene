@@ -186,4 +186,12 @@ public class TrigramExtractor implements RegexNodeVisitor<ExtractionResult> {
 		return null;
 	}
 
+	@Override
+	public ExtractionResult visit(Empty empty) {
+		boolean emptyable = true;
+		StringSet emptyString = StringSet.emptyStringOnly();
+
+		return new ExtractionResult(emptyable, emptyString, emptyString, emptyString);
+	}
+
 }

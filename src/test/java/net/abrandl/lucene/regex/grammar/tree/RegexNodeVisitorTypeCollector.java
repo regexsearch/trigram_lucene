@@ -4,8 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RegexNodeVisitorTypeCollector implements
-		RegexNodeVisitor<Collection<Class<? extends RegexNode>>> {
+public class RegexNodeVisitorTypeCollector implements RegexNodeVisitor<Collection<Class<? extends RegexNode>>> {
 
 	private final Set<Class<? extends RegexNode>> types;
 
@@ -42,8 +41,7 @@ public class RegexNodeVisitorTypeCollector implements
 	}
 
 	@Override
-	public Collection<Class<? extends RegexNode>> visit(
-			Concatenation concatenation) {
+	public Collection<Class<? extends RegexNode>> visit(Concatenation concatenation) {
 		return addAndReturn(concatenation);
 	}
 
@@ -63,15 +61,18 @@ public class RegexNodeVisitorTypeCollector implements
 	}
 
 	@Override
-	public Collection<Class<? extends RegexNode>> visit(
-			CharacterClass characterClass) {
+	public Collection<Class<? extends RegexNode>> visit(CharacterClass characterClass) {
 		return addAndReturn(characterClass);
 	}
 
 	@Override
-	public Collection<Class<? extends RegexNode>> visit(
-			CharacterRange characterRange) {
+	public Collection<Class<? extends RegexNode>> visit(CharacterRange characterRange) {
 		return addAndReturn(characterRange);
+	}
+
+	@Override
+	public Collection<Class<? extends RegexNode>> visit(Empty empty) {
+		return addAndReturn(empty);
 	}
 
 }

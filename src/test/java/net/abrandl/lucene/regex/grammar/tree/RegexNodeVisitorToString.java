@@ -73,4 +73,9 @@ public class RegexNodeVisitorToString implements RegexNodeVisitor<String> {
 		return String.format("%s-%s", characterRange.getStart(), characterRange.getEnd());
 	}
 
+	@Override
+	public String visit(Empty empty) {
+		return "";
+	}
+
 }

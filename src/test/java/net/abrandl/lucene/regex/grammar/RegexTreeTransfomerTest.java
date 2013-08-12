@@ -7,6 +7,7 @@ import net.abrandl.lucene.regex.grammar.tree.*;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
 
 import static org.junit.Assert.assertEquals;
@@ -27,6 +28,12 @@ public class RegexTreeTransfomerTest {
 	@Test
 	public void emptyString() throws RegexParsingException {
 		assertIdenticalTransform("");
+	}
+
+	@Test
+	public void emptyString2() throws RegexParsingException {
+		RegexNode tree = parse("");
+		assertThat(tree, instanceOf(Empty.class));
 	}
 
 	@Test
