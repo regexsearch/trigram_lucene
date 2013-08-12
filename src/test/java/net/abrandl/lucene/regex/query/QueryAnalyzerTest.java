@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-public class TrigramExtractorTest {
+public class QueryAnalyzerTest {
 
 	private final StringSet empty = StringSet.emptyStringOnly();
 
@@ -102,7 +102,7 @@ public class TrigramExtractorTest {
 
 	private void assertResult(String regex, ExtractionResult expected) throws RegexParsingException {
 		RegexNode tree = RegexParser.parse(regex);
-		TrigramExtractor extractor = new TrigramExtractor();
+		QueryAnalyzer extractor = new QueryAnalyzer();
 		System.out.println(tree.accept(new RegexNodeVisitorToString()));
 		ExtractionResult result = tree.accept(extractor);
 		System.out.println(result);

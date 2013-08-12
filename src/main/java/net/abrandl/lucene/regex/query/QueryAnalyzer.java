@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import net.abrandl.lucene.regex.grammar.tree.*;
 
-public class TrigramExtractor implements RegexNodeVisitor<ExtractionResult> {
+public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 
 	@Override
 	public ExtractionResult visit(Literal literal) {
