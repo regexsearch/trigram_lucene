@@ -125,6 +125,26 @@ public class RegexTreeTransfomerTest {
 		assertTransform("^subject", "subject");
 	}
 
+	@Test
+	public void shouldTreatWhitespacesAsLiterals() throws RegexParsingException {
+		assertIdenticalTransform("foo bar");
+	}
+
+	@Test
+	public void shouldTreatTabsAsLiterals() throws RegexParsingException {
+		assertIdenticalTransform("foo\tbar");
+	}
+
+	@Test
+	public void shouldTreatNewlinesAsLiterals() throws RegexParsingException {
+		assertIdenticalTransform("foo\nbar");
+	}
+
+	@Test
+	public void shouldTreatCarriageReturnAsLiterals() throws RegexParsingException {
+		assertIdenticalTransform("foo\rbar");
+	}
+
 	private void regexTreeShouldNotInclude(Class<? extends RegexNode> type, String regex) throws RegexParsingException {
 		RegexNode tree = parse(regex);
 		assertThat(tree, not(new IncludesRegexNodeType(type)));

@@ -191,10 +191,20 @@ literal
     -> LITERAL[$letter.text]
   | digit
     -> LITERAL[$digit.text]
+  | whitespace
+    -> LITERAL[$whitespace.text]
   | Quoted
     -> LITERAL[$Quoted.text]
   | BlockQuoted
     -> LITERAL[$BlockQuoted.text]
+  ;
+
+whitespace
+  :
+  WHITESPACE
+  | Tab
+  | NewLine
+  | CarriageReturn
   ;
 
 number
@@ -372,7 +382,7 @@ FormFeed
 
 NewLine
   :
-  '\\n' 
+  '\n' 
        {
         setText("\n");
        }
@@ -380,7 +390,7 @@ NewLine
 
 CarriageReturn
   :
-  '\\r' 
+  '\r' 
        {
         setText("\r");
        }
@@ -388,7 +398,7 @@ CarriageReturn
 
 Tab
   :
-  '\\t' 
+  '\t' 
        {
         setText("\t");
        }
@@ -1029,6 +1039,11 @@ D9
 D0
   :
   '0'
+  ;
+
+WHITESPACE
+  :
+  ' '
   ;
 
 OtherChar
