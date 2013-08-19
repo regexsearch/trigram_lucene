@@ -41,6 +41,7 @@ public class InformationSavingTransformationsTest {
 	public void appendsPrefixInfoToMatchExpression() {
 		when(extractor.ngrams(prefix)).thenReturn(trigrams);
 		when(match.and(trigrams)).thenReturn(newMatch);
+		when(prefix.isKnown()).thenReturn(true);
 
 		RegexInfoTransformation transformation = new PrefixToMatchTransformation(extractor);
 		RegexInfo result = transformation.transform(info);
@@ -51,9 +52,21 @@ public class InformationSavingTransformationsTest {
 	}
 
 	@Test
+	public void ignoresPrefixIfUnknown() {
+		when(prefix.isKnown()).thenReturn(false);
+
+		RegexInfoTransformation transformation = new PrefixToMatchTransformation(extractor);
+		RegexInfo result = transformation.transform(info);
+
+		assertThat(result.getMatch(), equalTo(match));
+		assertStringSetsUnchanged(result);
+	}
+
+	@Test
 	public void appendsSuffixInfoToMatchExpression() {
 		when(extractor.ngrams(suffix)).thenReturn(trigrams);
 		when(match.and(trigrams)).thenReturn(newMatch);
+		when(suffix.isKnown()).thenReturn(true);
 
 		RegexInfoTransformation transformation = new SuffixToMatchTransformation(extractor);
 		RegexInfo result = transformation.transform(info);
@@ -64,15 +77,38 @@ public class InformationSavingTransformationsTest {
 	}
 
 	@Test
+	public void ignoresSuffixIfUnknown() {
+		when(suffix.isKnown()).thenReturn(false);
+
+		RegexInfoTransformation transformation = new SuffixToMatchTransformation(extractor);
+		RegexInfo result = transformation.transform(info);
+
+		assertThat(result.getMatch(), equalTo(match));
+		assertStringSetsUnchanged(result);
+	}
+
+	@Test
 	public void appendsExactInfoToMatchExpression() {
 		when(extractor.ngrams(exact)).thenReturn(trigrams);
 		when(match.and(trigrams)).thenReturn(newMatch);
+		when(exact.isKnown()).thenReturn(true);
 
 		RegexInfoTransformation transformation = new ExactToMatchTransformation(extractor);
 		RegexInfo result = transformation.transform(info);
 
 		verify(match).and(trigrams);
 		assertThat(result.getMatch(), equalTo(newMatch));
+		assertStringSetsUnchanged(result);
+	}
+
+	@Test
+	public void ignoresExactIfUnknown() {
+		when(exact.isKnown()).thenReturn(false);
+
+		RegexInfoTransformation transformation = new ExactToMatchTransformation(extractor);
+		RegexInfo result = transformation.transform(info);
+
+		assertThat(result.getMatch(), equalTo(match));
 		assertStringSetsUnchanged(result);
 	}
 

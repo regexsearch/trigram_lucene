@@ -1,6 +1,7 @@
 package net.abrandl.lucene.regex.query;
 
 import net.abrandl.lucene.regex.query.bool.Expression;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 class SuffixToMatchTransformation implements RegexInfoTransformation {
 
@@ -11,11 +12,19 @@ class SuffixToMatchTransformation implements RegexInfoTransformation {
 	}
 
 	@Override
-	public RegexInfo transform(RegexInfo result) {
+	public RegexInfo transform(RegexInfo input) {
+		checkNotNull(input);
 
-		Expression ngrams = extractor.ngrams(result.getSuffix());
-		Expression newMatch = result.getMatch().and(ngrams);
-		return newRegexInfo(result, newMatch);
+		RegexInfo result = input;
+
+		if (result.getSuffix().isKnown()) {
+			Expression ngrams = extractor.ngrams(result.getSuffix());
+			Expression newMatch = result.getMatch().and(ngrams);
+
+			result = newRegexInfo(result, newMatch);
+		}
+
+		return result;
 	}
 
 	private RegexInfo newRegexInfo(RegexInfo result, Expression newMatch) {
