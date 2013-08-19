@@ -1,7 +1,8 @@
-package integration;
+package net.abrandl.regex;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
 
 import net.abrandl.lucene.regex.*;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -16,18 +17,26 @@ public class BasicSearchEngineTest {
 	private final RegexSearchEngine exhaustiveSearch = new ExhaustiveSearchEngine();
 	private final RegexSearchEngine ngramSearch = new NGramRegexSearchEngine(3);
 
+	private final TestDatasets dataset = TestDatasets.KEYWORDS;
+
 	@Before
-	public void indexDocuments() {
-		for (String content : Arrays.asList("blublablub bla foo test", "bla3455345test")) {
-			Document document = new Document(content, content);
-			exhaustiveSearch.addDocument(document);
-			ngramSearch.addDocument(document);
-		}
+	public void indexDocuments() throws IOException {
+		dataset.createIndex(exhaustiveSearch);
+		dataset.createIndex(ngramSearch);
 	}
 
 	@Test
-	public void searchDocuments() throws SearchFailedException {
-		String regex = "(bla)+";
+	public void runAllQueries() throws SearchFailedException, IOException {
+		Iterator<String> queries = dataset.queries();
+
+		while (queries.hasNext()) {
+			String regex = queries.next();
+			searchDocuments(regex);
+		}
+	}
+
+	private void searchDocuments(String regex) throws SearchFailedException {
+		System.out.println("********************************************************");
 		System.out.printf("Query: /%s/\n", regex);
 
 		Collection<Document> expected = exhaustiveSearch.search(regex);

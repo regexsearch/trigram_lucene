@@ -1,0 +1,4 @@
+pata
+salewa (bike|hike|nurek)
+(\\+)?salewa ((\\+)?bike|(\\+)?hike|(\\+)?nurek)
+
