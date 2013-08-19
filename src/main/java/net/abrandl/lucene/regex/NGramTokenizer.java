@@ -1,11 +1,11 @@
-package net.abrandl.lucene.regex.query;
+package net.abrandl.lucene.regex;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-class NGramTokenizer {
+public class NGramTokenizer {
 
 	private final int gramSize;
 

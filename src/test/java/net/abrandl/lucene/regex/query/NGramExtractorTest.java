@@ -1,5 +1,6 @@
 package net.abrandl.lucene.regex.query;
 
+import net.abrandl.lucene.regex.NGramTokenizer;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import net.abrandl.lucene.regex.query.bool.Or;
 import static org.hamcrest.CoreMatchers.equalTo;

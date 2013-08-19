@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import net.abrandl.lucene.regex.NGramTokenizer;
 import net.abrandl.lucene.regex.query.bool.And;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import net.abrandl.lucene.regex.query.bool.Literal;

@@ -1,7 +1,9 @@
-package net.abrandl.lucene.regex.query;
+package net.abrandl.lucene.regex;
 
 import java.util.Collections;
 import java.util.Set;
+
+import net.abrandl.lucene.regex.NGramTokenizer;
 
 import static net.abrandl.test.Helpers.asSet;
 import static org.hamcrest.CoreMatchers.equalTo;
