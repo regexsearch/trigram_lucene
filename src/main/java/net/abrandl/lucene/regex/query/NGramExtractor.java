@@ -9,7 +9,7 @@ import net.abrandl.lucene.regex.query.bool.Expression;
 import net.abrandl.lucene.regex.query.bool.Literal;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class NGramExtractor {
+class NGramExtractor {
 
 	private final NGramTokenizer tokenizer;
 

@@ -42,7 +42,7 @@ public class InformationSavingTransformationsTest {
 		when(extractor.ngrams(prefix)).thenReturn(trigrams);
 		when(match.and(trigrams)).thenReturn(newMatch);
 
-		QueryTransformation transformation = new PrefixToMatchTransformation(extractor);
+		RegexInfoTransformation transformation = new PrefixToMatchTransformation(extractor);
 		RegexInfo result = transformation.transform(info);
 
 		verify(match).and(trigrams);
@@ -55,7 +55,7 @@ public class InformationSavingTransformationsTest {
 		when(extractor.ngrams(suffix)).thenReturn(trigrams);
 		when(match.and(trigrams)).thenReturn(newMatch);
 
-		QueryTransformation transformation = new SuffixToMatchTransformation(extractor);
+		RegexInfoTransformation transformation = new SuffixToMatchTransformation(extractor);
 		RegexInfo result = transformation.transform(info);
 
 		verify(match).and(trigrams);
@@ -68,7 +68,7 @@ public class InformationSavingTransformationsTest {
 		when(extractor.ngrams(exact)).thenReturn(trigrams);
 		when(match.and(trigrams)).thenReturn(newMatch);
 
-		QueryTransformation transformation = new ExactToMatchTransformation(extractor);
+		RegexInfoTransformation transformation = new ExactToMatchTransformation(extractor);
 		RegexInfo result = transformation.transform(info);
 
 		verify(match).and(trigrams);

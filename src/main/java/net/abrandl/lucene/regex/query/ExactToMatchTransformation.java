@@ -2,7 +2,7 @@ package net.abrandl.lucene.regex.query;
 
 import net.abrandl.lucene.regex.query.bool.Expression;
 
-public class ExactToMatchTransformation implements QueryTransformation {
+class ExactToMatchTransformation implements RegexInfoTransformation {
 
 	private final NGramExtractor extractor;
 

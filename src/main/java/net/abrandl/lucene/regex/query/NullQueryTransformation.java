@@ -1,6 +1,6 @@
 package net.abrandl.lucene.regex.query;
 
-public class NullQueryTransformation implements QueryTransformation {
+class NullQueryTransformation implements RegexInfoTransformation {
 
 	@Override
 	public RegexInfo transform(RegexInfo result) {

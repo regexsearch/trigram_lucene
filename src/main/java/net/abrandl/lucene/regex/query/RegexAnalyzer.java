@@ -7,11 +7,11 @@ import net.abrandl.lucene.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static net.abrandl.lucene.regex.query.bool.Expression.any;
 
-public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
+class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
-	private final QueryTransformation transformation;
+	private final RegexInfoTransformation transformation;
 
-	public RegexAnalyzer(QueryTransformation transformation) {
+	public RegexAnalyzer(RegexInfoTransformation transformation) {
 		this.transformation = checkNotNull(transformation);
 	}
 

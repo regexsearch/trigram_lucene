@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class StringSet implements Iterable<String> {
+class StringSet implements Iterable<String> {
 
 	private final static StringSet emptyString = new StringSet("");
 	private final static StringSet emptySet = new StringSet();
