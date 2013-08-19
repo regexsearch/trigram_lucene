@@ -6,14 +6,14 @@ package net.abrandl.lucene.regex.query;
  * @author abrandl
  * 
  */
-public final class ExtractionResult {
+public class RegexInfo {
 
 	private final boolean emptyable;
 	private final StringSet exact;
 	private final StringSet prefix;
 	private final StringSet suffix;
 
-	public ExtractionResult(boolean emptyable, StringSet exact, StringSet prefix, StringSet suffix) {
+	public RegexInfo(boolean emptyable, StringSet exact, StringSet prefix, StringSet suffix) {
 		super();
 		this.emptyable = emptyable;
 		this.exact = exact;
@@ -62,7 +62,7 @@ public final class ExtractionResult {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ExtractionResult other = (ExtractionResult) obj;
+		RegexInfo other = (RegexInfo) obj;
 		if (emptyable != other.emptyable)
 			return false;
 		if (exact == null) {

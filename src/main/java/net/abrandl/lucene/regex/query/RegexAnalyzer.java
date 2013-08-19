@@ -3,21 +3,32 @@ package net.abrandl.lucene.regex.query;
 import java.util.Iterator;
 
 import net.abrandl.lucene.regex.grammar.tree.*;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
+public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
+
+	private final QueryTransformation transformation;
+
+	public RegexAnalyzer(QueryTransformation transformation) {
+		this.transformation = checkNotNull(transformation);
+	}
+
+	public RegexAnalyzer() {
+		this(new NullQueryTransformation());
+	}
 
 	@Override
-	public ExtractionResult visit(Literal literal) {
+	public RegexInfo visit(Literal literal) {
 		String chars = literal.getChars();
 		if (chars.length() != 1) {
 			throw new IllegalArgumentException("assuming literals to be of length 1 here, got length " + chars.length());
 		}
 		StringSet set = new StringSet(chars);
-		return new ExtractionResult(false, set, set, set);
+		return createResult(false, set, set, set);
 	}
 
 	@Override
-	public ExtractionResult visit(Alternative alternative) {
+	public RegexInfo visit(Alternative alternative) {
 
 		if (alternative.getChildren().isEmpty()) {
 			throw new IllegalArgumentException("expecting children here");
@@ -29,7 +40,7 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 		StringSet exact, prefix, suffix;
 
 		{
-			ExtractionResult e1 = children.next().accept(this);
+			RegexInfo e1 = children.next().accept(this);
 
 			emptyable = e1.isEmptyable();
 			exact = e1.getExact();
@@ -40,7 +51,7 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 		while (children.hasNext()) {
 			RegexNode child = children.next();
 
-			ExtractionResult r = child.accept(this);
+			RegexInfo r = child.accept(this);
 
 			emptyable = emptyable || r.isEmptyable();
 
@@ -49,11 +60,11 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 			suffix = suffix.union(r.getSuffix());
 		}
 
-		return new ExtractionResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix);
 	}
 
 	@Override
-	public ExtractionResult visit(ZeroOrMore zeroOrMore) {
+	public RegexInfo visit(ZeroOrMore zeroOrMore) {
 		if (zeroOrMore.getChildren().size() != 1) {
 			throw new IllegalArgumentException("zeroOrMore should have exactly one element");
 		}
@@ -67,28 +78,28 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 		StringSet prefix = StringSet.emptyStringOnly();
 		StringSet suffix = StringSet.emptyStringOnly();
 
-		return new ExtractionResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix);
 	}
 
 	@Override
-	public ExtractionResult visit(Optional optional) {
+	public RegexInfo visit(Optional optional) {
 		if (optional.getChildren().size() != 1) {
 			throw new IllegalArgumentException("zeroOrMore should have exactly one element");
 		}
 
 		RegexNode child = optional.getFirstChild();
-		ExtractionResult r = child.accept(this);
+		RegexInfo r = child.accept(this);
 
 		boolean emptyable = true;
 		StringSet exact = r.getExact().union(new StringSet(""));
 		StringSet prefix = new StringSet("");
 		StringSet suffix = new StringSet("");
 
-		return new ExtractionResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix);
 	}
 
 	@Override
-	public ExtractionResult visit(Concatenation concatenation) {
+	public RegexInfo visit(Concatenation concatenation) {
 		if (concatenation.getChildren().isEmpty()) {
 			throw new IllegalArgumentException("expecting children here");
 		}
@@ -99,7 +110,7 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 		StringSet exact, prefix, suffix;
 
 		{
-			ExtractionResult e1 = children.next().accept(this);
+			RegexInfo e1 = children.next().accept(this);
 
 			emptyable = e1.isEmptyable();
 			exact = e1.getExact();
@@ -110,7 +121,7 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 		while (children.hasNext()) {
 			RegexNode child = children.next();
 
-			ExtractionResult e2 = child.accept(this);
+			RegexInfo e2 = child.accept(this);
 
 			if (exact.isKnown()) {
 				prefix = exact.join(e2.getPrefix());
@@ -140,11 +151,11 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 			emptyable = emptyable && e2.isEmptyable();
 		}
 
-		return new ExtractionResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix);
 	}
 
 	@Override
-	public ExtractionResult visit(MatchGroup matchGroup) {
+	public RegexInfo visit(MatchGroup matchGroup) {
 		if (matchGroup.getChildren().size() != 1) {
 			throw new IllegalArgumentException("matchGroup should have exactly one element");
 		}
@@ -152,43 +163,51 @@ public class QueryAnalyzer implements RegexNodeVisitor<ExtractionResult> {
 	}
 
 	@Override
-	public ExtractionResult visit(OneOrMore oneOrMore) {
+	public RegexInfo visit(OneOrMore oneOrMore) {
 		if (oneOrMore.getChildren().size() != 1) {
 			throw new IllegalArgumentException("oneOrMore should have exactly one element");
 		}
 
 		RegexNode child = oneOrMore.getFirstChild();
-		ExtractionResult e = child.accept(this);
+		RegexInfo e = child.accept(this);
 
 		boolean emptyable = e.isEmptyable();
 		StringSet exact = StringSet.unknownSet();
 		StringSet prefix = e.getPrefix();
 		StringSet suffix = e.getSuffix();
 
-		return new ExtractionResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix);
+	}
+
+	private RegexInfo createResult(boolean emptyable, StringSet exact, StringSet prefix, StringSet suffix) {
+		return transform(new RegexInfo(emptyable, exact, prefix, suffix));
+	}
+
+	private RegexInfo transform(RegexInfo extractionResult) {
+		return transformation.transform(extractionResult);
 	}
 
 	@Override
-	public ExtractionResult visit(DotAny dotAny) {
+	public RegexInfo visit(DotAny dotAny) {
 		throw new UnsupportedOperationException("not yet implemented.");
 	}
 
 	@Override
-	public ExtractionResult visit(CharacterClass characterClass) {
+	public RegexInfo visit(CharacterClass characterClass) {
 		throw new UnsupportedOperationException("not yet implemented.");
 	}
 
 	@Override
-	public ExtractionResult visit(CharacterRange characterRange) {
+	public RegexInfo visit(CharacterRange characterRange) {
 		throw new UnsupportedOperationException("not yet implemented.");
 	}
 
 	@Override
-	public ExtractionResult visit(Empty empty) {
+	public RegexInfo visit(Empty empty) {
 		boolean emptyable = true;
 		StringSet emptyString = StringSet.emptyStringOnly();
 
-		return new ExtractionResult(emptyable, emptyString, emptyString, emptyString);
+		return createResult(emptyable, emptyString, emptyString, emptyString);
 	}
 
 }
