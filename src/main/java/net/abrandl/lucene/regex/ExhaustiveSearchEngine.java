@@ -5,22 +5,22 @@ import java.util.regex.Pattern;
 
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
-	private final Map<String, Document> documents = new HashMap<String, Document>();
+	private final List<Document> documents = new LinkedList<Document>();
 
 	@Override
 	public void addDocument(Document document) {
-		documents.put(document.getIdentifier(), document);
+		documents.add(document);
 	}
 
 	@Override
 	public Collection<Document> search(String regex) {
 		Pattern pattern = Pattern.compile(regex);
 
-		List<Document> matches = new LinkedList<Document>();
+		Set<Document> matches = new HashSet<Document>();
 
-		for (Document document : documents.values()) {
+		for (Document document : documents) {
 
-			if (pattern.matcher(document.getContent()).matches()) {
+			if (pattern.matcher(document.getContent()).find()) {
 				matches.add(document);
 			}
 		}

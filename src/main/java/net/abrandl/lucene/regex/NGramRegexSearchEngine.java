@@ -48,6 +48,8 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 			RegexNode parsedRegex = RegexParser.parse(regex);
 			Expression query = queryTransformation.expressionFor(parsedRegex);
 
+			System.out.println(query);
+
 			Set<Document> candidates = query.accept(new ExpressionVisitor<Set<Document>>() {
 
 				@Override
@@ -89,12 +91,15 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 
 			});
 
+			System.out.println("Candidates:");
+			System.out.println(candidates);
+
 			if (!(candidates.isEmpty())) {
 				Pattern pattern = Pattern.compile(regex);
 				Iterator<Document> iterator = candidates.iterator();
 				while (iterator.hasNext()) {
 					Document doc = iterator.next();
-					if (!(pattern.matcher(doc.getContent()).matches())) {
+					if (!(pattern.matcher(doc.getContent()).find())) {
 						iterator.remove();
 					}
 				}
