@@ -12,7 +12,7 @@ public abstract class Expression {
 		for (String s : strings) {
 			literals.add(new Literal(s));
 		}
-		return new And(literals);
+		return And.create(literals);
 	}
 
 	final public static Expression or(String... strings) {
@@ -37,7 +37,7 @@ public abstract class Expression {
 		for (Expression e : other) {
 			all.add(e);
 		}
-		return new And(all);
+		return And.create(all);
 	}
 
 	public Expression or(Expression... other) {

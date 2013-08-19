@@ -32,7 +32,7 @@ public final class Any extends Expression {
 		for (Expression e : other) {
 			all.add(e);
 		}
-		return new And(all);
+		return And.create(all);
 	}
 
 	/**

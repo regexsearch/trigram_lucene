@@ -33,7 +33,7 @@ class NGramExtractor {
 			for (String chars : ngrams) {
 				literals.add(new Literal(chars));
 			}
-			return new And(literals);
+			return And.create(literals);
 		}
 	}
 

@@ -22,8 +22,7 @@ public class AnyTest {
 		Expression literal = new Literal("foo");
 		Expression result = any.and(literal);
 
-		Expression expected = new And(literal);
+		Expression expected = And.create(literal);
 		assertThat(result, equalTo(expected));
 	}
-
 }
