@@ -1,7 +1,10 @@
 package net.abrandl.lucene.regex.query;
 
+import net.abrandl.lucene.regex.grammar.tree.RegexNode;
+import net.abrandl.lucene.regex.query.bool.Expression;
+
 public interface QueryTransformation {
 
-	RegexInfo transform(RegexInfo result);
+	Expression expressionFor(RegexNode regex);
 
 }
