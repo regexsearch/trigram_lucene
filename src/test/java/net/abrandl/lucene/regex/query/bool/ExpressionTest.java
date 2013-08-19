@@ -30,7 +30,7 @@ public class ExpressionTest {
 	@Test
 	public void recognizesAny() {
 		Expression e = new And(Expression.any(), new Literal("bar")).and(new Literal("blafuu"));
-		assertStringEquals(e, "AND(bar,ANY,blafuu)");
+		assertStringEquals(e, "AND(ANY,bar,blafuu)");
 	}
 
 	private void assertStringEquals(Expression e, String expectedString) {

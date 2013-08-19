@@ -2,7 +2,6 @@ package net.abrandl.lucene.regex.query.bool;
 
 public final class Any extends Expression {
 
-	// TODO: check java singleton pattern
 	private final static Any SINGLETON = new Any();
 
 	public final static Any instance() {
@@ -11,26 +10,14 @@ public final class Any extends Expression {
 
 	private Any() {
 		super();
+		if (SINGLETON != null && SINGLETON != this) {
+			throw new IllegalAccessError("only one instance permitted (singleton)");
+		}
 	}
 
 	@Override
 	public <ReturnType> ReturnType accept(ExpressionVisitor<ReturnType> visitor) {
 		return visitor.visit(this);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof Any)) {
-			return false;
-		} else {
-			Any any = (Any) o;
-			return any == SINGLETON;
-		}
-	}
-
-	@Override
-	public int hashCode() {
-		return 0; // there is only one instance! TODO: check if ok :)
 	}
 
 }
