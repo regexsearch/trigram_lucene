@@ -2,6 +2,7 @@ package net.abrandl.lucene.regex.query.bool;
 
 import java.util.Collection;
 
+// TODO: And should ignore Any
 public class And extends InnerExpressionNode {
 
 	public And(Collection<Expression> children) {

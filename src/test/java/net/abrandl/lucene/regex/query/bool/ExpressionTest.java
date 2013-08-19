@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ExpressionTest {
@@ -31,6 +32,14 @@ public class ExpressionTest {
 	public void recognizesAny() {
 		Expression e = new And(Expression.any(), new Literal("bar")).and(new Literal("blafuu"));
 		assertStringEquals(e, "AND(ANY,bar,blafuu)");
+	}
+
+	@Test
+	@Ignore("pending")
+	public void andIgnoresAny() {
+		Expression literal = new Literal("foo");
+		Expression e = literal.and(Expression.any());
+		assertThat(e.simplify(), equalTo(literal));
 	}
 
 	private void assertStringEquals(Expression e, String expectedString) {
