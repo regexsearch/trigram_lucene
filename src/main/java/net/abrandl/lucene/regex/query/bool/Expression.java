@@ -27,6 +27,10 @@ public abstract class Expression {
 		return Any.instance();
 	}
 
+	public Expression simplify() {
+		return accept(new ExpressionSimplifier());
+	}
+
 	public Expression and(Expression... other) {
 		Set<Expression> all = new HashSet<Expression>(other.length + 1, 1.0f);
 		all.add(this);

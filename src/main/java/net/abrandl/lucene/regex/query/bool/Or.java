@@ -1,6 +1,5 @@
 package net.abrandl.lucene.regex.query.bool;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public class Or extends InnerExpressionNode {
@@ -20,7 +19,9 @@ public class Or extends InnerExpressionNode {
 
 	@Override
 	public Expression or(Expression... other) {
-		children.addAll(Arrays.asList(other));
+		for (Expression e : other) {
+			children.add(e);
+		}
 		return this;
 	}
 

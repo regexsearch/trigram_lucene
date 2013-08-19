@@ -3,7 +3,9 @@ package net.abrandl.lucene.regex.query;
 import java.util.Iterator;
 
 import net.abrandl.lucene.regex.grammar.tree.*;
+import net.abrandl.lucene.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static net.abrandl.lucene.regex.query.bool.Expression.any;
 
 public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
@@ -24,7 +26,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 			throw new IllegalArgumentException("assuming literals to be of length 1 here, got length " + chars.length());
 		}
 		StringSet set = new StringSet(chars);
-		return createResult(false, set, set, set);
+		return createResult(false, set, set, set, any());
 	}
 
 	@Override
@@ -38,6 +40,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 		boolean emptyable;
 		StringSet exact, prefix, suffix;
+		Expression match;
 
 		{
 			RegexInfo e1 = children.next().accept(this);
@@ -46,21 +49,23 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 			exact = e1.getExact();
 			prefix = e1.getPrefix();
 			suffix = e1.getSuffix();
+			match = e1.getMatch();
 		}
 
 		while (children.hasNext()) {
 			RegexNode child = children.next();
 
-			RegexInfo r = child.accept(this);
+			RegexInfo e2 = child.accept(this);
 
-			emptyable = emptyable || r.isEmptyable();
+			emptyable = emptyable || e2.isEmptyable();
 
-			exact = exact.union(r.getExact());
-			prefix = prefix.union(r.getPrefix());
-			suffix = suffix.union(r.getSuffix());
+			exact = exact.union(e2.getExact());
+			prefix = prefix.union(e2.getPrefix());
+			suffix = suffix.union(e2.getSuffix());
+			match = match.or(e2.getMatch());
 		}
 
-		return createResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix, match);
 	}
 
 	@Override
@@ -78,7 +83,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 		StringSet prefix = StringSet.emptyStringOnly();
 		StringSet suffix = StringSet.emptyStringOnly();
 
-		return createResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix, any());
 	}
 
 	@Override
@@ -95,7 +100,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 		StringSet prefix = new StringSet("");
 		StringSet suffix = new StringSet("");
 
-		return createResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix, any());
 	}
 
 	@Override
@@ -108,6 +113,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 		boolean emptyable;
 		StringSet exact, prefix, suffix;
+		Expression match;
 
 		{
 			RegexInfo e1 = children.next().accept(this);
@@ -116,6 +122,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 			exact = e1.getExact();
 			prefix = e1.getPrefix();
 			suffix = e1.getSuffix();
+			match = e1.getMatch();
 		}
 
 		while (children.hasNext()) {
@@ -149,9 +156,11 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 			}
 
 			emptyable = emptyable && e2.isEmptyable();
+
+			match = match.and(e2.getMatch());
 		}
 
-		return createResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix, match);
 	}
 
 	@Override
@@ -175,12 +184,15 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 		StringSet exact = StringSet.unknownSet();
 		StringSet prefix = e.getPrefix();
 		StringSet suffix = e.getSuffix();
+		Expression match = e.getMatch();
 
-		return createResult(emptyable, exact, prefix, suffix);
+		return createResult(emptyable, exact, prefix, suffix, match);
 	}
 
-	private RegexInfo createResult(boolean emptyable, StringSet exact, StringSet prefix, StringSet suffix) {
-		return transform(new RegexInfo(emptyable, exact, prefix, suffix));
+	private RegexInfo createResult(boolean emptyable, StringSet exact, StringSet prefix, StringSet suffix,
+			Expression match) {
+		// TODO: call simplify in transformation?
+		return transform(new RegexInfo(emptyable, exact, prefix, suffix, match.simplify()));
 	}
 
 	private RegexInfo transform(RegexInfo extractionResult) {
@@ -207,7 +219,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 		boolean emptyable = true;
 		StringSet emptyString = StringSet.emptyStringOnly();
 
-		return createResult(emptyable, emptyString, emptyString, emptyString);
+		return createResult(emptyable, emptyString, emptyString, emptyString, any());
 	}
 
 }

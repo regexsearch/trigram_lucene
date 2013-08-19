@@ -4,6 +4,7 @@ import net.abrandl.lucene.regex.grammar.RegexParser;
 import net.abrandl.lucene.regex.grammar.RegexParsingException;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
 import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToString;
+import static net.abrandl.lucene.regex.query.bool.Expression.any;
 import static org.hamcrest.Matchers.equalTo;
 
 import static org.junit.Assert.assertThat;
@@ -17,14 +18,14 @@ public class RegexAnalyzerTest {
 	@Test
 	public void literalsOnly() throws RegexParsingException {
 		StringSet set = new StringSet("foobar");
-		RegexInfo expected = new RegexInfo(false, set, set, set);
+		RegexInfo expected = new RegexInfo(false, set, set, set, any());
 
 		assertResult("foobar", expected);
 	}
 
 	@Test
 	public void emptyString() throws RegexParsingException {
-		RegexInfo expected = new RegexInfo(true, empty, empty, empty);
+		RegexInfo expected = new RegexInfo(true, empty, empty, empty, any());
 
 		assertResult("", expected);
 	}
@@ -32,14 +33,14 @@ public class RegexAnalyzerTest {
 	@Test
 	public void optional() throws RegexParsingException {
 		StringSet exact = new StringSet("abc", "");
-		RegexInfo expected = new RegexInfo(true, exact, empty, empty);
+		RegexInfo expected = new RegexInfo(true, exact, empty, empty, any());
 
 		assertResult("(abc)?", expected);
 	}
 
 	@Test
 	public void zeroOrMore() throws RegexParsingException {
-		RegexInfo expected = new RegexInfo(true, StringSet.unknownSet(), empty, empty);
+		RegexInfo expected = new RegexInfo(true, StringSet.unknownSet(), empty, empty, any());
 
 		assertResult("(abc)*", expected);
 	}
@@ -47,14 +48,14 @@ public class RegexAnalyzerTest {
 	@Test
 	public void oneOrMore() throws RegexParsingException {
 		StringSet set = new StringSet("abc");
-		RegexInfo expected = new RegexInfo(false, StringSet.unknownSet(), set, set);
+		RegexInfo expected = new RegexInfo(false, StringSet.unknownSet(), set, set, any());
 
 		assertResult("(abc)+", expected);
 	}
 
 	@Test
 	public void oneOrMoreWithEmptyable() throws RegexParsingException {
-		RegexInfo expected = new RegexInfo(true, StringSet.unknownSet(), empty, empty);
+		RegexInfo expected = new RegexInfo(true, StringSet.unknownSet(), empty, empty, any());
 
 		assertResult("(a?)+", expected);
 	}
@@ -62,7 +63,7 @@ public class RegexAnalyzerTest {
 	@Test
 	public void alternation() throws RegexParsingException {
 		StringSet set = new StringSet("abc", "foo", "bar");
-		RegexInfo expected = new RegexInfo(false, set, set, set);
+		RegexInfo expected = new RegexInfo(false, set, set, set, any());
 
 		assertResult("abc|foo|bar", expected);
 	}
@@ -70,7 +71,7 @@ public class RegexAnalyzerTest {
 	@Test
 	public void alternation2() throws RegexParsingException {
 		StringSet set = new StringSet("abc", "foo", "bar");
-		RegexInfo expected = new RegexInfo(false, set, set, set);
+		RegexInfo expected = new RegexInfo(false, set, set, set, any());
 
 		assertResult("(abc|foo)|bar", expected);
 	}
@@ -79,15 +80,15 @@ public class RegexAnalyzerTest {
 	public void alternationWithEmptyable() throws RegexParsingException {
 		StringSet exact = new StringSet("bcd");
 		StringSet suffixAndPrefix = new StringSet("", "bcd");
-		RegexInfo expected = new RegexInfo(true, exact, suffixAndPrefix, suffixAndPrefix);
+		RegexInfo expected = new RegexInfo(true, exact, suffixAndPrefix, suffixAndPrefix, any());
 
 		assertResult("(abc)*|bcd", expected);
 	}
 
 	@Test
 	public void concatenation() throws RegexParsingException {
-		RegexInfo expected = new RegexInfo(false, StringSet.unknownSet(), new StringSet("abc"),
-				new StringSet("abc", "abccde"));
+		RegexInfo expected = new RegexInfo(false, StringSet.unknownSet(), new StringSet("abc"), new StringSet("abc",
+				"abccde"), any());
 
 		assertResult("(abc)+(cde)?", expected);
 	}
@@ -95,7 +96,7 @@ public class RegexAnalyzerTest {
 	@Test
 	public void concatenation2() throws RegexParsingException {
 		RegexInfo expected = new RegexInfo(false, StringSet.unknownSet(), new StringSet("abc"),
-				new StringSet("abccde"));
+				new StringSet("abccde"), any());
 
 		assertResult("(abc)+cde", expected);
 	}
