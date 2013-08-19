@@ -8,6 +8,7 @@ import net.abrandl.lucene.regex.NGramTokenizer;
 import net.abrandl.lucene.regex.query.bool.And;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import net.abrandl.lucene.regex.query.bool.Literal;
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 class NGramExtractor {
@@ -40,6 +41,8 @@ class NGramExtractor {
 		checkNotNull(set);
 
 		Iterator<String> iterator = set.iterator();
+
+		checkArgument(iterator.hasNext(), "empty StringSet?");
 
 		Expression e = ngrams(iterator.next());
 
