@@ -37,8 +37,6 @@ public class NGramQueryTransformation implements QueryTransformation {
 		RegexInfoTransformation prefixToMatch = new PrefixToMatchTransformation(extractor);
 		RegexInfoTransformation suffixToMatch = new SuffixToMatchTransformation(extractor);
 		RegexInfoTransformation exactToMatch = new ExactToMatchTransformation(extractor);
-		// RegexInfoTransformation matchSimplification = new
-		// MatchSimplificationTransformation();
 		RegexInfoTransformation transformations = new CompositeRegexInfoTransformation(Arrays.asList(exactToMatch,
 				prefixToMatch, suffixToMatch));
 		RegexAnalyzer analyzer = new RegexAnalyzer(transformations);
