@@ -1,11 +1,16 @@
 package net.abrandl.lucene.regex.query.bool;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 public class Or extends InnerExpressionNode {
 
 	public static Expression create(Collection<Expression> children) {
 		return new Or(children);
+	}
+
+	public static Expression create(Expression... children) {
+		return create(Arrays.asList(children));
 	}
 
 	private Or(Collection<Expression> children) {
