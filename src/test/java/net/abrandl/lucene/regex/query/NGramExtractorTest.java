@@ -63,8 +63,8 @@ public class NGramExtractorTest {
 
 	@Test
 	public void supportsStringSets() {
-		String[] set1 = new String[] { "foo", "oo ", "o b", " bo", "boo" };
-		String[] set2 = new String[] { "foo", "ooo", "oob" };
+		String[] set1 = new String[] { "first" };
+		String[] set2 = new String[] { "second" };
 
 		when(tokenizer.tokenize("foo boo")).thenReturn(Helpers.asSet(set1));
 		when(tokenizer.tokenize("fooooob")).thenReturn(Helpers.asSet(set2));
@@ -72,10 +72,9 @@ public class NGramExtractorTest {
 		StringSet set = new StringSet("foo boo", "fooooob");
 		Expression result = extractor.ngrams(set);
 
-		Expression expected = new Or(Expression.and(set1), Expression.and(set2));
+		Expression expected = Or.create(Expression.and(set1), Expression.and(set2));
 		assertThat(result, equalTo(expected));
 	}
-
 	@Test
 	public void withShortStringsTheExpressionShouldBeANY() {
 		String[] set2 = new String[] { "foo", "ooo", "oob" };
@@ -85,7 +84,7 @@ public class NGramExtractorTest {
 
 		StringSet set = new StringSet("fo", "fooooob");
 		Expression result = extractor.ngrams(set);
-		Expression expected = new Or(Expression.any(), Expression.and(set2));
+		Expression expected = Or.create(Expression.any(), Expression.and(set2));
 		assertThat(result, equalTo(expected));
 	}
 

@@ -7,12 +7,15 @@ import java.util.HashSet;
 public class And extends InnerExpressionNode {
 
 	public static Expression create(Collection<Expression> children) {
+
+		// filter Any nodes, not useful in And context
 		Collection<Expression> filtered = new HashSet<Expression>(children.size());
 		for (Expression e : children) {
 			if (!(e instanceof Any)) {
 				filtered.add(e);
 			}
 		}
+
 		if (filtered.isEmpty()) {
 			return Expression.any();
 		} else if (filtered.size() == 1) {

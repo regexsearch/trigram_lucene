@@ -1,23 +1,36 @@
 package net.abrandl.lucene.regex.query.bool;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Or extends InnerExpressionNode {
 
 	public static Expression create(Collection<Expression> children) {
+
+		// Any eats other clauses here
+		for (Expression e : children) {
+			if (e instanceof Any) {
+				return Expression.any();
+			}
+		}
+
 		return new Or(children);
 	}
 
 	public static Expression create(Expression... children) {
-		return create(Arrays.asList(children));
+		Collection<Expression> unique = new HashSet<Expression>(children.length, 1.0f);
+		for (Expression e : children) {
+			unique.add(e);
+		}
+		return create(unique);
 	}
 
 	private Or(Collection<Expression> children) {
 		super(children);
 	}
 
-	public Or(Expression... children) {
+	private Or(Expression... children) {
 		super(children);
 	}
 
@@ -28,10 +41,12 @@ public class Or extends InnerExpressionNode {
 
 	@Override
 	public Expression or(Expression... other) {
+		Set<Expression> clauses = new HashSet<Expression>(children.size() + other.length, 1.0f);
+		clauses.addAll(children);
 		for (Expression e : other) {
-			children.add(e);
+			clauses.add(e);
 		}
-		return this;
+		return create(clauses);
 	}
 
 }
