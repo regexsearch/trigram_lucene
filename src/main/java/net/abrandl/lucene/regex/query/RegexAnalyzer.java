@@ -73,14 +73,6 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(ZeroOrMore zeroOrMore) {
-		if (zeroOrMore.getChildren().size() != 1) {
-			throw new IllegalArgumentException("zeroOrMore should have exactly one element");
-		}
-
-		// TODO: interesting, we don't need the child here
-		// RegexNode child = zeroOrMore.getFirstChild();
-		// ExtractionResult r = child.accept(this);
-
 		boolean emptyable = true;
 		StringSet exact = StringSet.unknownSet();
 		StringSet prefix = StringSet.emptyStringOnly();
@@ -92,7 +84,7 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 	@Override
 	public RegexInfo visit(Optional optional) {
 		if (optional.getChildren().size() != 1) {
-			throw new IllegalArgumentException("zeroOrMore should have exactly one element");
+			throw new IllegalArgumentException("Optional should have exactly one element");
 		}
 
 		RegexNode child = optional.getFirstChild();
