@@ -63,6 +63,10 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 					return match;
 				}
 
+				private void debug(Set<Document> match) {
+
+				}
+
 				@Override
 				public Set<Document> visit(Or query) {
 					Iterator<Expression> iterator = query.iterator();
@@ -76,7 +80,13 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 
 				@Override
 				public Set<Document> visit(Literal query) {
-					return invertedIndex.get(query.getContent());
+					Set<Document> match = new HashSet<Document>();
+					String lookupKey = query.getContent();
+					if (invertedIndex.containsKey(lookupKey)) {
+						match.addAll(invertedIndex.get(lookupKey));
+					}
+					debug(match);
+					return match;
 				}
 
 				// TODO: optimize
