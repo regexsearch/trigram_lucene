@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import net.abrandl.lucene.regex.grammar.RegexParser;
 import net.abrandl.lucene.regex.grammar.RegexParsingException;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
+import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToStringTree;
 import net.abrandl.lucene.regex.query.NGramQueryTransformation;
 import net.abrandl.lucene.regex.query.QueryTransformation;
 import net.abrandl.lucene.regex.query.bool.*;
@@ -48,6 +49,7 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 			RegexNode parsedRegex = RegexParser.parse(regex);
 			Expression query = queryTransformation.expressionFor(parsedRegex);
 
+			System.out.println(parsedRegex.accept(new RegexNodeVisitorToStringTree()));
 			System.out.println(query);
 
 			Set<Document> candidates = query.accept(new ExpressionVisitor<Set<Document>>() {
