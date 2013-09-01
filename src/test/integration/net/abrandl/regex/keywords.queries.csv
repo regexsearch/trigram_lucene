@@ -4,3 +4,6 @@ salewa (bike|hike|nurek)
 pata(gonia)+ ?((\+)?cabot)*
 salewa [0-9]+ biking
 salewa [a-z0-9]+ biking
+(salewa )+((b|h)iking ?)+
+^(salewa )+((b|h)iking ?)+
+^(salewa )+((b|h)iking ?)+$
