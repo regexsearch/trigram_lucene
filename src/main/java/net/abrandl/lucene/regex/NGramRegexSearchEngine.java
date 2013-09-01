@@ -19,6 +19,7 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 	private final QueryTransformation queryTransformation;
 
 	private final Map<String, Set<Document>> invertedIndex = new HashMap<String, Set<Document>>();
+	private final Set<Document> allDocuments = new HashSet<Document>();
 
 	public NGramRegexSearchEngine(int gramSize) {
 		checkArgument(gramSize >= 1);
@@ -39,6 +40,8 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 			Set<Document> postings = invertedIndex.get(ngram);
 			postings.add(document);
 		}
+
+		allDocuments.add(document);
 
 	}
 
@@ -96,13 +99,10 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 					return match;
 				}
 
-				// TODO: optimize
 				@Override
 				public Set<Document> visit(Any any) {
 					Set<Document> allDocs = new HashSet<Document>();
-					for (Set<Document> postings : invertedIndex.values()) {
-						allDocs.addAll(postings);
-					}
+					allDocs.addAll(allDocuments);
 					debug(allDocs);
 					return allDocs;
 				}
