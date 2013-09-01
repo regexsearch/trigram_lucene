@@ -1,5 +1,9 @@
-package net.abrandl.lucene.regex.query;
+package net.abrandl.lucene.regex.query.transformations;
 
+import net.abrandl.lucene.regex.query.NGramExtractor;
+import net.abrandl.lucene.regex.query.RegexInfo;
+import net.abrandl.lucene.regex.query.RegexInfoTransformation;
+import net.abrandl.lucene.regex.query.StringSet;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkNotNull;
 

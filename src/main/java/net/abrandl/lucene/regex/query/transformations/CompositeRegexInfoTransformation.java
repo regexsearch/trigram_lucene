@@ -1,6 +1,9 @@
-package net.abrandl.lucene.regex.query;
+package net.abrandl.lucene.regex.query.transformations;
 
 import java.util.List;
+
+import net.abrandl.lucene.regex.query.RegexInfo;
+import net.abrandl.lucene.regex.query.RegexInfoTransformation;
 
 public class CompositeRegexInfoTransformation implements RegexInfoTransformation {
 

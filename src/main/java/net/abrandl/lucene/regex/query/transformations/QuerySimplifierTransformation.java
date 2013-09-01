@@ -1,5 +1,7 @@
-package net.abrandl.lucene.regex.query;
+package net.abrandl.lucene.regex.query.transformations;
 
+import net.abrandl.lucene.regex.query.RegexInfo;
+import net.abrandl.lucene.regex.query.RegexInfoTransformation;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import net.abrandl.lucene.regex.query.bool.ExpressionFlattener;
 import net.abrandl.lucene.regex.query.bool.ExpressionSimplifier;

@@ -1,6 +1,6 @@
 package net.abrandl.lucene.regex.query;
 
-interface RegexInfoTransformation {
+public interface RegexInfoTransformation {
 
 	RegexInfo transform(RegexInfo result);
 

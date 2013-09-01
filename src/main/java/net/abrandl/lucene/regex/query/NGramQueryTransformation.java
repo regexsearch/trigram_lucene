@@ -5,6 +5,7 @@ import java.util.Arrays;
 import net.abrandl.lucene.regex.NGramTokenizer;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
 import net.abrandl.lucene.regex.query.bool.Expression;
+import net.abrandl.lucene.regex.query.transformations.*;
 
 public class NGramQueryTransformation implements QueryTransformation {
 

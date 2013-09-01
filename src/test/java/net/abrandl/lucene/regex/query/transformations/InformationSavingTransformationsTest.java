@@ -1,6 +1,13 @@
-package net.abrandl.lucene.regex.query;
+package net.abrandl.lucene.regex.query.transformations;
 
+import net.abrandl.lucene.regex.query.NGramExtractor;
+import net.abrandl.lucene.regex.query.RegexInfo;
+import net.abrandl.lucene.regex.query.RegexInfoTransformation;
+import net.abrandl.lucene.regex.query.StringSet;
 import net.abrandl.lucene.regex.query.bool.Expression;
+import net.abrandl.lucene.regex.query.transformations.ExactToMatchTransformation;
+import net.abrandl.lucene.regex.query.transformations.PrefixToMatchTransformation;
+import net.abrandl.lucene.regex.query.transformations.SuffixToMatchTransformation;
 
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

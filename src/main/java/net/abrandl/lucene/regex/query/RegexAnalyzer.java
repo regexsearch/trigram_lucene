@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import net.abrandl.lucene.regex.grammar.tree.*;
 import net.abrandl.lucene.regex.query.bool.Expression;
+import net.abrandl.lucene.regex.query.transformations.NullQueryTransformation;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static net.abrandl.lucene.regex.query.StringSet.unknownSet;
 import static net.abrandl.lucene.regex.query.bool.Expression.any;

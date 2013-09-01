@@ -11,7 +11,7 @@ import net.abrandl.lucene.regex.query.bool.Literal;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-class NGramExtractor {
+public class NGramExtractor {
 
 	private final NGramTokenizer tokenizer;
 

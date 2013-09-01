@@ -8,7 +8,7 @@ import net.abrandl.lucene.regex.query.bool.Expression;
  * @author abrandl
  * 
  */
-final class RegexInfo {
+final public class RegexInfo {
 
 	private final boolean emptyable;
 	private final StringSet exact;
