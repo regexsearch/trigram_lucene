@@ -6,6 +6,7 @@ import java.util.Iterator;
 import net.abrandl.lucene.regex.grammar.tree.*;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import net.abrandl.lucene.regex.query.transformations.NullQueryTransformation;
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static net.abrandl.lucene.regex.query.StringSet.unknownSet;
 import static net.abrandl.lucene.regex.query.bool.Expression.any;
@@ -25,19 +26,14 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 	@Override
 	public RegexInfo visit(Literal literal) {
 		String chars = literal.getChars();
-		if (chars.length() != 1) {
-			throw new IllegalArgumentException("assuming literals to be of length 1 here, got length " + chars.length());
-		}
+		checkArgument(chars.length() == 1, "assuming literals to be of length 1 here, got length " + chars.length());
 		StringSet set = new StringSet(chars);
 		return createResult(false, set, set, set, any());
 	}
 
 	@Override
 	public RegexInfo visit(Alternative alternative) {
-
-		if (alternative.getChildren().isEmpty()) {
-			throw new IllegalArgumentException("expecting children here");
-		}
+		checkArgument(!alternative.getChildren().isEmpty(), "expecting children here");
 
 		Iterator<RegexNode> children = alternative.getChildren().iterator();
 
@@ -83,9 +79,7 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(Optional optional) {
-		if (optional.getChildren().size() != 1) {
-			throw new IllegalArgumentException("Optional should have exactly one element");
-		}
+		checkArgument(optional.getChildren().size() == 1, "optional should have exactly one element");
 
 		RegexNode child = optional.getFirstChild();
 		RegexInfo r = child.accept(this);
@@ -100,9 +94,7 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(Concatenation concatenation) {
-		if (concatenation.getChildren().isEmpty()) {
-			throw new IllegalArgumentException("expecting children here");
-		}
+		checkArgument(!concatenation.getChildren().isEmpty(), "expecting children here");
 
 		Iterator<RegexNode> children = concatenation.getChildren().iterator();
 
@@ -160,17 +152,13 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(MatchGroup matchGroup) {
-		if (matchGroup.getChildren().size() != 1) {
-			throw new IllegalArgumentException("matchGroup should have exactly one element");
-		}
+		checkArgument(matchGroup.getChildren().size() == 1, "matchGroup should have exactly one element");
 		return matchGroup.getFirstChild().accept(this);
 	}
 
 	@Override
 	public RegexInfo visit(OneOrMore oneOrMore) {
-		if (oneOrMore.getChildren().size() != 1) {
-			throw new IllegalArgumentException("oneOrMore should have exactly one element");
-		}
+		checkArgument(oneOrMore.getChildren().size() == 1, "oneOrMore should have exactly one element");
 
 		RegexNode child = oneOrMore.getFirstChild();
 		RegexInfo e = child.accept(this);
