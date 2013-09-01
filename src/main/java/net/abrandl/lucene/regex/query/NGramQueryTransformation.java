@@ -5,7 +5,6 @@ import java.util.Arrays;
 import net.abrandl.lucene.regex.NGramTokenizer;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
 import net.abrandl.lucene.regex.query.bool.Expression;
-import net.abrandl.lucene.regex.query.bool.NestedExpressionSimplifier;
 
 public class NGramQueryTransformation implements QueryTransformation {
 
@@ -27,11 +26,7 @@ public class NGramQueryTransformation implements QueryTransformation {
 		RegexInfo result = regex.accept(analyzer);
 
 		// and extract ngram match query
-		Expression match = result.getMatch();
-
-		// simplify nested expressions
-		return match.accept(new NestedExpressionSimplifier());
-
+		return result.getMatch();
 	}
 
 	private RegexAnalyzer createAnalyzer() {
@@ -40,8 +35,9 @@ public class NGramQueryTransformation implements QueryTransformation {
 		RegexInfoTransformation prefixToMatch = new PrefixToMatchTransformation(extractor);
 		RegexInfoTransformation suffixToMatch = new SuffixToMatchTransformation(extractor);
 		RegexInfoTransformation exactToMatch = new ExactToMatchTransformation(extractor);
+		RegexInfoTransformation simplifier = new QuerySimplifierTransformation();
 		RegexInfoTransformation transformations = new CompositeRegexInfoTransformation(Arrays.asList(exactToMatch,
-				prefixToMatch, suffixToMatch));
+				prefixToMatch, suffixToMatch, simplifier));
 		RegexAnalyzer analyzer = new RegexAnalyzer(transformations);
 		return analyzer;
 	}

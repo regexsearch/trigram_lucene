@@ -2,7 +2,7 @@ package net.abrandl.lucene.regex.query.bool;
 
 import java.util.Collection;
 
-class ExpressionSimplifier implements ExpressionVisitor<Expression> {
+public class ExpressionSimplifier implements ExpressionVisitor<Expression> {
 
 	@Override
 	public Expression visit(And query) {

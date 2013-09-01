@@ -3,7 +3,7 @@ package net.abrandl.lucene.regex.query.bool;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NestedExpressionSimplifier implements ExpressionVisitor<Expression> {
+public class ExpressionFlattener implements ExpressionVisitor<Expression> {
 
 	@Override
 	public Expression visit(And query) {

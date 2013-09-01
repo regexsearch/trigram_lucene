@@ -8,13 +8,13 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-public class NestedExpressionSimplifierTest {
+public class ExpressionFlattenerTest {
 
 	@Test
 	public void simplifiesNestedAnds() {
 
 		Expression e = And.create(and("foo", "bar"), new Literal("bar"), and("bar", "blub"));
-		Expression simplified = e.accept(new NestedExpressionSimplifier());
+		Expression simplified = e.accept(new ExpressionFlattener());
 
 		assertThat(simplified.toString(), equalTo("AND(blub,foo,bar)"));
 	}
@@ -23,7 +23,7 @@ public class NestedExpressionSimplifierTest {
 	public void simplifiesNestedOrs() {
 
 		Expression e = Or.create(or("foo", "bar"), new Literal("bar"), or("bar", "blub"));
-		Expression simplified = e.accept(new NestedExpressionSimplifier());
+		Expression simplified = e.accept(new ExpressionFlattener());
 
 		assertThat(simplified.toString(), equalTo("OR(blub,foo,bar)"));
 	}
@@ -32,7 +32,7 @@ public class NestedExpressionSimplifierTest {
 	public void simplifiesButStaysCorrect() {
 
 		Expression e = Or.create(or("foo", "bar"), and("bar", "foo", "yeah"), or("bar", "blub"));
-		Expression simplified = e.accept(new NestedExpressionSimplifier());
+		Expression simplified = e.accept(new ExpressionFlattener());
 
 		assertThat(simplified.toString(), equalTo("OR(AND(yeah,foo,bar),blub,foo,bar)"));
 	}

@@ -193,8 +193,7 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	private RegexInfo createResult(boolean emptyable, StringSet exact, StringSet prefix, StringSet suffix,
 			Expression match) {
-		// TODO: call simplify in transformation?
-		return transform(new RegexInfo(emptyable, exact, prefix, suffix, match.simplify()));
+		return transform(new RegexInfo(emptyable, exact, prefix, suffix, match));
 	}
 
 	private RegexInfo transform(RegexInfo extractionResult) {
