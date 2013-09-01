@@ -4,11 +4,14 @@ import net.abrandl.lucene.regex.grammar.RegexParser;
 import net.abrandl.lucene.regex.grammar.RegexParsingException;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
 import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToString;
+import net.abrandl.lucene.regex.query.bool.Expression;
 import static net.abrandl.lucene.regex.query.bool.Expression.any;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.equalTo;
 
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RegexAnalyzerTest {
@@ -99,6 +102,16 @@ public class RegexAnalyzerTest {
 				new StringSet("abccde"), any());
 
 		assertResult("(abc)+cde", expected);
+	}
+
+	@Test
+	@Ignore("pending")
+	public void dotShouldNotResultInANY() throws RegexParsingException {
+		RegexNode tree = RegexParser.parse("foo.bar");
+		RegexAnalyzer extractor = new RegexAnalyzer();
+		RegexInfo result = tree.accept(extractor);
+
+		assertThat(result.getMatch(), not(equalTo(Expression.any())));
 	}
 
 	private void assertResult(String regex, RegexInfo expected) throws RegexParsingException {

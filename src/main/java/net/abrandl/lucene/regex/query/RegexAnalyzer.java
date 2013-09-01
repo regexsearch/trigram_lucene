@@ -5,6 +5,7 @@ import java.util.Iterator;
 import net.abrandl.lucene.regex.grammar.tree.*;
 import net.abrandl.lucene.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static net.abrandl.lucene.regex.query.StringSet.unknownSet;
 import static net.abrandl.lucene.regex.query.bool.Expression.any;
 
 class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
@@ -201,7 +202,7 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(DotAny dotAny) {
-		throw new UnsupportedOperationException("not yet implemented.");
+		return createResult(false, unknownSet(), unknownSet(), unknownSet(), any());
 	}
 
 	@Override
