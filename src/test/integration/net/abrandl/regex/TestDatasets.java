@@ -13,7 +13,7 @@ import net.abrandl.lucene.regex.RegexSearchEngine;
 
 public enum TestDatasets {
 
-	KEYWORDS("keywords.docs.csv", "keywords.queries.csv");
+	KEYWORDS("keywords.docs.csv", "keywords.queries.csv"), SALEWA("salewa.docs.csv", "salewa.queries.csv");
 
 	private final String documentsPath, queriesPath;
 

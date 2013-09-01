@@ -12,12 +12,16 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BasicSearchEngineTest {
+public abstract class BasicSearchEngineTest {
 
 	private final RegexSearchEngine exhaustiveSearch = new ExhaustiveSearchEngine();
 	private final RegexSearchEngine ngramSearch = new NGramRegexSearchEngine(3);
 
-	private final TestDatasets dataset = TestDatasets.KEYWORDS;
+	private final TestDatasets dataset;
+
+	public BasicSearchEngineTest(TestDatasets dataset) {
+		this.dataset = dataset;
+	}
 
 	@Before
 	public void indexDocuments() throws IOException {
@@ -26,7 +30,7 @@ public class BasicSearchEngineTest {
 	}
 
 	@Test
-	public void runAllQueries() throws SearchFailedException, IOException {
+	public void testQueries() throws SearchFailedException, IOException {
 		Iterator<String> queries = dataset.queries();
 
 		while (queries.hasNext()) {
@@ -41,13 +45,13 @@ public class BasicSearchEngineTest {
 
 		Collection<Document> expected = exhaustiveSearch.search(regex);
 
-		System.out.println("expected:");
-		System.out.println(expected);
+		System.out.printf("expected   [%03d]:   %s\n", expected.size(), expected);
 
 		Collection<Document> result = ngramSearch.search(regex);
 
-		System.out.println("result:");
-		System.out.println(result);
+		System.out.printf("result     [%03d]:   %s\n", result.size(), result);
+
+		System.out.println(ngramSearch);
 
 		assertThat(result, equalTo(expected));
 	}
