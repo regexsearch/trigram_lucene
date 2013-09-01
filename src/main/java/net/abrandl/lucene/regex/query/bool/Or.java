@@ -4,7 +4,11 @@ import java.util.Collection;
 
 public class Or extends InnerExpressionNode {
 
-	public Or(Collection<Expression> children) {
+	public static Expression create(Collection<Expression> children) {
+		return new Or(children);
+	}
+
+	private Or(Collection<Expression> children) {
 		super(children);
 	}
 

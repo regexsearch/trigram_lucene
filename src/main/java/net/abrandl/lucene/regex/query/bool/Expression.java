@@ -20,7 +20,7 @@ public abstract class Expression {
 		for (String s : strings) {
 			literals.add(new Literal(s));
 		}
-		return new Or(literals);
+		return Or.create(literals);
 	}
 
 	final public static Expression any() {
@@ -46,7 +46,7 @@ public abstract class Expression {
 		for (Expression e : other) {
 			all.add(e);
 		}
-		return new Or(all);
+		return Or.create(all);
 	}
 
 	@Override
