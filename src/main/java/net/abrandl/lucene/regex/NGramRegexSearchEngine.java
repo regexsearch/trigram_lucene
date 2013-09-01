@@ -57,8 +57,11 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 					Iterator<Expression> iterator = query.iterator();
 					Set<Document> match = iterator.next().accept(this);
 
+					debug(match);
+
 					while (iterator.hasNext()) {
 						match.retainAll(iterator.next().accept(this));
+						debug(match);
 					}
 					return match;
 				}
@@ -71,9 +74,11 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 				public Set<Document> visit(Or query) {
 					Iterator<Expression> iterator = query.iterator();
 					Set<Document> match = iterator.next().accept(this);
+					debug(match);
 
 					while (iterator.hasNext()) {
 						match.addAll(iterator.next().accept(this));
+						debug(match);
 					}
 					return match;
 				}
@@ -96,13 +101,13 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 					for (Set<Document> postings : invertedIndex.values()) {
 						allDocs.addAll(postings);
 					}
+					debug(allDocs);
 					return allDocs;
 				}
 
 			});
 
-			System.out.println("Candidates:");
-			System.out.println(candidates);
+			System.out.printf("candidates [%03d]:   %s\n", candidates.size(), candidates);
 
 			if (!(candidates.isEmpty())) {
 				Pattern pattern = Pattern.compile(regex);
@@ -121,6 +126,17 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 			throw new SearchFailedException(e);
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("NGramRegexSearchEngine:\n");
+		builder.append(invertedIndex);
+		for (String key : invertedIndex.keySet()) {
+			builder.append(String.format("'%s'  ->  %s\n", key, invertedIndex.get(key)));
+		}
+		return builder.toString();
 	}
 
 }

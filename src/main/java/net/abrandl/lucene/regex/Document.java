@@ -54,7 +54,8 @@ public class Document {
 
 	@Override
 	public String toString() {
-		return "Document [identifier=" + identifier + ", content=" + content + "]";
+		return (identifier.equals(content)) ? String.format("\"%s\"", content) : "Document [identifier=" + identifier
+				+ ", content=" + content + "]";
 	}
 
 }
