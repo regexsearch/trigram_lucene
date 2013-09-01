@@ -114,6 +114,14 @@ public class RegexAnalyzerTest {
 		assertThat(result.getMatch(), not(equalTo(Expression.any())));
 	}
 
+	@Test
+	public void characterClass() throws RegexParsingException {
+		StringSet stringSet = new StringSet("abc2de", "abc3de", "abcade", "abcbde");
+		RegexInfo expected = new RegexInfo(false, stringSet, stringSet, stringSet, any());
+
+		assertResult("abc[a-b2-3]de", expected);
+	}
+
 	private void assertResult(String regex, RegexInfo expected) throws RegexParsingException {
 		RegexNode tree = RegexParser.parse(regex);
 		RegexAnalyzer extractor = new RegexAnalyzer();

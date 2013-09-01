@@ -1,5 +1,6 @@
 package net.abrandl.lucene.regex.query;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import net.abrandl.lucene.regex.grammar.tree.*;
@@ -207,12 +208,21 @@ class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(CharacterClass characterClass) {
-		throw new UnsupportedOperationException("not yet implemented.");
+		Collection<Character> chars = characterClass.enumerateCharacters();
+		String[] strings = new String[chars.size()];
+		int index = 0;
+		for (Character c : chars) {
+			strings[index] = c.toString();
+			index++;
+		}
+
+		StringSet stringSet = new StringSet(strings);
+		return createResult(false, stringSet, stringSet, stringSet, any());
 	}
 
 	@Override
 	public RegexInfo visit(CharacterRange characterRange) {
-		throw new UnsupportedOperationException("not yet implemented.");
+		throw new UnsupportedOperationException("this should not happen");
 	}
 
 	@Override

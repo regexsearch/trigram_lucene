@@ -23,8 +23,11 @@ public class NGramQueryTransformation implements QueryTransformation {
 	public Expression expressionFor(RegexNode regex) {
 		RegexAnalyzer analyzer = createAnalyzer();
 
-		// convert regex to ngram expression
-		Expression match = regex.accept(analyzer).getMatch();
+		// analyze regex
+		RegexInfo result = regex.accept(analyzer);
+
+		// and extract ngram match query
+		Expression match = result.getMatch();
 
 		// simplify nested expressions
 		return match.accept(new NestedExpressionSimplifier());

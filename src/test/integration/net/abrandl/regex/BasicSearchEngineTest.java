@@ -51,8 +51,6 @@ public abstract class BasicSearchEngineTest {
 
 		System.out.printf("result     [%03d]:   %s\n", result.size(), result);
 
-		System.out.println(ngramSearch);
-
 		assertThat(result, equalTo(expected));
 	}
 

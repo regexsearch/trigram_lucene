@@ -1,4 +1,6 @@
 pata
 salewa (bike|hike|nurek)
-(\\+)?salewa ((\\+)?bike|(\\+)?hike|(\\+)?nurek)
-pata(gonia)+ ?((\\+)?cabot)*
+(\+)?salewa ((\+)?bike|(\+)?hike|(\+)?nurek)
+pata(gonia)+ ?((\+)?cabot)*
+salewa [0-9]+ biking
+salewa [a-z0-9]+ biking
