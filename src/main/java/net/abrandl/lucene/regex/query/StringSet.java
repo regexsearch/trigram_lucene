@@ -72,7 +72,16 @@ public class StringSet implements Iterable<String> {
 
 	@Override
 	public String toString() {
-		return strings.toString();
+		StringBuilder builder = new StringBuilder();
+		Iterator<String> iterator = strings.iterator();
+		while (iterator.hasNext()) {
+			String string = iterator.next();
+			builder.append(String.format("'%s'", string));
+			if (iterator.hasNext()) {
+				builder.append(",");
+			}
+		}
+		return String.format("[%s]", builder.toString());
 	}
 
 	@Override

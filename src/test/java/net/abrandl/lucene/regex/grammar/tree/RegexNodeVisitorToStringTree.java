@@ -1,11 +1,32 @@
 package net.abrandl.lucene.regex.grammar.tree;
 
-import java.util.Collection;
+import java.util.Arrays;
+
+import net.abrandl.lucene.regex.NGramTokenizer;
+import net.abrandl.lucene.regex.query.NGramExtractor;
+import net.abrandl.lucene.regex.query.RegexAnalyzer;
+import net.abrandl.lucene.regex.query.RegexInfo;
+import net.abrandl.lucene.regex.query.RegexInfoTransformation;
+import net.abrandl.lucene.regex.query.transformations.*;
 
 public class RegexNodeVisitorToStringTree implements RegexNodeVisitor<StringBuilder> {
 
 	private StringBuilder builder = new StringBuilder();
 	private int level = 0;
+
+	private final RegexAnalyzer analyzer;
+
+	public RegexNodeVisitorToStringTree() {
+		NGramTokenizer tokenizer = new NGramTokenizer(3);
+		NGramExtractor extractor = new NGramExtractor(tokenizer);
+		RegexInfoTransformation prefixToMatch = new PrefixToMatchTransformation(extractor);
+		RegexInfoTransformation suffixToMatch = new SuffixToMatchTransformation(extractor);
+		RegexInfoTransformation exactToMatch = new ExactToMatchTransformation(extractor);
+		RegexInfoTransformation simplifier = new QuerySimplifierTransformation();
+		RegexInfoTransformation transformations = new CompositeRegexInfoTransformation(Arrays.asList(exactToMatch,
+				prefixToMatch, suffixToMatch, simplifier));
+		analyzer = new RegexAnalyzer(transformations);
+	}
 
 	public void reset() {
 		builder = new StringBuilder();
@@ -19,7 +40,8 @@ public class RegexNodeVisitorToStringTree implements RegexNodeVisitor<StringBuil
 	}
 
 	private StringBuilder append(String type, String chars) {
-		return append(String.format("'- %s  (%s)\n", type, chars));
+		append(String.format("'- '%s'\n", chars));
+		return builder;
 	}
 
 	private void nest() {
@@ -28,9 +50,13 @@ public class RegexNodeVisitorToStringTree implements RegexNodeVisitor<StringBuil
 		}
 	}
 
-	private StringBuilder append(String type, Collection<RegexNode> children) {
-		append(String.format("- %s\n", type));
-		for (RegexNode e : children) {
+	private StringBuilder append(RegexNode parent) {
+		RegexInfo info = null;
+		if (!(parent instanceof CharacterRange)) {
+			info = parent.accept(analyzer);
+		}
+		append(String.format("- %-15s  %s\n", parent.getClass().getSimpleName(), info));
+		for (RegexNode e : parent.getChildren()) {
 			level++;
 			e.accept(this);
 			level--;
@@ -45,52 +71,52 @@ public class RegexNodeVisitorToStringTree implements RegexNodeVisitor<StringBuil
 
 	@Override
 	public StringBuilder visit(Alternative alternative) {
-		return append("Alternative", alternative.getChildren());
+		return append(alternative);
 	}
 
 	@Override
 	public StringBuilder visit(ZeroOrMore zeroOrMore) {
-		return append("ZeroOrMore", zeroOrMore.getChildren());
+		return append(zeroOrMore);
 	}
 
 	@Override
 	public StringBuilder visit(Optional optional) {
-		return append("Optional", optional.getChildren());
+		return append(optional);
 	}
 
 	@Override
 	public StringBuilder visit(Concatenation concatenation) {
-		return append("Concatenation", concatenation.getChildren());
+		return append(concatenation);
 	}
 
 	@Override
 	public StringBuilder visit(MatchGroup matchGroup) {
-		return append("MatchGroup", matchGroup.getChildren());
+		return append(matchGroup);
 	}
 
 	@Override
 	public StringBuilder visit(OneOrMore oneOrMore) {
-		return append("OneOrMore", oneOrMore.getChildren());
+		return append(oneOrMore);
 	}
 
 	@Override
 	public StringBuilder visit(DotAny dotAny) {
-		return append("DotAny", dotAny.getChildren());
+		return append(dotAny);
 	}
 
 	@Override
 	public StringBuilder visit(CharacterClass characterClass) {
-		return append("CharacterClass", characterClass.getChildren());
+		return append(characterClass);
 	}
 
 	@Override
 	public StringBuilder visit(CharacterRange characterRange) {
-		return append("CharacterRange", characterRange.getChildren());
+		return append(characterRange);
 	}
 
 	@Override
 	public StringBuilder visit(Empty empty) {
-		return append("Empty", empty.getChildren());
+		return append(empty);
 	}
 
 }

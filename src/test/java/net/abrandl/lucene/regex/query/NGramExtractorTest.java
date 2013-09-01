@@ -75,6 +75,7 @@ public class NGramExtractorTest {
 		Expression expected = Or.create(Expression.and(set1), Expression.and(set2));
 		assertThat(result, equalTo(expected));
 	}
+
 	@Test
 	public void withShortStringsTheExpressionShouldBeANY() {
 		String[] set2 = new String[] { "foo", "ooo", "oob" };

@@ -3,8 +3,9 @@ package net.abrandl.lucene.regex.query;
 import net.abrandl.lucene.regex.grammar.RegexParser;
 import net.abrandl.lucene.regex.grammar.RegexParsingException;
 import net.abrandl.lucene.regex.grammar.tree.RegexNode;
-import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToString;
+import net.abrandl.lucene.regex.grammar.tree.RegexNodeVisitorToStringTree;
 import net.abrandl.lucene.regex.query.bool.Expression;
+import static net.abrandl.lucene.regex.query.StringSet.unknownSet;
 import static net.abrandl.lucene.regex.query.bool.Expression.any;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.equalTo;
@@ -122,12 +123,38 @@ public class RegexAnalyzerTest {
 		assertResult("abc[a-b2-3]de", expected);
 	}
 
-	private void assertResult(String regex, RegexInfo expected) throws RegexParsingException {
+	@Test
+	public void suffixUnionWhenExactUnknown() throws RegexParsingException {
+		RegexInfo expected = new RegexInfo(false, unknownSet(), new StringSet("foo"), new StringSet("foo", ""), any());
+
+		assertResult("foo(ba)*", expected);
+	}
+
+	@Test
+	public void experiment() throws RegexParsingException {
+		// String regex = "f(optional)?o";
+		String regex = "foo(bla)*";
+		System.out.println(regex);
+
 		RegexNode tree = RegexParser.parse(regex);
+		System.out.println(tree.accept(new RegexNodeVisitorToStringTree()));
+
 		RegexAnalyzer extractor = new RegexAnalyzer();
-		System.out.println(tree.accept(new RegexNodeVisitorToString()));
 		RegexInfo result = tree.accept(extractor);
+
 		System.out.println(result);
+	}
+
+	private void assertResult(String regex, RegexInfo expected) throws RegexParsingException {
+		System.out.println(regex);
+		RegexNode tree = RegexParser.parse(regex);
+		System.out.println(tree.accept(new RegexNodeVisitorToStringTree()));
+
+		RegexAnalyzer extractor = new RegexAnalyzer();
+		RegexInfo result = tree.accept(extractor);
+
+		System.out.println(result);
+
 		assertThat(result, equalTo(expected));
 
 	}
