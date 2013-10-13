@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
-
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.Field.Index;
 import org.apache.lucene.document.Field.Store;
@@ -35,12 +34,15 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 	private final NGramAnalyzer analyzer;
 	private final NGramQueryTransformation queryTransformation;
 
+	private int documentCount = 0;
+
 	public LuceneRegexSearchEngine(Version luceneVersion, Directory directory) {
 		this.luceneVersion = luceneVersion;
 		this.directory = directory;
 
 		analyzer = new NGramAnalyzer(luceneVersion);
 		queryTransformation = new NGramQueryTransformation();
+
 	}
 
 	@Override
@@ -55,6 +57,8 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			ldoc.add(new Field("trigrams", document.getContent(), TextField.TYPE_STORED));
 			iwriter.addDocument(ldoc);
 		}
+
+		documentCount++;
 	}
 
 	@Override
@@ -71,7 +75,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 			System.out.println(query);
 
-			ScoreDoc[] hits = isearcher.search(query, null, 1000).scoreDocs;
+			ScoreDoc[] hits = isearcher.search(query, null, documentCount).scoreDocs;
 			System.out.println(String.format("Got %d hits", hits.length));
 
 			Collection<Document> resultSet = new HashSet<Document>(hits.length);
