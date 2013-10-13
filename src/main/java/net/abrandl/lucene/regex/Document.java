@@ -3,6 +3,7 @@ package net.abrandl.lucene.regex;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+// TODO: consolidate Document/lucene.document.Document class
 public class Document {
 
 	private final String identifier, content;

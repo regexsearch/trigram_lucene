@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
+import net.abrandl.lucene.LuceneRegexSearchEngine;
 import net.abrandl.lucene.regex.*;
+
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.Version;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;
@@ -14,8 +19,9 @@ import org.junit.Test;
 
 public abstract class BasicSearchEngineTest {
 
-	private final RegexSearchEngine exhaustiveSearch = new ExhaustiveSearchEngine();
-	private final RegexSearchEngine ngramSearch = new NGramRegexSearchEngine(3);
+	private RegexSearchEngine exhaustiveSearch;
+	private RegexSearchEngine ngramSearch;
+	private RegexSearchEngine luceneSearch;
 
 	private final TestDatasets dataset;
 
@@ -25,8 +31,14 @@ public abstract class BasicSearchEngineTest {
 
 	@Before
 	public void indexDocuments() throws IOException {
+
+		exhaustiveSearch = new ExhaustiveSearchEngine();
+		ngramSearch = new NGramRegexSearchEngine(3);
+		luceneSearch = new LuceneRegexSearchEngine(Version.LUCENE_44, new RAMDirectory());
+
 		dataset.createIndex(exhaustiveSearch);
 		dataset.createIndex(ngramSearch);
+		dataset.createIndex(luceneSearch);
 	}
 
 	@Test
@@ -47,11 +59,17 @@ public abstract class BasicSearchEngineTest {
 
 		System.out.printf("expected   [%03d]:   %s\n", expected.size(), expected);
 
-		Collection<Document> result = ngramSearch.search(regex);
+		{
+			Collection<Document> result = ngramSearch.search(regex);
+			System.out.printf("ngramSearch     [%03d]:   %s\n", result.size(), result);
+			assertThat(result, equalTo(expected));
+		}
 
-		System.out.printf("result     [%03d]:   %s\n", result.size(), result);
-
-		assertThat(result, equalTo(expected));
+		{
+			Collection<Document> result = luceneSearch.search(regex);
+			System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
+			assertThat(result, equalTo(expected));
+		}
 	}
 
 }
