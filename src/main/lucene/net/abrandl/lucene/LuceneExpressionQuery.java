@@ -6,12 +6,14 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.*;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class LuceneExpressionQuery implements ExpressionVisitor<Query> {
 
 	private final String indexField;
 
 	public LuceneExpressionQuery(String indexField) {
-		this.indexField = indexField;
+		this.indexField = checkNotNull(indexField);
 	}
 
 	@Override
@@ -39,6 +41,7 @@ public class LuceneExpressionQuery implements ExpressionVisitor<Query> {
 
 	@Override
 	public Query visit(Any any) {
+		checkNotNull(any);
 		return new MatchAllDocsQuery();
 	}
 
