@@ -53,7 +53,7 @@ public abstract class BasicSearchEngineTest {
 		System.out.println("********************************************************");
 		System.out.printf("Query: /%s/\n", regex);
 
-		Collection<Document> expected;
+		Collection<SimpleDocument> expected;
 
 		try (RegexSearchEngine.Reader reader = exhaustiveSearch.getReader()) {
 			expected = reader.search(regex);
@@ -63,7 +63,7 @@ public abstract class BasicSearchEngineTest {
 
 		{
 			try (RegexSearchEngine.Reader reader = ngramSearch.getReader()) {
-				Collection<Document> result = reader.search(regex);
+				Collection<SimpleDocument> result = reader.search(regex);
 				System.out.printf("ngramSearch     [%03d]:   %s\n", result.size(), result);
 				assertThat(result, equalTo(expected));
 			}
@@ -71,7 +71,7 @@ public abstract class BasicSearchEngineTest {
 
 		{
 			try (RegexSearchEngine.Reader reader = luceneSearch.getReader()) {
-				Collection<Document> result = reader.search(regex);
+				Collection<SimpleDocument> result = reader.search(regex);
 				System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
 				assertThat(result, equalTo(expected));
 			}

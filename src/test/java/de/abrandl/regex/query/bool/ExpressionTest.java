@@ -1,9 +1,6 @@
 package de.abrandl.regex.query.bool;
 
 import static org.hamcrest.Matchers.equalTo;
-import de.abrandl.regex.query.bool.And;
-import de.abrandl.regex.query.bool.Expression;
-import de.abrandl.regex.query.bool.Literal;
 
 import static org.junit.Assert.assertThat;
 

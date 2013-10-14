@@ -4,11 +4,11 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 // TODO: consolidate Document/lucene.document.Document class
-public class Document {
+public class SimpleDocument {
 
 	private final String identifier, content;
 
-	public Document(String identifier, String content) {
+	public SimpleDocument(String identifier, String content) {
 		checkArgument(!identifier.isEmpty(), "identifier is empty");
 		this.identifier = checkNotNull(identifier);
 		this.content = checkNotNull(content);
@@ -39,7 +39,7 @@ public class Document {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Document other = (Document) obj;
+		SimpleDocument other = (SimpleDocument) obj;
 		if (content == null) {
 			if (other.content != null)
 				return false;

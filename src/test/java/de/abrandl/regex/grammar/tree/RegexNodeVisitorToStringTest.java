@@ -2,11 +2,9 @@ package de.abrandl.regex.grammar.tree;
 
 
 
-import de.abrandl.regex.grammar.tree.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class RegexNodeVisitorToStringTest {
 

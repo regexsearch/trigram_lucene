@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.abrandl.regex.grammar.tree.*;
-
 public class RegexNodeVisitorTypeCollector implements RegexNodeVisitor<Collection<Class<? extends RegexNode>>> {
 
 	private final Set<Class<? extends RegexNode>> types;

@@ -1,22 +1,14 @@
 // $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-13 18:09:31
 
 package de.abrandl.regex.grammar;
-import de.abrandl.regex.grammar.tree.RegexNode;
+import org.antlr.runtime.*;
+import org.antlr.runtime.tree.*;
 
+import de.abrandl.regex.grammar.tree.RegexNode;
 /*
 * Based on insights (and partly also grammar code) taken from
 * https://github.com/bkiers/PCREParser
 */
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import org.antlr.runtime.tree.*;
 
 
 @SuppressWarnings({"all", "warnings", "unchecked"})

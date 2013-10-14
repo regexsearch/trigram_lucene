@@ -3,7 +3,6 @@ package de.abrandl.regex.grammar.tree;
 import java.util.Arrays;
 
 import de.abrandl.regex.NGramTokenizer;
-import de.abrandl.regex.grammar.tree.*;
 import de.abrandl.regex.query.NGramExtractor;
 import de.abrandl.regex.query.RegexAnalyzer;
 import de.abrandl.regex.query.RegexInfo;

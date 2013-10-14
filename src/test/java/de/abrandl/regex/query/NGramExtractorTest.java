@@ -2,17 +2,13 @@ package de.abrandl.regex.query;
 
 import java.util.Collections;
 
-
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import de.abrandl.regex.NGramTokenizer;
-import de.abrandl.regex.query.NGramExtractor;
-import de.abrandl.regex.query.StringSet;
 import de.abrandl.regex.query.bool.Expression;
 import de.abrandl.regex.query.bool.Or;
 import de.abrandl.test.Helpers;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;

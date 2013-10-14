@@ -6,7 +6,6 @@ import java.util.Iterator;
 import de.abrandl.regex.grammar.tree.*;
 import de.abrandl.regex.query.bool.Expression;
 import de.abrandl.regex.query.transformations.NullQueryTransformation;
-
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static de.abrandl.regex.query.StringSet.unknownSet;

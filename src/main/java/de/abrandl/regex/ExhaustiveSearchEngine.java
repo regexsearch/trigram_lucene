@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
-	private final List<Document> documents = new LinkedList<Document>();
+	private final List<SimpleDocument> documents = new LinkedList<SimpleDocument>();
 
 	private class Writer implements RegexSearchEngine.Writer {
 
@@ -21,7 +21,7 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public void add(Document document) throws IOException {
+		public void add(SimpleDocument document) throws IOException {
 			documents.add(document);
 		}
 
@@ -40,12 +40,12 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public Collection<Document> search(String regex) throws SearchFailedException {
+		public Collection<SimpleDocument> search(String regex) throws SearchFailedException {
 			Pattern pattern = Pattern.compile(regex);
 
-			Set<Document> matches = new HashSet<Document>();
+			Set<SimpleDocument> matches = new HashSet<SimpleDocument>();
 
-			for (Document document : documents) {
+			for (SimpleDocument document : documents) {
 
 				if (pattern.matcher(document.getContent()).find()) {
 					matches.add(document);
@@ -68,7 +68,7 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 	}
 
 	@Override
-	public Collection<Document> search(String regex) throws SearchFailedException, IOException {
+	public Collection<SimpleDocument> search(String regex) throws SearchFailedException, IOException {
 		try (Reader reader = getReader()) {
 			return reader.search(regex);
 		}

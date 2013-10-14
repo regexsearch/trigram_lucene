@@ -2,8 +2,6 @@ package de.abrandl.regex.grammar.tree;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import de.abrandl.regex.grammar.tree.CharacterRange;
-
 import org.junit.Test;
 
 public class CharacterRangeTest {

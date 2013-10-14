@@ -1,16 +1,16 @@
 import java.io.IOException;
 import java.util.Collection;
 
-import de.abrandl.regex.Document;
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
+import de.abrandl.regex.SimpleDocument;
 
 public class SingleQueryBenchmark {
 
 	public static class BenchmarkResult {
 		public long indexingTime;
 		public long queryTime;
-		public Collection<Document> result;
+		public Collection<SimpleDocument> result;
 
 		@Override
 		public String toString() {
@@ -27,7 +27,7 @@ public class SingleQueryBenchmark {
 		this.engine = engine;
 	}
 
-	public BenchmarkResult benchmark(String regex, Collection<Document> docs) throws IOException, SearchFailedException {
+	public BenchmarkResult benchmark(String regex, Collection<SimpleDocument> docs) throws IOException, SearchFailedException {
 		BenchmarkResult result = new BenchmarkResult();
 
 		result.indexingTime = index(docs);
@@ -46,11 +46,11 @@ public class SingleQueryBenchmark {
 		result.queryTime = System.currentTimeMillis() - startTime;
 	}
 
-	private long index(Collection<Document> docs) throws IOException {
+	private long index(Collection<SimpleDocument> docs) throws IOException {
 		long startTime = System.currentTimeMillis();
 
 		try (RegexSearchEngine.Writer writer = engine.getWriter()) {
-			for (Document doc : docs) {
+			for (SimpleDocument doc : docs) {
 				writer.add(doc);
 			}
 		}

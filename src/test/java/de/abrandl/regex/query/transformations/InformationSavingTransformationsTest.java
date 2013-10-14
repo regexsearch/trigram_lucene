@@ -10,10 +10,6 @@ import de.abrandl.regex.query.RegexInfo;
 import de.abrandl.regex.query.RegexInfoTransformation;
 import de.abrandl.regex.query.StringSet;
 import de.abrandl.regex.query.bool.Expression;
-import de.abrandl.regex.query.transformations.ExactToMatchTransformation;
-import de.abrandl.regex.query.transformations.PrefixToMatchTransformation;
-import de.abrandl.regex.query.transformations.SuffixToMatchTransformation;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;

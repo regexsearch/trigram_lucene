@@ -3,9 +3,6 @@ package de.abrandl.regex;
 import java.util.Collections;
 import java.util.Set;
 
-import de.abrandl.regex.NGramTokenizer;
-
-
 import static de.abrandl.test.Helpers.asSet;
 import static org.hamcrest.CoreMatchers.equalTo;
 

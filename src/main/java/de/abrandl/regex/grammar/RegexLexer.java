@@ -4,9 +4,6 @@ package de.abrandl.regex.grammar;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class RegexLexer extends Lexer {

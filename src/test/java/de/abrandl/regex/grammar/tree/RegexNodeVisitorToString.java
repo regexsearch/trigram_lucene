@@ -3,8 +3,6 @@ package de.abrandl.regex.grammar.tree;
 import java.util.Iterator;
 import java.util.List;
 
-import de.abrandl.regex.grammar.tree.*;
-
 public class RegexNodeVisitorToString implements RegexNodeVisitor<String> {
 	@Override
 	public String visit(Alternative alternative) {

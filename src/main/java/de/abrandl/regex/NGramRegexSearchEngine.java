@@ -19,8 +19,8 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 
 	private final QueryTransformation queryTransformation;
 
-	private final Map<String, Set<Document>> invertedIndex = new HashMap<String, Set<Document>>();
-	private final Set<Document> allDocuments = new HashSet<Document>();
+	private final Map<String, Set<SimpleDocument>> invertedIndex = new HashMap<String, Set<SimpleDocument>>();
+	private final Set<SimpleDocument> allDocuments = new HashSet<SimpleDocument>();
 
 	public NGramRegexSearchEngine(int gramSize) {
 		checkArgument(gramSize >= 1);
@@ -42,14 +42,14 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public void add(Document document) throws IOException {
+		public void add(SimpleDocument document) throws IOException {
 			Set<String> ngrams = tokenizer.tokenize(document.getContent());
 
 			for (String ngram : ngrams) {
 				if (!invertedIndex.containsKey(ngram)) {
-					invertedIndex.put(ngram, new HashSet<Document>());
+					invertedIndex.put(ngram, new HashSet<SimpleDocument>());
 				}
-				Set<Document> postings = invertedIndex.get(ngram);
+				Set<SimpleDocument> postings = invertedIndex.get(ngram);
 				postings.add(document);
 			}
 
@@ -71,7 +71,7 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public Collection<Document> search(String regex) throws SearchFailedException {
+		public Collection<SimpleDocument> search(String regex) throws SearchFailedException {
 			try {
 				RegexNode parsedRegex = RegexParser.parse(regex);
 				Expression query = queryTransformation.expressionFor(parsedRegex);
@@ -79,12 +79,12 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 				System.out.println(parsedRegex.accept(new RegexNodeVisitorToStringTree()));
 				System.out.println(query);
 
-				Set<Document> candidates = query.accept(new ExpressionVisitor<Set<Document>>() {
+				Set<SimpleDocument> candidates = query.accept(new ExpressionVisitor<Set<SimpleDocument>>() {
 
 					@Override
-					public Set<Document> visit(And query) {
+					public Set<SimpleDocument> visit(And query) {
 						Iterator<Expression> iterator = query.iterator();
-						Set<Document> match = iterator.next().accept(this);
+						Set<SimpleDocument> match = iterator.next().accept(this);
 
 						debug(match);
 
@@ -95,14 +95,14 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 						return match;
 					}
 
-					private void debug(Set<Document> match) {
+					private void debug(Set<SimpleDocument> match) {
 
 					}
 
 					@Override
-					public Set<Document> visit(Or query) {
+					public Set<SimpleDocument> visit(Or query) {
 						Iterator<Expression> iterator = query.iterator();
-						Set<Document> match = iterator.next().accept(this);
+						Set<SimpleDocument> match = iterator.next().accept(this);
 						debug(match);
 
 						while (iterator.hasNext()) {
@@ -113,8 +113,8 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 					}
 
 					@Override
-					public Set<Document> visit(Literal query) {
-						Set<Document> match = new HashSet<Document>();
+					public Set<SimpleDocument> visit(Literal query) {
+						Set<SimpleDocument> match = new HashSet<SimpleDocument>();
 						String lookupKey = query.getContent();
 						if (invertedIndex.containsKey(lookupKey)) {
 							match.addAll(invertedIndex.get(lookupKey));
@@ -124,8 +124,8 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 					}
 
 					@Override
-					public Set<Document> visit(Any any) {
-						Set<Document> allDocs = new HashSet<Document>();
+					public Set<SimpleDocument> visit(Any any) {
+						Set<SimpleDocument> allDocs = new HashSet<SimpleDocument>();
 						allDocs.addAll(allDocuments);
 						debug(allDocs);
 						return allDocs;
@@ -137,9 +137,9 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 
 				if (!(candidates.isEmpty())) {
 					Pattern pattern = Pattern.compile(regex);
-					Iterator<Document> iterator = candidates.iterator();
+					Iterator<SimpleDocument> iterator = candidates.iterator();
 					while (iterator.hasNext()) {
-						Document doc = iterator.next();
+						SimpleDocument doc = iterator.next();
 						if (!(pattern.matcher(doc.getContent()).find())) {
 							iterator.remove();
 						}
@@ -177,7 +177,7 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 	}
 
 	@Override
-	public Collection<Document> search(String regex) throws SearchFailedException, IOException {
+	public Collection<SimpleDocument> search(String regex) throws SearchFailedException, IOException {
 		try (Reader reader = getReader()) {
 			return reader.search(regex);
 		}

@@ -26,7 +26,7 @@ public enum TestDatasets {
 			String line;
 
 			while ((line = reader.readLine()) != null) {
-				Document document = new Document(line, line);
+				SimpleDocument document = new SimpleDocument(line, line);
 				writer.add(document);
 			}
 		}

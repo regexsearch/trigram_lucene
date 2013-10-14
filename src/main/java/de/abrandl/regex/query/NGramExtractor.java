@@ -8,7 +8,6 @@ import de.abrandl.regex.NGramTokenizer;
 import de.abrandl.regex.query.bool.And;
 import de.abrandl.regex.query.bool.Expression;
 import de.abrandl.regex.query.bool.Literal;
-
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 

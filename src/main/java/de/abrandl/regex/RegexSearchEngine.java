@@ -9,13 +9,13 @@ public interface RegexSearchEngine {
 	public interface Writer extends Closeable {
 		void open() throws IOException;
 
-		void add(Document document) throws IOException;
+		void add(SimpleDocument document) throws IOException;
 	}
 
 	public interface Reader extends Closeable {
 		void open() throws IOException;
 
-		Collection<Document> search(String regex) throws SearchFailedException;
+		Collection<SimpleDocument> search(String regex) throws SearchFailedException;
 	}
 
 	Writer getWriter();
@@ -30,6 +30,6 @@ public interface RegexSearchEngine {
 	 * @throws SearchFailedException
 	 * @throws IOException
 	 */
-	Collection<Document> search(String regex) throws SearchFailedException, IOException;
+	Collection<SimpleDocument> search(String regex) throws SearchFailedException, IOException;
 
 }

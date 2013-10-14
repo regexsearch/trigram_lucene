@@ -5,8 +5,8 @@ import java.util.HashSet;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
-import de.abrandl.regex.Document;
 import de.abrandl.regex.ExhaustiveSearchEngine;
+import de.abrandl.regex.SimpleDocument;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -22,7 +22,7 @@ public class FirstBenchmark {
 
 	@Test
 	public void start() throws Exception {
-		Collection<Document> docs = new HashSet<Document>();
+		Collection<SimpleDocument> docs = new HashSet<SimpleDocument>();
 		readDocs(new File("/home/abrandl/Dropbox/ma-thesis/data/spiegel2000"), docs);
 
 		log(String.format("loaded %d docs", docs.size()));
@@ -46,12 +46,12 @@ public class FirstBenchmark {
 		assertThat(luceneResult.result, equalTo(exhaustiveResult.result));
 	}
 
-	private Collection<Document> readDocs(File directory, Collection<Document> docs) throws FileNotFoundException,
+	private Collection<SimpleDocument> readDocs(File directory, Collection<SimpleDocument> docs) throws FileNotFoundException,
 			IOException {
 		return readDocs(directory, docs, null);
 	}
 
-	private Collection<Document> readDocs(File directory, Collection<Document> docs, Integer limit)
+	private Collection<SimpleDocument> readDocs(File directory, Collection<SimpleDocument> docs, Integer limit)
 			throws FileNotFoundException, IOException {
 
 		for (File file : directory.listFiles()) {
@@ -65,7 +65,7 @@ public class FirstBenchmark {
 						content.append(line);
 					}
 				}
-				Document doc = new Document(file.getName(), content.toString());
+				SimpleDocument doc = new SimpleDocument(file.getName(), content.toString());
 				docs.add(doc);
 
 			} else if (file.isDirectory()) {

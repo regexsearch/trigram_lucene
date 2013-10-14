@@ -10,8 +10,8 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import de.abrandl.regex.Document;
 import de.abrandl.regex.RegexSearchEngine;
+import de.abrandl.regex.SimpleDocument;
 
 public class LuceneTest {
 
@@ -35,15 +35,15 @@ public class LuceneTest {
 
 			try (RegexSearchEngine.Writer writer = engine.getWriter()) {
 				for (int index = 0; index < strings.size(); index++) {
-					writer.add(new Document(String.format("doc %d", index), strings.get(index)));
+					writer.add(new SimpleDocument(String.format("doc %d", index), strings.get(index)));
 				}
 			}
 
 			String query = "(the |another )*text";
 			System.out.println(query);
-			Collection<Document> result = engine.search(query);
+			Collection<SimpleDocument> result = engine.search(query);
 
-			for (Document doc : result) {
+			for (SimpleDocument doc : result) {
 				System.out.println(String.format("%s -- %s", doc.getIdentifier(), doc.getContent()));
 			}
 		}

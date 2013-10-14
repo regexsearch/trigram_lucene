@@ -6,7 +6,6 @@ import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.*;
 
 import de.abrandl.regex.query.bool.*;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LuceneExpressionQuery implements ExpressionVisitor<Query> {

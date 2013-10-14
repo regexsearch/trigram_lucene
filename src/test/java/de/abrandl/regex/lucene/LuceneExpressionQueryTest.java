@@ -3,15 +3,12 @@ package de.abrandl.regex.lucene;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import org.apache.lucene.search.*;
 import org.apache.lucene.search.BooleanClause.Occur;
 
-import de.abrandl.regex.lucene.LuceneExpressionQuery;
 import de.abrandl.regex.query.bool.Expression;
 import de.abrandl.regex.query.bool.Literal;
 import de.abrandl.test.Helpers;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 

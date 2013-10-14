@@ -1,13 +1,10 @@
 package de.abrandl.regex.grammar.tree;
 
+import java.util.Collection;
+
 import static de.abrandl.test.Helpers.asSet;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.Collection;
-
-import de.abrandl.regex.grammar.tree.CharacterClass;
-import de.abrandl.regex.grammar.tree.CharacterRange;
 
 import org.junit.Test;
 

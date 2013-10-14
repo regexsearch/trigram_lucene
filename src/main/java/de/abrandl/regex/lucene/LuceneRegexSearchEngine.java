@@ -18,9 +18,9 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
 
-import de.abrandl.regex.Document;
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
+import de.abrandl.regex.SimpleDocument;
 import de.abrandl.regex.grammar.RegexParser;
 import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.grammar.tree.RegexNode;
@@ -64,7 +64,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public Collection<Document> search(String regex) throws SearchFailedException {
+		public Collection<SimpleDocument> search(String regex) throws SearchFailedException {
 			try {
 				open();
 				IndexSearcher isearcher = new IndexSearcher(index);
@@ -80,13 +80,13 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				ScoreDoc[] hits = isearcher.search(query, null, documentCount).scoreDocs;
 				System.out.println(String.format("Got %d hits", hits.length));
 
-				Collection<Document> resultSet = new HashSet<Document>(hits.length);
+				Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.length);
 
 				Pattern pattern = Pattern.compile(regex);
 
 				for (int i = 0; i < hits.length; i++) {
 					org.apache.lucene.document.Document doc = isearcher.doc(hits[i].doc);
-					Document d = new Document(doc.get("identifier"), doc.get("content"));
+					SimpleDocument d = new SimpleDocument(doc.get("identifier"), doc.get("content"));
 					if (pattern.matcher(d.getContent()).find()) {
 						resultSet.add(d);
 					}
@@ -121,7 +121,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public void add(Document document) throws IOException {
+		public void add(SimpleDocument document) throws IOException {
 			open();
 			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
 			ldoc.add(new Field("identifier", document.getIdentifier(), Store.YES, Index.NOT_ANALYZED));
@@ -145,7 +145,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 	}
 
 	@Override
-	public Collection<Document> search(String regex) throws SearchFailedException, IOException {
+	public Collection<SimpleDocument> search(String regex) throws SearchFailedException, IOException {
 		try (RegexSearchEngine.Reader reader = getReader()) {
 			return reader.search(regex);
 		}

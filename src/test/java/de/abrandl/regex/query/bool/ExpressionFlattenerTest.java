@@ -3,7 +3,6 @@ package de.abrandl.regex.query.bool;
 import static de.abrandl.regex.query.bool.Expression.and;
 import static de.abrandl.regex.query.bool.Expression.or;
 import static org.hamcrest.CoreMatchers.equalTo;
-import de.abrandl.regex.query.bool.*;
 
 import static org.junit.Assert.assertThat;
 

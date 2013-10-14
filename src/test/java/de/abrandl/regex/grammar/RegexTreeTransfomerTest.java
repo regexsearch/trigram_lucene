@@ -2,14 +2,10 @@ package de.abrandl.regex.grammar;
 
 import java.util.Collection;
 
-
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
-import de.abrandl.regex.grammar.RegexParsingException;
-import de.abrandl.regex.grammar.RegexTreeTransformer;
 import de.abrandl.regex.grammar.tree.*;
-
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
 
