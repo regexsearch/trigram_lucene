@@ -36,10 +36,12 @@ public class SingleQueryBenchmark {
 		return result;
 	}
 
-	private void query(String regex, BenchmarkResult result) throws SearchFailedException {
+	private void query(String regex, BenchmarkResult result) throws SearchFailedException, IOException {
 		long startTime = System.currentTimeMillis();
 
-		result.result = engine.search(regex);
+		try (RegexSearchEngine.Reader reader = engine.getReader()) {
+			result.result = reader.search(regex);
+		}
 
 		result.queryTime = System.currentTimeMillis() - startTime;
 	}
@@ -47,8 +49,10 @@ public class SingleQueryBenchmark {
 	private long index(Collection<Document> docs) throws IOException {
 		long startTime = System.currentTimeMillis();
 
-		for (Document doc : docs) {
-			engine.addDocument(doc);
+		try (RegexSearchEngine.Writer writer = engine.getWriter()) {
+			for (Document doc : docs) {
+				writer.add(doc);
+			}
 		}
 
 		return System.currentTimeMillis() - startTime;

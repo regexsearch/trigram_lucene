@@ -8,10 +8,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.abrandl.regex.Document;
-import de.abrandl.regex.RegexSearchEngine;
-
-
 public enum TestDatasets {
 
 	KEYWORDS("keywords.docs.csv", "keywords.queries.csv"), SALEWA("salewa.docs.csv", "salewa.queries.csv");
@@ -25,12 +21,13 @@ public enum TestDatasets {
 
 	public void createIndex(RegexSearchEngine engine) throws IOException {
 		try (InputStream resourceAsStream = getClass().getResourceAsStream(documentsPath);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));) {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+				RegexSearchEngine.Writer writer = engine.getWriter()) {
 			String line;
 
 			while ((line = reader.readLine()) != null) {
 				Document document = new Document(line, line);
-				engine.addDocument(document);
+				writer.add(document);
 			}
 		}
 	}

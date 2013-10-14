@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
-
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
-import de.abrandl.regex.*;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;
@@ -52,24 +49,32 @@ public abstract class BasicSearchEngineTest {
 		}
 	}
 
-	private void searchDocuments(String regex) throws SearchFailedException {
+	private void searchDocuments(String regex) throws SearchFailedException, IOException {
 		System.out.println("********************************************************");
 		System.out.printf("Query: /%s/\n", regex);
 
-		Collection<Document> expected = exhaustiveSearch.search(regex);
+		Collection<Document> expected;
+
+		try (RegexSearchEngine.Reader reader = exhaustiveSearch.getReader()) {
+			expected = reader.search(regex);
+		}
 
 		System.out.printf("expected   [%03d]:   %s\n", expected.size(), expected);
 
 		{
-			Collection<Document> result = ngramSearch.search(regex);
-			System.out.printf("ngramSearch     [%03d]:   %s\n", result.size(), result);
-			assertThat(result, equalTo(expected));
+			try (RegexSearchEngine.Reader reader = ngramSearch.getReader()) {
+				Collection<Document> result = reader.search(regex);
+				System.out.printf("ngramSearch     [%03d]:   %s\n", result.size(), result);
+				assertThat(result, equalTo(expected));
+			}
 		}
 
 		{
-			Collection<Document> result = luceneSearch.search(regex);
-			System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
-			assertThat(result, equalTo(expected));
+			try (RegexSearchEngine.Reader reader = luceneSearch.getReader()) {
+				Collection<Document> result = reader.search(regex);
+				System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
+				assertThat(result, equalTo(expected));
+			}
 		}
 	}
 

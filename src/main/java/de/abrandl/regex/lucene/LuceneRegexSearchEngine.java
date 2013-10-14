@@ -42,60 +42,112 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 		analyzer = new NGramAnalyzer(luceneVersion);
 		queryTransformation = new NGramQueryTransformation();
+	}
+
+	private class Reader implements RegexSearchEngine.Reader {
+
+		private DirectoryReader index;
+
+		@Override
+		public void close() throws IOException {
+			if (index != null) {
+				index.close();
+				index = null;
+			}
+		}
+
+		@Override
+		public void open() throws IOException {
+			if (index == null) {
+				index = DirectoryReader.open(directory);
+			}
+		}
+
+		@Override
+		public Collection<Document> search(String regex) throws SearchFailedException {
+			try {
+				open();
+				IndexSearcher isearcher = new IndexSearcher(index);
+				RegexNode parsedRegex = RegexParser.parse(regex);
+				Expression expression = queryTransformation.expressionFor(parsedRegex);
+
+				System.out.println(expression);
+
+				Query query = expression.accept(new LuceneExpressionQuery("trigrams"));
+
+				System.out.println(query);
+
+				ScoreDoc[] hits = isearcher.search(query, null, documentCount).scoreDocs;
+				System.out.println(String.format("Got %d hits", hits.length));
+
+				Collection<Document> resultSet = new HashSet<Document>(hits.length);
+
+				Pattern pattern = Pattern.compile(regex);
+
+				for (int i = 0; i < hits.length; i++) {
+					org.apache.lucene.document.Document doc = isearcher.doc(hits[i].doc);
+					Document d = new Document(doc.get("identifier"), doc.get("content"));
+					if (pattern.matcher(d.getContent()).find()) {
+						resultSet.add(d);
+					}
+				}
+
+				return resultSet;
+			} catch (RegexParsingException | IOException e) {
+				throw new SearchFailedException(e);
+			}
+		}
 
 	}
 
-	@Override
-	public void addDocument(Document document) throws IOException {
-		IndexWriterConfig config = new IndexWriterConfig(luceneVersion, analyzer);
+	private class Writer implements RegexSearchEngine.Writer {
 
-		// TODO: open/close index to reduce overhead
-		try (IndexWriter iwriter = new IndexWriter(directory, config)) {
+		private IndexWriter writer = null;
+
+		@Override
+		public void close() throws IOException {
+			if (writer != null) {
+				writer.close();
+				writer = null;
+			}
+		}
+
+		@Override
+		public void open() throws IOException {
+			if (writer == null) {
+				IndexWriterConfig config = new IndexWriterConfig(luceneVersion, analyzer);
+				writer = new IndexWriter(directory, config);
+			}
+		}
+
+		@Override
+		public void add(Document document) throws IOException {
+			open();
 			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
 			ldoc.add(new Field("identifier", document.getIdentifier(), Store.YES, Index.NOT_ANALYZED));
 			ldoc.add(new Field("content", document.getContent(), Store.YES, Index.NOT_ANALYZED));
 			ldoc.add(new Field("trigrams", document.getContent(), TextField.TYPE_STORED));
-			iwriter.addDocument(ldoc);
+			writer.addDocument(ldoc);
+
+			documentCount++;
 		}
 
-		documentCount++;
 	}
 
 	@Override
-	public Collection<Document> search(String regex) throws SearchFailedException {
-		try (DirectoryReader ireader = DirectoryReader.open(directory)) {
-			IndexSearcher isearcher = new IndexSearcher(ireader);
+	public de.abrandl.regex.RegexSearchEngine.Writer getWriter() {
+		return new Writer();
+	}
 
-			RegexNode parsedRegex = RegexParser.parse(regex);
-			Expression expression = queryTransformation.expressionFor(parsedRegex);
+	@Override
+	public de.abrandl.regex.RegexSearchEngine.Reader getReader() {
+		return new Reader();
+	}
 
-			System.out.println(expression);
-
-			Query query = expression.accept(new LuceneExpressionQuery("trigrams"));
-
-			System.out.println(query);
-
-			ScoreDoc[] hits = isearcher.search(query, null, documentCount).scoreDocs;
-			System.out.println(String.format("Got %d hits", hits.length));
-
-			Collection<Document> resultSet = new HashSet<Document>(hits.length);
-
-			Pattern pattern = Pattern.compile(regex);
-
-			for (int i = 0; i < hits.length; i++) {
-				org.apache.lucene.document.Document doc = isearcher.doc(hits[i].doc);
-				Document d = new Document(doc.get("identifier"), doc.get("content"));
-				if (pattern.matcher(d.getContent()).find()) {
-					resultSet.add(d);
-				}
-			}
-
-			return resultSet;
-
-		} catch (IOException e) {
-			throw new SearchFailedException(e);
-		} catch (RegexParsingException e) {
-			throw new SearchFailedException(e);
+	@Override
+	public Collection<Document> search(String regex) throws SearchFailedException, IOException {
+		try (RegexSearchEngine.Reader reader = getReader()) {
+			return reader.search(regex);
 		}
 	}
 

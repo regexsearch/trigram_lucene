@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-
 import org.apache.commons.io.FileUtils;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -34,8 +33,10 @@ public class LuceneTest {
 
 			List<String> strings = Arrays.asList("text to be indexed", "the the text to be indexed");
 
-			for (int index = 0; index < strings.size(); index++) {
-				engine.addDocument(new Document(String.format("doc %d", index), strings.get(index)));
+			try (RegexSearchEngine.Writer writer = engine.getWriter()) {
+				for (int index = 0; index < strings.size(); index++) {
+					writer.add(new Document(String.format("doc %d", index), strings.get(index)));
+				}
 			}
 
 			String query = "(the |another )*text";
