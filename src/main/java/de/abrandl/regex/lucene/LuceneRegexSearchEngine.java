@@ -1,6 +1,6 @@
 package de.abrandl.regex.lucene;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.regex.Pattern;
@@ -86,9 +86,10 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 				for (int i = 0; i < hits.length; i++) {
 					org.apache.lucene.document.Document doc = isearcher.doc(hits[i].doc);
-					SimpleDocument d = new SimpleDocument(doc.get("identifier"), doc.get("content"));
-					if (pattern.matcher(d.getContent()).find()) {
-						resultSet.add(d);
+					String path = doc.get("identifier");
+					String content = readFile(new File(path));
+					if (pattern.matcher(content).find()) {
+						resultSet.add(new SimpleDocument(path, content));
 					}
 				}
 
@@ -96,6 +97,17 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
 			}
+		}
+
+		private String readFile(File file) throws FileNotFoundException, IOException {
+			StringBuffer content = new StringBuffer();
+			try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+				String line = null;
+				while ((line = reader.readLine()) != null) {
+					content.append(line);
+				}
+			}
+			return content.toString();
 		}
 
 	}
@@ -125,7 +137,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			open();
 			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
 			ldoc.add(new Field("identifier", document.getIdentifier(), Store.YES, Index.NOT_ANALYZED));
-			ldoc.add(new Field("content", document.getContent(), Store.YES, Index.NOT_ANALYZED));
 			ldoc.add(new Field("trigrams", document.getContent(), TextField.TYPE_STORED));
 			writer.addDocument(ldoc);
 
