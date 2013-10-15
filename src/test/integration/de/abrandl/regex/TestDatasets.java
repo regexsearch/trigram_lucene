@@ -25,10 +25,14 @@ public enum TestDatasets {
 				RegexSearchEngine.Writer writer = engine.getWriter()) {
 			String line;
 
+			List<SimpleDocument> docs = new LinkedList<SimpleDocument>();
+
 			while ((line = reader.readLine()) != null) {
 				SimpleDocument document = new SimpleDocument(line, line);
-				writer.add(document);
+				docs.add(document);
 			}
+
+			writer.add(docs.iterator());
 		}
 	}
 

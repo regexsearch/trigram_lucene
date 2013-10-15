@@ -42,7 +42,13 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public void add(SimpleDocument document) throws IOException {
+		public void add(Iterator<SimpleDocument> docs) throws IOException {
+			while (docs.hasNext()) {
+				add(docs.next());
+			}
+		}
+
+		private void add(SimpleDocument document) throws IOException {
 			Set<String> ngrams = tokenizer.tokenize(document.getContent());
 
 			for (String ngram : ngrams) {

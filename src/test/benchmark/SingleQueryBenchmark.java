@@ -52,9 +52,7 @@ public class SingleQueryBenchmark {
 		long startTime = System.currentTimeMillis();
 
 		try (RegexSearchEngine.Writer writer = engine.getWriter()) {
-			while (docs.hasNext()) {
-				writer.add(docs.next());
-			}
+			writer.add(docs);
 		}
 
 		return System.currentTimeMillis() - startTime;

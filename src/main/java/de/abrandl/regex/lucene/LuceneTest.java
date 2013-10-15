@@ -3,6 +3,7 @@ package de.abrandl.regex.lucene;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -32,11 +33,14 @@ public class LuceneTest {
 			RegexSearchEngine engine = new LuceneRegexSearchEngine(LUCENE44, directory);
 
 			List<String> strings = Arrays.asList("text to be indexed", "the the text to be indexed");
+			List<SimpleDocument> docs = new LinkedList<SimpleDocument>();
+
+			for (int index = 0; index < strings.size(); index++) {
+				docs.add(new SimpleDocument(String.format("doc %d", index), strings.get(index)));
+			}
 
 			try (RegexSearchEngine.Writer writer = engine.getWriter()) {
-				for (int index = 0; index < strings.size(); index++) {
-					writer.add(new SimpleDocument(String.format("doc %d", index), strings.get(index)));
-				}
+				writer.add(docs.iterator());
 			}
 
 			String query = "(the |another )*text";

@@ -12,6 +12,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RegexTreeTransfomerTest {
@@ -64,6 +65,13 @@ public class RegexTreeTransfomerTest {
 		assertIdenticalTransform("(foo|bar)+bla");
 		assertIdenticalTransform("(foo|bar)+bla*");
 		assertIdenticalTransform("((foo|bar)+(bla)*)+");
+	}
+
+	// TODO: fix regression with match groups
+	@Ignore
+	@Test
+	public void regressionWithMatchGroups() throws RegexParsingException {
+		assertIdenticalTransform("(#?define)|z?_test");
 	}
 
 	@Test

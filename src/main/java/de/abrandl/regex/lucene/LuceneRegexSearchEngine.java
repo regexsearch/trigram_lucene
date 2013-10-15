@@ -3,6 +3,7 @@ package de.abrandl.regex.lucene;
 import java.io.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import org.apache.lucene.document.Field;
@@ -133,7 +134,13 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public void add(SimpleDocument document) throws IOException {
+		public void add(Iterator<SimpleDocument> docs) throws IOException {
+			while (docs.hasNext()) {
+				add(docs.next());
+			}
+		}
+
+		private void add(SimpleDocument document) throws IOException {
 			open();
 			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
 			ldoc.add(new Field("identifier", document.getIdentifier(), Store.YES, Index.NOT_ANALYZED));
