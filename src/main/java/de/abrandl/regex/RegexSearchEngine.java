@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
+import de.abrandl.regex.document.SimpleDocument;
+
 public interface RegexSearchEngine {
 
 	public interface Writer extends Closeable {

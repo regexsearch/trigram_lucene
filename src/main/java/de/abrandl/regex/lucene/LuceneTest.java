@@ -12,7 +12,8 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
 import de.abrandl.regex.RegexSearchEngine;
-import de.abrandl.regex.SimpleDocument;
+import de.abrandl.regex.document.InMemoryDocument;
+import de.abrandl.regex.document.SimpleDocument;
 
 public class LuceneTest {
 
@@ -36,7 +37,7 @@ public class LuceneTest {
 			List<SimpleDocument> docs = new LinkedList<SimpleDocument>();
 
 			for (int index = 0; index < strings.size(); index++) {
-				docs.add(new SimpleDocument(String.format("doc %d", index), strings.get(index)));
+				docs.add(new InMemoryDocument(String.format("doc %d", index), strings.get(index)));
 			}
 
 			try (RegexSearchEngine.Writer writer = engine.getWriter()) {

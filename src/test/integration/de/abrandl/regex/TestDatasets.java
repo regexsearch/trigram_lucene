@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.abrandl.regex.document.InMemoryDocument;
+import de.abrandl.regex.document.SimpleDocument;
+
 public enum TestDatasets {
 
 	KEYWORDS("keywords.docs.csv", "keywords.queries.csv"), SALEWA("salewa.docs.csv", "salewa.queries.csv");
@@ -28,8 +31,7 @@ public enum TestDatasets {
 			List<SimpleDocument> docs = new LinkedList<SimpleDocument>();
 
 			while ((line = reader.readLine()) != null) {
-				SimpleDocument document = new SimpleDocument(line, line);
-				docs.add(document);
+				docs.add(new InMemoryDocument(line, line));
 			}
 
 			writer.add(docs.iterator());

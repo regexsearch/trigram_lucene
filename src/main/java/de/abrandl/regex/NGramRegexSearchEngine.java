@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.grammar.RegexParser;
 import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.grammar.tree.RegexNode;
@@ -154,7 +155,7 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 
 				return candidates;
 
-			} catch (RegexParsingException e) {
+			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
 			}
 		}

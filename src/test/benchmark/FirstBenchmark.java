@@ -4,7 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import de.abrandl.regex.DiskBasedExhaustiveSearchEngine;
+import de.abrandl.regex.ExhaustiveSearchEngine;
 import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -36,24 +36,28 @@ public class FirstBenchmark {
 		SingleQueryBenchmark lucene = new SingleQueryBenchmark(new LuceneRegexSearchEngine(Version.LUCENE_44,
 				FSDirectory.open(luceneIndexPath)));
 
-		SingleQueryBenchmark exhaustive = new SingleQueryBenchmark(new DiskBasedExhaustiveSearchEngine());
+		SingleQueryBenchmark exhaustive = new SingleQueryBenchmark(new ExhaustiveSearchEngine());
 
 		// String regex = "(Pp)?anorama|6aus49";
 		String regex = "hello world\\.?";
 		// String regex = "define|refine";
 
 		log("running lucene benchmark...");
-		SingleQueryBenchmark.BenchmarkResult luceneResult = lucene.benchmark(regex, new RecursiveFileContentIterator(
-				documentDirectory, limit));
+		SingleQueryBenchmark.BenchmarkResult luceneResult = lucene.benchmark(regex,
+				createIterator(documentDirectory, limit));
 		System.out.println(luceneResult);
 
 		log("running exhaustive search...");
 		SingleQueryBenchmark.BenchmarkResult exhaustiveResult = exhaustive.benchmark(regex,
-				new RecursiveFileContentIterator(documentDirectory, limit));
+				createIterator(documentDirectory, limit));
 		System.out.println(exhaustiveResult);
 
 		assertThat(luceneResult.result, equalTo(exhaustiveResult.result));
 
 		assertThat(luceneResult.queryTime, is(lessThan(exhaustiveResult.queryTime)));
+	}
+
+	private RecursiveFileContentIterator createIterator(File documentDirectory, Integer limit) {
+		return new RecursiveFileContentIterator(documentDirectory, RecursiveFileContentIterator.Strategy.LAZY, limit);
 	}
 }

@@ -7,12 +7,12 @@ import java.util.Iterator;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
+import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public abstract class BasicSearchEngineTest {
@@ -27,8 +27,7 @@ public abstract class BasicSearchEngineTest {
 		this.dataset = dataset;
 	}
 
-	@Before
-	public void indexDocuments() throws IOException {
+	private void indexDocuments() throws IOException {
 
 		exhaustiveSearch = new ExhaustiveSearchEngine();
 		ngramSearch = new NGramRegexSearchEngine(3);
@@ -44,6 +43,7 @@ public abstract class BasicSearchEngineTest {
 		Iterator<String> queries = dataset.queries();
 
 		while (queries.hasNext()) {
+			indexDocuments(); // needed, as we use non-resettable iterators
 			String regex = queries.next();
 			searchDocuments(regex);
 		}

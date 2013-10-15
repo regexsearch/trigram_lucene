@@ -21,7 +21,8 @@ import org.apache.lucene.util.Version;
 
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
-import de.abrandl.regex.SimpleDocument;
+import de.abrandl.regex.document.InMemoryDocument;
+import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.grammar.RegexParser;
 import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.grammar.tree.RegexNode;
@@ -88,9 +89,9 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				for (int i = 0; i < hits.length; i++) {
 					org.apache.lucene.document.Document doc = isearcher.doc(hits[i].doc);
 					String path = doc.get("identifier");
-					String content = readFile(new File(path));
+					String content = doc.get("content");
 					if (pattern.matcher(content).find()) {
-						resultSet.add(new SimpleDocument(path, content));
+						resultSet.add(new InMemoryDocument(path, content));
 					}
 				}
 
@@ -144,7 +145,9 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			open();
 			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
 			ldoc.add(new Field("identifier", document.getIdentifier(), Store.YES, Index.NOT_ANALYZED));
-			ldoc.add(new Field("trigrams", document.getContent(), TextField.TYPE_STORED));
+			String content = document.getContent();
+			ldoc.add(new Field("content", content, Store.YES, Index.NOT_ANALYZED));
+			ldoc.add(new Field("trigrams", content, TextField.TYPE_STORED));
 			writer.addDocument(ldoc);
 
 			documentCount++;

@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
-import de.abrandl.regex.SimpleDocument;
+import de.abrandl.regex.document.SimpleDocument;
 
 public class SingleQueryBenchmark {
 

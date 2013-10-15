@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import de.abrandl.regex.document.SimpleDocument;
+
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
-	private final List<SimpleDocument> documents = new LinkedList<SimpleDocument>();
+	private final List<Iterator<SimpleDocument>> documents = new LinkedList<Iterator<SimpleDocument>>();
 
 	private class Writer implements RegexSearchEngine.Writer {
 
@@ -21,12 +23,9 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 		}
 
 		@Override
-		public void add(Iterator<SimpleDocument> docs) throws IOException {
-			while (docs.hasNext()) {
-				documents.add(docs.next());
-			}
+		public void add(Iterator<SimpleDocument> document) throws IOException {
+			documents.add(document);
 		}
-
 	}
 
 	private class Reader implements RegexSearchEngine.Reader {
@@ -47,14 +46,19 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
 			Set<SimpleDocument> matches = new HashSet<SimpleDocument>();
 
-			for (SimpleDocument document : documents) {
-
-				if (pattern.matcher(document.getContent()).find()) {
-					matches.add(document);
+			try {
+				for (Iterator<SimpleDocument> iter : documents) {
+					while (iter.hasNext()) {
+						SimpleDocument doc = iter.next();
+						if (pattern.matcher(doc.getContent()).find()) {
+							matches.add(doc);
+						}
+					}
 				}
+				return matches;
+			} catch (IOException e) {
+				throw new SearchFailedException(e);
 			}
-
-			return matches;
 		}
 
 	}

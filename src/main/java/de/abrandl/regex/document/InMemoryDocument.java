@@ -1,23 +1,24 @@
-package de.abrandl.regex;
+package de.abrandl.regex.document;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-// TODO: consolidate Document/lucene.document.Document class
-public class SimpleDocument {
+public class InMemoryDocument implements SimpleDocument {
 
 	private final String identifier, content;
 
-	public SimpleDocument(String identifier, String content) {
+	public InMemoryDocument(String identifier, String content) {
 		checkArgument(!identifier.isEmpty(), "identifier is empty");
 		this.identifier = checkNotNull(identifier);
 		this.content = checkNotNull(content);
 	}
 
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
 
+	@Override
 	public String getContent() {
 		return content;
 	}
@@ -39,7 +40,7 @@ public class SimpleDocument {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SimpleDocument other = (SimpleDocument) obj;
+		InMemoryDocument other = (InMemoryDocument) obj;
 		if (content == null) {
 			if (other.content != null)
 				return false;
