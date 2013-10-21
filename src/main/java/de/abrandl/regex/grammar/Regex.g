@@ -852,27 +852,7 @@ Tilde
 
 // printable ASCII stops here
 
-OtherChar
-  :
-  .
-  ;
-
 // fragments
-
-fragment
-UnderscoreAlphaNumerics
-  :
-  (
-    '_'
-    | AlphaNumeric
-  )+
-  ;
-
-fragment
-AlphaNumerics
-  :
-  AlphaNumeric+
-  ;
 
 fragment
 AlphaNumeric
@@ -886,18 +866,4 @@ fragment
 NonAlphaNumeric
   :
   ~AlphaNumeric
-  ;
-
-fragment
-HexDigit
-  :
-  '0'..'9'
-  | 'a'..'f'
-  | 'A'..'F'
-  ;
-
-fragment
-ASCII
-  :
-  '\u0000'..'\u007F'
   ;

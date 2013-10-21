@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:01:44
+// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:06:13
 
 package de.abrandl.regex.grammar;
 
@@ -13,124 +13,119 @@ public class RegexLexer extends Lexer {
     public static final int EOF=-1;
     public static final int ALC=4;
     public static final int ALTERNATIVE=5;
-    public static final int ASCII=6;
-    public static final int AUC=7;
-    public static final int AlphaNumeric=8;
-    public static final int AlphaNumerics=9;
-    public static final int Ampersand=10;
-    public static final int At=11;
-    public static final int BLC=12;
-    public static final int BUC=13;
-    public static final int Backslash=14;
-    public static final int BlockQuoted=15;
-    public static final int CHARACTER_CLASS=16;
-    public static final int CLC=17;
-    public static final int CONCATENATION=18;
-    public static final int CUC=19;
-    public static final int Caret=20;
-    public static final int CarriageReturn=21;
-    public static final int CloseBrace=22;
-    public static final int CloseBracket=23;
-    public static final int CloseParen=24;
-    public static final int Colon=25;
-    public static final int Comma=26;
-    public static final int D0=27;
-    public static final int D1=28;
-    public static final int D2=29;
-    public static final int D3=30;
-    public static final int D4=31;
-    public static final int D5=32;
-    public static final int D6=33;
-    public static final int D7=34;
-    public static final int D8=35;
-    public static final int D9=36;
-    public static final int DLC=37;
-    public static final int DOTANY=38;
-    public static final int DUC=39;
-    public static final int Dollar=40;
-    public static final int Dot=41;
-    public static final int DoubleQuote=42;
-    public static final int ELC=43;
-    public static final int ELEMENT=44;
-    public static final int EUC=45;
-    public static final int Equals=46;
-    public static final int Exclamation=47;
-    public static final int FLC=48;
-    public static final int FUC=49;
-    public static final int GLC=50;
-    public static final int GROUP=51;
-    public static final int GUC=52;
-    public static final int GraveAccent=53;
-    public static final int GreaterThan=54;
-    public static final int HLC=55;
-    public static final int HUC=56;
-    public static final int Hash=57;
-    public static final int HexDigit=58;
-    public static final int Hyphen=59;
-    public static final int ILC=60;
-    public static final int IUC=61;
-    public static final int JLC=62;
-    public static final int JUC=63;
-    public static final int KLC=64;
-    public static final int KUC=65;
-    public static final int LITERAL=66;
-    public static final int LLC=67;
-    public static final int LUC=68;
-    public static final int LessThan=69;
-    public static final int MLC=70;
-    public static final int MUC=71;
-    public static final int NAME=72;
-    public static final int NLC=73;
-    public static final int NUC=74;
-    public static final int NUMBER=75;
-    public static final int NewLine=76;
-    public static final int NonAlphaNumeric=77;
-    public static final int OLC=78;
-    public static final int ONEORMORE=79;
-    public static final int OPTIONAL=80;
-    public static final int OUC=81;
-    public static final int OpenBrace=82;
-    public static final int OpenBracket=83;
-    public static final int OpenParen=84;
-    public static final int OtherChar=85;
-    public static final int PLC=86;
-    public static final int PUC=87;
-    public static final int Percent=88;
-    public static final int Pipe=89;
-    public static final int Plus=90;
-    public static final int QLC=91;
-    public static final int QUC=92;
-    public static final int QuestionMark=93;
-    public static final int Quoted=94;
-    public static final int RANGE=95;
-    public static final int RLC=96;
-    public static final int RUC=97;
-    public static final int SLC=98;
-    public static final int SUC=99;
-    public static final int Semicolon=100;
-    public static final int SingleQuote=101;
-    public static final int Slash=102;
-    public static final int Star=103;
-    public static final int TLC=104;
-    public static final int TUC=105;
-    public static final int Tab=106;
-    public static final int Tilde=107;
-    public static final int ULC=108;
-    public static final int UUC=109;
-    public static final int Underscore=110;
-    public static final int UnderscoreAlphaNumerics=111;
-    public static final int VLC=112;
-    public static final int VUC=113;
-    public static final int WHITESPACE=114;
-    public static final int WLC=115;
-    public static final int WUC=116;
-    public static final int XLC=117;
-    public static final int XUC=118;
-    public static final int YLC=119;
-    public static final int YUC=120;
-    public static final int ZEROORMORE=121;
-    public static final int ZLC=122;
-    public static final int ZUC=123;
+    public static final int AUC=6;
+    public static final int AlphaNumeric=7;
+    public static final int Ampersand=8;
+    public static final int At=9;
+    public static final int BLC=10;
+    public static final int BUC=11;
+    public static final int Backslash=12;
+    public static final int BlockQuoted=13;
+    public static final int CHARACTER_CLASS=14;
+    public static final int CLC=15;
+    public static final int CONCATENATION=16;
+    public static final int CUC=17;
+    public static final int Caret=18;
+    public static final int CarriageReturn=19;
+    public static final int CloseBrace=20;
+    public static final int CloseBracket=21;
+    public static final int CloseParen=22;
+    public static final int Colon=23;
+    public static final int Comma=24;
+    public static final int D0=25;
+    public static final int D1=26;
+    public static final int D2=27;
+    public static final int D3=28;
+    public static final int D4=29;
+    public static final int D5=30;
+    public static final int D6=31;
+    public static final int D7=32;
+    public static final int D8=33;
+    public static final int D9=34;
+    public static final int DLC=35;
+    public static final int DOTANY=36;
+    public static final int DUC=37;
+    public static final int Dollar=38;
+    public static final int Dot=39;
+    public static final int DoubleQuote=40;
+    public static final int ELC=41;
+    public static final int ELEMENT=42;
+    public static final int EUC=43;
+    public static final int Equals=44;
+    public static final int Exclamation=45;
+    public static final int FLC=46;
+    public static final int FUC=47;
+    public static final int GLC=48;
+    public static final int GROUP=49;
+    public static final int GUC=50;
+    public static final int GraveAccent=51;
+    public static final int GreaterThan=52;
+    public static final int HLC=53;
+    public static final int HUC=54;
+    public static final int Hash=55;
+    public static final int Hyphen=56;
+    public static final int ILC=57;
+    public static final int IUC=58;
+    public static final int JLC=59;
+    public static final int JUC=60;
+    public static final int KLC=61;
+    public static final int KUC=62;
+    public static final int LITERAL=63;
+    public static final int LLC=64;
+    public static final int LUC=65;
+    public static final int LessThan=66;
+    public static final int MLC=67;
+    public static final int MUC=68;
+    public static final int NAME=69;
+    public static final int NLC=70;
+    public static final int NUC=71;
+    public static final int NUMBER=72;
+    public static final int NewLine=73;
+    public static final int NonAlphaNumeric=74;
+    public static final int OLC=75;
+    public static final int ONEORMORE=76;
+    public static final int OPTIONAL=77;
+    public static final int OUC=78;
+    public static final int OpenBrace=79;
+    public static final int OpenBracket=80;
+    public static final int OpenParen=81;
+    public static final int PLC=82;
+    public static final int PUC=83;
+    public static final int Percent=84;
+    public static final int Pipe=85;
+    public static final int Plus=86;
+    public static final int QLC=87;
+    public static final int QUC=88;
+    public static final int QuestionMark=89;
+    public static final int Quoted=90;
+    public static final int RANGE=91;
+    public static final int RLC=92;
+    public static final int RUC=93;
+    public static final int SLC=94;
+    public static final int SUC=95;
+    public static final int Semicolon=96;
+    public static final int SingleQuote=97;
+    public static final int Slash=98;
+    public static final int Star=99;
+    public static final int TLC=100;
+    public static final int TUC=101;
+    public static final int Tab=102;
+    public static final int Tilde=103;
+    public static final int ULC=104;
+    public static final int UUC=105;
+    public static final int Underscore=106;
+    public static final int VLC=107;
+    public static final int VUC=108;
+    public static final int WHITESPACE=109;
+    public static final int WLC=110;
+    public static final int WUC=111;
+    public static final int XLC=112;
+    public static final int XUC=113;
+    public static final int YLC=114;
+    public static final int YUC=115;
+    public static final int ZEROORMORE=116;
+    public static final int ZLC=117;
+    public static final int ZUC=118;
 
     private RegexParsingException exception = null;
 
@@ -2330,141 +2325,10 @@ public class RegexLexer extends Lexer {
     }
     // $ANTLR end "Tilde"
 
-    // $ANTLR start "OtherChar"
-    public final void mOtherChar() throws RecognitionException {
-        try {
-            int _type = OtherChar;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:856:3: ( . )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:857:3: .
-            {
-            matchAny(); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "OtherChar"
-
-    // $ANTLR start "UnderscoreAlphaNumerics"
-    public final void mUnderscoreAlphaNumerics() throws RecognitionException {
-        try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:865:3: ( ( '_' | AlphaNumeric )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:866:3: ( '_' | AlphaNumeric )+
-            {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:866:3: ( '_' | AlphaNumeric )+
-            int cnt2=0;
-            loop2:
-            do {
-                int alt2=2;
-                int LA2_0 = input.LA(1);
-
-                if ( ((LA2_0 >= '0' && LA2_0 <= '9')||(LA2_0 >= 'A' && LA2_0 <= 'Z')||LA2_0=='_'||(LA2_0 >= 'a' && LA2_0 <= 'z')) ) {
-                    alt2=1;
-                }
-
-
-                switch (alt2) {
-            	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
-            	    {
-            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
-            	        input.consume();
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt2 >= 1 ) break loop2;
-                        EarlyExitException eee =
-                            new EarlyExitException(2, input);
-                        throw eee;
-                }
-                cnt2++;
-            } while (true);
-
-
-            }
-
-
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "UnderscoreAlphaNumerics"
-
-    // $ANTLR start "AlphaNumerics"
-    public final void mAlphaNumerics() throws RecognitionException {
-        try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:874:3: ( ( AlphaNumeric )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:875:3: ( AlphaNumeric )+
-            {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:875:3: ( AlphaNumeric )+
-            int cnt3=0;
-            loop3:
-            do {
-                int alt3=2;
-                int LA3_0 = input.LA(1);
-
-                if ( ((LA3_0 >= '0' && LA3_0 <= '9')||(LA3_0 >= 'A' && LA3_0 <= 'Z')||(LA3_0 >= 'a' && LA3_0 <= 'z')) ) {
-                    alt3=1;
-                }
-
-
-                switch (alt3) {
-            	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
-            	    {
-            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
-            	        input.consume();
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt3 >= 1 ) break loop3;
-                        EarlyExitException eee =
-                            new EarlyExitException(3, input);
-                        throw eee;
-                }
-                cnt3++;
-            } while (true);
-
-
-            }
-
-
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "AlphaNumerics"
-
     // $ANTLR start "AlphaNumeric"
     public final void mAlphaNumeric() throws RecognitionException {
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:880:3: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:860:3: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -2490,7 +2354,7 @@ public class RegexLexer extends Lexer {
     // $ANTLR start "NonAlphaNumeric"
     public final void mNonAlphaNumeric() throws RecognitionException {
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:888:3: (~ AlphaNumeric )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:868:3: (~ AlphaNumeric )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '/')||(input.LA(1) >= ':' && input.LA(1) <= '@')||(input.LA(1) >= '[' && input.LA(1) <= '`')||(input.LA(1) >= '{' && input.LA(1) <= '\uFFFF') ) {
@@ -2513,63 +2377,11 @@ public class RegexLexer extends Lexer {
     }
     // $ANTLR end "NonAlphaNumeric"
 
-    // $ANTLR start "HexDigit"
-    public final void mHexDigit() throws RecognitionException {
-        try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:894:3: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
-            {
-            if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
-                input.consume();
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;
-            }
-
-
-            }
-
-
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "HexDigit"
-
-    // $ANTLR start "ASCII"
-    public final void mASCII() throws RecognitionException {
-        try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:902:3: ( '\\u0000' .. '\\u007F' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
-            {
-            if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\u007F') ) {
-                input.consume();
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;
-            }
-
-
-            }
-
-
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "ASCII"
-
     public void mTokens() throws RecognitionException {
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:1:8: ( Quoted | BlockQuoted | NewLine | CarriageReturn | Tab | WHITESPACE | Exclamation | DoubleQuote | Hash | Dollar | Percent | Ampersand | SingleQuote | OpenParen | CloseParen | Star | Plus | Comma | Hyphen | Dot | Slash | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | Colon | Semicolon | LessThan | Equals | GreaterThan | QuestionMark | At | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC | OpenBracket | Backslash | CloseBracket | Caret | Underscore | GraveAccent | ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | OpenBrace | Pipe | CloseBrace | Tilde | OtherChar )
-        int alt4=101;
-        alt4 = dfa4.predict(input);
-        switch (alt4) {
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:1:8: ( Quoted | BlockQuoted | NewLine | CarriageReturn | Tab | WHITESPACE | Exclamation | DoubleQuote | Hash | Dollar | Percent | Ampersand | SingleQuote | OpenParen | CloseParen | Star | Plus | Comma | Hyphen | Dot | Slash | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | Colon | Semicolon | LessThan | Equals | GreaterThan | QuestionMark | At | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC | OpenBracket | Backslash | CloseBracket | Caret | Underscore | GraveAccent | ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | OpenBrace | Pipe | CloseBrace | Tilde )
+        int alt2=100;
+        alt2 = dfa2.predict(input);
+        switch (alt2) {
             case 1 :
                 // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:1:10: Quoted
                 {
@@ -3370,30 +3182,22 @@ public class RegexLexer extends Lexer {
 
                 }
                 break;
-            case 101 :
-                // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:1:581: OtherChar
-                {
-                mOtherChar(); 
-
-
-                }
-                break;
 
         }
 
     }
 
 
-    protected DFA4 dfa4 = new DFA4(this);
-    static final String DFA4_eotS =
-        "\1\uffff\1\146\u00c6\uffff";
-    static final String DFA4_eofS =
-        "\u00c8\uffff";
-    static final String DFA4_minS =
-        "\2\0\u00c6\uffff";
-    static final String DFA4_maxS =
-        "\2\uffff\u00c6\uffff";
-    static final String DFA4_acceptS =
+    protected DFA2 dfa2 = new DFA2(this);
+    static final String DFA2_eotS =
+        "\1\uffff\1\145\144\uffff";
+    static final String DFA2_eofS =
+        "\146\uffff";
+    static final String DFA2_minS =
+        "\1\11\1\0\144\uffff";
+    static final String DFA2_maxS =
+        "\1\176\1\uffff\144\uffff";
+    static final String DFA2_acceptS =
         "\2\uffff\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
         "\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33"+
         "\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45\1\46\1\47\1\50"+
@@ -3402,128 +3206,21 @@ public class RegexLexer extends Lexer {
         "\103\1\104\1\105\1\106\1\107\1\110\1\111\1\112\1\113\1\114\1\115"+
         "\1\116\1\117\1\120\1\121\1\122\1\123\1\124\1\125\1\126\1\127\1\130"+
         "\1\131\1\132\1\133\1\134\1\135\1\136\1\137\1\140\1\141\1\142\1\143"+
-        "\1\144\1\145\1\2\1\1\1\102\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1"+
-        "\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
-        "\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44"+
-        "\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\61"+
-        "\1\62\1\63\1\64\1\65\1\66\1\67\1\70\1\71\1\72\1\73\1\74\1\75\1\76"+
-        "\1\77\1\100\1\101\1\103\1\104\1\105\1\106\1\107\1\110\1\111\1\112"+
-        "\1\113\1\114\1\115\1\116\1\117\1\120\1\121\1\122\1\123\1\124\1\125"+
-        "\1\126\1\127\1\130\1\131\1\132\1\133\1\134\1\135\1\136\1\137\1\140"+
-        "\1\141\1\142\1\143\1\144";
-    static final String DFA4_specialS =
-        "\1\0\1\1\u00c6\uffff}>";
-    static final String[] DFA4_transitionS = {
-            "\11\143\1\4\1\2\2\143\1\3\22\143\1\5\1\6\1\7\1\10\1\11\1\12"+
-            "\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26"+
-            "\1\27\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42"+
-            "\1\43\1\44\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\1\56"+
-            "\1\57\1\60\1\61\1\62\1\63\1\64\1\65\1\66\1\67\1\70\1\71\1\72"+
-            "\1\73\1\74\1\75\1\76\1\77\1\100\1\1\1\101\1\102\1\103\1\104"+
-            "\1\105\1\106\1\107\1\110\1\111\1\112\1\113\1\114\1\115\1\116"+
-            "\1\117\1\120\1\121\1\122\1\123\1\124\1\125\1\126\1\127\1\130"+
-            "\1\131\1\132\1\133\1\134\1\135\1\136\1\137\1\140\1\141\1\142"+
-            "\uff81\143",
-            "\60\145\12\uffff\7\145\20\uffff\1\144\11\uffff\6\145\32\uffff"+
-            "\uff85\145",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+        "\1\144\1\2\1\1\1\102";
+    static final String DFA2_specialS =
+        "\1\uffff\1\0\144\uffff}>";
+    static final String[] DFA2_transitionS = {
+            "\1\4\1\2\2\uffff\1\3\22\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13"+
+            "\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
+            "\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43"+
+            "\1\44\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\1\56\1\57"+
+            "\1\60\1\61\1\62\1\63\1\64\1\65\1\66\1\67\1\70\1\71\1\72\1\73"+
+            "\1\74\1\75\1\76\1\77\1\100\1\1\1\101\1\102\1\103\1\104\1\105"+
+            "\1\106\1\107\1\110\1\111\1\112\1\113\1\114\1\115\1\116\1\117"+
+            "\1\120\1\121\1\122\1\123\1\124\1\125\1\126\1\127\1\130\1\131"+
+            "\1\132\1\133\1\134\1\135\1\136\1\137\1\140\1\141\1\142",
+            "\60\144\12\uffff\7\144\20\uffff\1\143\11\uffff\6\144\32\uffff"+
+            "\uff85\144",
             "",
             "",
             "",
@@ -3626,261 +3323,57 @@ public class RegexLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA4_eot = DFA.unpackEncodedString(DFA4_eotS);
-    static final short[] DFA4_eof = DFA.unpackEncodedString(DFA4_eofS);
-    static final char[] DFA4_min = DFA.unpackEncodedStringToUnsignedChars(DFA4_minS);
-    static final char[] DFA4_max = DFA.unpackEncodedStringToUnsignedChars(DFA4_maxS);
-    static final short[] DFA4_accept = DFA.unpackEncodedString(DFA4_acceptS);
-    static final short[] DFA4_special = DFA.unpackEncodedString(DFA4_specialS);
-    static final short[][] DFA4_transition;
+    static final short[] DFA2_eot = DFA.unpackEncodedString(DFA2_eotS);
+    static final short[] DFA2_eof = DFA.unpackEncodedString(DFA2_eofS);
+    static final char[] DFA2_min = DFA.unpackEncodedStringToUnsignedChars(DFA2_minS);
+    static final char[] DFA2_max = DFA.unpackEncodedStringToUnsignedChars(DFA2_maxS);
+    static final short[] DFA2_accept = DFA.unpackEncodedString(DFA2_acceptS);
+    static final short[] DFA2_special = DFA.unpackEncodedString(DFA2_specialS);
+    static final short[][] DFA2_transition;
 
     static {
-        int numStates = DFA4_transitionS.length;
-        DFA4_transition = new short[numStates][];
+        int numStates = DFA2_transitionS.length;
+        DFA2_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA4_transition[i] = DFA.unpackEncodedString(DFA4_transitionS[i]);
+            DFA2_transition[i] = DFA.unpackEncodedString(DFA2_transitionS[i]);
         }
     }
 
-    class DFA4 extends DFA {
+    class DFA2 extends DFA {
 
-        public DFA4(BaseRecognizer recognizer) {
+        public DFA2(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 4;
-            this.eot = DFA4_eot;
-            this.eof = DFA4_eof;
-            this.min = DFA4_min;
-            this.max = DFA4_max;
-            this.accept = DFA4_accept;
-            this.special = DFA4_special;
-            this.transition = DFA4_transition;
+            this.decisionNumber = 2;
+            this.eot = DFA2_eot;
+            this.eof = DFA2_eof;
+            this.min = DFA2_min;
+            this.max = DFA2_max;
+            this.accept = DFA2_accept;
+            this.special = DFA2_special;
+            this.transition = DFA2_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( Quoted | BlockQuoted | NewLine | CarriageReturn | Tab | WHITESPACE | Exclamation | DoubleQuote | Hash | Dollar | Percent | Ampersand | SingleQuote | OpenParen | CloseParen | Star | Plus | Comma | Hyphen | Dot | Slash | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | Colon | Semicolon | LessThan | Equals | GreaterThan | QuestionMark | At | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC | OpenBracket | Backslash | CloseBracket | Caret | Underscore | GraveAccent | ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | OpenBrace | Pipe | CloseBrace | Tilde | OtherChar );";
+            return "1:1: Tokens : ( Quoted | BlockQuoted | NewLine | CarriageReturn | Tab | WHITESPACE | Exclamation | DoubleQuote | Hash | Dollar | Percent | Ampersand | SingleQuote | OpenParen | CloseParen | Star | Plus | Comma | Hyphen | Dot | Slash | D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | Colon | Semicolon | LessThan | Equals | GreaterThan | QuestionMark | At | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC | OpenBracket | Backslash | CloseBracket | Caret | Underscore | GraveAccent | ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | OpenBrace | Pipe | CloseBrace | Tilde );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA4_0 = input.LA(1);
+                        int LA2_1 = input.LA(1);
 
                         s = -1;
-                        if ( (LA4_0=='\\') ) {s = 1;}
+                        if ( (LA2_1=='Q') ) {s = 99;}
 
-                        else if ( (LA4_0=='\n') ) {s = 2;}
+                        else if ( ((LA2_1 >= '\u0000' && LA2_1 <= '/')||(LA2_1 >= ':' && LA2_1 <= '@')||(LA2_1 >= '[' && LA2_1 <= '`')||(LA2_1 >= '{' && LA2_1 <= '\uFFFF')) ) {s = 100;}
 
-                        else if ( (LA4_0=='\r') ) {s = 3;}
-
-                        else if ( (LA4_0=='\t') ) {s = 4;}
-
-                        else if ( (LA4_0==' ') ) {s = 5;}
-
-                        else if ( (LA4_0=='!') ) {s = 6;}
-
-                        else if ( (LA4_0=='\"') ) {s = 7;}
-
-                        else if ( (LA4_0=='#') ) {s = 8;}
-
-                        else if ( (LA4_0=='$') ) {s = 9;}
-
-                        else if ( (LA4_0=='%') ) {s = 10;}
-
-                        else if ( (LA4_0=='&') ) {s = 11;}
-
-                        else if ( (LA4_0=='\'') ) {s = 12;}
-
-                        else if ( (LA4_0=='(') ) {s = 13;}
-
-                        else if ( (LA4_0==')') ) {s = 14;}
-
-                        else if ( (LA4_0=='*') ) {s = 15;}
-
-                        else if ( (LA4_0=='+') ) {s = 16;}
-
-                        else if ( (LA4_0==',') ) {s = 17;}
-
-                        else if ( (LA4_0=='-') ) {s = 18;}
-
-                        else if ( (LA4_0=='.') ) {s = 19;}
-
-                        else if ( (LA4_0=='/') ) {s = 20;}
-
-                        else if ( (LA4_0=='0') ) {s = 21;}
-
-                        else if ( (LA4_0=='1') ) {s = 22;}
-
-                        else if ( (LA4_0=='2') ) {s = 23;}
-
-                        else if ( (LA4_0=='3') ) {s = 24;}
-
-                        else if ( (LA4_0=='4') ) {s = 25;}
-
-                        else if ( (LA4_0=='5') ) {s = 26;}
-
-                        else if ( (LA4_0=='6') ) {s = 27;}
-
-                        else if ( (LA4_0=='7') ) {s = 28;}
-
-                        else if ( (LA4_0=='8') ) {s = 29;}
-
-                        else if ( (LA4_0=='9') ) {s = 30;}
-
-                        else if ( (LA4_0==':') ) {s = 31;}
-
-                        else if ( (LA4_0==';') ) {s = 32;}
-
-                        else if ( (LA4_0=='<') ) {s = 33;}
-
-                        else if ( (LA4_0=='=') ) {s = 34;}
-
-                        else if ( (LA4_0=='>') ) {s = 35;}
-
-                        else if ( (LA4_0=='?') ) {s = 36;}
-
-                        else if ( (LA4_0=='@') ) {s = 37;}
-
-                        else if ( (LA4_0=='A') ) {s = 38;}
-
-                        else if ( (LA4_0=='B') ) {s = 39;}
-
-                        else if ( (LA4_0=='C') ) {s = 40;}
-
-                        else if ( (LA4_0=='D') ) {s = 41;}
-
-                        else if ( (LA4_0=='E') ) {s = 42;}
-
-                        else if ( (LA4_0=='F') ) {s = 43;}
-
-                        else if ( (LA4_0=='G') ) {s = 44;}
-
-                        else if ( (LA4_0=='H') ) {s = 45;}
-
-                        else if ( (LA4_0=='I') ) {s = 46;}
-
-                        else if ( (LA4_0=='J') ) {s = 47;}
-
-                        else if ( (LA4_0=='K') ) {s = 48;}
-
-                        else if ( (LA4_0=='L') ) {s = 49;}
-
-                        else if ( (LA4_0=='M') ) {s = 50;}
-
-                        else if ( (LA4_0=='N') ) {s = 51;}
-
-                        else if ( (LA4_0=='O') ) {s = 52;}
-
-                        else if ( (LA4_0=='P') ) {s = 53;}
-
-                        else if ( (LA4_0=='Q') ) {s = 54;}
-
-                        else if ( (LA4_0=='R') ) {s = 55;}
-
-                        else if ( (LA4_0=='S') ) {s = 56;}
-
-                        else if ( (LA4_0=='T') ) {s = 57;}
-
-                        else if ( (LA4_0=='U') ) {s = 58;}
-
-                        else if ( (LA4_0=='V') ) {s = 59;}
-
-                        else if ( (LA4_0=='W') ) {s = 60;}
-
-                        else if ( (LA4_0=='X') ) {s = 61;}
-
-                        else if ( (LA4_0=='Y') ) {s = 62;}
-
-                        else if ( (LA4_0=='Z') ) {s = 63;}
-
-                        else if ( (LA4_0=='[') ) {s = 64;}
-
-                        else if ( (LA4_0==']') ) {s = 65;}
-
-                        else if ( (LA4_0=='^') ) {s = 66;}
-
-                        else if ( (LA4_0=='_') ) {s = 67;}
-
-                        else if ( (LA4_0=='`') ) {s = 68;}
-
-                        else if ( (LA4_0=='a') ) {s = 69;}
-
-                        else if ( (LA4_0=='b') ) {s = 70;}
-
-                        else if ( (LA4_0=='c') ) {s = 71;}
-
-                        else if ( (LA4_0=='d') ) {s = 72;}
-
-                        else if ( (LA4_0=='e') ) {s = 73;}
-
-                        else if ( (LA4_0=='f') ) {s = 74;}
-
-                        else if ( (LA4_0=='g') ) {s = 75;}
-
-                        else if ( (LA4_0=='h') ) {s = 76;}
-
-                        else if ( (LA4_0=='i') ) {s = 77;}
-
-                        else if ( (LA4_0=='j') ) {s = 78;}
-
-                        else if ( (LA4_0=='k') ) {s = 79;}
-
-                        else if ( (LA4_0=='l') ) {s = 80;}
-
-                        else if ( (LA4_0=='m') ) {s = 81;}
-
-                        else if ( (LA4_0=='n') ) {s = 82;}
-
-                        else if ( (LA4_0=='o') ) {s = 83;}
-
-                        else if ( (LA4_0=='p') ) {s = 84;}
-
-                        else if ( (LA4_0=='q') ) {s = 85;}
-
-                        else if ( (LA4_0=='r') ) {s = 86;}
-
-                        else if ( (LA4_0=='s') ) {s = 87;}
-
-                        else if ( (LA4_0=='t') ) {s = 88;}
-
-                        else if ( (LA4_0=='u') ) {s = 89;}
-
-                        else if ( (LA4_0=='v') ) {s = 90;}
-
-                        else if ( (LA4_0=='w') ) {s = 91;}
-
-                        else if ( (LA4_0=='x') ) {s = 92;}
-
-                        else if ( (LA4_0=='y') ) {s = 93;}
-
-                        else if ( (LA4_0=='z') ) {s = 94;}
-
-                        else if ( (LA4_0=='{') ) {s = 95;}
-
-                        else if ( (LA4_0=='|') ) {s = 96;}
-
-                        else if ( (LA4_0=='}') ) {s = 97;}
-
-                        else if ( (LA4_0=='~') ) {s = 98;}
-
-                        else if ( ((LA4_0 >= '\u0000' && LA4_0 <= '\b')||(LA4_0 >= '\u000B' && LA4_0 <= '\f')||(LA4_0 >= '\u000E' && LA4_0 <= '\u001F')||(LA4_0 >= '\u007F' && LA4_0 <= '\uFFFF')) ) {s = 99;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA4_1 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA4_1=='Q') ) {s = 100;}
-
-                        else if ( ((LA4_1 >= '\u0000' && LA4_1 <= '/')||(LA4_1 >= ':' && LA4_1 <= '@')||(LA4_1 >= '[' && LA4_1 <= '`')||(LA4_1 >= '{' && LA4_1 <= '\uFFFF')) ) {s = 101;}
-
-                        else s = 102;
+                        else s = 101;
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 4, _s, input);
+                new NoViableAltException(getDescription(), 2, _s, input);
             error(nvae);
             throw nvae;
         }
