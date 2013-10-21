@@ -5,9 +5,9 @@ import java.util.Iterator;
 
 import de.abrandl.regex.grammar.tree.*;
 import de.abrandl.regex.query.bool.Expression;
-import de.abrandl.regex.query.transformations.NullQueryTransformation;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static de.abrandl.regex.query.RegexInfoTransformationFactory.allTransformations;
 import static de.abrandl.regex.query.StringSet.unknownSet;
 import static de.abrandl.regex.query.bool.Expression.any;
 
@@ -19,8 +19,22 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 		this.transformation = checkNotNull(transformation);
 	}
 
+	/**
+	 * Constructs the default analyzer using a specific gram-size (default
+	 * transformations).
+	 * 
+	 * @param gramSize
+	 */
+	public RegexAnalyzer(int gramSize) {
+		this(allTransformations(gramSize));
+	}
+
+	/**
+	 * Constructs the default analyzer (default gram-size, default
+	 * transformations).
+	 */
 	public RegexAnalyzer() {
-		this(new NullQueryTransformation());
+		this(allTransformations());
 	}
 
 	@Override

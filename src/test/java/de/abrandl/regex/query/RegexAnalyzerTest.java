@@ -5,6 +5,7 @@ import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.grammar.tree.RegexNode;
 import de.abrandl.regex.grammar.tree.RegexNodeVisitorToStringTree;
 import de.abrandl.regex.query.bool.Expression;
+import de.abrandl.regex.query.transformations.NullQueryTransformation;
 import static de.abrandl.regex.query.StringSet.unknownSet;
 import static de.abrandl.regex.query.bool.Expression.any;
 import static org.hamcrest.CoreMatchers.not;
@@ -106,12 +107,13 @@ public class RegexAnalyzerTest {
 	}
 
 	@Test
-	@Ignore("pending")
+	@Ignore
 	public void dotShouldNotResultInANY() throws RegexParsingException {
 		RegexNode tree = RegexParser.parse("foo.bar");
+		System.out.println(tree.accept(new RegexNodeVisitorToStringTree()));
 		RegexAnalyzer extractor = new RegexAnalyzer();
 		RegexInfo result = tree.accept(extractor);
-
+		System.out.println(result.getMatch());
 		assertThat(result.getMatch(), not(equalTo(Expression.any())));
 	}
 
@@ -150,7 +152,9 @@ public class RegexAnalyzerTest {
 		RegexNode tree = RegexParser.parse(regex);
 		System.out.println(tree.accept(new RegexNodeVisitorToStringTree()));
 
-		RegexAnalyzer extractor = new RegexAnalyzer();
+		// we're not interested in the match query here, so don't use a
+		// transformation to get it
+		RegexAnalyzer extractor = new RegexAnalyzer(new NullQueryTransformation());
 		RegexInfo result = tree.accept(extractor);
 
 		System.out.println(result);

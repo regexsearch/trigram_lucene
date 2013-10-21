@@ -1,14 +1,7 @@
 package de.abrandl.regex.grammar.tree;
 
-import java.util.Arrays;
-
-import de.abrandl.regex.NGramTokenizer;
-import de.abrandl.regex.query.NGramExtractor;
 import de.abrandl.regex.query.RegexAnalyzer;
 import de.abrandl.regex.query.RegexInfo;
-import de.abrandl.regex.query.RegexInfoTransformation;
-import de.abrandl.regex.query.transformations.*;
-
 
 public class RegexNodeVisitorToStringTree implements RegexNodeVisitor<StringBuilder> {
 
@@ -18,15 +11,7 @@ public class RegexNodeVisitorToStringTree implements RegexNodeVisitor<StringBuil
 	private final RegexAnalyzer analyzer;
 
 	public RegexNodeVisitorToStringTree() {
-		NGramTokenizer tokenizer = new NGramTokenizer(3);
-		NGramExtractor extractor = new NGramExtractor(tokenizer);
-		RegexInfoTransformation prefixToMatch = new PrefixToMatchTransformation(extractor);
-		RegexInfoTransformation suffixToMatch = new SuffixToMatchTransformation(extractor);
-		RegexInfoTransformation exactToMatch = new ExactToMatchTransformation(extractor);
-		RegexInfoTransformation simplifier = new QuerySimplifierTransformation();
-		RegexInfoTransformation transformations = new CompositeRegexInfoTransformation(Arrays.asList(exactToMatch,
-				prefixToMatch, suffixToMatch, simplifier));
-		analyzer = new RegexAnalyzer(transformations);
+		analyzer = new RegexAnalyzer();
 	}
 
 	public void reset() {
