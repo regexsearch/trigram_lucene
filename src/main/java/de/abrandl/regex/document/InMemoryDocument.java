@@ -27,7 +27,6 @@ public class InMemoryDocument implements SimpleDocument {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
 		return result;
 	}
@@ -41,11 +40,6 @@ public class InMemoryDocument implements SimpleDocument {
 		if (getClass() != obj.getClass())
 			return false;
 		InMemoryDocument other = (InMemoryDocument) obj;
-		if (content == null) {
-			if (other.content != null)
-				return false;
-		} else if (!content.equals(other.content))
-			return false;
 		if (identifier == null) {
 			if (other.identifier != null)
 				return false;
