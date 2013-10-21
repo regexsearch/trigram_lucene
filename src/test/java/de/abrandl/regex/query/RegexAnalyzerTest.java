@@ -13,7 +13,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class RegexAnalyzerTest {
@@ -107,9 +106,8 @@ public class RegexAnalyzerTest {
 	}
 
 	@Test
-	@Ignore
 	public void dotShouldNotResultInANY() throws RegexParsingException {
-		RegexNode tree = RegexParser.parse("foo.bar");
+		RegexNode tree = RegexParser.parse("foo.");
 		System.out.println(tree.accept(new RegexNodeVisitorToStringTree()));
 		RegexAnalyzer extractor = new RegexAnalyzer();
 		RegexInfo result = tree.accept(extractor);

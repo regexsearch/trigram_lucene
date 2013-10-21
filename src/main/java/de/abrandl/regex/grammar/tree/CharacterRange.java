@@ -1,5 +1,7 @@
 package de.abrandl.regex.grammar.tree;
 
+import de.abrandl.regex.query.Alphabet;
+
 public class CharacterRange extends RegexNode {
 
 	private final char start, end;
@@ -23,18 +25,13 @@ public class CharacterRange extends RegexNode {
 		return visitor.visit(this);
 	}
 
+	@Override
 	public String toString() {
 		return String.format("[%s-%s]", start, end);
 	}
 
 	public Character[] enumerateCharacters() {
-		Character[] characters = new Character[end - start + 1];
-		int index = 0;
-		for (char c = start; c <= end; c++) {
-			characters[index] = c;
-			index++;
-		}
-		return characters;
+		return Alphabet.ASCII_PRINTABLE.enumerateCharacters(start, end);
 	}
 
 }

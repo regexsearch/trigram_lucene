@@ -8,7 +8,6 @@ import de.abrandl.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static de.abrandl.regex.query.RegexInfoTransformationFactory.allTransformations;
-import static de.abrandl.regex.query.StringSet.unknownSet;
 import static de.abrandl.regex.query.bool.Expression.any;
 
 public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
@@ -197,7 +196,22 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 
 	@Override
 	public RegexInfo visit(DotAny dotAny) {
-		return createResult(false, unknownSet(), unknownSet(), unknownSet(), any());
+
+		// TODO: DotAny -> a|b|c|... how does it perform?
+		// We expand DotAny to all possible characters here
+		// If this survives performance-wise, it should live in it's own place
+		// (kind of pre-transformation of a RegexNode)
+
+		Character[] allCharacters = Alphabet.ASCII_PRINTABLE.allCharacters();
+		Literal[] literals = new Literal[allCharacters.length];
+		for (int i = 0; i < allCharacters.length; i++) {
+			Character c = allCharacters[i];
+			Literal literal = new Literal(c.toString());
+			literals[i] = literal;
+		}
+
+		Alternative alternative = new Alternative(literals);
+		return alternative.accept(this);
 	}
 
 	@Override
