@@ -205,10 +205,8 @@ literal
     -> LITERAL[$letter.text]
   | digit
     -> LITERAL[$digit.text]
-  | special_chars
-    -> LITERAL[$special_chars.text]
-  | special_chars_with_quote
-    -> LITERAL[$special_chars_with_quote.text]
+  | other_chars
+    -> LITERAL[$other_chars.text]
   | whitespace
     -> LITERAL[$whitespace.text]
   | Quoted
@@ -327,7 +325,7 @@ letter
   | ZUC
   ;
 
-special_chars
+other_chars
   :
   Exclamation
   | DoubleQuote
@@ -349,28 +347,21 @@ special_chars
   | Tilde
   ;
 
-special_chars_with_quote
+special_chars
   :
-  '\\'
-  (
-    Dollar
-    | OpenParen
-    | CloseParen
-    | Star
-    | Plus
-    | Dot
-    | QuestionMark
-    | OpenBracket
-    | CloseBracket
-    | Caret
-    | OpenBrace
-    | Pipe
-    | CloseBrace
-  )
-  
-  {
-   setText($text.substring(1));
-  }
+  Dollar
+  | OpenParen
+  | CloseParen
+  | Star
+  | Plus
+  | Dot
+  | QuestionMark
+  | OpenBracket
+  | CloseBracket
+  | Caret
+  | OpenBrace
+  | Pipe
+  | CloseBrace
   ;
 
 /*****************************************************************************************
