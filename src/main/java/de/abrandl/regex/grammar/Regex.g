@@ -205,6 +205,10 @@ literal
     -> LITERAL[$letter.text]
   | digit
     -> LITERAL[$digit.text]
+  | special_chars
+    -> LITERAL[$special_chars.text]
+  | special_chars_with_quote
+    -> LITERAL[$special_chars_with_quote.text]
   | whitespace
     -> LITERAL[$whitespace.text]
   | Quoted
@@ -321,6 +325,52 @@ letter
   | XUC
   | YUC
   | ZUC
+  ;
+
+special_chars
+  :
+  Exclamation
+  | DoubleQuote
+  | Hash
+  | Ampersand
+  | SingleQuote
+  | Comma
+  | Hyphen
+  | Slash
+  | Colon
+  | Semicolon
+  | LessThan
+  | Equals
+  | GreaterThan
+  | At
+  | Backslash
+  | Underscore
+  | GraveAccent
+  | Tilde
+  ;
+
+special_chars_with_quote
+  :
+  '\\'
+  (
+    Dollar
+    | OpenParen
+    | CloseParen
+    | Star
+    | Plus
+    | Dot
+    | QuestionMark
+    | OpenBracket
+    | CloseBracket
+    | Caret
+    | OpenBrace
+    | Pipe
+    | CloseBrace
+  )
+  
+  {
+   setText($text.substring(1));
+  }
   ;
 
 /*****************************************************************************************
