@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:22:55
+// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:25:37
 
 package de.abrandl.regex.grammar;
 import de.abrandl.regex.grammar.tree.RegexNode;
@@ -4001,7 +4001,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "subject_boundary"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:189:1: subject_boundary : ( '^' regex -> regex | regex '$' -> regex | '^' regex '$' -> regex );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:189:1: subject_boundary : ( '^' regex -> regex | regex '$' EOF -> regex | '^' regex '$' EOF -> regex );
     public final RegexParser.subject_boundary_return subject_boundary() throws RecognitionException {
         RegexParser.subject_boundary_return retval = new RegexParser.subject_boundary_return();
         retval.start = input.LT(1);
@@ -4011,24 +4011,29 @@ public TreeAdaptor getTreeAdaptor() {
 
         Token char_literal33=null;
         Token char_literal36=null;
-        Token char_literal37=null;
-        Token char_literal39=null;
+        Token EOF37=null;
+        Token char_literal38=null;
+        Token char_literal40=null;
+        Token EOF41=null;
         RegexParser.regex_return regex34 =null;
 
         RegexParser.regex_return regex35 =null;
 
-        RegexParser.regex_return regex38 =null;
+        RegexParser.regex_return regex39 =null;
 
 
         Object char_literal33_tree=null;
         Object char_literal36_tree=null;
-        Object char_literal37_tree=null;
-        Object char_literal39_tree=null;
+        Object EOF37_tree=null;
+        Object char_literal38_tree=null;
+        Object char_literal40_tree=null;
+        Object EOF41_tree=null;
+        RewriteRuleTokenStream stream_EOF=new RewriteRuleTokenStream(adaptor,"token EOF");
         RewriteRuleTokenStream stream_Dollar=new RewriteRuleTokenStream(adaptor,"token Dollar");
         RewriteRuleTokenStream stream_Caret=new RewriteRuleTokenStream(adaptor,"token Caret");
         RewriteRuleSubtreeStream stream_regex=new RewriteRuleSubtreeStream(adaptor,"rule regex");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:190:3: ( '^' regex -> regex | regex '$' -> regex | '^' regex '$' -> regex )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:190:3: ( '^' regex -> regex | regex '$' EOF -> regex | '^' regex '$' EOF -> regex )
             int alt10=3;
             int LA10_0 = input.LA(1);
 
@@ -4102,7 +4107,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:193:5: regex '$'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:193:5: regex '$' EOF
                     {
                     pushFollow(FOLLOW_regex_in_subject_boundary683);
                     regex35=regex();
@@ -4113,6 +4118,10 @@ public TreeAdaptor getTreeAdaptor() {
 
                     char_literal36=(Token)match(input,Dollar,FOLLOW_Dollar_in_subject_boundary685); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Dollar.add(char_literal36);
+
+
+                    EOF37=(Token)match(input,EOF,FOLLOW_EOF_in_subject_boundary687); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_EOF.add(EOF37);
 
 
                     // AST REWRITE
@@ -4141,21 +4150,25 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:195:5: '^' regex '$'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:195:5: '^' regex '$' EOF
                     {
-                    char_literal37=(Token)match(input,Caret,FOLLOW_Caret_in_subject_boundary699); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_Caret.add(char_literal37);
+                    char_literal38=(Token)match(input,Caret,FOLLOW_Caret_in_subject_boundary701); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_Caret.add(char_literal38);
 
 
-                    pushFollow(FOLLOW_regex_in_subject_boundary701);
-                    regex38=regex();
+                    pushFollow(FOLLOW_regex_in_subject_boundary703);
+                    regex39=regex();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_regex.add(regex38.getTree());
+                    if ( state.backtracking==0 ) stream_regex.add(regex39.getTree());
 
-                    char_literal39=(Token)match(input,Dollar,FOLLOW_Dollar_in_subject_boundary703); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_Dollar.add(char_literal39);
+                    char_literal40=(Token)match(input,Dollar,FOLLOW_Dollar_in_subject_boundary705); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_Dollar.add(char_literal40);
+
+
+                    EOF41=(Token)match(input,EOF,FOLLOW_EOF_in_subject_boundary707); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_EOF.add(EOF41);
 
 
                     // AST REWRITE
@@ -4224,19 +4237,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token Quoted44=null;
-        Token BlockQuoted45=null;
-        RegexParser.letter_return letter40 =null;
+        Token Quoted46=null;
+        Token BlockQuoted47=null;
+        RegexParser.letter_return letter42 =null;
 
-        RegexParser.digit_return digit41 =null;
+        RegexParser.digit_return digit43 =null;
 
-        RegexParser.other_chars_return other_chars42 =null;
+        RegexParser.other_chars_return other_chars44 =null;
 
-        RegexParser.whitespace_return whitespace43 =null;
+        RegexParser.whitespace_return whitespace45 =null;
 
 
-        Object Quoted44_tree=null;
-        Object BlockQuoted45_tree=null;
+        Object Quoted46_tree=null;
+        Object BlockQuoted47_tree=null;
         RewriteRuleTokenStream stream_Quoted=new RewriteRuleTokenStream(adaptor,"token Quoted");
         RewriteRuleTokenStream stream_BlockQuoted=new RewriteRuleTokenStream(adaptor,"token BlockQuoted");
         RewriteRuleSubtreeStream stream_digit=new RewriteRuleSubtreeStream(adaptor,"rule digit");
@@ -4370,12 +4383,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 1 :
                     // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:202:3: letter
                     {
-                    pushFollow(FOLLOW_letter_in_literal727);
-                    letter40=letter();
+                    pushFollow(FOLLOW_letter_in_literal731);
+                    letter42=letter();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_letter.add(letter40.getTree());
+                    if ( state.backtracking==0 ) stream_letter.add(letter42.getTree());
 
                     // AST REWRITE
                     // elements: 
@@ -4393,7 +4406,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 203:5: -> LITERAL[$letter.text]
                     {
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(LITERAL, (letter40!=null?input.toString(letter40.start,letter40.stop):null))
+                        (Object)adaptor.create(LITERAL, (letter42!=null?input.toString(letter42.start,letter42.stop):null))
                         );
 
                     }
@@ -4407,12 +4420,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:204:5: digit
                     {
-                    pushFollow(FOLLOW_digit_in_literal742);
-                    digit41=digit();
+                    pushFollow(FOLLOW_digit_in_literal746);
+                    digit43=digit();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_digit.add(digit41.getTree());
+                    if ( state.backtracking==0 ) stream_digit.add(digit43.getTree());
 
                     // AST REWRITE
                     // elements: 
@@ -4430,7 +4443,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 205:5: -> LITERAL[$digit.text]
                     {
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(LITERAL, (digit41!=null?input.toString(digit41.start,digit41.stop):null))
+                        (Object)adaptor.create(LITERAL, (digit43!=null?input.toString(digit43.start,digit43.stop):null))
                         );
 
                     }
@@ -4444,12 +4457,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:206:5: other_chars
                     {
-                    pushFollow(FOLLOW_other_chars_in_literal757);
-                    other_chars42=other_chars();
+                    pushFollow(FOLLOW_other_chars_in_literal761);
+                    other_chars44=other_chars();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_other_chars.add(other_chars42.getTree());
+                    if ( state.backtracking==0 ) stream_other_chars.add(other_chars44.getTree());
 
                     // AST REWRITE
                     // elements: 
@@ -4467,7 +4480,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 207:5: -> LITERAL[$other_chars.text]
                     {
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(LITERAL, (other_chars42!=null?input.toString(other_chars42.start,other_chars42.stop):null))
+                        (Object)adaptor.create(LITERAL, (other_chars44!=null?input.toString(other_chars44.start,other_chars44.stop):null))
                         );
 
                     }
@@ -4481,12 +4494,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 4 :
                     // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:208:5: whitespace
                     {
-                    pushFollow(FOLLOW_whitespace_in_literal772);
-                    whitespace43=whitespace();
+                    pushFollow(FOLLOW_whitespace_in_literal776);
+                    whitespace45=whitespace();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_whitespace.add(whitespace43.getTree());
+                    if ( state.backtracking==0 ) stream_whitespace.add(whitespace45.getTree());
 
                     // AST REWRITE
                     // elements: 
@@ -4504,7 +4517,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 209:5: -> LITERAL[$whitespace.text]
                     {
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(LITERAL, (whitespace43!=null?input.toString(whitespace43.start,whitespace43.stop):null))
+                        (Object)adaptor.create(LITERAL, (whitespace45!=null?input.toString(whitespace45.start,whitespace45.stop):null))
                         );
 
                     }
@@ -4518,8 +4531,8 @@ public TreeAdaptor getTreeAdaptor() {
                 case 5 :
                     // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:210:5: Quoted
                     {
-                    Quoted44=(Token)match(input,Quoted,FOLLOW_Quoted_in_literal787); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_Quoted.add(Quoted44);
+                    Quoted46=(Token)match(input,Quoted,FOLLOW_Quoted_in_literal791); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_Quoted.add(Quoted46);
 
 
                     // AST REWRITE
@@ -4538,7 +4551,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 211:5: -> LITERAL[$Quoted.text]
                     {
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(LITERAL, (Quoted44!=null?Quoted44.getText():null))
+                        (Object)adaptor.create(LITERAL, (Quoted46!=null?Quoted46.getText():null))
                         );
 
                     }
@@ -4552,8 +4565,8 @@ public TreeAdaptor getTreeAdaptor() {
                 case 6 :
                     // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:212:5: BlockQuoted
                     {
-                    BlockQuoted45=(Token)match(input,BlockQuoted,FOLLOW_BlockQuoted_in_literal802); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_BlockQuoted.add(BlockQuoted45);
+                    BlockQuoted47=(Token)match(input,BlockQuoted,FOLLOW_BlockQuoted_in_literal806); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_BlockQuoted.add(BlockQuoted47);
 
 
                     // AST REWRITE
@@ -4572,7 +4585,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 213:5: -> LITERAL[$BlockQuoted.text]
                     {
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(LITERAL, (BlockQuoted45!=null?BlockQuoted45.getText():null))
+                        (Object)adaptor.create(LITERAL, (BlockQuoted47!=null?BlockQuoted47.getText():null))
                         );
 
                     }
@@ -4624,9 +4637,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set46=null;
+        Token set48=null;
 
-        Object set46_tree=null;
+        Object set48_tree=null;
 
         try {
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:217:3: ( WHITESPACE | Tab | NewLine | CarriageReturn )
@@ -4635,12 +4648,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set46=(Token)input.LT(1);
+            set48=(Token)input.LT(1);
 
             if ( input.LA(1)==CarriageReturn||input.LA(1)==NewLine||input.LA(1)==Tab||input.LA(1)==WHITESPACE ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set46)
+                (Object)adaptor.create(set48)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -4693,9 +4706,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set47=null;
+        Token set49=null;
 
-        Object set47_tree=null;
+        Object set49_tree=null;
 
         try {
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:225:3: ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 )
@@ -4704,12 +4717,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set47=(Token)input.LT(1);
+            set49=(Token)input.LT(1);
 
             if ( (input.LA(1) >= D0 && input.LA(1) <= D9) ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set47)
+                (Object)adaptor.create(set49)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -4762,7 +4775,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        RegexParser.non_close_paren_return non_close_paren48 =null;
+        RegexParser.non_close_paren_return non_close_paren50 =null;
 
 
 
@@ -4789,12 +4802,12 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:240:3: non_close_paren
             	    {
-            	    pushFollow(FOLLOW_non_close_paren_in_non_close_parens928);
-            	    non_close_paren48=non_close_paren();
+            	    pushFollow(FOLLOW_non_close_paren_in_non_close_parens932);
+            	    non_close_paren50=non_close_paren();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, non_close_paren48.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, non_close_paren50.getTree());
 
             	    }
             	    break;
@@ -4851,9 +4864,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set49=null;
+        Token set51=null;
 
-        Object set49_tree=null;
+        Object set51_tree=null;
 
         try {
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:244:3: (~ CloseParen )
@@ -4862,12 +4875,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set49=(Token)input.LT(1);
+            set51=(Token)input.LT(1);
 
             if ( (input.LA(1) >= ALC && input.LA(1) <= CloseBracket)||(input.LA(1) >= Colon && input.LA(1) <= ZUC) ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set49)
+                (Object)adaptor.create(set51)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -4920,9 +4933,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set50=null;
+        Token set52=null;
 
-        Object set50_tree=null;
+        Object set52_tree=null;
 
         try {
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:249:3: ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC )
@@ -4931,12 +4944,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set50=(Token)input.LT(1);
+            set52=(Token)input.LT(1);
 
             if ( input.LA(1)==ALC||input.LA(1)==AUC||(input.LA(1) >= BLC && input.LA(1) <= BUC)||input.LA(1)==CLC||input.LA(1)==CUC||input.LA(1)==DLC||input.LA(1)==DUC||input.LA(1)==ELC||input.LA(1)==EUC||(input.LA(1) >= FLC && input.LA(1) <= GLC)||input.LA(1)==GUC||(input.LA(1) >= HLC && input.LA(1) <= HUC)||(input.LA(1) >= ILC && input.LA(1) <= KUC)||(input.LA(1) >= LLC && input.LA(1) <= LUC)||(input.LA(1) >= MLC && input.LA(1) <= NUC)||input.LA(1)==OLC||input.LA(1)==OUC||(input.LA(1) >= PLC && input.LA(1) <= PUC)||(input.LA(1) >= QLC && input.LA(1) <= QUC)||(input.LA(1) >= RLC && input.LA(1) <= SUC)||(input.LA(1) >= TLC && input.LA(1) <= TUC)||(input.LA(1) >= ULC && input.LA(1) <= UUC)||(input.LA(1) >= VLC && input.LA(1) <= VUC)||(input.LA(1) >= WLC && input.LA(1) <= YUC)||(input.LA(1) >= ZLC && input.LA(1) <= ZUC) ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set50)
+                (Object)adaptor.create(set52)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -4989,9 +5002,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set51=null;
+        Token set53=null;
 
-        Object set51_tree=null;
+        Object set53_tree=null;
 
         try {
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:305:3: ( Exclamation | DoubleQuote | Hash | Ampersand | SingleQuote | Comma | Hyphen | Slash | Colon | Semicolon | LessThan | Equals | GreaterThan | At | Backslash | Underscore | GraveAccent | Tilde )
@@ -5000,12 +5013,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set51=(Token)input.LT(1);
+            set53=(Token)input.LT(1);
 
             if ( (input.LA(1) >= Ampersand && input.LA(1) <= At)||input.LA(1)==Backslash||(input.LA(1) >= Colon && input.LA(1) <= Comma)||input.LA(1)==DoubleQuote||(input.LA(1) >= Equals && input.LA(1) <= Exclamation)||(input.LA(1) >= GraveAccent && input.LA(1) <= GreaterThan)||(input.LA(1) >= Hash && input.LA(1) <= Hyphen)||input.LA(1)==LessThan||(input.LA(1) >= Semicolon && input.LA(1) <= Slash)||input.LA(1)==Tilde||input.LA(1)==Underscore ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set51)
+                (Object)adaptor.create(set53)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -5058,9 +5071,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set52=null;
+        Token set54=null;
 
-        Object set52_tree=null;
+        Object set54_tree=null;
 
         try {
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:327:3: ( Dollar | OpenParen | CloseParen | Star | Plus | Dot | QuestionMark | OpenBracket | CloseBracket | Caret | OpenBrace | Pipe | CloseBrace )
@@ -5069,12 +5082,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set52=(Token)input.LT(1);
+            set54=(Token)input.LT(1);
 
             if ( input.LA(1)==Caret||(input.LA(1) >= CloseBrace && input.LA(1) <= CloseParen)||(input.LA(1) >= Dollar && input.LA(1) <= Dot)||(input.LA(1) >= OpenBrace && input.LA(1) <= OpenParen)||(input.LA(1) >= Pipe && input.LA(1) <= Plus)||input.LA(1)==QuestionMark||input.LA(1)==Star ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
-                (Object)adaptor.create(set52)
+                (Object)adaptor.create(set54)
                 );
                 state.errorRecovery=false;
                 state.failed=false;
@@ -5350,17 +5363,19 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_Caret_in_subject_boundary667 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
     public static final BitSet FOLLOW_regex_in_subject_boundary669 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_regex_in_subject_boundary683 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_Dollar_in_subject_boundary685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_subject_boundary699 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
-    public static final BitSet FOLLOW_regex_in_subject_boundary701 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_Dollar_in_subject_boundary703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_letter_in_literal727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digit_in_literal742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_other_chars_in_literal757 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_whitespace_in_literal772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Quoted_in_literal787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BlockQuoted_in_literal802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_non_close_paren_in_non_close_parens928 = new BitSet(new long[]{0xFFFFFFFFFFBFFFF2L,0x001FFFFFFFFFFFFFL});
+    public static final BitSet FOLLOW_Dollar_in_subject_boundary685 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_subject_boundary687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Caret_in_subject_boundary701 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
+    public static final BitSet FOLLOW_regex_in_subject_boundary703 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_Dollar_in_subject_boundary705 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_subject_boundary707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_letter_in_literal731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digit_in_literal746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_other_chars_in_literal761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_whitespace_in_literal776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Quoted_in_literal791 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BlockQuoted_in_literal806 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_non_close_paren_in_non_close_parens932 = new BitSet(new long[]{0xFFFFFFFFFFBFFFF2L,0x001FFFFFFFFFFFFFL});
     public static final BitSet FOLLOW_regex_in_synpred1_Regex151 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_synpred1_Regex153 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_atom_in_synpred5_Regex308 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});

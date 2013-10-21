@@ -190,9 +190,9 @@ subject_boundary
   :
   '^' regex
     -> regex
-  | regex '$'
+  | regex '$' EOF
     -> regex
-  | '^' regex '$'
+  | '^' regex '$' EOF
     -> regex
   ;
 // END boundaries

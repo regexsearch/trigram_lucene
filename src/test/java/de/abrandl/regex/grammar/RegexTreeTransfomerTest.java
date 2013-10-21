@@ -12,7 +12,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class RegexTreeTransfomerTest {
@@ -67,11 +66,49 @@ public class RegexTreeTransfomerTest {
 		assertIdenticalTransform("((foo|bar)+(bla)*)+");
 	}
 
-	// TODO: fix regression with match groups
-	@Ignore
 	@Test
-	public void regressionWithMatchGroups() throws RegexParsingException {
+	public void regressionWithUnknownCharsAndMatchGroups() throws RegexParsingException {
 		assertIdenticalTransform("(#?define)|z?_test");
+	}
+
+	@Test
+	public void recognizesHashAsLiteral() throws RegexParsingException {
+		assertIdenticalTransform("#?define");
+	}
+
+	@Test
+	public void recognizesHyphenAsLiteral() throws RegexParsingException {
+		assertIdenticalTransform("-?define");
+	}
+
+	@Test
+	public void recognizesTildeAsLiteral() throws RegexParsingException {
+		assertIdenticalTransform("~?define");
+	}
+
+	@Test
+	public void recognizesQuotedOpenBracketAsLiteral() throws RegexParsingException {
+		assertTransform("\\[define", "[define");
+	}
+
+	@Test
+	public void regressionWithSpecialCharsThatAreQuoted() throws RegexParsingException {
+		assertTransform("\\$?define", "$?define");
+	}
+
+	@Test(expected = RegexParsingException.class)
+	public void regressionWithStarNotQuoted() throws RegexParsingException {
+		parse("*?define");
+	}
+
+	@Test(expected = RegexParsingException.class)
+	public void regressionWithNonsenseEndOfSubjectBoundary() throws RegexParsingException {
+		parse("$define");
+	}
+
+	@Test(expected = RegexParsingException.class)
+	public void regressionWithNonsenseBeginOfSubjectBoundary() throws RegexParsingException {
+		parse("define^");
 	}
 
 	@Test
