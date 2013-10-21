@@ -14,6 +14,13 @@ import de.abrandl.regex.query.QueryTransformation;
 import de.abrandl.regex.query.bool.*;
 import static com.google.common.base.Preconditions.checkArgument;
 
+/**
+ * This variant is not really useful
+ * 
+ * @author abrandl
+ * 
+ */
+@Deprecated
 public class NGramRegexSearchEngine implements RegexSearchEngine {
 
 	private final NGramTokenizer tokenizer;
