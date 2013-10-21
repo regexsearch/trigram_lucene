@@ -166,7 +166,7 @@ dotany
 // CHARACTER CLASSES
 //
 //         [...]       positive character class
-//         [x-y]       range (can be used for hex characters)
+//         [x-y]       range
 
 character_class
   :
@@ -186,9 +186,7 @@ cc_atom
 // END character class
 
 // boundaries
-
 // just ignore subject boundary for the time being
-
 subject_boundary
   :
   '^' regex
@@ -198,7 +196,6 @@ subject_boundary
   | '^' regex '$'
     -> regex
   ;
-
 // END boundaries
 
 literal
@@ -351,51 +348,6 @@ BlockQuoted
                 }
   ;
 
-// CHARACTERS
-//
-//         \a         alarm, that is, the BEL character (hex 07)
-//         \cx        "control-x", where x is any ASCII character
-//         \e         escape (hex 1B)
-//         \f         form feed (hex 0C)
-//         \n         newline (hex 0A)
-//         \r         carriage return (hex 0D)
-//         \t         tab (hex 09)
-//         \ddd       character with octal code ddd, or backreference
-//         \xhh       character with hex code hh
-//         \x{hhh..}  character with hex code hhh..
-
-BellChar
-  :
-  '\\a' 
-       {
-        setText("\u0007");
-       }
-  ;
-
-ControlChar
-  :
-  '\\c' ASCII 
-             {
-              setText($ASCII.text);
-             }
-  ;
-
-EscapeChar
-  :
-  '\\e' 
-       {
-        setText(String.valueOf((char) 0x1B));
-       }
-  ;
-
-FormFeed
-  :
-  '\\f' 
-       {
-        setText(String.valueOf((char) 0x0C));
-       }
-  ;
-
 NewLine
   :
   '\n' 
@@ -425,148 +377,10 @@ Backslash
   '\\'
   ;
 
-HexChar
-  :
-  '\\x'
-  (
-    HexDigit HexDigit 
-                     {
-                      int hex = Integer.valueOf($text.substring(2), 16);
-                      setText(Character.valueOf((char) hex).toString());
-                     }
-    | '{' HexDigit HexDigit HexDigit+ '}' 
-                                         {
-                                          int hex = Integer.valueOf($text.substring(3, $text.length() - 1), 16);
-                                          char[] utf16 = Character.toChars(hex);
-                                          setText(new String(utf16));
-                                         }
-  )
-  ;
-
-// CHARACTER TYPES
-//
-//         .          any character except newline;
-//                      in dotall mode, any character whatsoever
-//         \C         one data unit, even in UTF mode (best avoided)
-//         \d         a decimal digit
-//         \D         a character that is not a decimal digit
-//         \h         a horizontal white space character
-//         \H         a character that is not a horizontal white space character
-//         \N         a character that is not a newline
-//         \R         a newline sequence
-//         \s         a white space character
-//         \S         a character that is not a white space character
-//         \v         a vertical white space character
-//         \V         a character that is not a vertical white space character
-//         \w         a "word" character
-//         \W         a "non-word" character
-//         \X         an extended Unicode sequence
-//
-//       In  PCRE,  by  default, \d, \D, \s, \S, \w, and \W recognize only ASCII
-//       characters, even in a UTF mode. However, this can be changed by setting
-//       the PCRE_UCP option.
-
 Dot
   :
   '.'
   ;
-
-OneDataUnit
-  :
-  '\\C'
-  ;
-
-DecimalDigit
-  :
-  '\\d'
-  ;
-
-NotDecimalDigit
-  :
-  '\\D'
-  ;
-
-HorizontalWhiteSpace
-  :
-  '\\h'
-  ;
-
-NotHorizontalWhiteSpace
-  :
-  '\\H'
-  ;
-
-NotNewLine
-  :
-  '\\N'
-  ;
-
-NewLineSequence
-  :
-  '\\R'
-  ;
-
-WhiteSpace
-  :
-  '\\s'
-  ;
-
-NotWhiteSpace
-  :
-  '\\S'
-  ;
-
-VerticalWhiteSpace
-  :
-  '\\v'
-  ;
-
-NotVerticalWhiteSpace
-  :
-  '\\V'
-  ;
-
-WordChar
-  :
-  '\\w'
-  ;
-
-NotWordChar
-  :
-  '\\W'
-  ;
-
-ExtendedUnicodeChar
-  :
-  '\\X'
-  ;
-
-// CHARACTER CLASSES
-//
-//         [...]       positive character class
-//         [^...]      negative character class
-//         [x-y]       range (can be used for hex characters)
-//         [[:xxx:]]   positive POSIX named set
-//         [[:^xxx:]]  negative POSIX named set
-//
-//         alnum       alphanumeric
-//         alpha       alphabetic
-//         ascii       0-127
-//         blank       space or tab
-//         cntrl       control character
-//         digit       decimal digit
-//         graph       printing, excluding space
-//         lower       lower case letter
-//         print       printing, including space
-//         punct       printing, excluding alphanumeric
-//         space       white space
-//         upper       upper case letter
-//         word        same as \w
-//         xdigit      hexadecimal digit
-//
-//       In PCRE, POSIX character set names recognize only ASCII  characters  by
-//       default,  but  some  of them use Unicode properties if PCRE_UCP is set.
-//       You can use \Q...\E inside a character class.
 
 CharacterClassStart
   :
@@ -618,73 +432,9 @@ Comma
   ','
   ;
 
-// ANCHORS AND SIMPLE ASSERTIONS
-//
-//         \b          word boundary
-//         \B          not a word boundary
-//         ^           start of subject
-//                      also after internal newline in multiline mode
-//         \A          start of subject
-//         $           end of subject
-//                      also before newline at end of subject
-//                      also before internal newline in multiline mode
-//         \Z          end of subject
-//                      also before newline at end of subject
-//         \z          end of subject
-//         \G          first matching position in subject
-
-WordBoundary
-  :
-  '\\b'
-  ;
-
-NonWordBoundary
-  :
-  '\\B'
-  ;
-
-StartOfSubject
-  :
-  '\\A'
-  ;
-
 EndOfSubjectOrLine
   :
   '$'
-  ;
-
-EndOfSubjectOrLineEndOfSubject
-  :
-  '\\Z'
-  ;
-
-EndOfSubject
-  :
-  '\\z'
-  ;
-
-PreviousMatchInSubject
-  :
-  '\\G'
-  ;
-
-// MATCH POINT RESET
-//
-//         \K          reset start of match
-
-ResetStartMatch
-  :
-  '\\K'
-  ;
-
-SubroutineOrNamedReferenceStartG
-  :
-  '\\g'
-  ;
-
-NamedReferenceStartK
-  :
-  '\\k'
   ;
 
 Pipe
