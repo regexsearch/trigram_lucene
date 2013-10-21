@@ -10,8 +10,6 @@ tokens {
   LITERAL;
   EOF;
   ALTERNATIVE;
-  NUMBER;
-  NAME;
   GROUP;
   CONCATENATION;
   ONEORMORE;
@@ -223,17 +221,6 @@ whitespace
   | CarriageReturn
   ;
 
-number
-  :
-  digits
-    -> NUMBER[$digits.text]
-  ;
-
-digits
-  :
-  digit+
-  ;
-
 digit
   :
   D0
@@ -246,17 +233,6 @@ digit
   | D7
   | D8
   | D9
-  ;
-
-name
-  :
-  letters
-    -> NAME[$letters.text]
-  ;
-
-letters
-  :
-  letter+
   ;
 
 non_close_parens
