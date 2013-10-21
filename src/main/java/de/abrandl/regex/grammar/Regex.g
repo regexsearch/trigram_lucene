@@ -54,11 +54,11 @@ public void checkErrors() throws RegexParsingException {
 }
 
 /**
-* Parses a given regex into an abstract parse tree.
-* @param regex regular expression
-* @returns parse tree of given regex
-* @throws RegexParsingException when an invalid/unrecognized regex was given
-**/
+ * Parses a given regex into an abstract parse tree.
+ * @param regex regular expression
+ * @returns parse tree of given regex
+ * @throws RegexParsingException when an invalid/unrecognized regex was given
+ **/
 public static RegexNode parse(String regex) throws RegexParsingException {
 	return RegexTreeTransformer.parse(regex).getRegexTree();
 }
@@ -170,7 +170,7 @@ dotany
 
 character_class
   :
-  CharacterClassStart cc_atom+ CharacterClassEnd
+  OpenBracket cc_atom+ CloseBracket
     ->
       ^(CHARACTER_CLASS cc_atom+)
   ;
@@ -187,6 +187,7 @@ cc_atom
 
 // boundaries
 // just ignore subject boundary for the time being
+
 subject_boundary
   :
   '^' regex
@@ -372,74 +373,46 @@ Tab
       }
   ;
 
-Backslash
+//  printable ASCII starts here
+
+WHITESPACE
   :
-  '\\'
+  ' '
   ;
 
-Dot
+Exclamation
   :
-  '.'
+  '!'
   ;
 
-CharacterClassStart
+DoubleQuote
   :
-  '['
+  '"'
   ;
 
-CharacterClassEnd
+Hash
   :
-  ']'
+  '#'
   ;
 
-Caret
-  :
-  '^'
-  ;
-
-Hyphen
-  :
-  '-'
-  ;
-
-QuestionMark
-  :
-  '?'
-  ;
-
-Plus
-  :
-  '+'
-  ;
-
-Star
-  :
-  '*'
-  ;
-
-OpenBrace
-  :
-  '{'
-  ;
-
-CloseBrace
-  :
-  '}'
-  ;
-
-Comma
-  :
-  ','
-  ;
-
-EndOfSubjectOrLine
+Dollar
   :
   '$'
   ;
 
-Pipe
+Percent
   :
-  '|'
+  '%'
+  ;
+
+Ampersand
+  :
+  '&'
+  ;
+
+SingleQuote
+  :
+  '\''
   ;
 
 OpenParen
@@ -452,24 +425,84 @@ CloseParen
   ')'
   ;
 
-LessThan
+Star
   :
-  '<'
+  '*'
   ;
 
-GreaterThan
+Plus
   :
-  '>'
+  '+'
   ;
 
-SingleQuote
+Comma
   :
-  '\''
+  ','
   ;
 
-Underscore
+Hyphen
   :
-  '_'
+  '-'
+  ;
+
+Dot
+  :
+  '.'
+  ;
+
+Slash
+  :
+  '/'
+  ;
+
+D0
+  :
+  '0'
+  ;
+
+D1
+  :
+  '1'
+  ;
+
+D2
+  :
+  '2'
+  ;
+
+D3
+  :
+  '3'
+  ;
+
+D4
+  :
+  '4'
+  ;
+
+D5
+  :
+  '5'
+  ;
+
+D6
+  :
+  '6'
+  ;
+
+D7
+  :
+  '7'
+  ;
+
+D8
+  :
+  '8'
+  ;
+
+D9
+  :
+  '9'
   ;
 
 Colon
@@ -477,9 +510,14 @@ Colon
   ':'
   ;
 
-Hash
+Semicolon
   :
-  '#'
+  ';'
+  ;
+
+LessThan
+  :
+  '<'
   ;
 
 Equals
@@ -487,144 +525,19 @@ Equals
   '='
   ;
 
-Exclamation
+GreaterThan
   :
-  '!'
+  '>'
   ;
 
-Ampersand
+QuestionMark
   :
-  '&'
+  '?'
   ;
 
-ALC
+At
   :
-  'a'
-  ;
-
-BLC
-  :
-  'b'
-  ;
-
-CLC
-  :
-  'c'
-  ;
-
-DLC
-  :
-  'd'
-  ;
-
-ELC
-  :
-  'e'
-  ;
-
-FLC
-  :
-  'f'
-  ;
-
-GLC
-  :
-  'g'
-  ;
-
-HLC
-  :
-  'h'
-  ;
-
-ILC
-  :
-  'i'
-  ;
-
-JLC
-  :
-  'j'
-  ;
-
-KLC
-  :
-  'k'
-  ;
-
-LLC
-  :
-  'l'
-  ;
-
-MLC
-  :
-  'm'
-  ;
-
-NLC
-  :
-  'n'
-  ;
-
-OLC
-  :
-  'o'
-  ;
-
-PLC
-  :
-  'p'
-  ;
-
-QLC
-  :
-  'q'
-  ;
-
-RLC
-  :
-  'r'
-  ;
-
-SLC
-  :
-  's'
-  ;
-
-TLC
-  :
-  't'
-  ;
-
-ULC
-  :
-  'u'
-  ;
-
-VLC
-  :
-  'v'
-  ;
-
-WLC
-  :
-  'w'
-  ;
-
-XLC
-  :
-  'x'
-  ;
-
-YLC
-  :
-  'y'
-  ;
-
-ZLC
-  :
-  'z'
+  '@'
   ;
 
 AUC
@@ -757,60 +670,187 @@ ZUC
   'Z'
   ;
 
-D1
+OpenBracket
   :
-  '1'
+  '['
   ;
 
-D2
+Backslash
   :
-  '2'
+  '\\'
   ;
 
-D3
+CloseBracket
   :
-  '3'
+  ']'
   ;
 
-D4
+Caret
   :
-  '4'
+  '^'
   ;
 
-D5
+Underscore
   :
-  '5'
+  '_'
   ;
 
-D6
+GraveAccent
   :
-  '6'
+  '`'
   ;
 
-D7
+ALC
   :
-  '7'
+  'a'
   ;
 
-D8
+BLC
   :
-  '8'
+  'b'
   ;
 
-D9
+CLC
   :
-  '9'
+  'c'
   ;
 
-D0
+DLC
   :
-  '0'
+  'd'
   ;
 
-WHITESPACE
+ELC
   :
-  ' '
+  'e'
   ;
+
+FLC
+  :
+  'f'
+  ;
+
+GLC
+  :
+  'g'
+  ;
+
+HLC
+  :
+  'h'
+  ;
+
+ILC
+  :
+  'i'
+  ;
+
+JLC
+  :
+  'j'
+  ;
+
+KLC
+  :
+  'k'
+  ;
+
+LLC
+  :
+  'l'
+  ;
+
+MLC
+  :
+  'm'
+  ;
+
+NLC
+  :
+  'n'
+  ;
+
+OLC
+  :
+  'o'
+  ;
+
+PLC
+  :
+  'p'
+  ;
+
+QLC
+  :
+  'q'
+  ;
+
+RLC
+  :
+  'r'
+  ;
+
+SLC
+  :
+  's'
+  ;
+
+TLC
+  :
+  't'
+  ;
+
+ULC
+  :
+  'u'
+  ;
+
+VLC
+  :
+  'v'
+  ;
+
+WLC
+  :
+  'w'
+  ;
+
+XLC
+  :
+  'x'
+  ;
+
+YLC
+  :
+  'y'
+  ;
+
+ZLC
+  :
+  'z'
+  ;
+
+OpenBrace
+  :
+  '{'
+  ;
+
+Pipe
+  :
+  '|'
+  ;
+
+CloseBrace
+  :
+  '}'
+  ;
+
+Tilde
+  :
+  '~'
+  ;
+
+// printable ASCII stops here
 
 OtherChar
   :

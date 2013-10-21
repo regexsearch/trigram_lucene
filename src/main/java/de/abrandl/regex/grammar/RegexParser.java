@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 15:35:43
+// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:01:44
 
 package de.abrandl.regex.grammar;
 import de.abrandl.regex.grammar.tree.RegexNode;
@@ -22,7 +22,7 @@ import org.antlr.runtime.tree.*;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class RegexParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ALC", "ALTERNATIVE", "ASCII", "AUC", "AlphaNumeric", "AlphaNumerics", "Ampersand", "BLC", "BUC", "Backslash", "BlockQuoted", "CHARACTER_CLASS", "CLC", "CONCATENATION", "CUC", "Caret", "CarriageReturn", "CharacterClassEnd", "CharacterClassStart", "CloseBrace", "CloseParen", "Colon", "Comma", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DLC", "DOTANY", "DUC", "Dot", "ELC", "ELEMENT", "EUC", "EndOfSubjectOrLine", "Equals", "Exclamation", "FLC", "FUC", "GLC", "GROUP", "GUC", "GreaterThan", "HLC", "HUC", "Hash", "HexDigit", "Hyphen", "ILC", "IUC", "JLC", "JUC", "KLC", "KUC", "LITERAL", "LLC", "LUC", "LessThan", "MLC", "MUC", "NAME", "NLC", "NUC", "NUMBER", "NewLine", "NonAlphaNumeric", "OLC", "ONEORMORE", "OPTIONAL", "OUC", "OpenBrace", "OpenParen", "OtherChar", "PLC", "PUC", "Pipe", "Plus", "QLC", "QUC", "QuestionMark", "Quoted", "RANGE", "RLC", "RUC", "SLC", "SUC", "SingleQuote", "Star", "TLC", "TUC", "Tab", "ULC", "UUC", "Underscore", "UnderscoreAlphaNumerics", "VLC", "VUC", "WHITESPACE", "WLC", "WUC", "XLC", "XUC", "YLC", "YUC", "ZEROORMORE", "ZLC", "ZUC"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ALC", "ALTERNATIVE", "ASCII", "AUC", "AlphaNumeric", "AlphaNumerics", "Ampersand", "At", "BLC", "BUC", "Backslash", "BlockQuoted", "CHARACTER_CLASS", "CLC", "CONCATENATION", "CUC", "Caret", "CarriageReturn", "CloseBrace", "CloseBracket", "CloseParen", "Colon", "Comma", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DLC", "DOTANY", "DUC", "Dollar", "Dot", "DoubleQuote", "ELC", "ELEMENT", "EUC", "Equals", "Exclamation", "FLC", "FUC", "GLC", "GROUP", "GUC", "GraveAccent", "GreaterThan", "HLC", "HUC", "Hash", "HexDigit", "Hyphen", "ILC", "IUC", "JLC", "JUC", "KLC", "KUC", "LITERAL", "LLC", "LUC", "LessThan", "MLC", "MUC", "NAME", "NLC", "NUC", "NUMBER", "NewLine", "NonAlphaNumeric", "OLC", "ONEORMORE", "OPTIONAL", "OUC", "OpenBrace", "OpenBracket", "OpenParen", "OtherChar", "PLC", "PUC", "Percent", "Pipe", "Plus", "QLC", "QUC", "QuestionMark", "Quoted", "RANGE", "RLC", "RUC", "SLC", "SUC", "Semicolon", "SingleQuote", "Slash", "Star", "TLC", "TUC", "Tab", "Tilde", "ULC", "UUC", "Underscore", "UnderscoreAlphaNumerics", "VLC", "VUC", "WHITESPACE", "WLC", "WUC", "XLC", "XUC", "YLC", "YUC", "ZEROORMORE", "ZLC", "ZUC"
     };
 
     public static final int EOF=-1;
@@ -33,19 +33,19 @@ public class RegexParser extends Parser {
     public static final int AlphaNumeric=8;
     public static final int AlphaNumerics=9;
     public static final int Ampersand=10;
-    public static final int BLC=11;
-    public static final int BUC=12;
-    public static final int Backslash=13;
-    public static final int BlockQuoted=14;
-    public static final int CHARACTER_CLASS=15;
-    public static final int CLC=16;
-    public static final int CONCATENATION=17;
-    public static final int CUC=18;
-    public static final int Caret=19;
-    public static final int CarriageReturn=20;
-    public static final int CharacterClassEnd=21;
-    public static final int CharacterClassStart=22;
-    public static final int CloseBrace=23;
+    public static final int At=11;
+    public static final int BLC=12;
+    public static final int BUC=13;
+    public static final int Backslash=14;
+    public static final int BlockQuoted=15;
+    public static final int CHARACTER_CLASS=16;
+    public static final int CLC=17;
+    public static final int CONCATENATION=18;
+    public static final int CUC=19;
+    public static final int Caret=20;
+    public static final int CarriageReturn=21;
+    public static final int CloseBrace=22;
+    public static final int CloseBracket=23;
     public static final int CloseParen=24;
     public static final int Colon=25;
     public static final int Comma=26;
@@ -62,83 +62,90 @@ public class RegexParser extends Parser {
     public static final int DLC=37;
     public static final int DOTANY=38;
     public static final int DUC=39;
-    public static final int Dot=40;
-    public static final int ELC=41;
-    public static final int ELEMENT=42;
-    public static final int EUC=43;
-    public static final int EndOfSubjectOrLine=44;
-    public static final int Equals=45;
-    public static final int Exclamation=46;
-    public static final int FLC=47;
-    public static final int FUC=48;
-    public static final int GLC=49;
-    public static final int GROUP=50;
-    public static final int GUC=51;
-    public static final int GreaterThan=52;
-    public static final int HLC=53;
-    public static final int HUC=54;
-    public static final int Hash=55;
-    public static final int HexDigit=56;
-    public static final int Hyphen=57;
-    public static final int ILC=58;
-    public static final int IUC=59;
-    public static final int JLC=60;
-    public static final int JUC=61;
-    public static final int KLC=62;
-    public static final int KUC=63;
-    public static final int LITERAL=64;
-    public static final int LLC=65;
-    public static final int LUC=66;
-    public static final int LessThan=67;
-    public static final int MLC=68;
-    public static final int MUC=69;
-    public static final int NAME=70;
-    public static final int NLC=71;
-    public static final int NUC=72;
-    public static final int NUMBER=73;
-    public static final int NewLine=74;
-    public static final int NonAlphaNumeric=75;
-    public static final int OLC=76;
-    public static final int ONEORMORE=77;
-    public static final int OPTIONAL=78;
-    public static final int OUC=79;
-    public static final int OpenBrace=80;
-    public static final int OpenParen=81;
-    public static final int OtherChar=82;
-    public static final int PLC=83;
-    public static final int PUC=84;
-    public static final int Pipe=85;
-    public static final int Plus=86;
-    public static final int QLC=87;
-    public static final int QUC=88;
-    public static final int QuestionMark=89;
-    public static final int Quoted=90;
-    public static final int RANGE=91;
-    public static final int RLC=92;
-    public static final int RUC=93;
-    public static final int SLC=94;
-    public static final int SUC=95;
-    public static final int SingleQuote=96;
-    public static final int Star=97;
-    public static final int TLC=98;
-    public static final int TUC=99;
-    public static final int Tab=100;
-    public static final int ULC=101;
-    public static final int UUC=102;
-    public static final int Underscore=103;
-    public static final int UnderscoreAlphaNumerics=104;
-    public static final int VLC=105;
-    public static final int VUC=106;
-    public static final int WHITESPACE=107;
-    public static final int WLC=108;
-    public static final int WUC=109;
-    public static final int XLC=110;
-    public static final int XUC=111;
-    public static final int YLC=112;
-    public static final int YUC=113;
-    public static final int ZEROORMORE=114;
-    public static final int ZLC=115;
-    public static final int ZUC=116;
+    public static final int Dollar=40;
+    public static final int Dot=41;
+    public static final int DoubleQuote=42;
+    public static final int ELC=43;
+    public static final int ELEMENT=44;
+    public static final int EUC=45;
+    public static final int Equals=46;
+    public static final int Exclamation=47;
+    public static final int FLC=48;
+    public static final int FUC=49;
+    public static final int GLC=50;
+    public static final int GROUP=51;
+    public static final int GUC=52;
+    public static final int GraveAccent=53;
+    public static final int GreaterThan=54;
+    public static final int HLC=55;
+    public static final int HUC=56;
+    public static final int Hash=57;
+    public static final int HexDigit=58;
+    public static final int Hyphen=59;
+    public static final int ILC=60;
+    public static final int IUC=61;
+    public static final int JLC=62;
+    public static final int JUC=63;
+    public static final int KLC=64;
+    public static final int KUC=65;
+    public static final int LITERAL=66;
+    public static final int LLC=67;
+    public static final int LUC=68;
+    public static final int LessThan=69;
+    public static final int MLC=70;
+    public static final int MUC=71;
+    public static final int NAME=72;
+    public static final int NLC=73;
+    public static final int NUC=74;
+    public static final int NUMBER=75;
+    public static final int NewLine=76;
+    public static final int NonAlphaNumeric=77;
+    public static final int OLC=78;
+    public static final int ONEORMORE=79;
+    public static final int OPTIONAL=80;
+    public static final int OUC=81;
+    public static final int OpenBrace=82;
+    public static final int OpenBracket=83;
+    public static final int OpenParen=84;
+    public static final int OtherChar=85;
+    public static final int PLC=86;
+    public static final int PUC=87;
+    public static final int Percent=88;
+    public static final int Pipe=89;
+    public static final int Plus=90;
+    public static final int QLC=91;
+    public static final int QUC=92;
+    public static final int QuestionMark=93;
+    public static final int Quoted=94;
+    public static final int RANGE=95;
+    public static final int RLC=96;
+    public static final int RUC=97;
+    public static final int SLC=98;
+    public static final int SUC=99;
+    public static final int Semicolon=100;
+    public static final int SingleQuote=101;
+    public static final int Slash=102;
+    public static final int Star=103;
+    public static final int TLC=104;
+    public static final int TUC=105;
+    public static final int Tab=106;
+    public static final int Tilde=107;
+    public static final int ULC=108;
+    public static final int UUC=109;
+    public static final int Underscore=110;
+    public static final int UnderscoreAlphaNumerics=111;
+    public static final int VLC=112;
+    public static final int VUC=113;
+    public static final int WHITESPACE=114;
+    public static final int WLC=115;
+    public static final int WUC=116;
+    public static final int XLC=117;
+    public static final int XUC=118;
+    public static final int YLC=119;
+    public static final int YUC=120;
+    public static final int ZEROORMORE=121;
+    public static final int ZLC=122;
+    public static final int ZUC=123;
 
     // delegates
     public Parser[] getDelegates() {
@@ -183,11 +190,11 @@ public TreeAdaptor getTreeAdaptor() {
     }
 
     /**
-    * Parses a given regex into an abstract parse tree.
-    * @param regex regular expression
-    * @returns parse tree of given regex
-    * @throws RegexParsingException when an invalid/unrecognized regex was given
-    **/
+     * Parses a given regex into an abstract parse tree.
+     * @param regex regular expression
+     * @returns parse tree of given regex
+     * @throws RegexParsingException when an invalid/unrecognized regex was given
+     **/
     public static RegexNode parse(String regex) throws RegexParsingException {
     	return RegexTreeTransformer.parse(regex).getRegexTree();
     }
@@ -424,7 +431,7 @@ public TreeAdaptor getTreeAdaptor() {
                 }
                 }
                 break;
-            case CharacterClassStart:
+            case OpenBracket:
                 {
                 int LA1_8 = input.LA(2);
 
@@ -470,7 +477,7 @@ public TreeAdaptor getTreeAdaptor() {
                 }
                 break;
             case Caret:
-            case EndOfSubjectOrLine:
+            case Dollar:
                 {
                 alt1=2;
                 }
@@ -844,7 +851,7 @@ public TreeAdaptor getTreeAdaptor() {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==ALC||LA4_0==AUC||(LA4_0 >= BLC && LA4_0 <= BUC)||LA4_0==BlockQuoted||LA4_0==CLC||LA4_0==CUC||LA4_0==CarriageReturn||LA4_0==CharacterClassStart||(LA4_0 >= D0 && LA4_0 <= DLC)||(LA4_0 >= DUC && LA4_0 <= ELC)||LA4_0==EUC||(LA4_0 >= FLC && LA4_0 <= GLC)||LA4_0==GUC||(LA4_0 >= HLC && LA4_0 <= HUC)||(LA4_0 >= ILC && LA4_0 <= KUC)||(LA4_0 >= LLC && LA4_0 <= LUC)||(LA4_0 >= MLC && LA4_0 <= MUC)||(LA4_0 >= NLC && LA4_0 <= NUC)||LA4_0==NewLine||LA4_0==OLC||LA4_0==OUC||LA4_0==OpenParen||(LA4_0 >= PLC && LA4_0 <= PUC)||(LA4_0 >= QLC && LA4_0 <= QUC)||LA4_0==Quoted||(LA4_0 >= RLC && LA4_0 <= SUC)||(LA4_0 >= TLC && LA4_0 <= UUC)||(LA4_0 >= VLC && LA4_0 <= YUC)||(LA4_0 >= ZLC && LA4_0 <= ZUC)) ) {
+                if ( (LA4_0==ALC||LA4_0==AUC||(LA4_0 >= BLC && LA4_0 <= BUC)||LA4_0==BlockQuoted||LA4_0==CLC||LA4_0==CUC||LA4_0==CarriageReturn||(LA4_0 >= D0 && LA4_0 <= DLC)||LA4_0==DUC||LA4_0==Dot||LA4_0==ELC||LA4_0==EUC||(LA4_0 >= FLC && LA4_0 <= GLC)||LA4_0==GUC||(LA4_0 >= HLC && LA4_0 <= HUC)||(LA4_0 >= ILC && LA4_0 <= KUC)||(LA4_0 >= LLC && LA4_0 <= LUC)||(LA4_0 >= MLC && LA4_0 <= MUC)||(LA4_0 >= NLC && LA4_0 <= NUC)||LA4_0==NewLine||LA4_0==OLC||LA4_0==OUC||(LA4_0 >= OpenBracket && LA4_0 <= OpenParen)||(LA4_0 >= PLC && LA4_0 <= PUC)||(LA4_0 >= QLC && LA4_0 <= QUC)||LA4_0==Quoted||(LA4_0 >= RLC && LA4_0 <= SUC)||(LA4_0 >= TLC && LA4_0 <= Tab)||(LA4_0 >= ULC && LA4_0 <= UUC)||(LA4_0 >= VLC && LA4_0 <= YUC)||(LA4_0 >= ZLC && LA4_0 <= ZUC)) ) {
                     alt4=1;
                 }
 
@@ -1216,7 +1223,7 @@ public TreeAdaptor getTreeAdaptor() {
                 }
                 }
                 break;
-            case CharacterClassStart:
+            case OpenBracket:
                 {
                 int LA5_8 = input.LA(2);
 
@@ -1833,7 +1840,7 @@ public TreeAdaptor getTreeAdaptor() {
                 alt7=3;
                 }
                 break;
-            case CharacterClassStart:
+            case OpenBracket:
                 {
                 alt7=4;
                 }
@@ -2026,7 +2033,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "character_class"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:171:1: character_class : CharacterClassStart ( cc_atom )+ CharacterClassEnd -> ^( CHARACTER_CLASS ( cc_atom )+ ) ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:171:1: character_class : OpenBracket ( cc_atom )+ CloseBracket -> ^( CHARACTER_CLASS ( cc_atom )+ ) ;
     public final RegexParser.character_class_return character_class() throws RecognitionException {
         RegexParser.character_class_return retval = new RegexParser.character_class_return();
         retval.start = input.LT(1);
@@ -2034,39 +2041,39 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token CharacterClassStart26=null;
-        Token CharacterClassEnd28=null;
+        Token OpenBracket26=null;
+        Token CloseBracket28=null;
         RegexParser.cc_atom_return cc_atom27 =null;
 
 
-        Object CharacterClassStart26_tree=null;
-        Object CharacterClassEnd28_tree=null;
-        RewriteRuleTokenStream stream_CharacterClassStart=new RewriteRuleTokenStream(adaptor,"token CharacterClassStart");
-        RewriteRuleTokenStream stream_CharacterClassEnd=new RewriteRuleTokenStream(adaptor,"token CharacterClassEnd");
+        Object OpenBracket26_tree=null;
+        Object CloseBracket28_tree=null;
+        RewriteRuleTokenStream stream_CloseBracket=new RewriteRuleTokenStream(adaptor,"token CloseBracket");
+        RewriteRuleTokenStream stream_OpenBracket=new RewriteRuleTokenStream(adaptor,"token OpenBracket");
         RewriteRuleSubtreeStream stream_cc_atom=new RewriteRuleSubtreeStream(adaptor,"rule cc_atom");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:172:3: ( CharacterClassStart ( cc_atom )+ CharacterClassEnd -> ^( CHARACTER_CLASS ( cc_atom )+ ) )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:173:3: CharacterClassStart ( cc_atom )+ CharacterClassEnd
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:172:3: ( OpenBracket ( cc_atom )+ CloseBracket -> ^( CHARACTER_CLASS ( cc_atom )+ ) )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:173:3: OpenBracket ( cc_atom )+ CloseBracket
             {
-            CharacterClassStart26=(Token)match(input,CharacterClassStart,FOLLOW_CharacterClassStart_in_character_class588); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_CharacterClassStart.add(CharacterClassStart26);
+            OpenBracket26=(Token)match(input,OpenBracket,FOLLOW_OpenBracket_in_character_class588); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_OpenBracket.add(OpenBracket26);
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:173:23: ( cc_atom )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:173:15: ( cc_atom )+
             int cnt8=0;
             loop8:
             do {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( (LA8_0==ALC||LA8_0==AUC||(LA8_0 >= BLC && LA8_0 <= BUC)||LA8_0==BlockQuoted||LA8_0==CLC||LA8_0==CUC||LA8_0==CarriageReturn||(LA8_0 >= D0 && LA8_0 <= DLC)||LA8_0==DUC||LA8_0==ELC||LA8_0==EUC||(LA8_0 >= FLC && LA8_0 <= GLC)||LA8_0==GUC||(LA8_0 >= HLC && LA8_0 <= HUC)||(LA8_0 >= ILC && LA8_0 <= KUC)||(LA8_0 >= LLC && LA8_0 <= LUC)||(LA8_0 >= MLC && LA8_0 <= MUC)||(LA8_0 >= NLC && LA8_0 <= NUC)||LA8_0==NewLine||LA8_0==OLC||LA8_0==OUC||(LA8_0 >= PLC && LA8_0 <= PUC)||(LA8_0 >= QLC && LA8_0 <= QUC)||LA8_0==Quoted||(LA8_0 >= RLC && LA8_0 <= SUC)||(LA8_0 >= TLC && LA8_0 <= UUC)||(LA8_0 >= VLC && LA8_0 <= YUC)||(LA8_0 >= ZLC && LA8_0 <= ZUC)) ) {
+                if ( (LA8_0==ALC||LA8_0==AUC||(LA8_0 >= BLC && LA8_0 <= BUC)||LA8_0==BlockQuoted||LA8_0==CLC||LA8_0==CUC||LA8_0==CarriageReturn||(LA8_0 >= D0 && LA8_0 <= DLC)||LA8_0==DUC||LA8_0==ELC||LA8_0==EUC||(LA8_0 >= FLC && LA8_0 <= GLC)||LA8_0==GUC||(LA8_0 >= HLC && LA8_0 <= HUC)||(LA8_0 >= ILC && LA8_0 <= KUC)||(LA8_0 >= LLC && LA8_0 <= LUC)||(LA8_0 >= MLC && LA8_0 <= MUC)||(LA8_0 >= NLC && LA8_0 <= NUC)||LA8_0==NewLine||LA8_0==OLC||LA8_0==OUC||(LA8_0 >= PLC && LA8_0 <= PUC)||(LA8_0 >= QLC && LA8_0 <= QUC)||LA8_0==Quoted||(LA8_0 >= RLC && LA8_0 <= SUC)||(LA8_0 >= TLC && LA8_0 <= Tab)||(LA8_0 >= ULC && LA8_0 <= UUC)||(LA8_0 >= VLC && LA8_0 <= YUC)||(LA8_0 >= ZLC && LA8_0 <= ZUC)) ) {
                     alt8=1;
                 }
 
 
                 switch (alt8) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:173:23: cc_atom
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:173:15: cc_atom
             	    {
             	    pushFollow(FOLLOW_cc_atom_in_character_class590);
             	    cc_atom27=cc_atom();
@@ -2089,8 +2096,8 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            CharacterClassEnd28=(Token)match(input,CharacterClassEnd,FOLLOW_CharacterClassEnd_in_character_class593); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_CharacterClassEnd.add(CharacterClassEnd28);
+            CloseBracket28=(Token)match(input,CloseBracket,FOLLOW_CloseBracket_in_character_class593); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_CloseBracket.add(CloseBracket28);
 
 
             // AST REWRITE
@@ -2247,7 +2254,7 @@ public TreeAdaptor getTreeAdaptor() {
                 if ( (LA9_1==Hyphen) ) {
                     alt9=1;
                 }
-                else if ( (LA9_1==EOF||LA9_1==ALC||LA9_1==AUC||(LA9_1 >= BLC && LA9_1 <= BUC)||LA9_1==BlockQuoted||LA9_1==CLC||LA9_1==CUC||(LA9_1 >= CarriageReturn && LA9_1 <= CharacterClassEnd)||(LA9_1 >= D0 && LA9_1 <= DLC)||LA9_1==DUC||LA9_1==ELC||LA9_1==EUC||(LA9_1 >= FLC && LA9_1 <= GLC)||LA9_1==GUC||(LA9_1 >= HLC && LA9_1 <= HUC)||(LA9_1 >= ILC && LA9_1 <= KUC)||(LA9_1 >= LLC && LA9_1 <= LUC)||(LA9_1 >= MLC && LA9_1 <= MUC)||(LA9_1 >= NLC && LA9_1 <= NUC)||LA9_1==NewLine||LA9_1==OLC||LA9_1==OUC||(LA9_1 >= PLC && LA9_1 <= PUC)||(LA9_1 >= QLC && LA9_1 <= QUC)||LA9_1==Quoted||(LA9_1 >= RLC && LA9_1 <= SUC)||(LA9_1 >= TLC && LA9_1 <= UUC)||(LA9_1 >= VLC && LA9_1 <= YUC)||(LA9_1 >= ZLC && LA9_1 <= ZUC)) ) {
+                else if ( (LA9_1==EOF||LA9_1==ALC||LA9_1==AUC||(LA9_1 >= BLC && LA9_1 <= BUC)||LA9_1==BlockQuoted||LA9_1==CLC||LA9_1==CUC||LA9_1==CarriageReturn||LA9_1==CloseBracket||(LA9_1 >= D0 && LA9_1 <= DLC)||LA9_1==DUC||LA9_1==ELC||LA9_1==EUC||(LA9_1 >= FLC && LA9_1 <= GLC)||LA9_1==GUC||(LA9_1 >= HLC && LA9_1 <= HUC)||(LA9_1 >= ILC && LA9_1 <= KUC)||(LA9_1 >= LLC && LA9_1 <= LUC)||(LA9_1 >= MLC && LA9_1 <= MUC)||(LA9_1 >= NLC && LA9_1 <= NUC)||LA9_1==NewLine||LA9_1==OLC||LA9_1==OUC||(LA9_1 >= PLC && LA9_1 <= PUC)||(LA9_1 >= QLC && LA9_1 <= QUC)||LA9_1==Quoted||(LA9_1 >= RLC && LA9_1 <= SUC)||(LA9_1 >= TLC && LA9_1 <= Tab)||(LA9_1 >= ULC && LA9_1 <= UUC)||(LA9_1 >= VLC && LA9_1 <= YUC)||(LA9_1 >= ZLC && LA9_1 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2276,7 +2283,7 @@ public TreeAdaptor getTreeAdaptor() {
                 if ( (LA9_2==Hyphen) ) {
                     alt9=1;
                 }
-                else if ( (LA9_2==EOF||LA9_2==ALC||LA9_2==AUC||(LA9_2 >= BLC && LA9_2 <= BUC)||LA9_2==BlockQuoted||LA9_2==CLC||LA9_2==CUC||(LA9_2 >= CarriageReturn && LA9_2 <= CharacterClassEnd)||(LA9_2 >= D0 && LA9_2 <= DLC)||LA9_2==DUC||LA9_2==ELC||LA9_2==EUC||(LA9_2 >= FLC && LA9_2 <= GLC)||LA9_2==GUC||(LA9_2 >= HLC && LA9_2 <= HUC)||(LA9_2 >= ILC && LA9_2 <= KUC)||(LA9_2 >= LLC && LA9_2 <= LUC)||(LA9_2 >= MLC && LA9_2 <= MUC)||(LA9_2 >= NLC && LA9_2 <= NUC)||LA9_2==NewLine||LA9_2==OLC||LA9_2==OUC||(LA9_2 >= PLC && LA9_2 <= PUC)||(LA9_2 >= QLC && LA9_2 <= QUC)||LA9_2==Quoted||(LA9_2 >= RLC && LA9_2 <= SUC)||(LA9_2 >= TLC && LA9_2 <= UUC)||(LA9_2 >= VLC && LA9_2 <= YUC)||(LA9_2 >= ZLC && LA9_2 <= ZUC)) ) {
+                else if ( (LA9_2==EOF||LA9_2==ALC||LA9_2==AUC||(LA9_2 >= BLC && LA9_2 <= BUC)||LA9_2==BlockQuoted||LA9_2==CLC||LA9_2==CUC||LA9_2==CarriageReturn||LA9_2==CloseBracket||(LA9_2 >= D0 && LA9_2 <= DLC)||LA9_2==DUC||LA9_2==ELC||LA9_2==EUC||(LA9_2 >= FLC && LA9_2 <= GLC)||LA9_2==GUC||(LA9_2 >= HLC && LA9_2 <= HUC)||(LA9_2 >= ILC && LA9_2 <= KUC)||(LA9_2 >= LLC && LA9_2 <= LUC)||(LA9_2 >= MLC && LA9_2 <= MUC)||(LA9_2 >= NLC && LA9_2 <= NUC)||LA9_2==NewLine||LA9_2==OLC||LA9_2==OUC||(LA9_2 >= PLC && LA9_2 <= PUC)||(LA9_2 >= QLC && LA9_2 <= QUC)||LA9_2==Quoted||(LA9_2 >= RLC && LA9_2 <= SUC)||(LA9_2 >= TLC && LA9_2 <= Tab)||(LA9_2 >= ULC && LA9_2 <= UUC)||(LA9_2 >= VLC && LA9_2 <= YUC)||(LA9_2 >= ZLC && LA9_2 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2299,7 +2306,7 @@ public TreeAdaptor getTreeAdaptor() {
                 if ( (LA9_3==Hyphen) ) {
                     alt9=1;
                 }
-                else if ( (LA9_3==EOF||LA9_3==ALC||LA9_3==AUC||(LA9_3 >= BLC && LA9_3 <= BUC)||LA9_3==BlockQuoted||LA9_3==CLC||LA9_3==CUC||(LA9_3 >= CarriageReturn && LA9_3 <= CharacterClassEnd)||(LA9_3 >= D0 && LA9_3 <= DLC)||LA9_3==DUC||LA9_3==ELC||LA9_3==EUC||(LA9_3 >= FLC && LA9_3 <= GLC)||LA9_3==GUC||(LA9_3 >= HLC && LA9_3 <= HUC)||(LA9_3 >= ILC && LA9_3 <= KUC)||(LA9_3 >= LLC && LA9_3 <= LUC)||(LA9_3 >= MLC && LA9_3 <= MUC)||(LA9_3 >= NLC && LA9_3 <= NUC)||LA9_3==NewLine||LA9_3==OLC||LA9_3==OUC||(LA9_3 >= PLC && LA9_3 <= PUC)||(LA9_3 >= QLC && LA9_3 <= QUC)||LA9_3==Quoted||(LA9_3 >= RLC && LA9_3 <= SUC)||(LA9_3 >= TLC && LA9_3 <= UUC)||(LA9_3 >= VLC && LA9_3 <= YUC)||(LA9_3 >= ZLC && LA9_3 <= ZUC)) ) {
+                else if ( (LA9_3==EOF||LA9_3==ALC||LA9_3==AUC||(LA9_3 >= BLC && LA9_3 <= BUC)||LA9_3==BlockQuoted||LA9_3==CLC||LA9_3==CUC||LA9_3==CarriageReturn||LA9_3==CloseBracket||(LA9_3 >= D0 && LA9_3 <= DLC)||LA9_3==DUC||LA9_3==ELC||LA9_3==EUC||(LA9_3 >= FLC && LA9_3 <= GLC)||LA9_3==GUC||(LA9_3 >= HLC && LA9_3 <= HUC)||(LA9_3 >= ILC && LA9_3 <= KUC)||(LA9_3 >= LLC && LA9_3 <= LUC)||(LA9_3 >= MLC && LA9_3 <= MUC)||(LA9_3 >= NLC && LA9_3 <= NUC)||LA9_3==NewLine||LA9_3==OLC||LA9_3==OUC||(LA9_3 >= PLC && LA9_3 <= PUC)||(LA9_3 >= QLC && LA9_3 <= QUC)||LA9_3==Quoted||(LA9_3 >= RLC && LA9_3 <= SUC)||(LA9_3 >= TLC && LA9_3 <= Tab)||(LA9_3 >= ULC && LA9_3 <= UUC)||(LA9_3 >= VLC && LA9_3 <= YUC)||(LA9_3 >= ZLC && LA9_3 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2319,7 +2326,7 @@ public TreeAdaptor getTreeAdaptor() {
                 if ( (LA9_4==Hyphen) ) {
                     alt9=1;
                 }
-                else if ( (LA9_4==EOF||LA9_4==ALC||LA9_4==AUC||(LA9_4 >= BLC && LA9_4 <= BUC)||LA9_4==BlockQuoted||LA9_4==CLC||LA9_4==CUC||(LA9_4 >= CarriageReturn && LA9_4 <= CharacterClassEnd)||(LA9_4 >= D0 && LA9_4 <= DLC)||LA9_4==DUC||LA9_4==ELC||LA9_4==EUC||(LA9_4 >= FLC && LA9_4 <= GLC)||LA9_4==GUC||(LA9_4 >= HLC && LA9_4 <= HUC)||(LA9_4 >= ILC && LA9_4 <= KUC)||(LA9_4 >= LLC && LA9_4 <= LUC)||(LA9_4 >= MLC && LA9_4 <= MUC)||(LA9_4 >= NLC && LA9_4 <= NUC)||LA9_4==NewLine||LA9_4==OLC||LA9_4==OUC||(LA9_4 >= PLC && LA9_4 <= PUC)||(LA9_4 >= QLC && LA9_4 <= QUC)||LA9_4==Quoted||(LA9_4 >= RLC && LA9_4 <= SUC)||(LA9_4 >= TLC && LA9_4 <= UUC)||(LA9_4 >= VLC && LA9_4 <= YUC)||(LA9_4 >= ZLC && LA9_4 <= ZUC)) ) {
+                else if ( (LA9_4==EOF||LA9_4==ALC||LA9_4==AUC||(LA9_4 >= BLC && LA9_4 <= BUC)||LA9_4==BlockQuoted||LA9_4==CLC||LA9_4==CUC||LA9_4==CarriageReturn||LA9_4==CloseBracket||(LA9_4 >= D0 && LA9_4 <= DLC)||LA9_4==DUC||LA9_4==ELC||LA9_4==EUC||(LA9_4 >= FLC && LA9_4 <= GLC)||LA9_4==GUC||(LA9_4 >= HLC && LA9_4 <= HUC)||(LA9_4 >= ILC && LA9_4 <= KUC)||(LA9_4 >= LLC && LA9_4 <= LUC)||(LA9_4 >= MLC && LA9_4 <= MUC)||(LA9_4 >= NLC && LA9_4 <= NUC)||LA9_4==NewLine||LA9_4==OLC||LA9_4==OUC||(LA9_4 >= PLC && LA9_4 <= PUC)||(LA9_4 >= QLC && LA9_4 <= QUC)||LA9_4==Quoted||(LA9_4 >= RLC && LA9_4 <= SUC)||(LA9_4 >= TLC && LA9_4 <= Tab)||(LA9_4 >= ULC && LA9_4 <= UUC)||(LA9_4 >= VLC && LA9_4 <= YUC)||(LA9_4 >= ZLC && LA9_4 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2339,7 +2346,7 @@ public TreeAdaptor getTreeAdaptor() {
                 if ( (LA9_5==Hyphen) ) {
                     alt9=1;
                 }
-                else if ( (LA9_5==EOF||LA9_5==ALC||LA9_5==AUC||(LA9_5 >= BLC && LA9_5 <= BUC)||LA9_5==BlockQuoted||LA9_5==CLC||LA9_5==CUC||(LA9_5 >= CarriageReturn && LA9_5 <= CharacterClassEnd)||(LA9_5 >= D0 && LA9_5 <= DLC)||LA9_5==DUC||LA9_5==ELC||LA9_5==EUC||(LA9_5 >= FLC && LA9_5 <= GLC)||LA9_5==GUC||(LA9_5 >= HLC && LA9_5 <= HUC)||(LA9_5 >= ILC && LA9_5 <= KUC)||(LA9_5 >= LLC && LA9_5 <= LUC)||(LA9_5 >= MLC && LA9_5 <= MUC)||(LA9_5 >= NLC && LA9_5 <= NUC)||LA9_5==NewLine||LA9_5==OLC||LA9_5==OUC||(LA9_5 >= PLC && LA9_5 <= PUC)||(LA9_5 >= QLC && LA9_5 <= QUC)||LA9_5==Quoted||(LA9_5 >= RLC && LA9_5 <= SUC)||(LA9_5 >= TLC && LA9_5 <= UUC)||(LA9_5 >= VLC && LA9_5 <= YUC)||(LA9_5 >= ZLC && LA9_5 <= ZUC)) ) {
+                else if ( (LA9_5==EOF||LA9_5==ALC||LA9_5==AUC||(LA9_5 >= BLC && LA9_5 <= BUC)||LA9_5==BlockQuoted||LA9_5==CLC||LA9_5==CUC||LA9_5==CarriageReturn||LA9_5==CloseBracket||(LA9_5 >= D0 && LA9_5 <= DLC)||LA9_5==DUC||LA9_5==ELC||LA9_5==EUC||(LA9_5 >= FLC && LA9_5 <= GLC)||LA9_5==GUC||(LA9_5 >= HLC && LA9_5 <= HUC)||(LA9_5 >= ILC && LA9_5 <= KUC)||(LA9_5 >= LLC && LA9_5 <= LUC)||(LA9_5 >= MLC && LA9_5 <= MUC)||(LA9_5 >= NLC && LA9_5 <= NUC)||LA9_5==NewLine||LA9_5==OLC||LA9_5==OUC||(LA9_5 >= PLC && LA9_5 <= PUC)||(LA9_5 >= QLC && LA9_5 <= QUC)||LA9_5==Quoted||(LA9_5 >= RLC && LA9_5 <= SUC)||(LA9_5 >= TLC && LA9_5 <= Tab)||(LA9_5 >= ULC && LA9_5 <= UUC)||(LA9_5 >= VLC && LA9_5 <= YUC)||(LA9_5 >= ZLC && LA9_5 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2468,7 +2475,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "subject_boundary"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:190:1: subject_boundary : ( '^' regex -> regex | regex '$' -> regex | '^' regex '$' -> regex );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:191:1: subject_boundary : ( '^' regex -> regex | regex '$' -> regex | '^' regex '$' -> regex );
     public final RegexParser.subject_boundary_return subject_boundary() throws RecognitionException {
         RegexParser.subject_boundary_return retval = new RegexParser.subject_boundary_return();
         retval.start = input.LT(1);
@@ -2491,11 +2498,11 @@ public TreeAdaptor getTreeAdaptor() {
         Object char_literal36_tree=null;
         Object char_literal37_tree=null;
         Object char_literal39_tree=null;
-        RewriteRuleTokenStream stream_EndOfSubjectOrLine=new RewriteRuleTokenStream(adaptor,"token EndOfSubjectOrLine");
+        RewriteRuleTokenStream stream_Dollar=new RewriteRuleTokenStream(adaptor,"token Dollar");
         RewriteRuleTokenStream stream_Caret=new RewriteRuleTokenStream(adaptor,"token Caret");
         RewriteRuleSubtreeStream stream_regex=new RewriteRuleSubtreeStream(adaptor,"rule regex");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:191:3: ( '^' regex -> regex | regex '$' -> regex | '^' regex '$' -> regex )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:192:3: ( '^' regex -> regex | regex '$' -> regex | '^' regex '$' -> regex )
             int alt10=3;
             int LA10_0 = input.LA(1);
 
@@ -2517,7 +2524,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 }
             }
-            else if ( (LA10_0==ALC||LA10_0==AUC||(LA10_0 >= BLC && LA10_0 <= BUC)||LA10_0==BlockQuoted||LA10_0==CLC||LA10_0==CUC||LA10_0==CarriageReturn||LA10_0==CharacterClassStart||(LA10_0 >= D0 && LA10_0 <= DLC)||(LA10_0 >= DUC && LA10_0 <= ELC)||(LA10_0 >= EUC && LA10_0 <= EndOfSubjectOrLine)||(LA10_0 >= FLC && LA10_0 <= GLC)||LA10_0==GUC||(LA10_0 >= HLC && LA10_0 <= HUC)||(LA10_0 >= ILC && LA10_0 <= KUC)||(LA10_0 >= LLC && LA10_0 <= LUC)||(LA10_0 >= MLC && LA10_0 <= MUC)||(LA10_0 >= NLC && LA10_0 <= NUC)||LA10_0==NewLine||LA10_0==OLC||LA10_0==OUC||LA10_0==OpenParen||(LA10_0 >= PLC && LA10_0 <= Pipe)||(LA10_0 >= QLC && LA10_0 <= QUC)||LA10_0==Quoted||(LA10_0 >= RLC && LA10_0 <= SUC)||(LA10_0 >= TLC && LA10_0 <= UUC)||(LA10_0 >= VLC && LA10_0 <= YUC)||(LA10_0 >= ZLC && LA10_0 <= ZUC)) ) {
+            else if ( (LA10_0==ALC||LA10_0==AUC||(LA10_0 >= BLC && LA10_0 <= BUC)||LA10_0==BlockQuoted||LA10_0==CLC||LA10_0==CUC||LA10_0==CarriageReturn||(LA10_0 >= D0 && LA10_0 <= DLC)||(LA10_0 >= DUC && LA10_0 <= Dot)||LA10_0==ELC||LA10_0==EUC||(LA10_0 >= FLC && LA10_0 <= GLC)||LA10_0==GUC||(LA10_0 >= HLC && LA10_0 <= HUC)||(LA10_0 >= ILC && LA10_0 <= KUC)||(LA10_0 >= LLC && LA10_0 <= LUC)||(LA10_0 >= MLC && LA10_0 <= MUC)||(LA10_0 >= NLC && LA10_0 <= NUC)||LA10_0==NewLine||LA10_0==OLC||LA10_0==OUC||(LA10_0 >= OpenBracket && LA10_0 <= OpenParen)||(LA10_0 >= PLC && LA10_0 <= PUC)||LA10_0==Pipe||(LA10_0 >= QLC && LA10_0 <= QUC)||LA10_0==Quoted||(LA10_0 >= RLC && LA10_0 <= SUC)||(LA10_0 >= TLC && LA10_0 <= Tab)||(LA10_0 >= ULC && LA10_0 <= UUC)||(LA10_0 >= VLC && LA10_0 <= YUC)||(LA10_0 >= ZLC && LA10_0 <= ZUC)) ) {
                 alt10=2;
             }
             else {
@@ -2530,13 +2537,13 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt10) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:192:3: '^' regex
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:193:3: '^' regex
                     {
-                    char_literal33=(Token)match(input,Caret,FOLLOW_Caret_in_subject_boundary676); if (state.failed) return retval; 
+                    char_literal33=(Token)match(input,Caret,FOLLOW_Caret_in_subject_boundary677); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Caret.add(char_literal33);
 
 
-                    pushFollow(FOLLOW_regex_in_subject_boundary678);
+                    pushFollow(FOLLOW_regex_in_subject_boundary679);
                     regex34=regex();
 
                     state._fsp--;
@@ -2556,7 +2563,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 193:5: -> regex
+                    // 194:5: -> regex
                     {
                         adaptor.addChild(root_0, stream_regex.nextTree());
 
@@ -2569,17 +2576,17 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:194:5: regex '$'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:195:5: regex '$'
                     {
-                    pushFollow(FOLLOW_regex_in_subject_boundary692);
+                    pushFollow(FOLLOW_regex_in_subject_boundary693);
                     regex35=regex();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_regex.add(regex35.getTree());
 
-                    char_literal36=(Token)match(input,EndOfSubjectOrLine,FOLLOW_EndOfSubjectOrLine_in_subject_boundary694); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_EndOfSubjectOrLine.add(char_literal36);
+                    char_literal36=(Token)match(input,Dollar,FOLLOW_Dollar_in_subject_boundary695); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_Dollar.add(char_literal36);
 
 
                     // AST REWRITE
@@ -2595,7 +2602,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 195:5: -> regex
+                    // 196:5: -> regex
                     {
                         adaptor.addChild(root_0, stream_regex.nextTree());
 
@@ -2608,21 +2615,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:196:5: '^' regex '$'
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:197:5: '^' regex '$'
                     {
-                    char_literal37=(Token)match(input,Caret,FOLLOW_Caret_in_subject_boundary708); if (state.failed) return retval; 
+                    char_literal37=(Token)match(input,Caret,FOLLOW_Caret_in_subject_boundary709); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Caret.add(char_literal37);
 
 
-                    pushFollow(FOLLOW_regex_in_subject_boundary710);
+                    pushFollow(FOLLOW_regex_in_subject_boundary711);
                     regex38=regex();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_regex.add(regex38.getTree());
 
-                    char_literal39=(Token)match(input,EndOfSubjectOrLine,FOLLOW_EndOfSubjectOrLine_in_subject_boundary712); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_EndOfSubjectOrLine.add(char_literal39);
+                    char_literal39=(Token)match(input,Dollar,FOLLOW_Dollar_in_subject_boundary713); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_Dollar.add(char_literal39);
 
 
                     // AST REWRITE
@@ -2638,7 +2645,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 197:5: -> regex
+                    // 198:5: -> regex
                     {
                         adaptor.addChild(root_0, stream_regex.nextTree());
 
@@ -2683,7 +2690,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "literal"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:201:1: literal : ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] | whitespace -> LITERAL[$whitespace.text] | Quoted -> LITERAL[$Quoted.text] | BlockQuoted -> LITERAL[$BlockQuoted.text] );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:202:1: literal : ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] | whitespace -> LITERAL[$whitespace.text] | Quoted -> LITERAL[$Quoted.text] | BlockQuoted -> LITERAL[$BlockQuoted.text] );
     public final RegexParser.literal_return literal() throws RecognitionException {
         RegexParser.literal_return retval = new RegexParser.literal_return();
         retval.start = input.LT(1);
@@ -2708,7 +2715,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_letter=new RewriteRuleSubtreeStream(adaptor,"rule letter");
         RewriteRuleSubtreeStream stream_whitespace=new RewriteRuleSubtreeStream(adaptor,"rule whitespace");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:202:3: ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] | whitespace -> LITERAL[$whitespace.text] | Quoted -> LITERAL[$Quoted.text] | BlockQuoted -> LITERAL[$BlockQuoted.text] )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:203:3: ( letter -> LITERAL[$letter.text] | digit -> LITERAL[$digit.text] | whitespace -> LITERAL[$whitespace.text] | Quoted -> LITERAL[$Quoted.text] | BlockQuoted -> LITERAL[$BlockQuoted.text] )
             int alt11=5;
             switch ( input.LA(1) ) {
             case ALC:
@@ -2810,9 +2817,9 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt11) {
                 case 1 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:203:3: letter
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:204:3: letter
                     {
-                    pushFollow(FOLLOW_letter_in_literal736);
+                    pushFollow(FOLLOW_letter_in_literal737);
                     letter40=letter();
 
                     state._fsp--;
@@ -2832,7 +2839,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 204:5: -> LITERAL[$letter.text]
+                    // 205:5: -> LITERAL[$letter.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (letter40!=null?input.toString(letter40.start,letter40.stop):null))
@@ -2847,9 +2854,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:205:5: digit
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:206:5: digit
                     {
-                    pushFollow(FOLLOW_digit_in_literal751);
+                    pushFollow(FOLLOW_digit_in_literal752);
                     digit41=digit();
 
                     state._fsp--;
@@ -2869,7 +2876,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 206:5: -> LITERAL[$digit.text]
+                    // 207:5: -> LITERAL[$digit.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (digit41!=null?input.toString(digit41.start,digit41.stop):null))
@@ -2884,9 +2891,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:207:5: whitespace
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:208:5: whitespace
                     {
-                    pushFollow(FOLLOW_whitespace_in_literal766);
+                    pushFollow(FOLLOW_whitespace_in_literal767);
                     whitespace42=whitespace();
 
                     state._fsp--;
@@ -2906,7 +2913,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 208:5: -> LITERAL[$whitespace.text]
+                    // 209:5: -> LITERAL[$whitespace.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (whitespace42!=null?input.toString(whitespace42.start,whitespace42.stop):null))
@@ -2921,9 +2928,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:209:5: Quoted
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:210:5: Quoted
                     {
-                    Quoted43=(Token)match(input,Quoted,FOLLOW_Quoted_in_literal781); if (state.failed) return retval; 
+                    Quoted43=(Token)match(input,Quoted,FOLLOW_Quoted_in_literal782); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_Quoted.add(Quoted43);
 
 
@@ -2940,7 +2947,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 210:5: -> LITERAL[$Quoted.text]
+                    // 211:5: -> LITERAL[$Quoted.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (Quoted43!=null?Quoted43.getText():null))
@@ -2955,9 +2962,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:211:5: BlockQuoted
+                    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:212:5: BlockQuoted
                     {
-                    BlockQuoted44=(Token)match(input,BlockQuoted,FOLLOW_BlockQuoted_in_literal796); if (state.failed) return retval; 
+                    BlockQuoted44=(Token)match(input,BlockQuoted,FOLLOW_BlockQuoted_in_literal797); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_BlockQuoted.add(BlockQuoted44);
 
 
@@ -2974,7 +2981,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 212:5: -> LITERAL[$BlockQuoted.text]
+                    // 213:5: -> LITERAL[$BlockQuoted.text]
                     {
                         adaptor.addChild(root_0, 
                         (Object)adaptor.create(LITERAL, (BlockQuoted44!=null?BlockQuoted44.getText():null))
@@ -3021,7 +3028,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "whitespace"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:215:1: whitespace : ( WHITESPACE | Tab | NewLine | CarriageReturn );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:216:1: whitespace : ( WHITESPACE | Tab | NewLine | CarriageReturn );
     public final RegexParser.whitespace_return whitespace() throws RecognitionException {
         RegexParser.whitespace_return retval = new RegexParser.whitespace_return();
         retval.start = input.LT(1);
@@ -3034,7 +3041,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set45_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:216:3: ( WHITESPACE | Tab | NewLine | CarriageReturn )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:217:3: ( WHITESPACE | Tab | NewLine | CarriageReturn )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -3090,7 +3097,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "number"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:223:1: number : digits -> NUMBER[$digits.text] ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:224:1: number : digits -> NUMBER[$digits.text] ;
     public final RegexParser.number_return number() throws RecognitionException {
         RegexParser.number_return retval = new RegexParser.number_return();
         retval.start = input.LT(1);
@@ -3103,10 +3110,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_digits=new RewriteRuleSubtreeStream(adaptor,"rule digits");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:224:3: ( digits -> NUMBER[$digits.text] )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:225:3: digits
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:225:3: ( digits -> NUMBER[$digits.text] )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:226:3: digits
             {
-            pushFollow(FOLLOW_digits_in_number853);
+            pushFollow(FOLLOW_digits_in_number854);
             digits46=digits();
 
             state._fsp--;
@@ -3126,7 +3133,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 226:5: -> NUMBER[$digits.text]
+            // 227:5: -> NUMBER[$digits.text]
             {
                 adaptor.addChild(root_0, 
                 (Object)adaptor.create(NUMBER, (digits46!=null?input.toString(digits46.start,digits46.stop):null))
@@ -3171,7 +3178,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "digits"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:229:1: digits : ( digit )+ ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:230:1: digits : ( digit )+ ;
     public final RegexParser.digits_return digits() throws RecognitionException {
         RegexParser.digits_return retval = new RegexParser.digits_return();
         retval.start = input.LT(1);
@@ -3184,13 +3191,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:230:3: ( ( digit )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:231:3: ( digit )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:231:3: ( ( digit )+ )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:232:3: ( digit )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:231:3: ( digit )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:232:3: ( digit )+
             int cnt12=0;
             loop12:
             do {
@@ -3204,9 +3211,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt12) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:231:3: digit
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:232:3: digit
             	    {
-            	    pushFollow(FOLLOW_digit_in_digits877);
+            	    pushFollow(FOLLOW_digit_in_digits878);
             	    digit47=digit();
 
             	    state._fsp--;
@@ -3260,7 +3267,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "digit"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:234:1: digit : ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:235:1: digit : ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 );
     public final RegexParser.digit_return digit() throws RecognitionException {
         RegexParser.digit_return retval = new RegexParser.digit_return();
         retval.start = input.LT(1);
@@ -3273,7 +3280,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set48_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:235:3: ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:236:3: ( D0 | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -3329,7 +3336,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "name"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:248:1: name : letters -> NAME[$letters.text] ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:249:1: name : letters -> NAME[$letters.text] ;
     public final RegexParser.name_return name() throws RecognitionException {
         RegexParser.name_return retval = new RegexParser.name_return();
         retval.start = input.LT(1);
@@ -3342,10 +3349,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_letters=new RewriteRuleSubtreeStream(adaptor,"rule letters");
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:249:3: ( letters -> NAME[$letters.text] )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:250:3: letters
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:250:3: ( letters -> NAME[$letters.text] )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:251:3: letters
             {
-            pushFollow(FOLLOW_letters_in_name962);
+            pushFollow(FOLLOW_letters_in_name963);
             letters49=letters();
 
             state._fsp--;
@@ -3365,7 +3372,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 251:5: -> NAME[$letters.text]
+            // 252:5: -> NAME[$letters.text]
             {
                 adaptor.addChild(root_0, 
                 (Object)adaptor.create(NAME, (letters49!=null?input.toString(letters49.start,letters49.stop):null))
@@ -3410,7 +3417,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "letters"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:254:1: letters : ( letter )+ ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:255:1: letters : ( letter )+ ;
     public final RegexParser.letters_return letters() throws RecognitionException {
         RegexParser.letters_return retval = new RegexParser.letters_return();
         retval.start = input.LT(1);
@@ -3423,13 +3430,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:255:3: ( ( letter )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:256:3: ( letter )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:256:3: ( ( letter )+ )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:257:3: ( letter )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:256:3: ( letter )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:257:3: ( letter )+
             int cnt13=0;
             loop13:
             do {
@@ -3443,9 +3450,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt13) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:256:3: letter
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:257:3: letter
             	    {
-            	    pushFollow(FOLLOW_letter_in_letters986);
+            	    pushFollow(FOLLOW_letter_in_letters987);
             	    letter50=letter();
 
             	    state._fsp--;
@@ -3499,7 +3506,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "non_close_parens"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:259:1: non_close_parens : ( non_close_paren )+ ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:260:1: non_close_parens : ( non_close_paren )+ ;
     public final RegexParser.non_close_parens_return non_close_parens() throws RecognitionException {
         RegexParser.non_close_parens_return retval = new RegexParser.non_close_parens_return();
         retval.start = input.LT(1);
@@ -3512,29 +3519,29 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:260:3: ( ( non_close_paren )+ )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:261:3: ( non_close_paren )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:261:3: ( ( non_close_paren )+ )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:262:3: ( non_close_paren )+
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:261:3: ( non_close_paren )+
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:262:3: ( non_close_paren )+
             int cnt14=0;
             loop14:
             do {
                 int alt14=2;
                 int LA14_0 = input.LA(1);
 
-                if ( ((LA14_0 >= ALC && LA14_0 <= CloseBrace)||(LA14_0 >= Colon && LA14_0 <= ZUC)) ) {
+                if ( ((LA14_0 >= ALC && LA14_0 <= CloseBracket)||(LA14_0 >= Colon && LA14_0 <= ZUC)) ) {
                     alt14=1;
                 }
 
 
                 switch (alt14) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:261:3: non_close_paren
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:262:3: non_close_paren
             	    {
-            	    pushFollow(FOLLOW_non_close_paren_in_non_close_parens1002);
+            	    pushFollow(FOLLOW_non_close_paren_in_non_close_parens1003);
             	    non_close_paren51=non_close_paren();
 
             	    state._fsp--;
@@ -3588,7 +3595,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "non_close_paren"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:264:1: non_close_paren : ~ CloseParen ;
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:265:1: non_close_paren : ~ CloseParen ;
     public final RegexParser.non_close_paren_return non_close_paren() throws RecognitionException {
         RegexParser.non_close_paren_return retval = new RegexParser.non_close_paren_return();
         retval.start = input.LT(1);
@@ -3601,7 +3608,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set52_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:265:3: (~ CloseParen )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:266:3: (~ CloseParen )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -3609,7 +3616,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             set52=(Token)input.LT(1);
 
-            if ( (input.LA(1) >= ALC && input.LA(1) <= CloseBrace)||(input.LA(1) >= Colon && input.LA(1) <= ZUC) ) {
+            if ( (input.LA(1) >= ALC && input.LA(1) <= CloseBracket)||(input.LA(1) >= Colon && input.LA(1) <= ZUC) ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
                 (Object)adaptor.create(set52)
@@ -3657,7 +3664,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "letter"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:269:1: letter : ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:270:1: letter : ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC );
     public final RegexParser.letter_return letter() throws RecognitionException {
         RegexParser.letter_return retval = new RegexParser.letter_return();
         retval.start = input.LT(1);
@@ -3670,7 +3677,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set53_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:270:3: ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:271:3: ( ALC | BLC | CLC | DLC | ELC | FLC | GLC | HLC | ILC | JLC | KLC | LLC | MLC | NLC | OLC | PLC | QLC | RLC | SLC | TLC | ULC | VLC | WLC | XLC | YLC | ZLC | AUC | BUC | CUC | DUC | EUC | FUC | GUC | HUC | IUC | JUC | KUC | LUC | MUC | NUC | OUC | PUC | QUC | RUC | SUC | TUC | UUC | VUC | WUC | XUC | YUC | ZUC )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -3792,12 +3799,12 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred14_Regex
     public final void synpred14_Regex_fragment() throws RecognitionException {
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:192:3: ( '^' regex )
-        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:192:3: '^' regex
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:193:3: ( '^' regex )
+        // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:193:3: '^' regex
         {
-        match(input,Caret,FOLLOW_Caret_in_synpred14_Regex676); if (state.failed) return ;
+        match(input,Caret,FOLLOW_Caret_in_synpred14_Regex677); if (state.failed) return ;
 
-        pushFollow(FOLLOW_regex_in_synpred14_Regex678);
+        pushFollow(FOLLOW_regex_in_synpred14_Regex679);
         regex();
 
         state._fsp--;
@@ -3887,21 +3894,21 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_regex_in_parse161 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_parse163 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_subject_boundary_in_parse177 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_first_alternative_in_regex197 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-    public static final BitSet FOLLOW_Pipe_in_regex219 = new BitSet(new long[]{0xFC6B8BBFF8555890L,0x001BFE7CF5BA95B6L});
-    public static final BitSet FOLLOW_concatenation_in_regex221 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+    public static final BitSet FOLLOW_first_alternative_in_regex197 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_Pipe_in_regex219 = new BitSet(new long[]{0xF1972ABFF82AB090L,0x0DFF370F5ADA56DBL});
+    public static final BitSet FOLLOW_concatenation_in_regex221 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
     public static final BitSet FOLLOW_concatenation_in_first_alternative268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_element_in_concatenation283 = new BitSet(new long[]{0xFC6B8BBFF8555892L,0x001BFE7CF59A95B6L});
-    public static final BitSet FOLLOW_atom_in_element318 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_element_in_concatenation283 = new BitSet(new long[]{0xF1972ABFF82AB092L,0x0DFF370F58DA56DBL});
+    public static final BitSet FOLLOW_atom_in_element318 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
     public static final BitSet FOLLOW_Plus_in_element320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_element344 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_atom_in_element344 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
     public static final BitSet FOLLOW_Star_in_element346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_element370 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_atom_in_element370 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
     public static final BitSet FOLLOW_QuestionMark_in_element372 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_atom_in_element396 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Plus_in_quantifier429 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Star_in_quantifier451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OpenParen_in_group482 = new BitSet(new long[]{0xFC6B8BBFF8555890L,0x001BFE7CF59A95B6L});
+    public static final BitSet FOLLOW_OpenParen_in_group482 = new BitSet(new long[]{0xF1972ABFF82AB090L,0x0DFF370F58DA56DBL});
     public static final BitSet FOLLOW_regex_in_group484 = new BitSet(new long[]{0x0000000001000000L});
     public static final BitSet FOLLOW_CloseParen_in_group486 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_atom519 = new BitSet(new long[]{0x0000000000000002L});
@@ -3909,39 +3916,39 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_dotany_in_atom531 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_character_class_in_atom537 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Dot_in_dotany552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CharacterClassStart_in_character_class588 = new BitSet(new long[]{0xFC6B8ABFF8155890L,0x001BFE7CF59895B6L});
-    public static final BitSet FOLLOW_cc_atom_in_character_class590 = new BitSet(new long[]{0xFC6B8ABFF8355890L,0x001BFE7CF59895B6L});
-    public static final BitSet FOLLOW_CharacterClassEnd_in_character_class593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_cc_atom627 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_Hyphen_in_cc_atom629 = new BitSet(new long[]{0xFC6B8ABFF8155890L,0x001BFE7CF59895B6L});
+    public static final BitSet FOLLOW_OpenBracket_in_character_class588 = new BitSet(new long[]{0xF19728BFF82AB090L,0x0DFF370F58C256DBL});
+    public static final BitSet FOLLOW_cc_atom_in_character_class590 = new BitSet(new long[]{0xF19728BFF8AAB090L,0x0DFF370F58C256DBL});
+    public static final BitSet FOLLOW_CloseBracket_in_character_class593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_cc_atom627 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_Hyphen_in_cc_atom629 = new BitSet(new long[]{0xF19728BFF82AB090L,0x0DFF370F58C256DBL});
     public static final BitSet FOLLOW_literal_in_cc_atom631 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_cc_atom657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_subject_boundary676 = new BitSet(new long[]{0xFC6B8BBFF8555890L,0x001BFE7CF59A95B6L});
-    public static final BitSet FOLLOW_regex_in_subject_boundary678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_regex_in_subject_boundary692 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_EndOfSubjectOrLine_in_subject_boundary694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_subject_boundary708 = new BitSet(new long[]{0xFC6B8BBFF8555890L,0x001BFE7CF59A95B6L});
-    public static final BitSet FOLLOW_regex_in_subject_boundary710 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_EndOfSubjectOrLine_in_subject_boundary712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_letter_in_literal736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digit_in_literal751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_whitespace_in_literal766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Quoted_in_literal781 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BlockQuoted_in_literal796 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digits_in_number853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_digit_in_digits877 = new BitSet(new long[]{0x0000001FF8000002L});
-    public static final BitSet FOLLOW_letters_in_name962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_letter_in_letters986 = new BitSet(new long[]{0xFC6B8AA000051892L,0x001BF66CF19891B6L});
-    public static final BitSet FOLLOW_non_close_paren_in_non_close_parens1002 = new BitSet(new long[]{0xFFFFFFFFFEFFFFF2L,0x001FFFFFFFFFFFFFL});
+    public static final BitSet FOLLOW_Caret_in_subject_boundary677 = new BitSet(new long[]{0xF1972ABFF82AB090L,0x0DFF370F58DA56DBL});
+    public static final BitSet FOLLOW_regex_in_subject_boundary679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_regex_in_subject_boundary693 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_Dollar_in_subject_boundary695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Caret_in_subject_boundary709 = new BitSet(new long[]{0xF1972ABFF82AB090L,0x0DFF370F58DA56DBL});
+    public static final BitSet FOLLOW_regex_in_subject_boundary711 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_Dollar_in_subject_boundary713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_letter_in_literal737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digit_in_literal752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_whitespace_in_literal767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Quoted_in_literal782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BlockQuoted_in_literal797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digits_in_number854 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_digit_in_digits878 = new BitSet(new long[]{0x0000001FF8000002L});
+    public static final BitSet FOLLOW_letters_in_name963 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_letter_in_letters987 = new BitSet(new long[]{0xF19728A0000A3092L,0x0DFB330F18C246DBL});
+    public static final BitSet FOLLOW_non_close_paren_in_non_close_parens1003 = new BitSet(new long[]{0xFFFFFFFFFEFFFFF2L,0x0FFFFFFFFFFFFFFFL});
     public static final BitSet FOLLOW_regex_in_synpred1_Regex161 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_synpred1_Regex163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_synpred5_Regex318 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_atom_in_synpred5_Regex318 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
     public static final BitSet FOLLOW_Plus_in_synpred5_Regex320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_synpred6_Regex344 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_atom_in_synpred6_Regex344 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
     public static final BitSet FOLLOW_Star_in_synpred6_Regex346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_synpred7_Regex370 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_atom_in_synpred7_Regex370 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
     public static final BitSet FOLLOW_QuestionMark_in_synpred7_Regex372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_synpred14_Regex676 = new BitSet(new long[]{0xFC6B8BBFF8555890L,0x001BFE7CF59A95B6L});
-    public static final BitSet FOLLOW_regex_in_synpred14_Regex678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Caret_in_synpred14_Regex677 = new BitSet(new long[]{0xF1972ABFF82AB090L,0x0DFF370F58DA56DBL});
+    public static final BitSet FOLLOW_regex_in_synpred14_Regex679 = new BitSet(new long[]{0x0000000000000002L});
 
 }
