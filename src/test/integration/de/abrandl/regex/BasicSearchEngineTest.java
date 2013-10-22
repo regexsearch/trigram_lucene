@@ -18,7 +18,6 @@ import org.junit.Test;
 public abstract class BasicSearchEngineTest {
 
 	private RegexSearchEngine exhaustiveSearch;
-	private RegexSearchEngine ngramSearch;
 	private RegexSearchEngine luceneSearch;
 
 	private final TestDatasets dataset;
@@ -30,11 +29,9 @@ public abstract class BasicSearchEngineTest {
 	private void indexDocuments() throws IOException {
 
 		exhaustiveSearch = new ExhaustiveSearchEngine();
-		ngramSearch = new NGramRegexSearchEngine(3);
 		luceneSearch = new LuceneRegexSearchEngine(Version.LUCENE_44, new RAMDirectory());
 
 		dataset.createIndex(exhaustiveSearch);
-		dataset.createIndex(ngramSearch);
 		dataset.createIndex(luceneSearch);
 	}
 
@@ -43,7 +40,8 @@ public abstract class BasicSearchEngineTest {
 		Iterator<String> queries = dataset.queries();
 
 		while (queries.hasNext()) {
-			indexDocuments(); // needed, as we use non-resettable iterators
+			indexDocuments(); // TODO: needed, as we use non-resettable
+								// iterators
 			String regex = queries.next();
 			searchDocuments(regex);
 		}
@@ -61,20 +59,10 @@ public abstract class BasicSearchEngineTest {
 
 		System.out.printf("expected   [%03d]:   %s\n", expected.size(), expected);
 
-		{
-			try (RegexSearchEngine.Reader reader = ngramSearch.getReader()) {
-				Collection<SimpleDocument> result = reader.search(regex);
-				System.out.printf("ngramSearch     [%03d]:   %s\n", result.size(), result);
-				assertThat(result, equalTo(expected));
-			}
-		}
-
-		{
-			try (RegexSearchEngine.Reader reader = luceneSearch.getReader()) {
-				Collection<SimpleDocument> result = reader.search(regex);
-				System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
-				assertThat(result, equalTo(expected));
-			}
+		try (RegexSearchEngine.Reader reader = luceneSearch.getReader()) {
+			Collection<SimpleDocument> result = reader.search(regex);
+			System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
+			assertThat(result, equalTo(expected));
 		}
 	}
 
