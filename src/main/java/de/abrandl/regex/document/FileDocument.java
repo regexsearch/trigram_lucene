@@ -31,6 +31,7 @@ public class FileDocument extends SimpleDocument {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				content.append(line);
+				content.append(System.getProperty("line.separator"));
 			}
 		}
 		return content.toString();
