@@ -6,11 +6,11 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.AtomicReader;
-import org.apache.lucene.index.AtomicReaderContext;
+import org.apache.lucene.index.*;
 import org.apache.lucene.search.DocIdSet;
 import org.apache.lucene.search.Filter;
 import org.apache.lucene.util.Bits;
+import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.FixedBitSet;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -34,11 +34,41 @@ public class PatternFilter extends Filter {
 
 	@Override
 	public DocIdSet getDocIdSet(AtomicReaderContext context, Bits acceptDocs) throws IOException {
-
+		// return otherMethodButBuggy(context.reader(), acceptDocs);
 		return correctBits(context.reader(), acceptDocs);
-		// BinaryDocValues binaryDocValues =
-		// context.reader().getBinaryDocValues("content");
+	}
 
+	private FixedBitSet otherMethodButBuggy(AtomicReader reader, Bits acceptDocs) throws IOException {
+		FixedBitSet bits = new FixedBitSet(reader.maxDoc()); // assume all are
+																// invalid
+
+		// TODO: check for live docs
+
+		Terms terms = reader.terms(field);
+		TermsEnum termsEnum = terms.iterator(null);
+		BytesRef currTerm = termsEnum.next();
+
+		System.out.println(currTerm.utf8ToString());
+		System.out.println("--");
+
+		DocsEnum docsEnum = null;
+
+		while (currTerm != null) {
+			if (pattern.matcher(currTerm.utf8ToString()).find()) {
+				docsEnum = termsEnum.docs(acceptDocs, docsEnum);
+
+				int docID = docsEnum.nextDoc();
+
+				while (docID != DocsEnum.NO_MORE_DOCS) {
+					bits.set(docID);
+					docID = docsEnum.nextDoc();
+				}
+			}
+
+			currTerm = termsEnum.next();
+		}
+
+		return bits;
 	}
 
 	private FixedBitSet correctBits(AtomicReader reader, Bits acceptDocs) throws IOException {
