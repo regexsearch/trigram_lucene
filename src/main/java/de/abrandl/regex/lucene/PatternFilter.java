@@ -16,6 +16,17 @@ import org.apache.lucene.util.FixedBitSet;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * @deprecated That's not the way to go for verification of the candidate set.
+ * 
+ *             A filter is applied to all docs within the index, so it should be
+ *             very fast. Verification of candidates is slow, thus it should not
+ *             be done within a Filter.
+ * 
+ * @author abrandl
+ * 
+ */
+@Deprecated
 public class PatternFilter extends Filter {
 
 	private final Pattern pattern;
