@@ -15,6 +15,7 @@ import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.document.InMemoryDocument;
 import de.abrandl.regex.document.SimpleDocument;
 
+@Deprecated
 public class LuceneTest {
 
 	private static final Version LUCENE44 = Version.LUCENE_44;
