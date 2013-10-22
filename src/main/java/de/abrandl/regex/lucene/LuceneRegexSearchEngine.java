@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import org.apache.lucene.document.*;
-import org.apache.lucene.document.Field.Index;
 import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
@@ -129,14 +128,15 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			}
 		}
 
-		// TODO: get rid of lucene deprecated warnings
 		private void add(SimpleDocument document) throws IOException {
 			open();
-			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
-			ldoc.add(new Field("identifier", document.getIdentifier(), Store.YES, Index.NOT_ANALYZED));
 			String content = document.getContent();
-			ldoc.add(new Field("content", content, Store.YES, Index.NOT_ANALYZED));
+
+			Document ldoc = new org.apache.lucene.document.Document();
+			ldoc.add(new StringField("identifier", document.getIdentifier(), Store.YES));
+			ldoc.add(new StringField("content", content, Store.YES));
 			ldoc.add(new Field("trigrams", content, TextField.TYPE_STORED));
+
 			writer.addDocument(ldoc);
 
 			documentCount++;
