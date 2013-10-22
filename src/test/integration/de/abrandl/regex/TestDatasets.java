@@ -31,7 +31,9 @@ public enum TestDatasets {
 			List<SimpleDocument> docs = new LinkedList<SimpleDocument>();
 
 			while ((line = reader.readLine()) != null) {
-				docs.add(new InMemoryDocument(line, line));
+				// TODO: document identifiers - this sucks, need something
+				// better here
+				docs.add(new InMemoryDocument("/" + line, line));
 			}
 
 			writer.add(docs.iterator());

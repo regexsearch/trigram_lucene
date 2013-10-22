@@ -3,7 +3,7 @@ package de.abrandl.regex.document;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class InMemoryDocument implements SimpleDocument {
+public class InMemoryDocument extends SimpleDocument {
 
 	private final String identifier, content;
 
@@ -21,31 +21,6 @@ public class InMemoryDocument implements SimpleDocument {
 	@Override
 	public String getContent() {
 		return content;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InMemoryDocument other = (InMemoryDocument) obj;
-		if (identifier == null) {
-			if (other.identifier != null)
-				return false;
-		} else if (!identifier.equals(other.identifier))
-			return false;
-		return true;
 	}
 
 	@Override

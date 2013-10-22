@@ -1,15 +1,14 @@
 package de.abrandl.regex.lucene;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
-import org.apache.lucene.document.Field;
+import org.apache.lucene.document.*;
 import org.apache.lucene.document.Field.Index;
 import org.apache.lucene.document.Field.Store;
-import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -21,7 +20,7 @@ import org.apache.lucene.util.Version;
 
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
-import de.abrandl.regex.document.InMemoryDocument;
+import de.abrandl.regex.document.FileDocument;
 import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.grammar.RegexParser;
 import de.abrandl.regex.grammar.RegexParsingException;
@@ -87,11 +86,11 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				Pattern pattern = Pattern.compile(regex);
 
 				for (int i = 0; i < hits.length; i++) {
-					org.apache.lucene.document.Document doc = isearcher.doc(hits[i].doc);
-					String path = doc.get("identifier");
+					Document doc = isearcher.doc(hits[i].doc);
+					String identifier = doc.get("identifier");
 					String content = doc.get("content");
 					if (pattern.matcher(content).find()) {
-						resultSet.add(new InMemoryDocument(path, content));
+						resultSet.add(new FileDocument(identifier));
 					}
 				}
 
@@ -99,17 +98,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
 			}
-		}
-
-		private String readFile(File file) throws FileNotFoundException, IOException {
-			StringBuffer content = new StringBuffer();
-			try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-				String line = null;
-				while ((line = reader.readLine()) != null) {
-					content.append(line);
-				}
-			}
-			return content.toString();
 		}
 
 	}
@@ -141,6 +129,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			}
 		}
 
+		// TODO: get rid of lucene deprecated warnings
 		private void add(SimpleDocument document) throws IOException {
 			open();
 			org.apache.lucene.document.Document ldoc = new org.apache.lucene.document.Document();
