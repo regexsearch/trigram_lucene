@@ -37,11 +37,12 @@ public abstract class BasicSearchEngineTest {
 
 	@Test
 	public void testQueries() throws SearchFailedException, IOException {
+
+		indexDocuments();
+
 		Iterator<String> queries = dataset.queries();
 
 		while (queries.hasNext()) {
-			indexDocuments(); // TODO: needed, as we use non-resettable
-								// iterators
 			String regex = queries.next();
 			searchDocuments(regex);
 		}

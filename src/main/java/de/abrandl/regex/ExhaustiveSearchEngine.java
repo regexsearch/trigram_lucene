@@ -8,7 +8,7 @@ import de.abrandl.regex.document.SimpleDocument;
 
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
-	private final List<Iterator<SimpleDocument>> documents = new LinkedList<Iterator<SimpleDocument>>();
+	private final List<SimpleDocument> documents = new LinkedList<SimpleDocument>();
 
 	private class Writer implements RegexSearchEngine.Writer {
 
@@ -24,7 +24,9 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
 		@Override
 		public void add(Iterator<SimpleDocument> document) throws IOException {
-			documents.add(document);
+			while (document.hasNext()) {
+				documents.add(document.next());
+			}
 		}
 	}
 
@@ -47,12 +49,9 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 			Set<SimpleDocument> matches = new HashSet<SimpleDocument>();
 
 			try {
-				for (Iterator<SimpleDocument> iter : documents) {
-					while (iter.hasNext()) {
-						SimpleDocument doc = iter.next();
-						if (pattern.matcher(doc.getContent()).find()) {
-							matches.add(doc);
-						}
+				for (SimpleDocument doc : documents) {
+					if (pattern.matcher(doc.getContent()).find()) {
+						matches.add(doc);
 					}
 				}
 				return matches;
