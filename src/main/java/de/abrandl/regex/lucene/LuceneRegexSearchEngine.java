@@ -68,25 +68,21 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			try {
 				open();
 				IndexSearcher isearcher = new IndexSearcher(index);
-				RegexNode parsedRegex = RegexParser.parse(regex);
-				Expression expression = queryTransformation.expressionFor(parsedRegex);
-
-				System.out.println(expression);
-
-				Query query = expression.accept(new LuceneExpressionQuery("trigrams"));
+				final Query query = constructQueryFromRegex(regex);
 
 				System.out.println(query);
 
-				ScoreDoc[] hits = isearcher.search(query, null, documentCount).scoreDocs;
+				final Pattern pattern = Pattern.compile(regex);
+				final ScoreDoc[] hits = isearcher.search(query, null, Integer.MAX_VALUE).scoreDocs;
+
 				System.out.println(String.format("Got %d hits", hits.length));
 
-				Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.length);
-
-				Pattern pattern = Pattern.compile(regex);
+				final Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.length);
 
 				for (int i = 0; i < hits.length; i++) {
 					Document doc = isearcher.doc(hits[i].doc);
 					String identifier = doc.get("identifier");
+
 					String content = doc.get("content");
 					if (pattern.matcher(content).find()) {
 						resultSet.add(new FileDocument(identifier));
@@ -97,6 +93,15 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
 			}
+		}
+
+		private Query constructQueryFromRegex(String regex) throws RegexParsingException {
+			RegexNode parsedRegex = RegexParser.parse(regex);
+			Expression expression = queryTransformation.expressionFor(parsedRegex);
+
+			System.out.println(expression);
+
+			return expression.accept(new LuceneExpressionQuery("trigrams"));
 		}
 
 	}
