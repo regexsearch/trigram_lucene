@@ -15,6 +15,10 @@ public class Or extends InnerExpressionNode {
 			}
 		}
 
+		if (children.size() == 1) {
+			return children.iterator().next();
+		}
+
 		return new Or(children);
 	}
 
@@ -49,4 +53,13 @@ public class Or extends InnerExpressionNode {
 		return create(clauses);
 	}
 
+	@Override
+	public boolean requires(Literal literal) {
+		boolean requires = true;
+		// TODO: optimize iteration
+		for (Expression child : getChildren()) {
+			requires &= child.requires(literal);
+		}
+		return requires;
+	}
 }

@@ -43,4 +43,9 @@ public final class Any extends Expression {
 		return this;
 	}
 
+	@Override
+	public boolean requires(Literal literal) {
+		return false;
+	}
+
 }

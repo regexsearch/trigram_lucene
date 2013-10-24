@@ -7,6 +7,16 @@ public abstract class Expression {
 
 	public abstract <ReturnType> ReturnType accept(ExpressionVisitor<ReturnType> visitor);
 
+	/**
+	 * Checks if this expression requires a given <code>literal</code> to be
+	 * present.
+	 * 
+	 * @param literal
+	 * @return true iff this expression requires the presence of the given
+	 *         <code>literal</code>
+	 */
+	public abstract boolean requires(Literal literal);
+
 	final public static Expression and(String... strings) {
 		Set<Expression> literals = new HashSet<Expression>(strings.length, 1.0f);
 		for (String s : strings) {
@@ -25,6 +35,10 @@ public abstract class Expression {
 
 	final public static Expression any() {
 		return Any.instance();
+	}
+
+	final public static Literal literal(String string) {
+		return new Literal(string);
 	}
 
 	public Expression and(Expression... other) {

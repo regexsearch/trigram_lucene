@@ -2,7 +2,10 @@ package de.abrandl.regex.query.bool;
 
 import java.util.Collections;
 
+import static de.abrandl.regex.query.bool.Expression.and;
+import static de.abrandl.regex.query.bool.Expression.literal;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 
 import static org.junit.Assert.assertThat;
 
@@ -36,6 +39,22 @@ public class AndTest {
 		Expression result = And.create(new Literal("foo"), Expression.any(), new Literal("bar"));
 		assertThat(result, equalTo(Expression.and("foo", "bar")));
 
+	}
+
+	@Test
+	public void testRequiresRelationForAnd() {
+		Expression and = and("foo", "bar");
+		Literal literal = literal("foo");
+
+		assertThat(and.requires(literal), is(true));
+	}
+
+	@Test
+	public void testRequiresRelationForAnd2() {
+		Expression and = and("foo", "bar");
+		Literal literal = literal("bla");
+
+		assertThat(and.requires(literal), is(false));
 	}
 
 }
