@@ -1,6 +1,5 @@
 package de.abrandl.regex.lucene;
 
-
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.*;

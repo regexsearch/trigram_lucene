@@ -29,6 +29,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @Deprecated
 public class PatternFilter extends Filter {
 
+	// TODO: remove me
+	public static int matches = 0;
+
 	private final Pattern pattern;
 	private final String field;
 
@@ -59,20 +62,27 @@ public class PatternFilter extends Filter {
 		TermsEnum termsEnum = terms.iterator(null);
 		BytesRef currTerm = termsEnum.next();
 
-		System.out.println(currTerm.utf8ToString());
-		System.out.println("--");
+		// System.out.println(currTerm.utf8ToString());
+		// System.out.println("--");
 
 		DocsEnum docsEnum = null;
 
 		while (currTerm != null) {
+			matches++;
 			if (pattern.matcher(currTerm.utf8ToString()).find()) {
-				docsEnum = termsEnum.docs(acceptDocs, docsEnum);
+				docsEnum = termsEnum.docs(null, docsEnum);
 
 				int docID = docsEnum.nextDoc();
 
+				int docsPerTerm = 0;
+
 				while (docID != DocsEnum.NO_MORE_DOCS) {
+					docsPerTerm++;
 					bits.set(docID);
 					docID = docsEnum.nextDoc();
+				}
+				if (docsPerTerm > 1) {
+					System.out.println("BAM!");
 				}
 			}
 
@@ -82,9 +92,26 @@ public class PatternFilter extends Filter {
 		return bits;
 	}
 
+	private int bitsSet(Bits bits) {
+		int set = 0;
+		if (bits == null) {
+			return set;
+		}
+		for (int i = 0; i < bits.length(); i++) {
+			if (bits.get(i)) {
+				set++;
+			}
+		}
+		return set;
+	}
+
 	private FixedBitSet correctBits(AtomicReader reader, Bits acceptDocs) throws IOException {
 		FixedBitSet bits = new FixedBitSet(reader.maxDoc()); // assume all are
 																// INvalid
+
+		if (acceptDocs != null) {
+			System.out.printf("set bits in acceptDocs: %d of %d\n", bitsSet(acceptDocs), acceptDocs.length());
+		}
 
 		Bits liveDocs = reader.getLiveDocs();
 
@@ -95,10 +122,12 @@ public class PatternFilter extends Filter {
 
 			if (liveDocs != null && !(liveDocs.get(docID))) {
 				// document is not alive anymore...
+				System.out.println("not alive..");
 				continue;
 			}
 
 			if (acceptDocs != null && !(acceptDocs.get(docID))) {
+				System.out.println("not acceptable...");
 				continue;
 			}
 
@@ -110,6 +139,7 @@ public class PatternFilter extends Filter {
 				continue;
 			}
 
+			matches++;
 			if (pattern.matcher(content).find()) {
 				bits.set(docID);
 			}
