@@ -28,7 +28,7 @@ public abstract class Expression {
 	final public static Expression or(String... strings) {
 		Set<Expression> literals = new HashSet<Expression>(strings.length, 1.0f);
 		for (String s : strings) {
-			literals.add(new Literal(s));
+			literals.add(literal(s));
 		}
 		return Or.create(literals);
 	}

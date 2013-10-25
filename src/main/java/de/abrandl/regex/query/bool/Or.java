@@ -7,19 +7,21 @@ import java.util.Set;
 public class Or extends InnerExpressionNode {
 
 	public static Expression create(Collection<Expression> children) {
+		if (children.size() == 1) {
+			return children.iterator().next();
+		}
+
+		Set<Expression> sube = new HashSet<Expression>(children.size(), 1.0f);
 
 		// Any eats other clauses here
 		for (Expression e : children) {
 			if (e instanceof Any) {
 				return Expression.any();
 			}
+			sube.add(e);
 		}
 
-		if (children.size() == 1) {
-			return children.iterator().next();
-		}
-
-		return new Or(children);
+		return new Or(sube);
 	}
 
 	public static Expression create(Expression... children) {
@@ -30,7 +32,7 @@ public class Or extends InnerExpressionNode {
 		return create(unique);
 	}
 
-	private Or(Collection<Expression> children) {
+	private Or(Set<Expression> children) {
 		super(children);
 	}
 

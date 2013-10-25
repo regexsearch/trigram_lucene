@@ -1,23 +1,23 @@
 package de.abrandl.regex.query.bool;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
-abstract class InnerExpressionNode extends Expression implements Iterable<Expression> {
+abstract public class InnerExpressionNode extends Expression implements Iterable<Expression> {
 
-	final protected Collection<Expression> children;
+	final protected Set<Expression> children;
 
-	InnerExpressionNode(Collection<Expression> children) {
+	InnerExpressionNode(Set<Expression> children) {
 		super();
-		this.children = children;
+		this.children = Collections.unmodifiableSet(children);
 	}
 
 	InnerExpressionNode(Expression... children) {
-		this(new HashSet<Expression>(children.length));
+		super();
+		Set<Expression> sube = new HashSet<Expression>(children.length);
 		for (Expression e : children) {
-			this.children.add(e);
+			sube.add(e);
 		}
+		this.children = Collections.unmodifiableSet(sube);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ abstract class InnerExpressionNode extends Expression implements Iterable<Expres
 		return children.iterator();
 	}
 
-	protected Collection<Expression> getChildren() {
+	public Collection<Expression> getChildren() {
 		return children;
 	}
 

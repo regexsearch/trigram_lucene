@@ -34,4 +34,13 @@ public class ExpressionRedundancyRemoverTest {
 		assertThat(e.accept(visitor), equalTo(expected));
 	}
 
+	@Test
+	public void removesRedundancy() {
+		// AND(OR(AND(rld,ld.),rld),rld)
+		Expression e = And.create(Or.create(and("foo", "bar"), literal("foo")), literal("foo"));
+		Expression expected = literal("foo");
+
+		assertThat(e.accept(visitor), equalTo(expected));
+	}
+
 }

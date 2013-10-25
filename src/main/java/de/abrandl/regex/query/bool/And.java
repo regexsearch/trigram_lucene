@@ -3,13 +3,14 @@ package de.abrandl.regex.query.bool;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 public class And extends InnerExpressionNode {
 
 	public static Expression create(Collection<Expression> children) {
 
 		// filter Any nodes, not useful in And context
-		Collection<Expression> filtered = new HashSet<Expression>(children.size());
+		Set<Expression> filtered = new HashSet<Expression>(children.size());
 		for (Expression e : children) {
 			if (!(e instanceof Any)) {
 				filtered.add(e);
@@ -29,7 +30,7 @@ public class And extends InnerExpressionNode {
 		return create(Arrays.asList(children));
 	}
 
-	private And(Collection<Expression> children) {
+	private And(Set<Expression> children) {
 		super(children);
 	}
 
