@@ -45,6 +45,19 @@ final public class RegexInfo {
 		return match;
 	}
 
+	/**
+	 * Makes handling immutability easier.
+	 * 
+	 * Basically creates a new RegexInfo, copies over fields but replaces with
+	 * <code>match</code> with the given expression.
+	 * 
+	 * @param match
+	 * @return
+	 */
+	public RegexInfo cloneWithNewMatch(Expression match) {
+		return new RegexInfo(isEmptyable(), getExact(), getPrefix(), getSuffix(), match);
+	}
+
 	@Override
 	public String toString() {
 		return "RegexInfo [emptyable=" + emptyable + ", exact=" + exact + ", prefix=" + prefix + ", suffix=" + suffix

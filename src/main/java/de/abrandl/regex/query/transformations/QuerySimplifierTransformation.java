@@ -20,7 +20,7 @@ public class QuerySimplifierTransformation implements RegexInfoTransformation {
 	@Override
 	public RegexInfo transform(RegexInfo result) {
 		Expression simplified = simplify(result.getMatch());
-		return replaceMatch(result, simplified);
+		return result.cloneWithNewMatch(simplified);
 	}
 
 	private Expression simplify(Expression input) {
@@ -39,10 +39,6 @@ public class QuerySimplifierTransformation implements RegexInfoTransformation {
 		}
 
 		return current;
-	}
-
-	private RegexInfo replaceMatch(RegexInfo result, Expression match) {
-		return new RegexInfo(result.isEmptyable(), result.getExact(), result.getPrefix(), result.getSuffix(), match);
 	}
 
 }
