@@ -48,14 +48,4 @@ public class And extends InnerExpressionNode {
 		return create(newChildren);
 	}
 
-	@Override
-	public boolean requires(Literal literal) {
-		for (Expression child : getChildren()) {
-			if (child.requires(literal)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 }

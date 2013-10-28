@@ -55,13 +55,4 @@ public class Or extends InnerExpressionNode {
 		return create(clauses);
 	}
 
-	@Override
-	public boolean requires(Literal literal) {
-		boolean requires = true;
-		// TODO: optimize iteration
-		for (Expression child : getChildren()) {
-			requires &= child.requires(literal);
-		}
-		return requires;
-	}
 }

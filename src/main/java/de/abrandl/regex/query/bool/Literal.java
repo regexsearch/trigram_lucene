@@ -19,11 +19,6 @@ public class Literal extends Expression {
 	}
 
 	@Override
-	public boolean requires(Literal literal) {
-		return equals(literal);
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
