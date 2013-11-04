@@ -7,7 +7,7 @@ import de.abrandl.regex.grammar.tree.*;
 import de.abrandl.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static de.abrandl.regex.query.RegexInfoTransformationFactory.allTransformations;
+import static de.abrandl.regex.query.RegexInfoTransformationFactory.informationSavingTransformations;
 import static de.abrandl.regex.query.bool.Expression.any;
 
 public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
@@ -25,7 +25,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 	 * @param gramSize
 	 */
 	public RegexAnalyzer(int gramSize) {
-		this(allTransformations(gramSize));
+		this(informationSavingTransformations(gramSize));
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 	 * transformations).
 	 */
 	public RegexAnalyzer() {
-		this(allTransformations());
+		this(informationSavingTransformations());
 	}
 
 	@Override
