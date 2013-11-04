@@ -89,4 +89,19 @@ public class LuceneExpressionQueryTest {
 		return String.format("%s:%s", indexField, literal);
 	}
 
+	/**
+	 * Test how BooleanQuery raises the exception (which is not related to the
+	 * implementation here, rather {@see BooleanQuery}).
+	 */
+	@Test(expected = BooleanQuery.TooManyClauses.class)
+	public void tooManyClauses() {
+		String[] strings = new String[BooleanQuery.getMaxClauseCount() + 1];
+		for (int i = 0; i < strings.length; i++) {
+			strings[i] = String.format("foo%d", i);
+		}
+		Expression e = Expression.or(strings);
+
+		e.accept(visitor);
+	}
+
 }
