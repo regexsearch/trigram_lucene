@@ -54,4 +54,46 @@ public abstract class Expression {
 		return accept(new ToStringVisitor()).toString();
 	}
 
+	/**
+	 * Counts the number of leaves (i.e. literals) in this Expression's tree
+	 * representation.
+	 * 
+	 * @return number of leave-nodes in this Expression
+	 */
+	public final int size() {
+		return accept(new NodeCountVisitor());
+	}
+
+	private static class NodeCountVisitor implements ExpressionVisitor<Integer> {
+
+		@Override
+		public Integer visit(And query) {
+			return count(query);
+		}
+
+		private Integer count(InnerExpressionNode query) {
+			int count = 0;
+			for (Expression e : query) {
+				count += e.accept(this);
+			}
+			return count;
+		}
+
+		@Override
+		public Integer visit(Or query) {
+			return count(query);
+		}
+
+		@Override
+		public Integer visit(Literal query) {
+			return 1;
+		}
+
+		@Override
+		public Integer visit(Any any) {
+			return 1;
+		}
+
+	}
+
 }
