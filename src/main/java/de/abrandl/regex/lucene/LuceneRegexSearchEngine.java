@@ -11,7 +11,9 @@ import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.search.*;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
 
@@ -73,23 +75,13 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				open();
 				IndexSearcher isearcher = new IndexSearcher(index);
 				Query query = constructQueryFromRegex(regex);
-				Filter filter = null;
 
 				System.out.println(query);
 
 				final Pattern pattern = Pattern.compile(regex);
-				final Filter patternFilter = new CachingWrapperFilter(new PatternFilter(pattern, "content"));
-				// final Filter queryFilter = new QueryWrapperFilter(query);
-				// final Filter chainedFilter = new ChainedFilter(new Filter[] {
-				// queryFilter, patternFilter },
-				// ChainedFilter.AND);
-
-				// query = new FilteredQuery(query, patternFilter,
-				// FilteredQuery.QUERY_FIRST_FILTER_STRATEGY);
 
 				final ScoreDoc[] hits = isearcher.search(query, null, Integer.MAX_VALUE).scoreDocs;
 
-				System.out.println(String.format("Matches performed in filter: %d", PatternFilter.matches));
 				System.out.println(String.format("Got %d hits", hits.length));
 
 				final Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.length);
@@ -99,6 +91,8 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 					String identifier = doc.get("identifier");
 
 					String content = doc.get("content");
+
+					// do candidate verification here
 					if (pattern.matcher(content).find()) {
 						resultSet.add(new FileDocument(identifier));
 					}
