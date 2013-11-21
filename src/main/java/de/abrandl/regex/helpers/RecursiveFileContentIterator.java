@@ -57,7 +57,7 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 		}
 	}
 
-	private final Integer limit;
+	private Integer limit;
 	private final List<File> files;
 
 	private Iterator<File> fileIterator;
@@ -80,6 +80,12 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 
 		this.directory = directory;
 
+		reinitIterator();
+	}
+
+	public void reset(Integer limit) {
+		this.files.clear();
+		this.limit = limit;
 		reinitIterator();
 	}
 
