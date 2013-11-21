@@ -28,6 +28,8 @@ import de.abrandl.regex.query.bool.Expression;
 public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 	private final Version luceneVersion;
+
+	// TODO: is the Directory ever closed?
 	private final Directory directory;
 	private final NGramAnalyzer analyzer;
 	private final NGramQueryTransformation queryTransformation;
@@ -72,20 +74,14 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			try {
 				open();
 				IndexSearcher isearcher = new IndexSearcher(index);
-				Query query = constructQueryFromRegex(regex);
-				Filter filter = null;
-
-				System.out.println(query);
 
 				final Pattern pattern = Pattern.compile(regex);
-				final Filter patternFilter = new CachingWrapperFilter(new PatternFilter(pattern, "content"));
-				// final Filter queryFilter = new QueryWrapperFilter(query);
-				// final Filter chainedFilter = new ChainedFilter(new Filter[] {
-				// queryFilter, patternFilter },
-				// ChainedFilter.AND);
+				final Filter patternFilter = new PatternFilter(pattern, "content");
 
-				// query = new FilteredQuery(query, patternFilter,
-				// FilteredQuery.QUERY_FIRST_FILTER_STRATEGY);
+				Query regexQuery = constructQueryFromRegex(regex);
+				Query query = new FilteredQuery(regexQuery, patternFilter, FilteredQuery.QUERY_FIRST_FILTER_STRATEGY);
+
+				System.out.println(query);
 
 				final ScoreDoc[] hits = isearcher.search(query, null, Integer.MAX_VALUE).scoreDocs;
 
@@ -98,10 +94,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 					Document doc = isearcher.doc(hits[i].doc);
 					String identifier = doc.get("identifier");
 
-					String content = doc.get("content");
-					if (pattern.matcher(content).find()) {
-						resultSet.add(new FileDocument(identifier));
-					}
+					resultSet.add(new FileDocument(identifier));
 				}
 
 				return resultSet;
