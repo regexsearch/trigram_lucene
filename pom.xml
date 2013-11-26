@@ -109,7 +109,7 @@
 		</plugins>
 	</build>
 	<properties>
-		<lucene.version>4.4.0</lucene.version>
+		<lucene.version>4.6.0</lucene.version>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>
