@@ -11,7 +11,8 @@ import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.search.*;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
 
@@ -28,11 +29,11 @@ import de.abrandl.regex.query.bool.Expression;
 public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 	private final Version luceneVersion;
+
+	// TODO: is the Directory ever closed?
 	private final Directory directory;
 	private final NGramAnalyzer analyzer;
 	private final NGramQueryTransformation queryTransformation;
-
-	private int documentCount = 0;
 
 	public LuceneRegexSearchEngine(Version luceneVersion, Directory directory) {
 		this.luceneVersion = luceneVersion;
@@ -71,43 +72,37 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 			try {
 				open();
-				IndexSearcher isearcher = new IndexSearcher(index);
-				Query query = constructQueryFromRegex(regex);
-				Filter filter = null;
+				Collection<Document> hits = performSearch(regex);
 
-				System.out.println(query);
+				System.out.println(String.format("Got %d hits", hits.size()));
 
-				final Pattern pattern = Pattern.compile(regex);
-				final Filter patternFilter = new CachingWrapperFilter(new PatternFilter(pattern, "content"));
-				// final Filter queryFilter = new QueryWrapperFilter(query);
-				// final Filter chainedFilter = new ChainedFilter(new Filter[] {
-				// queryFilter, patternFilter },
-				// ChainedFilter.AND);
-
-				// query = new FilteredQuery(query, patternFilter,
-				// FilteredQuery.QUERY_FIRST_FILTER_STRATEGY);
-
-				final ScoreDoc[] hits = isearcher.search(query, null, Integer.MAX_VALUE).scoreDocs;
-
-				System.out.println(String.format("Matches performed in filter: %d", PatternFilter.matches));
-				System.out.println(String.format("Got %d hits", hits.length));
-
-				final Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.length);
-
-				for (int i = 0; i < hits.length; i++) {
-					Document doc = isearcher.doc(hits[i].doc);
-					String identifier = doc.get("identifier");
-
-					String content = doc.get("content");
-					if (pattern.matcher(content).find()) {
-						resultSet.add(new FileDocument(identifier));
-					}
-				}
-
-				return resultSet;
+				return convertToSimpleDocument(hits);
 			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
 			}
+		}
+
+		private Collection<Document> performSearch(String regex) throws RegexParsingException, IOException {
+			IndexSearcher isearcher = new IndexSearcher(index);
+			Query query = constructQueryFromRegex(regex);
+			PostFilterCollector collector = new PostFilterCollector("content", Pattern.compile(regex));
+
+			System.out.println(query);
+
+			// perform search
+			isearcher.search(query, collector);
+			return collector.getMatches();
+		}
+
+		private Collection<SimpleDocument> convertToSimpleDocument(final Collection<Document> hits) {
+			final Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.size());
+
+			for (Document doc : hits) {
+				String identifier = doc.get("identifier");
+
+				resultSet.add(new FileDocument(identifier));
+			}
+			return resultSet;
 		}
 
 		private Query constructQueryFromRegex(String regex) throws RegexParsingException {
@@ -158,8 +153,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			ldoc.add(new Field("trigrams", content, TextField.TYPE_STORED));
 
 			writer.addDocument(ldoc);
-
-			documentCount++;
 		}
 
 	}
