@@ -1,6 +1,9 @@
 package de.abrandl.regex.document;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+
+import static de.abrandl.regex.helpers.FileUtil.read;
 
 public class FileDocument extends SimpleDocument {
 
@@ -22,26 +25,12 @@ public class FileDocument extends SimpleDocument {
 
 	@Override
 	public String getContent() throws IOException {
-		return readFile(path);
-	}
-
-	private String readFile(File file) throws FileNotFoundException, IOException {
-
-		// TODO: NIO ?
-		StringBuffer content = new StringBuffer();
-		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				content.append(line);
-				content.append(System.getProperty("line.separator"));
-			}
-		}
-		return content.toString();
+		return read(path).toString();
 	}
 
 	@Override
 	public String toString() {
-		return "FileDocument [identifier=\"" + getIdentifier() + "\"]";
+		return getIdentifier();
 	}
 
 }

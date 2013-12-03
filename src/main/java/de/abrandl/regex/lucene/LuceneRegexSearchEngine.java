@@ -23,6 +23,8 @@ import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.grammar.RegexParser;
 import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.grammar.tree.RegexNode;
+import de.abrandl.regex.helpers.DetailsCollector;
+import de.abrandl.regex.helpers.Timer;
 import de.abrandl.regex.query.NGramQueryTransformation;
 import de.abrandl.regex.query.bool.Expression;
 
@@ -34,6 +36,8 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 	private final Directory directory;
 	private final NGramAnalyzer analyzer;
 	private final NGramQueryTransformation queryTransformation;
+
+	private final Timer timer = new Timer();
 
 	public LuceneRegexSearchEngine(Version luceneVersion, Directory directory) {
 		this.luceneVersion = luceneVersion;
@@ -79,13 +83,19 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 		private Collection<Document> performSearch(String regex) throws RegexParsingException, IOException {
 			IndexSearcher isearcher = new IndexSearcher(index);
+			timer.start();
 			Query query = constructQueryFromRegex(regex);
+			DetailsCollector.instance.put("query_transformation_time", timer.stop());
+			timer.reset();
+
 			PostFilterCollector collector = new PostFilterCollector("content", Pattern.compile(regex));
 
-			System.out.println(query);
-
 			// perform search
+			timer.start();
 			isearcher.search(query, collector);
+			DetailsCollector.instance.put("search_time", timer.stop());
+			timer.reset();
+
 			return collector.getMatches();
 		}
 
@@ -104,7 +114,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			RegexNode parsedRegex = RegexParser.parse(regex);
 			Expression expression = queryTransformation.expressionFor(parsedRegex);
 
-			System.out.println(expression);
+			DetailsCollector.instance.put("ngram_boolean_query", expression.toString());
 
 			return expression.accept(new LuceneExpressionQuery("trigrams"));
 		}

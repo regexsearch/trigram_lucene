@@ -2,19 +2,18 @@ package de.abrandl.regex.cli;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 
 import org.apache.commons.cli.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-import org.json.JSONWriter;
 
 import de.abrandl.regex.ExhaustiveSearchEngine;
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
 import de.abrandl.regex.document.SimpleDocument;
+import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 import de.abrandl.regex.helpers.Timer;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
@@ -57,35 +56,18 @@ public class RegexSearchCli {
 	}
 
 	private void writeIndexResults(long runtime) {
-		System.out.print("benchmark: ");
-		PrintWriter printWriter = new PrintWriter(System.out);
-		JSONWriter writer = new JSONWriter(printWriter);
-		writer.object().key("runtime").value(runtime).key("action").value("index").endObject();
-		printWriter.flush();
-		System.out.println();
-		System.out.flush();
+		DetailsCollector dc = DetailsCollector.instance;
+		dc.put("overall_runtime", runtime);
+		dc.put("action", "index");
 	}
 
 	private void writeQueryResults(long runtime, Collection<SimpleDocument> docs) {
-		System.out.print("benchmark: ");
-		PrintWriter printWriter = new PrintWriter(System.out);
-		JSONWriter writer = new JSONWriter(printWriter);
+		DetailsCollector dc = DetailsCollector.instance;
 
-		writer.object();
-		writer.key("action").value("query");
-		writer.key("runtime").value(runtime);
-		writer.key("matches").value(docs.size());
-		writer.key("docs").array();
-		for (SimpleDocument doc : docs) {
-			writer.value(doc.getIdentifier());
-		}
-		writer.endArray();
-		writer.endObject();
-
-		printWriter.flush();
-		System.out.println();
-		System.out.flush();
-
+		dc.put("action", "query");
+		dc.put("overall_runtime", runtime);
+		dc.put("matches", docs.size());
+		dc.put("docs", docs);
 	}
 
 	/**
@@ -143,6 +125,7 @@ public class RegexSearchCli {
 			default:
 				throw new IllegalArgumentException("unknown action: " + action);
 			}
+
 		} catch (ParseException exp) {
 			// oops, something went wrong
 			System.err.println("Parsing cli options failed.  Reason: " + exp.getMessage());

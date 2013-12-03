@@ -1,11 +1,7 @@
 package de.abrandl.regex;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -15,6 +11,7 @@ import de.abrandl.regex.document.FileDocument;
 import de.abrandl.regex.document.SimpleDocument;
 import static com.google.common.base.Preconditions.checkArgument;
 import static de.abrandl.regex.helpers.FileUtil.createEmptyTempDirectory;
+import static de.abrandl.regex.helpers.FileUtil.read;
 
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
@@ -87,22 +84,6 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
 		private File originalPath(File indexFile) {
 			return new File(indexFile.getAbsolutePath().replaceFirst(indexPath.getAbsolutePath(), ""));
-		}
-
-		private StringBuffer read(File file) throws FileNotFoundException, IOException {
-			StringBuffer sb = new StringBuffer();
-			try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-					FileChannel inChannel = randomAccessFile.getChannel()) {
-				ByteBuffer buffer = ByteBuffer.allocate(1024);
-				while (inChannel.read(buffer) > 0) {
-					buffer.flip();
-					for (int i = 0; i < buffer.limit(); i++) {
-						sb.append((char) buffer.get());
-					}
-					buffer.clear();
-				}
-			}
-			return sb;
 		}
 
 		@Override

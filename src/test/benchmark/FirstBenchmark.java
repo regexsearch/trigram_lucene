@@ -4,6 +4,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
 import de.abrandl.regex.ExhaustiveSearchEngine;
+import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -46,10 +47,14 @@ public class FirstBenchmark {
 				createIterator(documentDirectory, limit));
 		System.out.println(luceneResult);
 
+		DetailsCollector.instance.flush(System.out);
+
 		log("running exhaustive search...");
 		SingleQueryBenchmark.BenchmarkResult exhaustiveResult = exhaustive.benchmark(regex,
 				createIterator(documentDirectory, limit));
 		System.out.println(exhaustiveResult);
+
+		DetailsCollector.instance.flush(System.out);
 
 		assertThat(luceneResult.result, equalTo(exhaustiveResult.result));
 

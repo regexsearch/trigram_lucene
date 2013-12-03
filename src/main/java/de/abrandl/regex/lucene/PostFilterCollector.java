@@ -11,6 +11,7 @@ import org.apache.lucene.index.AtomicReaderContext;
 import org.apache.lucene.search.Collector;
 import org.apache.lucene.search.Scorer;
 
+import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.helpers.Timer;
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -41,6 +42,10 @@ public class PostFilterCollector extends Collector {
 		verifyCandidates(); // verify candidates of last segment
 		System.out.printf("candidates: %d\n", candidateCounter);
 		System.out.printf("candidate verification took %d ms\n", timer.getSum());
+
+		DetailsCollector.instance.put("candidate_count", candidateCounter);
+		DetailsCollector.instance.put("candidate_verification_time", timer.getSum());
+
 		return reset();
 	}
 

@@ -8,6 +8,7 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
 import de.abrandl.regex.document.SimpleDocument;
+import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -64,6 +65,7 @@ public abstract class BasicSearchEngineTest {
 			Collection<SimpleDocument> result = reader.search(regex);
 			System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
 			assertThat(result, equalTo(expected));
+			DetailsCollector.instance.flush(System.out);
 		}
 	}
 

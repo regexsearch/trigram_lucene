@@ -103,7 +103,11 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 	}
 
 	private void readFilePaths(File directory) {
-		for (File file : directory.listFiles()) {
+		if (!directory.isDirectory()) {
+			throw new IllegalArgumentException("not a directory: " + directory.getAbsolutePath());
+		}
+		File[] listFiles = directory.listFiles();
+		for (File file : listFiles) {
 			if (file.isFile() && withinLimit()) {
 				files.add(file);
 			} else if (file.isDirectory()) {
