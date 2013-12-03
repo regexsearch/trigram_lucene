@@ -9,8 +9,8 @@ import org.apache.commons.io.FileUtils;
 
 import de.abrandl.regex.document.FileDocument;
 import de.abrandl.regex.document.SimpleDocument;
+import de.abrandl.regex.helpers.FileUtil;
 import static com.google.common.base.Preconditions.checkArgument;
-import static de.abrandl.regex.helpers.FileUtil.createEmptyTempDirectory;
 import static de.abrandl.regex.helpers.FileUtil.read;
 
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
@@ -23,7 +23,7 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 	}
 
 	public ExhaustiveSearchEngine() throws IOException {
-		this(createEmptyTempDirectory("exhaustive_search"));
+		this(FileUtil.createEmptyTempDirectory("exhaustive_search"));
 	}
 
 	private class Writer implements RegexSearchEngine.Writer {

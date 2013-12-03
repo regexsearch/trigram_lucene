@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import org.apache.commons.cli.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -44,6 +45,9 @@ public class RegexSearchCli {
 
 		long runtime;
 		try (RegexSearchEngine.Writer writer = engine.getWriter()) {
+
+			writer.open();
+
 			timer.start();
 
 			writer.add(docs);
@@ -105,7 +109,10 @@ public class RegexSearchCli {
 			// parse the command line arguments
 			CommandLine line = parser.parse(options, args);
 
-			RegexSearchEngine engine = createEngine(line);
+			String engineName = line.getOptionValue("engine");
+			File index = new File(line.getOptionValue("index"));
+
+			RegexSearchEngine engine = createEngine(engineName, index);
 
 			File docs = new File(line.getOptionValue("docs"));
 			RegexSearchCli cli = new RegexSearchCli(engine, docs);
@@ -113,6 +120,11 @@ public class RegexSearchCli {
 			String action = line.getOptionValue("action");
 			switch (action) {
 			case "index":
+
+				if (index.isDirectory()) {
+					FileUtils.deleteDirectory(index);
+					index.mkdirs();
+				}
 
 				cli.index();
 				break;
@@ -135,16 +147,13 @@ public class RegexSearchCli {
 		}
 	}
 
-	private static RegexSearchEngine createEngine(CommandLine line) throws IOException {
-		String name = line.getOptionValue("engine");
-
+	private static RegexSearchEngine createEngine(String name, File index) throws IOException {
 		switch (name) {
 		case "exhaustive":
-			return new ExhaustiveSearchEngine();
+			return new ExhaustiveSearchEngine(index);
 		case "lucene":
-			File index = new File(line.getOptionValue("index"));
 			Directory directory = FSDirectory.open(index);
-			return new LuceneRegexSearchEngine(Version.LUCENE_44, directory);
+			return new LuceneRegexSearchEngine(Version.LUCENE_46, directory);
 		default:
 			throw new IllegalArgumentException("unknown engine: " + name);
 		}

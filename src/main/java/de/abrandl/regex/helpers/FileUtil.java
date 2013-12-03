@@ -24,6 +24,15 @@ final public class FileUtil {
 		return temp;
 	}
 
+	public static File createTempDirectory(String basename) throws IOException {
+		File temp = new File(System.getProperty("java.io.tmpdir"), basename);
+
+		if (!temp.isDirectory() && !temp.mkdirs()) {
+			throw new IOException("could not create temporary directory");
+		}
+		return temp;
+	}
+
 	public static StringBuffer read(File file) throws FileNotFoundException, IOException {
 		StringBuffer sb = new StringBuffer();
 		try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
