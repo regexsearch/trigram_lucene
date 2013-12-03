@@ -6,8 +6,8 @@ import de.abrandl.regex.query.bool.Expression;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * TODO: Implement subclasses that discard information from a {@see RegexInfo}
- * instance.
+ * TODO: info discarding transformations: Implement subclasses that discard
+ * information from a {@see RegexInfo} instance.
  * 
  * @author abrandl
  * @deprecated currently unused

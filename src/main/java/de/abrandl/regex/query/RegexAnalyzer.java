@@ -142,9 +142,7 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 			if (e2.getExact().isKnown()) {
 				suffix = suffix.join(e2.getExact());
 			} else if (e2.isEmptyable()) {
-				suffix = e2.getSuffix().union(suffix); // TODO: order relevant?
-														// check what is meant
-														// by U operator
+				suffix = e2.getSuffix().union(suffix);
 			} else {
 				suffix = e2.getSuffix();
 			}
@@ -201,6 +199,9 @@ public class RegexAnalyzer implements RegexNodeVisitor<RegexInfo> {
 		// We expand DotAny to all possible characters here
 		// If this survives performance-wise, it should live in it's own place
 		// (kind of pre-transformation of a RegexNode)
+		//
+		// explodes if multiple subsequent DotAny instances, e.g.:
+		// /printf(..)/
 
 		Character[] allCharacters = Alphabet.ASCII_PRINTABLE.allCharacters();
 		Literal[] literals = new Literal[allCharacters.length];

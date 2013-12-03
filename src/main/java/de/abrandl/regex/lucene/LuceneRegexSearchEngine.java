@@ -32,7 +32,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 	private final Version luceneVersion;
 
-	// TODO: is the Directory ever closed?
 	private final Directory directory;
 	private final NGramAnalyzer analyzer;
 	private final NGramQueryTransformation queryTransformation;

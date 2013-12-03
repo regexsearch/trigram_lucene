@@ -19,7 +19,7 @@ class RegexInfoTransformationFactory {
 	}
 
 	public static RegexInfoTransformation informationDiscardingTransformations() {
-		return identical(); // TODO: add transformations
+		return identical(); // TODO: info discarding transformations
 	}
 
 	public static RegexInfoTransformation booleanSimplifier() {

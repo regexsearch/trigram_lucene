@@ -49,7 +49,8 @@ public class NGramQueryTransformation implements QueryTransformation {
 	}
 
 	private boolean tooBig(RegexInfo result) {
-		return false; // TODO: decide when an Expression is too big to handle
+		return false; // TODO: info discarding transformations: decide when an
+						// Expression is too big to handle
 	}
 
 	private RegexAnalyzer createAnalyzer() {
