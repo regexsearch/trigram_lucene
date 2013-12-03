@@ -1,14 +1,33 @@
 package de.abrandl.regex;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
+
+import de.abrandl.regex.document.FileDocument;
 import de.abrandl.regex.document.SimpleDocument;
+import static com.google.common.base.Preconditions.checkArgument;
+import static de.abrandl.regex.helpers.FileUtil.createEmptyTempDirectory;
 
 public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
-	private final List<SimpleDocument> documents = new LinkedList<SimpleDocument>();
+	private final File indexPath;
+
+	public ExhaustiveSearchEngine(File indexPath) {
+		super();
+		this.indexPath = indexPath;
+	}
+
+	public ExhaustiveSearchEngine() throws IOException {
+		this(createEmptyTempDirectory("exhaustive_search"));
+	}
 
 	private class Writer implements RegexSearchEngine.Writer {
 
@@ -19,13 +38,22 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 
 		@Override
 		public void open() throws IOException {
-			// does nothing
+			if (!indexPath.isDirectory()) {
+				indexPath.mkdirs();
+			}
 		}
 
 		@Override
-		public void add(Iterator<SimpleDocument> document) throws IOException {
-			while (document.hasNext()) {
-				documents.add(document.next());
+		public void add(Iterator<SimpleDocument> documents) throws IOException {
+			checkArgument(indexPath.isDirectory(), "index is not a directory");
+			checkArgument(indexPath.canRead(), "cannot write to index");
+
+			while (documents.hasNext()) {
+				SimpleDocument document = documents.next();
+				File docPath = new File(document.getIdentifier());
+				File directory = new File(indexPath, docPath.getParentFile().getAbsolutePath());
+				directory.mkdirs();
+				FileUtils.copyFile(docPath, new File(directory, docPath.getName()));
 			}
 		}
 	}
@@ -42,22 +70,60 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 			// does nothing
 		}
 
+		private List<File> listFiles(File directory, List<File> files) {
+			for (File file : directory.listFiles()) {
+				if (file.isDirectory()) {
+					listFiles(file, files);
+				} else if (file.isFile()) {
+					files.add(file);
+				}
+			}
+			return files;
+		}
+
+		private List<File> listFiles(File directory) {
+			return listFiles(directory, new LinkedList<File>());
+		}
+
+		private File originalPath(File indexFile) {
+			return new File(indexFile.getAbsolutePath().replaceFirst(indexPath.getAbsolutePath(), ""));
+		}
+
+		private StringBuffer read(File file) throws FileNotFoundException, IOException {
+			StringBuffer sb = new StringBuffer();
+			try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+					FileChannel inChannel = randomAccessFile.getChannel()) {
+				ByteBuffer buffer = ByteBuffer.allocate(1024);
+				while (inChannel.read(buffer) > 0) {
+					buffer.flip();
+					for (int i = 0; i < buffer.limit(); i++) {
+						sb.append((char) buffer.get());
+					}
+					buffer.clear();
+				}
+			}
+			return sb;
+		}
+
 		@Override
 		public Collection<SimpleDocument> search(String regex) throws SearchFailedException {
-			Pattern pattern = Pattern.compile(regex);
-
-			Set<SimpleDocument> matches = new HashSet<SimpleDocument>();
+			final Pattern pattern = Pattern.compile(regex);
+			final Set<SimpleDocument> matches = new HashSet<SimpleDocument>();
 
 			try {
-				for (SimpleDocument doc : documents) {
-					if (pattern.matcher(doc.getContent()).find()) {
+				for (File file : listFiles(indexPath)) {
+					StringBuffer content;
+					content = read(file);
+					if (pattern.matcher(content).find()) {
+						SimpleDocument doc = new FileDocument(originalPath(file));
 						matches.add(doc);
 					}
 				}
-				return matches;
 			} catch (IOException e) {
 				throw new SearchFailedException(e);
 			}
+
+			return matches;
 		}
 
 	}

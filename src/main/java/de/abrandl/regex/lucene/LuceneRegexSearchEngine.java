@@ -65,11 +65,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		@Override
 		public Collection<SimpleDocument> search(String regex) throws SearchFailedException {
 
-			/*
-			 * TODO: handle too many clauses, limit them: See int
-			 * org.apache.lucene.search.BooleanQuery.getMaxClauseCount()
-			 */
-
 			try {
 				open();
 				Collection<Document> hits = performSearch(regex);

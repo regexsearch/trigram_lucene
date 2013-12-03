@@ -1,48 +1,58 @@
 package de.abrandl.regex;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.abrandl.regex.document.InMemoryDocument;
-import de.abrandl.regex.document.SimpleDocument;
+import de.abrandl.regex.helpers.FileUtil;
+import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 
 public enum TestDatasets {
 
 	KEYWORDS("keywords.docs.csv", "keywords.queries.csv"), SALEWA("salewa.docs.csv", "salewa.queries.csv");
 
-	private final String documentsPath, queriesPath;
+	private final String documentsFile, queriesFile;
 
 	private TestDatasets(String documents, String queries) {
-		this.documentsPath = documents;
-		this.queriesPath = queries;
+		this.documentsFile = documents;
+		this.queriesFile = queries;
 	}
 
 	public void createIndex(RegexSearchEngine engine) throws IOException {
-		try (InputStream resourceAsStream = getClass().getResourceAsStream(documentsPath);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
-				RegexSearchEngine.Writer writer = engine.getWriter()) {
+
+		File localDocsDirectory = FileUtil.createEmptyTempDirectory(documentsFile);
+
+		try (InputStream resourceAsStream = getClass().getResourceAsStream(documentsFile);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));) {
 			String line;
 
-			List<SimpleDocument> docs = new LinkedList<SimpleDocument>();
-
+			int id = 0;
 			while ((line = reader.readLine()) != null) {
-				// TODO: document identifiers - this sucks, need something
-				// better here
-				docs.add(new InMemoryDocument("/" + line, line));
-			}
+				File docFile = new File(localDocsDirectory, String.format("%04d.csv", id));
 
-			writer.add(docs.iterator());
+				writeFile(docFile, line);
+
+				id++;
+			}
+		}
+
+		try (RegexSearchEngine.Writer writer = engine.getWriter()) {
+			RecursiveFileContentIterator docs = new RecursiveFileContentIterator(localDocsDirectory);
+			writer.add(docs);
+		}
+
+	}
+
+	private void writeFile(File docFile, String line) throws IOException {
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)))) {
+			writer.write(line);
 		}
 	}
 
 	public Iterator<String> queries() throws IOException {
 		List<String> queries = new LinkedList<String>();
-		try (InputStream resourceAsStream = getClass().getResourceAsStream(queriesPath);
+		try (InputStream resourceAsStream = getClass().getResourceAsStream(queriesFile);
 				final BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));) {
 			String line;
 

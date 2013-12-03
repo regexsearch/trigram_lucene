@@ -65,7 +65,7 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 	private final FileLoadStrategy fileLoadStrategy;
 
 	public RecursiveFileContentIterator(File directory) {
-		this(directory, new EagerFileLoadStrategy(), null);
+		this(directory, new LazyFileLoadStrategy(), null);
 	}
 
 	public RecursiveFileContentIterator(File directory, Strategy fileLoadStrategy, Integer limit) {

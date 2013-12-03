@@ -34,7 +34,7 @@ public class PostFilterCollector extends Collector {
 
 	@Override
 	public void setScorer(Scorer scorer) throws IOException {
-		// nothing needed here
+		// not needed here
 	}
 
 	public Collection<Document> getMatches() throws IOException {

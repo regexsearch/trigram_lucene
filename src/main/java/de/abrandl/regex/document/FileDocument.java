@@ -26,6 +26,8 @@ public class FileDocument extends SimpleDocument {
 	}
 
 	private String readFile(File file) throws FileNotFoundException, IOException {
+
+		// TODO: NIO ?
 		StringBuffer content = new StringBuffer();
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			String line = null;
