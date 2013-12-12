@@ -35,4 +35,12 @@ public interface RegexSearchEngine {
 	 */
 	Collection<SimpleDocument> search(String regex) throws SearchFailedException, IOException;
 
+	/**
+	 * Explain how the engine would process the given query
+	 *
+	 * @param query
+	 * @return
+	 */
+	String explain(String query);
+
 }

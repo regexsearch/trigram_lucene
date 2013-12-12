@@ -126,4 +126,9 @@ public class ExhaustiveSearchEngine implements RegexSearchEngine {
 		}
 	}
 
+	@Override
+	public String explain(String query) {
+		return "grep '" + query + "'";
+	}
+
 }

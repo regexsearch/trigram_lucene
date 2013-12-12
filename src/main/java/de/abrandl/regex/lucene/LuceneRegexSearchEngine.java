@@ -72,8 +72,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				open();
 				Collection<Document> hits = performSearch(regex);
 
-				System.out.println(String.format("Got %d hits", hits.size()));
-
 				return convertToSimpleDocument(hits);
 			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
@@ -109,15 +107,15 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			return resultSet;
 		}
 
-		private Query constructQueryFromRegex(String regex) throws RegexParsingException {
-			RegexNode parsedRegex = RegexParser.parse(regex);
-			Expression expression = queryTransformation.expressionFor(parsedRegex);
+	}
 
-			DetailsCollector.instance.put("ngram_boolean_query", expression.toString());
+	private Query constructQueryFromRegex(String regex) throws RegexParsingException {
+		RegexNode parsedRegex = RegexParser.parse(regex);
+		Expression expression = queryTransformation.expressionFor(parsedRegex);
 
-			return expression.accept(new LuceneExpressionQuery("trigrams"));
-		}
+		DetailsCollector.instance.put("ngram_boolean_query", expression.toString());
 
+		return expression.accept(new LuceneExpressionQuery("trigrams"));
 	}
 
 	private class Writer implements RegexSearchEngine.Writer {
@@ -175,6 +173,15 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 	public Collection<SimpleDocument> search(String regex) throws SearchFailedException, IOException {
 		try (RegexSearchEngine.Reader reader = getReader()) {
 			return reader.search(regex);
+		}
+	}
+
+	@Override
+	public String explain(String query) {
+		try {
+			return constructQueryFromRegex(query).toString();
+		} catch (RegexParsingException e) {
+			return "unparseable query: " + e.getMessage();
 		}
 	}
 

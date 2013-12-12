@@ -197,4 +197,9 @@ public class NGramRegexSearchEngine implements RegexSearchEngine {
 		}
 	}
 
+	@Override
+	public String explain(String query) {
+		return null; // not implemented
+	}
+
 }

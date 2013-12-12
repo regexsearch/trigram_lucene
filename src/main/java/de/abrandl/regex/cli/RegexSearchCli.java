@@ -117,6 +117,10 @@ public class RegexSearchCli {
 		writeQueryResults(runtime, result);
 	}
 
+	public void explain(String query) {
+		System.out.println(engine.explain(query));
+	}
+
 	/**
 	 * 
 	 * index: -engine (lucene|exhaustive) -index /tmp/emptydir -docs /tmp/mydocs
@@ -158,6 +162,11 @@ public class RegexSearchCli {
 			case "query":
 
 				cli.query(line.getOptionValue("query"));
+				break;
+
+			case "explain":
+
+				cli.explain(line.getOptionValue("query"));
 				break;
 
 			default:
