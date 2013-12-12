@@ -20,6 +20,7 @@ public abstract class BasicSearchEngineTest {
 
 	private RegexSearchEngine exhaustiveSearch;
 	private RegexSearchEngine luceneSearch;
+	private RegexSearchEngine inmemorySearch;
 
 	private final TestDatasets dataset;
 
@@ -30,10 +31,12 @@ public abstract class BasicSearchEngineTest {
 	private void indexDocuments() throws IOException {
 
 		exhaustiveSearch = new ExhaustiveSearchEngine();
-		luceneSearch = new LuceneRegexSearchEngine(Version.LUCENE_44, new RAMDirectory());
+		luceneSearch = new LuceneRegexSearchEngine(Version.LUCENE_46, new RAMDirectory());
+		inmemorySearch = new InMemorySearchEngine();
 
 		dataset.createIndex(exhaustiveSearch);
 		dataset.createIndex(luceneSearch);
+		dataset.createIndex(inmemorySearch);
 	}
 
 	@Test
@@ -64,6 +67,13 @@ public abstract class BasicSearchEngineTest {
 		try (RegexSearchEngine.Reader reader = luceneSearch.getReader()) {
 			Collection<SimpleDocument> result = reader.search(regex);
 			System.out.printf("lucene     [%03d]:   %s\n", result.size(), result);
+			assertThat(result, equalTo(expected));
+			DetailsCollector.instance.flush(System.out);
+		}
+
+		try (RegexSearchEngine.Reader reader = inmemorySearch.getReader()) {
+			Collection<SimpleDocument> result = reader.search(regex);
+			System.out.printf("inmemory     [%03d]:   %s\n", result.size(), result);
 			assertThat(result, equalTo(expected));
 			DetailsCollector.instance.flush(System.out);
 		}
