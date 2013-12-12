@@ -306,6 +306,7 @@ other_chars
   Exclamation
   | DoubleQuote
   | Hash
+  | Percent
   | Ampersand
   | SingleQuote
   | Comma

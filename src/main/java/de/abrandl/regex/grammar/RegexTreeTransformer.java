@@ -78,6 +78,8 @@ class RegexTreeTransformer {
 			CharacterRange[] ranges = new CharacterRange[childCount];
 			for (int i = 0; i < childTrees.length; i++) {
 				if (!(childTrees[i] instanceof CharacterRange)) {
+					// TODO: support character classes without range but only
+					// literals given
 					throw new RegexParsingException("Only expected children of type CharacterRange here, others given:"
 							+ childTrees[i].getClass());
 				}

@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:25:37
+// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-12-12 16:45:34
 
 package de.abrandl.regex.grammar;
 
@@ -161,8 +161,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Quoted;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:364:3: ( '\\\\' NonAlphaNumeric )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:365:3: '\\\\' NonAlphaNumeric
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:365:3: ( '\\\\' NonAlphaNumeric )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:366:3: '\\\\' NonAlphaNumeric
             {
             match('\\'); 
 
@@ -189,14 +189,14 @@ public class RegexLexer extends Lexer {
         try {
             int _type = BlockQuoted;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:362:3: ( '\\\\Q' ( . )* '\\\\E' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:363:3: '\\\\Q' ( . )* '\\\\E'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:363:3: ( '\\\\Q' ( . )* '\\\\E' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:364:3: '\\\\Q' ( . )* '\\\\E'
             {
             match("\\Q"); 
 
 
 
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:363:9: ( . )*
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:364:9: ( . )*
             loop1:
             do {
                 int alt1=2;
@@ -221,7 +221,7 @@ public class RegexLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:363:9: .
+            	    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:364:9: .
             	    {
             	    matchAny(); 
 
@@ -258,8 +258,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = NewLine;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:370:3: ( '\\n' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:371:3: '\\n'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:371:3: ( '\\n' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:372:3: '\\n'
             {
             match('\n'); 
 
@@ -283,8 +283,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = CarriageReturn;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:378:3: ( '\\r' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:379:3: '\\r'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:379:3: ( '\\r' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:380:3: '\\r'
             {
             match('\r'); 
 
@@ -308,8 +308,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Tab;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:386:3: ( '\\t' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:387:3: '\\t'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:387:3: ( '\\t' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:388:3: '\\t'
             {
             match('\t'); 
 
@@ -333,8 +333,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:396:3: ( ' ' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:397:3: ' '
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:397:3: ( ' ' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:398:3: ' '
             {
             match(' '); 
 
@@ -354,8 +354,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Exclamation;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:401:3: ( '!' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:402:3: '!'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:402:3: ( '!' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:403:3: '!'
             {
             match('!'); 
 
@@ -375,8 +375,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = DoubleQuote;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:406:3: ( '\"' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:407:3: '\"'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:407:3: ( '\"' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:408:3: '\"'
             {
             match('\"'); 
 
@@ -396,8 +396,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Hash;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:411:3: ( '#' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:412:3: '#'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:412:3: ( '#' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:413:3: '#'
             {
             match('#'); 
 
@@ -417,8 +417,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Dollar;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:416:3: ( '$' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:417:3: '$'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:417:3: ( '$' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:418:3: '$'
             {
             match('$'); 
 
@@ -438,8 +438,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Percent;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:421:3: ( '%' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:422:3: '%'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:422:3: ( '%' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:423:3: '%'
             {
             match('%'); 
 
@@ -459,8 +459,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Ampersand;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:426:3: ( '&' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:427:3: '&'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:427:3: ( '&' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:428:3: '&'
             {
             match('&'); 
 
@@ -480,8 +480,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = SingleQuote;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:431:3: ( '\\'' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:432:3: '\\''
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:432:3: ( '\\'' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:433:3: '\\''
             {
             match('\''); 
 
@@ -501,8 +501,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = OpenParen;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:436:3: ( '(' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:437:3: '('
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:437:3: ( '(' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:438:3: '('
             {
             match('('); 
 
@@ -522,8 +522,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = CloseParen;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:441:3: ( ')' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:442:3: ')'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:442:3: ( ')' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:443:3: ')'
             {
             match(')'); 
 
@@ -543,8 +543,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Star;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:446:3: ( '*' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:447:3: '*'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:447:3: ( '*' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:448:3: '*'
             {
             match('*'); 
 
@@ -564,8 +564,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Plus;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:451:3: ( '+' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:452:3: '+'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:452:3: ( '+' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:453:3: '+'
             {
             match('+'); 
 
@@ -585,8 +585,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Comma;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:456:3: ( ',' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:457:3: ','
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:457:3: ( ',' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:458:3: ','
             {
             match(','); 
 
@@ -606,8 +606,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Hyphen;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:461:3: ( '-' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:462:3: '-'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:462:3: ( '-' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:463:3: '-'
             {
             match('-'); 
 
@@ -627,8 +627,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Dot;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:466:3: ( '.' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:467:3: '.'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:467:3: ( '.' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:468:3: '.'
             {
             match('.'); 
 
@@ -648,8 +648,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Slash;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:471:3: ( '/' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:472:3: '/'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:472:3: ( '/' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:473:3: '/'
             {
             match('/'); 
 
@@ -669,8 +669,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D0;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:476:3: ( '0' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:477:3: '0'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:477:3: ( '0' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:478:3: '0'
             {
             match('0'); 
 
@@ -690,8 +690,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D1;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:481:3: ( '1' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:482:3: '1'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:482:3: ( '1' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:483:3: '1'
             {
             match('1'); 
 
@@ -711,8 +711,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D2;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:486:3: ( '2' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:487:3: '2'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:487:3: ( '2' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:488:3: '2'
             {
             match('2'); 
 
@@ -732,8 +732,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D3;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:491:3: ( '3' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:492:3: '3'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:492:3: ( '3' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:493:3: '3'
             {
             match('3'); 
 
@@ -753,8 +753,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D4;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:496:3: ( '4' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:497:3: '4'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:497:3: ( '4' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:498:3: '4'
             {
             match('4'); 
 
@@ -774,8 +774,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D5;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:501:3: ( '5' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:502:3: '5'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:502:3: ( '5' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:503:3: '5'
             {
             match('5'); 
 
@@ -795,8 +795,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D6;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:506:3: ( '6' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:507:3: '6'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:507:3: ( '6' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:508:3: '6'
             {
             match('6'); 
 
@@ -816,8 +816,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D7;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:511:3: ( '7' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:512:3: '7'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:512:3: ( '7' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:513:3: '7'
             {
             match('7'); 
 
@@ -837,8 +837,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D8;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:516:3: ( '8' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:517:3: '8'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:517:3: ( '8' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:518:3: '8'
             {
             match('8'); 
 
@@ -858,8 +858,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = D9;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:521:3: ( '9' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:522:3: '9'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:522:3: ( '9' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:523:3: '9'
             {
             match('9'); 
 
@@ -879,8 +879,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Colon;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:526:3: ( ':' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:527:3: ':'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:527:3: ( ':' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:528:3: ':'
             {
             match(':'); 
 
@@ -900,8 +900,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Semicolon;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:531:3: ( ';' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:532:3: ';'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:532:3: ( ';' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:533:3: ';'
             {
             match(';'); 
 
@@ -921,8 +921,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = LessThan;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:536:3: ( '<' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:537:3: '<'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:537:3: ( '<' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:538:3: '<'
             {
             match('<'); 
 
@@ -942,8 +942,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Equals;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:541:3: ( '=' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:542:3: '='
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:542:3: ( '=' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:543:3: '='
             {
             match('='); 
 
@@ -963,8 +963,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = GreaterThan;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:546:3: ( '>' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:547:3: '>'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:547:3: ( '>' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:548:3: '>'
             {
             match('>'); 
 
@@ -984,8 +984,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = QuestionMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:551:3: ( '?' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:552:3: '?'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:552:3: ( '?' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:553:3: '?'
             {
             match('?'); 
 
@@ -1005,8 +1005,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = At;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:556:3: ( '@' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:557:3: '@'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:557:3: ( '@' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:558:3: '@'
             {
             match('@'); 
 
@@ -1026,8 +1026,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = AUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:561:3: ( 'A' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:562:3: 'A'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:562:3: ( 'A' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:563:3: 'A'
             {
             match('A'); 
 
@@ -1047,8 +1047,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = BUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:566:3: ( 'B' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:567:3: 'B'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:567:3: ( 'B' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:568:3: 'B'
             {
             match('B'); 
 
@@ -1068,8 +1068,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = CUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:571:3: ( 'C' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:572:3: 'C'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:572:3: ( 'C' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:573:3: 'C'
             {
             match('C'); 
 
@@ -1089,8 +1089,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = DUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:576:3: ( 'D' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:577:3: 'D'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:577:3: ( 'D' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:578:3: 'D'
             {
             match('D'); 
 
@@ -1110,8 +1110,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = EUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:581:3: ( 'E' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:582:3: 'E'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:582:3: ( 'E' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:583:3: 'E'
             {
             match('E'); 
 
@@ -1131,8 +1131,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = FUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:586:3: ( 'F' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:587:3: 'F'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:587:3: ( 'F' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:588:3: 'F'
             {
             match('F'); 
 
@@ -1152,8 +1152,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = GUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:591:3: ( 'G' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:592:3: 'G'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:592:3: ( 'G' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:593:3: 'G'
             {
             match('G'); 
 
@@ -1173,8 +1173,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = HUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:596:3: ( 'H' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:597:3: 'H'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:597:3: ( 'H' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:598:3: 'H'
             {
             match('H'); 
 
@@ -1194,8 +1194,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = IUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:601:3: ( 'I' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:602:3: 'I'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:602:3: ( 'I' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:603:3: 'I'
             {
             match('I'); 
 
@@ -1215,8 +1215,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = JUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:606:3: ( 'J' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:607:3: 'J'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:607:3: ( 'J' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:608:3: 'J'
             {
             match('J'); 
 
@@ -1236,8 +1236,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = KUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:611:3: ( 'K' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:612:3: 'K'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:612:3: ( 'K' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:613:3: 'K'
             {
             match('K'); 
 
@@ -1257,8 +1257,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = LUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:616:3: ( 'L' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:617:3: 'L'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:617:3: ( 'L' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:618:3: 'L'
             {
             match('L'); 
 
@@ -1278,8 +1278,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = MUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:621:3: ( 'M' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:622:3: 'M'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:622:3: ( 'M' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:623:3: 'M'
             {
             match('M'); 
 
@@ -1299,8 +1299,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = NUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:626:3: ( 'N' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:627:3: 'N'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:627:3: ( 'N' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:628:3: 'N'
             {
             match('N'); 
 
@@ -1320,8 +1320,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = OUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:631:3: ( 'O' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:632:3: 'O'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:632:3: ( 'O' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:633:3: 'O'
             {
             match('O'); 
 
@@ -1341,8 +1341,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = PUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:636:3: ( 'P' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:637:3: 'P'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:637:3: ( 'P' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:638:3: 'P'
             {
             match('P'); 
 
@@ -1362,8 +1362,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = QUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:641:3: ( 'Q' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:642:3: 'Q'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:642:3: ( 'Q' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:643:3: 'Q'
             {
             match('Q'); 
 
@@ -1383,8 +1383,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = RUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:646:3: ( 'R' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:647:3: 'R'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:647:3: ( 'R' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:648:3: 'R'
             {
             match('R'); 
 
@@ -1404,8 +1404,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = SUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:651:3: ( 'S' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:652:3: 'S'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:652:3: ( 'S' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:653:3: 'S'
             {
             match('S'); 
 
@@ -1425,8 +1425,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = TUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:656:3: ( 'T' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:657:3: 'T'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:657:3: ( 'T' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:658:3: 'T'
             {
             match('T'); 
 
@@ -1446,8 +1446,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = UUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:661:3: ( 'U' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:662:3: 'U'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:662:3: ( 'U' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:663:3: 'U'
             {
             match('U'); 
 
@@ -1467,8 +1467,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = VUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:666:3: ( 'V' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:667:3: 'V'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:667:3: ( 'V' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:668:3: 'V'
             {
             match('V'); 
 
@@ -1488,8 +1488,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = WUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:671:3: ( 'W' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:672:3: 'W'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:672:3: ( 'W' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:673:3: 'W'
             {
             match('W'); 
 
@@ -1509,8 +1509,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = XUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:676:3: ( 'X' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:677:3: 'X'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:677:3: ( 'X' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:678:3: 'X'
             {
             match('X'); 
 
@@ -1530,8 +1530,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = YUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:681:3: ( 'Y' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:682:3: 'Y'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:682:3: ( 'Y' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:683:3: 'Y'
             {
             match('Y'); 
 
@@ -1551,8 +1551,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = ZUC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:686:3: ( 'Z' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:687:3: 'Z'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:687:3: ( 'Z' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:688:3: 'Z'
             {
             match('Z'); 
 
@@ -1572,8 +1572,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = OpenBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:691:3: ( '[' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:692:3: '['
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:692:3: ( '[' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:693:3: '['
             {
             match('['); 
 
@@ -1593,8 +1593,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Backslash;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:696:3: ( '\\\\' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:697:3: '\\\\'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:697:3: ( '\\\\' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:698:3: '\\\\'
             {
             match('\\'); 
 
@@ -1614,8 +1614,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = CloseBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:701:3: ( ']' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:702:3: ']'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:702:3: ( ']' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:703:3: ']'
             {
             match(']'); 
 
@@ -1635,8 +1635,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Caret;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:706:3: ( '^' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:707:3: '^'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:707:3: ( '^' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:708:3: '^'
             {
             match('^'); 
 
@@ -1656,8 +1656,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Underscore;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:711:3: ( '_' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:712:3: '_'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:712:3: ( '_' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:713:3: '_'
             {
             match('_'); 
 
@@ -1677,8 +1677,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = GraveAccent;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:716:3: ( '`' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:717:3: '`'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:717:3: ( '`' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:718:3: '`'
             {
             match('`'); 
 
@@ -1698,8 +1698,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = ALC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:721:3: ( 'a' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:722:3: 'a'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:722:3: ( 'a' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:723:3: 'a'
             {
             match('a'); 
 
@@ -1719,8 +1719,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = BLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:726:3: ( 'b' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:727:3: 'b'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:727:3: ( 'b' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:728:3: 'b'
             {
             match('b'); 
 
@@ -1740,8 +1740,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = CLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:731:3: ( 'c' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:732:3: 'c'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:732:3: ( 'c' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:733:3: 'c'
             {
             match('c'); 
 
@@ -1761,8 +1761,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = DLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:736:3: ( 'd' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:737:3: 'd'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:737:3: ( 'd' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:738:3: 'd'
             {
             match('d'); 
 
@@ -1782,8 +1782,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = ELC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:741:3: ( 'e' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:742:3: 'e'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:742:3: ( 'e' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:743:3: 'e'
             {
             match('e'); 
 
@@ -1803,8 +1803,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = FLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:746:3: ( 'f' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:747:3: 'f'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:747:3: ( 'f' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:748:3: 'f'
             {
             match('f'); 
 
@@ -1824,8 +1824,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = GLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:751:3: ( 'g' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:752:3: 'g'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:752:3: ( 'g' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:753:3: 'g'
             {
             match('g'); 
 
@@ -1845,8 +1845,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = HLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:756:3: ( 'h' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:757:3: 'h'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:757:3: ( 'h' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:758:3: 'h'
             {
             match('h'); 
 
@@ -1866,8 +1866,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = ILC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:761:3: ( 'i' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:762:3: 'i'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:762:3: ( 'i' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:763:3: 'i'
             {
             match('i'); 
 
@@ -1887,8 +1887,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = JLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:766:3: ( 'j' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:767:3: 'j'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:767:3: ( 'j' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:768:3: 'j'
             {
             match('j'); 
 
@@ -1908,8 +1908,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = KLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:771:3: ( 'k' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:772:3: 'k'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:772:3: ( 'k' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:773:3: 'k'
             {
             match('k'); 
 
@@ -1929,8 +1929,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = LLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:776:3: ( 'l' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:777:3: 'l'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:777:3: ( 'l' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:778:3: 'l'
             {
             match('l'); 
 
@@ -1950,8 +1950,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = MLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:781:3: ( 'm' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:782:3: 'm'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:782:3: ( 'm' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:783:3: 'm'
             {
             match('m'); 
 
@@ -1971,8 +1971,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = NLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:786:3: ( 'n' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:787:3: 'n'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:787:3: ( 'n' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:788:3: 'n'
             {
             match('n'); 
 
@@ -1992,8 +1992,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = OLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:791:3: ( 'o' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:792:3: 'o'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:792:3: ( 'o' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:793:3: 'o'
             {
             match('o'); 
 
@@ -2013,8 +2013,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = PLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:796:3: ( 'p' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:797:3: 'p'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:797:3: ( 'p' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:798:3: 'p'
             {
             match('p'); 
 
@@ -2034,8 +2034,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = QLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:801:3: ( 'q' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:802:3: 'q'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:802:3: ( 'q' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:803:3: 'q'
             {
             match('q'); 
 
@@ -2055,8 +2055,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = RLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:806:3: ( 'r' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:807:3: 'r'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:807:3: ( 'r' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:808:3: 'r'
             {
             match('r'); 
 
@@ -2076,8 +2076,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = SLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:811:3: ( 's' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:812:3: 's'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:812:3: ( 's' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:813:3: 's'
             {
             match('s'); 
 
@@ -2097,8 +2097,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = TLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:816:3: ( 't' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:817:3: 't'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:817:3: ( 't' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:818:3: 't'
             {
             match('t'); 
 
@@ -2118,8 +2118,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = ULC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:821:3: ( 'u' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:822:3: 'u'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:822:3: ( 'u' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:823:3: 'u'
             {
             match('u'); 
 
@@ -2139,8 +2139,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = VLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:826:3: ( 'v' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:827:3: 'v'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:827:3: ( 'v' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:828:3: 'v'
             {
             match('v'); 
 
@@ -2160,8 +2160,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = WLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:831:3: ( 'w' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:832:3: 'w'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:832:3: ( 'w' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:833:3: 'w'
             {
             match('w'); 
 
@@ -2181,8 +2181,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = XLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:836:3: ( 'x' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:837:3: 'x'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:837:3: ( 'x' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:838:3: 'x'
             {
             match('x'); 
 
@@ -2202,8 +2202,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = YLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:841:3: ( 'y' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:842:3: 'y'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:842:3: ( 'y' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:843:3: 'y'
             {
             match('y'); 
 
@@ -2223,8 +2223,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = ZLC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:846:3: ( 'z' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:847:3: 'z'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:847:3: ( 'z' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:848:3: 'z'
             {
             match('z'); 
 
@@ -2244,8 +2244,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = OpenBrace;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:851:3: ( '{' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:852:3: '{'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:852:3: ( '{' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:853:3: '{'
             {
             match('{'); 
 
@@ -2265,8 +2265,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Pipe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:856:3: ( '|' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:857:3: '|'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:857:3: ( '|' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:858:3: '|'
             {
             match('|'); 
 
@@ -2286,8 +2286,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = CloseBrace;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:861:3: ( '}' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:862:3: '}'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:862:3: ( '}' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:863:3: '}'
             {
             match('}'); 
 
@@ -2307,8 +2307,8 @@ public class RegexLexer extends Lexer {
         try {
             int _type = Tilde;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:866:3: ( '~' )
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:867:3: '~'
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:867:3: ( '~' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:868:3: '~'
             {
             match('~'); 
 
@@ -2326,7 +2326,7 @@ public class RegexLexer extends Lexer {
     // $ANTLR start "AlphaNumeric"
     public final void mAlphaNumeric() throws RecognitionException {
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:877:3: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:878:3: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -2352,7 +2352,7 @@ public class RegexLexer extends Lexer {
     // $ANTLR start "NonAlphaNumeric"
     public final void mNonAlphaNumeric() throws RecognitionException {
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:885:3: (~ AlphaNumeric )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:886:3: (~ AlphaNumeric )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '/')||(input.LA(1) >= ':' && input.LA(1) <= '@')||(input.LA(1) >= '[' && input.LA(1) <= '`')||(input.LA(1) >= '{' && input.LA(1) <= '\uFFFF') ) {

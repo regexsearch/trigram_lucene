@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-10-21 16:25:37
+// $ANTLR 3.4 /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g 2013-12-12 16:45:34
 
 package de.abrandl.regex.grammar;
 import de.abrandl.regex.grammar.tree.RegexNode;
@@ -334,6 +334,7 @@ public TreeAdaptor getTreeAdaptor() {
             case Hash:
             case Hyphen:
             case LessThan:
+            case Percent:
             case Semicolon:
             case SingleQuote:
             case Slash:
@@ -881,7 +882,7 @@ public TreeAdaptor getTreeAdaptor() {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==ALC||LA4_0==AUC||(LA4_0 >= Ampersand && LA4_0 <= BlockQuoted)||LA4_0==CLC||LA4_0==CUC||LA4_0==CarriageReturn||(LA4_0 >= Colon && LA4_0 <= DLC)||LA4_0==DUC||(LA4_0 >= Dot && LA4_0 <= ELC)||(LA4_0 >= EUC && LA4_0 <= GLC)||(LA4_0 >= GUC && LA4_0 <= KUC)||(LA4_0 >= LLC && LA4_0 <= NewLine)||LA4_0==OLC||LA4_0==OUC||(LA4_0 >= OpenBracket && LA4_0 <= PUC)||(LA4_0 >= QLC && LA4_0 <= QUC)||LA4_0==Quoted||(LA4_0 >= RLC && LA4_0 <= Slash)||(LA4_0 >= TLC && LA4_0 <= YUC)||(LA4_0 >= ZLC && LA4_0 <= ZUC)) ) {
+                if ( (LA4_0==ALC||LA4_0==AUC||(LA4_0 >= Ampersand && LA4_0 <= BlockQuoted)||LA4_0==CLC||LA4_0==CUC||LA4_0==CarriageReturn||(LA4_0 >= Colon && LA4_0 <= DLC)||LA4_0==DUC||(LA4_0 >= Dot && LA4_0 <= ELC)||(LA4_0 >= EUC && LA4_0 <= GLC)||(LA4_0 >= GUC && LA4_0 <= KUC)||(LA4_0 >= LLC && LA4_0 <= NewLine)||LA4_0==OLC||LA4_0==OUC||(LA4_0 >= OpenBracket && LA4_0 <= Percent)||(LA4_0 >= QLC && LA4_0 <= QUC)||LA4_0==Quoted||(LA4_0 >= RLC && LA4_0 <= Slash)||(LA4_0 >= TLC && LA4_0 <= YUC)||(LA4_0 >= ZLC && LA4_0 <= ZUC)) ) {
                     alt4=1;
                 }
 
@@ -1133,6 +1134,7 @@ public TreeAdaptor getTreeAdaptor() {
             case Hash:
             case Hyphen:
             case LessThan:
+            case Percent:
             case Semicolon:
             case SingleQuote:
             case Slash:
@@ -1889,6 +1891,7 @@ public TreeAdaptor getTreeAdaptor() {
             case OUC:
             case PLC:
             case PUC:
+            case Percent:
             case QLC:
             case QUC:
             case Quoted:
@@ -2157,7 +2160,7 @@ public TreeAdaptor getTreeAdaptor() {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( (LA8_0==ALC||LA8_0==AUC||(LA8_0 >= Ampersand && LA8_0 <= BlockQuoted)||LA8_0==CLC||LA8_0==CUC||LA8_0==CarriageReturn||(LA8_0 >= Colon && LA8_0 <= DLC)||LA8_0==DUC||(LA8_0 >= DoubleQuote && LA8_0 <= ELC)||(LA8_0 >= EUC && LA8_0 <= GLC)||(LA8_0 >= GUC && LA8_0 <= KUC)||(LA8_0 >= LLC && LA8_0 <= NewLine)||LA8_0==OLC||LA8_0==OUC||(LA8_0 >= PLC && LA8_0 <= PUC)||(LA8_0 >= QLC && LA8_0 <= QUC)||LA8_0==Quoted||(LA8_0 >= RLC && LA8_0 <= Slash)||(LA8_0 >= TLC && LA8_0 <= YUC)||(LA8_0 >= ZLC && LA8_0 <= ZUC)) ) {
+                if ( (LA8_0==ALC||LA8_0==AUC||(LA8_0 >= Ampersand && LA8_0 <= BlockQuoted)||LA8_0==CLC||LA8_0==CUC||LA8_0==CarriageReturn||(LA8_0 >= Colon && LA8_0 <= DLC)||LA8_0==DUC||(LA8_0 >= DoubleQuote && LA8_0 <= ELC)||(LA8_0 >= EUC && LA8_0 <= GLC)||(LA8_0 >= GUC && LA8_0 <= KUC)||(LA8_0 >= LLC && LA8_0 <= NewLine)||LA8_0==OLC||LA8_0==OUC||(LA8_0 >= PLC && LA8_0 <= Percent)||(LA8_0 >= QLC && LA8_0 <= QUC)||LA8_0==Quoted||(LA8_0 >= RLC && LA8_0 <= Slash)||(LA8_0 >= TLC && LA8_0 <= YUC)||(LA8_0 >= ZLC && LA8_0 <= ZUC)) ) {
                     alt8=1;
                 }
 
@@ -2539,6 +2542,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case GreaterThan:
                     case Hash:
                     case LessThan:
+                    case Percent:
                     case Semicolon:
                     case SingleQuote:
                     case Slash:
@@ -2578,7 +2582,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                else if ( (LA9_1==EOF||LA9_1==ALC||LA9_1==AUC||(LA9_1 >= Ampersand && LA9_1 <= BlockQuoted)||LA9_1==CLC||LA9_1==CUC||LA9_1==CarriageReturn||LA9_1==CloseBracket||(LA9_1 >= Colon && LA9_1 <= DLC)||LA9_1==DUC||(LA9_1 >= DoubleQuote && LA9_1 <= ELC)||(LA9_1 >= EUC && LA9_1 <= GLC)||(LA9_1 >= GUC && LA9_1 <= Hash)||(LA9_1 >= ILC && LA9_1 <= KUC)||(LA9_1 >= LLC && LA9_1 <= NewLine)||LA9_1==OLC||LA9_1==OUC||(LA9_1 >= PLC && LA9_1 <= PUC)||(LA9_1 >= QLC && LA9_1 <= QUC)||LA9_1==Quoted||(LA9_1 >= RLC && LA9_1 <= Slash)||(LA9_1 >= TLC && LA9_1 <= YUC)||(LA9_1 >= ZLC && LA9_1 <= ZUC)) ) {
+                else if ( (LA9_1==EOF||LA9_1==ALC||LA9_1==AUC||(LA9_1 >= Ampersand && LA9_1 <= BlockQuoted)||LA9_1==CLC||LA9_1==CUC||LA9_1==CarriageReturn||LA9_1==CloseBracket||(LA9_1 >= Colon && LA9_1 <= DLC)||LA9_1==DUC||(LA9_1 >= DoubleQuote && LA9_1 <= ELC)||(LA9_1 >= EUC && LA9_1 <= GLC)||(LA9_1 >= GUC && LA9_1 <= Hash)||(LA9_1 >= ILC && LA9_1 <= KUC)||(LA9_1 >= LLC && LA9_1 <= NewLine)||LA9_1==OLC||LA9_1==OUC||(LA9_1 >= PLC && LA9_1 <= Percent)||(LA9_1 >= QLC && LA9_1 <= QUC)||LA9_1==Quoted||(LA9_1 >= RLC && LA9_1 <= Slash)||(LA9_1 >= TLC && LA9_1 <= YUC)||(LA9_1 >= ZLC && LA9_1 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2801,6 +2805,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case GreaterThan:
                     case Hash:
                     case LessThan:
+                    case Percent:
                     case Semicolon:
                     case SingleQuote:
                     case Slash:
@@ -2840,7 +2845,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                else if ( (LA9_2==EOF||LA9_2==ALC||LA9_2==AUC||(LA9_2 >= Ampersand && LA9_2 <= BlockQuoted)||LA9_2==CLC||LA9_2==CUC||LA9_2==CarriageReturn||LA9_2==CloseBracket||(LA9_2 >= Colon && LA9_2 <= DLC)||LA9_2==DUC||(LA9_2 >= DoubleQuote && LA9_2 <= ELC)||(LA9_2 >= EUC && LA9_2 <= GLC)||(LA9_2 >= GUC && LA9_2 <= Hash)||(LA9_2 >= ILC && LA9_2 <= KUC)||(LA9_2 >= LLC && LA9_2 <= NewLine)||LA9_2==OLC||LA9_2==OUC||(LA9_2 >= PLC && LA9_2 <= PUC)||(LA9_2 >= QLC && LA9_2 <= QUC)||LA9_2==Quoted||(LA9_2 >= RLC && LA9_2 <= Slash)||(LA9_2 >= TLC && LA9_2 <= YUC)||(LA9_2 >= ZLC && LA9_2 <= ZUC)) ) {
+                else if ( (LA9_2==EOF||LA9_2==ALC||LA9_2==AUC||(LA9_2 >= Ampersand && LA9_2 <= BlockQuoted)||LA9_2==CLC||LA9_2==CUC||LA9_2==CarriageReturn||LA9_2==CloseBracket||(LA9_2 >= Colon && LA9_2 <= DLC)||LA9_2==DUC||(LA9_2 >= DoubleQuote && LA9_2 <= ELC)||(LA9_2 >= EUC && LA9_2 <= GLC)||(LA9_2 >= GUC && LA9_2 <= Hash)||(LA9_2 >= ILC && LA9_2 <= KUC)||(LA9_2 >= LLC && LA9_2 <= NewLine)||LA9_2==OLC||LA9_2==OUC||(LA9_2 >= PLC && LA9_2 <= Percent)||(LA9_2 >= QLC && LA9_2 <= QUC)||LA9_2==Quoted||(LA9_2 >= RLC && LA9_2 <= Slash)||(LA9_2 >= TLC && LA9_2 <= YUC)||(LA9_2 >= ZLC && LA9_2 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -2866,6 +2871,7 @@ public TreeAdaptor getTreeAdaptor() {
             case Hash:
             case Hyphen:
             case LessThan:
+            case Percent:
             case Semicolon:
             case SingleQuote:
             case Slash:
@@ -3071,6 +3077,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case GreaterThan:
                     case Hash:
                     case LessThan:
+                    case Percent:
                     case Semicolon:
                     case SingleQuote:
                     case Slash:
@@ -3110,7 +3117,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                else if ( (LA9_3==EOF||LA9_3==ALC||LA9_3==AUC||(LA9_3 >= Ampersand && LA9_3 <= BlockQuoted)||LA9_3==CLC||LA9_3==CUC||LA9_3==CarriageReturn||LA9_3==CloseBracket||(LA9_3 >= Colon && LA9_3 <= DLC)||LA9_3==DUC||(LA9_3 >= DoubleQuote && LA9_3 <= ELC)||(LA9_3 >= EUC && LA9_3 <= GLC)||(LA9_3 >= GUC && LA9_3 <= Hash)||(LA9_3 >= ILC && LA9_3 <= KUC)||(LA9_3 >= LLC && LA9_3 <= NewLine)||LA9_3==OLC||LA9_3==OUC||(LA9_3 >= PLC && LA9_3 <= PUC)||(LA9_3 >= QLC && LA9_3 <= QUC)||LA9_3==Quoted||(LA9_3 >= RLC && LA9_3 <= Slash)||(LA9_3 >= TLC && LA9_3 <= YUC)||(LA9_3 >= ZLC && LA9_3 <= ZUC)) ) {
+                else if ( (LA9_3==EOF||LA9_3==ALC||LA9_3==AUC||(LA9_3 >= Ampersand && LA9_3 <= BlockQuoted)||LA9_3==CLC||LA9_3==CUC||LA9_3==CarriageReturn||LA9_3==CloseBracket||(LA9_3 >= Colon && LA9_3 <= DLC)||LA9_3==DUC||(LA9_3 >= DoubleQuote && LA9_3 <= ELC)||(LA9_3 >= EUC && LA9_3 <= GLC)||(LA9_3 >= GUC && LA9_3 <= Hash)||(LA9_3 >= ILC && LA9_3 <= KUC)||(LA9_3 >= LLC && LA9_3 <= NewLine)||LA9_3==OLC||LA9_3==OUC||(LA9_3 >= PLC && LA9_3 <= Percent)||(LA9_3 >= QLC && LA9_3 <= QUC)||LA9_3==Quoted||(LA9_3 >= RLC && LA9_3 <= Slash)||(LA9_3 >= TLC && LA9_3 <= YUC)||(LA9_3 >= ZLC && LA9_3 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -3327,6 +3334,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case GreaterThan:
                     case Hash:
                     case LessThan:
+                    case Percent:
                     case Semicolon:
                     case SingleQuote:
                     case Slash:
@@ -3366,7 +3374,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                else if ( (LA9_4==EOF||LA9_4==ALC||LA9_4==AUC||(LA9_4 >= Ampersand && LA9_4 <= BlockQuoted)||LA9_4==CLC||LA9_4==CUC||LA9_4==CarriageReturn||LA9_4==CloseBracket||(LA9_4 >= Colon && LA9_4 <= DLC)||LA9_4==DUC||(LA9_4 >= DoubleQuote && LA9_4 <= ELC)||(LA9_4 >= EUC && LA9_4 <= GLC)||(LA9_4 >= GUC && LA9_4 <= Hash)||(LA9_4 >= ILC && LA9_4 <= KUC)||(LA9_4 >= LLC && LA9_4 <= NewLine)||LA9_4==OLC||LA9_4==OUC||(LA9_4 >= PLC && LA9_4 <= PUC)||(LA9_4 >= QLC && LA9_4 <= QUC)||LA9_4==Quoted||(LA9_4 >= RLC && LA9_4 <= Slash)||(LA9_4 >= TLC && LA9_4 <= YUC)||(LA9_4 >= ZLC && LA9_4 <= ZUC)) ) {
+                else if ( (LA9_4==EOF||LA9_4==ALC||LA9_4==AUC||(LA9_4 >= Ampersand && LA9_4 <= BlockQuoted)||LA9_4==CLC||LA9_4==CUC||LA9_4==CarriageReturn||LA9_4==CloseBracket||(LA9_4 >= Colon && LA9_4 <= DLC)||LA9_4==DUC||(LA9_4 >= DoubleQuote && LA9_4 <= ELC)||(LA9_4 >= EUC && LA9_4 <= GLC)||(LA9_4 >= GUC && LA9_4 <= Hash)||(LA9_4 >= ILC && LA9_4 <= KUC)||(LA9_4 >= LLC && LA9_4 <= NewLine)||LA9_4==OLC||LA9_4==OUC||(LA9_4 >= PLC && LA9_4 <= Percent)||(LA9_4 >= QLC && LA9_4 <= QUC)||LA9_4==Quoted||(LA9_4 >= RLC && LA9_4 <= Slash)||(LA9_4 >= TLC && LA9_4 <= YUC)||(LA9_4 >= ZLC && LA9_4 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -3580,6 +3588,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case GreaterThan:
                     case Hash:
                     case LessThan:
+                    case Percent:
                     case Semicolon:
                     case SingleQuote:
                     case Slash:
@@ -3619,7 +3628,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                else if ( (LA9_5==EOF||LA9_5==ALC||LA9_5==AUC||(LA9_5 >= Ampersand && LA9_5 <= BlockQuoted)||LA9_5==CLC||LA9_5==CUC||LA9_5==CarriageReturn||LA9_5==CloseBracket||(LA9_5 >= Colon && LA9_5 <= DLC)||LA9_5==DUC||(LA9_5 >= DoubleQuote && LA9_5 <= ELC)||(LA9_5 >= EUC && LA9_5 <= GLC)||(LA9_5 >= GUC && LA9_5 <= Hash)||(LA9_5 >= ILC && LA9_5 <= KUC)||(LA9_5 >= LLC && LA9_5 <= NewLine)||LA9_5==OLC||LA9_5==OUC||(LA9_5 >= PLC && LA9_5 <= PUC)||(LA9_5 >= QLC && LA9_5 <= QUC)||LA9_5==Quoted||(LA9_5 >= RLC && LA9_5 <= Slash)||(LA9_5 >= TLC && LA9_5 <= YUC)||(LA9_5 >= ZLC && LA9_5 <= ZUC)) ) {
+                else if ( (LA9_5==EOF||LA9_5==ALC||LA9_5==AUC||(LA9_5 >= Ampersand && LA9_5 <= BlockQuoted)||LA9_5==CLC||LA9_5==CUC||LA9_5==CarriageReturn||LA9_5==CloseBracket||(LA9_5 >= Colon && LA9_5 <= DLC)||LA9_5==DUC||(LA9_5 >= DoubleQuote && LA9_5 <= ELC)||(LA9_5 >= EUC && LA9_5 <= GLC)||(LA9_5 >= GUC && LA9_5 <= Hash)||(LA9_5 >= ILC && LA9_5 <= KUC)||(LA9_5 >= LLC && LA9_5 <= NewLine)||LA9_5==OLC||LA9_5==OUC||(LA9_5 >= PLC && LA9_5 <= Percent)||(LA9_5 >= QLC && LA9_5 <= QUC)||LA9_5==Quoted||(LA9_5 >= RLC && LA9_5 <= Slash)||(LA9_5 >= TLC && LA9_5 <= YUC)||(LA9_5 >= ZLC && LA9_5 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -3833,6 +3842,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case GreaterThan:
                     case Hash:
                     case LessThan:
+                    case Percent:
                     case Semicolon:
                     case SingleQuote:
                     case Slash:
@@ -3872,7 +3882,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
                 }
-                else if ( (LA9_6==EOF||LA9_6==ALC||LA9_6==AUC||(LA9_6 >= Ampersand && LA9_6 <= BlockQuoted)||LA9_6==CLC||LA9_6==CUC||LA9_6==CarriageReturn||LA9_6==CloseBracket||(LA9_6 >= Colon && LA9_6 <= DLC)||LA9_6==DUC||(LA9_6 >= DoubleQuote && LA9_6 <= ELC)||(LA9_6 >= EUC && LA9_6 <= GLC)||(LA9_6 >= GUC && LA9_6 <= Hash)||(LA9_6 >= ILC && LA9_6 <= KUC)||(LA9_6 >= LLC && LA9_6 <= NewLine)||LA9_6==OLC||LA9_6==OUC||(LA9_6 >= PLC && LA9_6 <= PUC)||(LA9_6 >= QLC && LA9_6 <= QUC)||LA9_6==Quoted||(LA9_6 >= RLC && LA9_6 <= Slash)||(LA9_6 >= TLC && LA9_6 <= YUC)||(LA9_6 >= ZLC && LA9_6 <= ZUC)) ) {
+                else if ( (LA9_6==EOF||LA9_6==ALC||LA9_6==AUC||(LA9_6 >= Ampersand && LA9_6 <= BlockQuoted)||LA9_6==CLC||LA9_6==CUC||LA9_6==CarriageReturn||LA9_6==CloseBracket||(LA9_6 >= Colon && LA9_6 <= DLC)||LA9_6==DUC||(LA9_6 >= DoubleQuote && LA9_6 <= ELC)||(LA9_6 >= EUC && LA9_6 <= GLC)||(LA9_6 >= GUC && LA9_6 <= Hash)||(LA9_6 >= ILC && LA9_6 <= KUC)||(LA9_6 >= LLC && LA9_6 <= NewLine)||LA9_6==OLC||LA9_6==OUC||(LA9_6 >= PLC && LA9_6 <= Percent)||(LA9_6 >= QLC && LA9_6 <= QUC)||LA9_6==Quoted||(LA9_6 >= RLC && LA9_6 <= Slash)||(LA9_6 >= TLC && LA9_6 <= YUC)||(LA9_6 >= ZLC && LA9_6 <= ZUC)) ) {
                     alt9=2;
                 }
                 else {
@@ -4055,7 +4065,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 }
             }
-            else if ( (LA10_0==ALC||LA10_0==AUC||(LA10_0 >= Ampersand && LA10_0 <= BlockQuoted)||LA10_0==CLC||LA10_0==CUC||LA10_0==CarriageReturn||(LA10_0 >= Colon && LA10_0 <= DLC)||(LA10_0 >= DUC && LA10_0 <= ELC)||(LA10_0 >= EUC && LA10_0 <= GLC)||(LA10_0 >= GUC && LA10_0 <= KUC)||(LA10_0 >= LLC && LA10_0 <= NewLine)||LA10_0==OLC||LA10_0==OUC||(LA10_0 >= OpenBracket && LA10_0 <= PUC)||LA10_0==Pipe||(LA10_0 >= QLC && LA10_0 <= QUC)||LA10_0==Quoted||(LA10_0 >= RLC && LA10_0 <= Slash)||(LA10_0 >= TLC && LA10_0 <= YUC)||(LA10_0 >= ZLC && LA10_0 <= ZUC)) ) {
+            else if ( (LA10_0==ALC||LA10_0==AUC||(LA10_0 >= Ampersand && LA10_0 <= BlockQuoted)||LA10_0==CLC||LA10_0==CUC||LA10_0==CarriageReturn||(LA10_0 >= Colon && LA10_0 <= DLC)||(LA10_0 >= DUC && LA10_0 <= ELC)||(LA10_0 >= EUC && LA10_0 <= GLC)||(LA10_0 >= GUC && LA10_0 <= KUC)||(LA10_0 >= LLC && LA10_0 <= NewLine)||LA10_0==OLC||LA10_0==OUC||(LA10_0 >= OpenBracket && LA10_0 <= Pipe)||(LA10_0 >= QLC && LA10_0 <= QUC)||LA10_0==Quoted||(LA10_0 >= RLC && LA10_0 <= Slash)||(LA10_0 >= TLC && LA10_0 <= YUC)||(LA10_0 >= ZLC && LA10_0 <= ZUC)) ) {
                 alt10=2;
             }
             else {
@@ -4343,6 +4353,7 @@ public TreeAdaptor getTreeAdaptor() {
             case Hash:
             case Hyphen:
             case LessThan:
+            case Percent:
             case Semicolon:
             case SingleQuote:
             case Slash:
@@ -4994,7 +5005,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "other_chars"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:304:1: other_chars : ( Exclamation | DoubleQuote | Hash | Ampersand | SingleQuote | Comma | Hyphen | Slash | Colon | Semicolon | LessThan | Equals | GreaterThan | At | Backslash | Underscore | GraveAccent | Tilde );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:304:1: other_chars : ( Exclamation | DoubleQuote | Hash | Percent | Ampersand | SingleQuote | Comma | Hyphen | Slash | Colon | Semicolon | LessThan | Equals | GreaterThan | At | Backslash | Underscore | GraveAccent | Tilde );
     public final RegexParser.other_chars_return other_chars() throws RecognitionException {
         RegexParser.other_chars_return retval = new RegexParser.other_chars_return();
         retval.start = input.LT(1);
@@ -5007,7 +5018,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set53_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:305:3: ( Exclamation | DoubleQuote | Hash | Ampersand | SingleQuote | Comma | Hyphen | Slash | Colon | Semicolon | LessThan | Equals | GreaterThan | At | Backslash | Underscore | GraveAccent | Tilde )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:305:3: ( Exclamation | DoubleQuote | Hash | Percent | Ampersand | SingleQuote | Comma | Hyphen | Slash | Colon | Semicolon | LessThan | Equals | GreaterThan | At | Backslash | Underscore | GraveAccent | Tilde )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -5015,7 +5026,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             set53=(Token)input.LT(1);
 
-            if ( (input.LA(1) >= Ampersand && input.LA(1) <= At)||input.LA(1)==Backslash||(input.LA(1) >= Colon && input.LA(1) <= Comma)||input.LA(1)==DoubleQuote||(input.LA(1) >= Equals && input.LA(1) <= Exclamation)||(input.LA(1) >= GraveAccent && input.LA(1) <= GreaterThan)||(input.LA(1) >= Hash && input.LA(1) <= Hyphen)||input.LA(1)==LessThan||(input.LA(1) >= Semicolon && input.LA(1) <= Slash)||input.LA(1)==Tilde||input.LA(1)==Underscore ) {
+            if ( (input.LA(1) >= Ampersand && input.LA(1) <= At)||input.LA(1)==Backslash||(input.LA(1) >= Colon && input.LA(1) <= Comma)||input.LA(1)==DoubleQuote||(input.LA(1) >= Equals && input.LA(1) <= Exclamation)||(input.LA(1) >= GraveAccent && input.LA(1) <= GreaterThan)||(input.LA(1) >= Hash && input.LA(1) <= Hyphen)||input.LA(1)==LessThan||input.LA(1)==Percent||(input.LA(1) >= Semicolon && input.LA(1) <= Slash)||input.LA(1)==Tilde||input.LA(1)==Underscore ) {
                 input.consume();
                 if ( state.backtracking==0 ) adaptor.addChild(root_0, 
                 (Object)adaptor.create(set53)
@@ -5063,7 +5074,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "special_chars"
-    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:326:1: special_chars : ( Dollar | OpenParen | CloseParen | Star | Plus | Dot | QuestionMark | OpenBracket | CloseBracket | Caret | OpenBrace | Pipe | CloseBrace );
+    // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:327:1: special_chars : ( Dollar | OpenParen | CloseParen | Star | Plus | Dot | QuestionMark | OpenBracket | CloseBracket | Caret | OpenBrace | Pipe | CloseBrace );
     public final RegexParser.special_chars_return special_chars() throws RecognitionException {
         RegexParser.special_chars_return retval = new RegexParser.special_chars_return();
         retval.start = input.LT(1);
@@ -5076,7 +5087,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object set54_tree=null;
 
         try {
-            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:327:3: ( Dollar | OpenParen | CloseParen | Star | Plus | Dot | QuestionMark | OpenBracket | CloseBracket | Caret | OpenBrace | Pipe | CloseBrace )
+            // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:328:3: ( Dollar | OpenParen | CloseParen | Star | Plus | Dot | QuestionMark | OpenBracket | CloseBracket | Caret | OpenBrace | Pipe | CloseBrace )
             // /home/abrandl/Dropbox/ma-thesis/workspace/lucene.regex/src/main/java/de/abrandl/regex/grammar/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -5332,10 +5343,10 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_EOF_in_parse153 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_subject_boundary_in_parse167 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_first_alternative_in_regex187 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_Pipe_in_regex209 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD6BD2FFL});
+    public static final BitSet FOLLOW_Pipe_in_regex209 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD6FD2FFL});
     public static final BitSet FOLLOW_concatenation_in_regex211 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
     public static final BitSet FOLLOW_concatenation_in_first_alternative258 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_element_in_concatenation273 = new BitSet(new long[]{0x7FFDFBAFFF8ABF52L,0x001BFFFDFD63D2FFL});
+    public static final BitSet FOLLOW_element_in_concatenation273 = new BitSet(new long[]{0x7FFDFBAFFF8ABF52L,0x001BFFFDFD67D2FFL});
     public static final BitSet FOLLOW_atom_in_element308 = new BitSet(new long[]{0x0000000000000000L,0x0000000000100000L});
     public static final BitSet FOLLOW_Plus_in_element310 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_atom_in_element334 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
@@ -5345,7 +5356,7 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_atom_in_element386 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Plus_in_quantifier419 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Star_in_quantifier441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OpenParen_in_group472 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
+    public static final BitSet FOLLOW_OpenParen_in_group472 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD67D2FFL});
     public static final BitSet FOLLOW_regex_in_group474 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_CloseParen_in_group476 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_atom509 = new BitSet(new long[]{0x0000000000000002L});
@@ -5353,19 +5364,19 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_dotany_in_atom521 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_character_class_in_atom527 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Dot_in_dotany542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OpenBracket_in_character_class578 = new BitSet(new long[]{0x7FFDFB2FFF8ABF50L,0x001BFFFDFD6312FFL});
-    public static final BitSet FOLLOW_cc_atom_in_character_class580 = new BitSet(new long[]{0x7FFDFB2FFFAABF50L,0x001BFFFDFD6312FFL});
+    public static final BitSet FOLLOW_OpenBracket_in_character_class578 = new BitSet(new long[]{0x7FFDFB2FFF8ABF50L,0x001BFFFDFD6712FFL});
+    public static final BitSet FOLLOW_cc_atom_in_character_class580 = new BitSet(new long[]{0x7FFDFB2FFFAABF50L,0x001BFFFDFD6712FFL});
     public static final BitSet FOLLOW_CloseBracket_in_character_class583 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_cc_atom617 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_Hyphen_in_cc_atom619 = new BitSet(new long[]{0x7FFDFB2FFF8ABF50L,0x001BFFFDFD6312FFL});
+    public static final BitSet FOLLOW_Hyphen_in_cc_atom619 = new BitSet(new long[]{0x7FFDFB2FFF8ABF50L,0x001BFFFDFD6712FFL});
     public static final BitSet FOLLOW_literal_in_cc_atom621 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_cc_atom647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_subject_boundary667 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
+    public static final BitSet FOLLOW_Caret_in_subject_boundary667 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD67D2FFL});
     public static final BitSet FOLLOW_regex_in_subject_boundary669 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_regex_in_subject_boundary683 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_Dollar_in_subject_boundary685 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_subject_boundary687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_subject_boundary701 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
+    public static final BitSet FOLLOW_Caret_in_subject_boundary701 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD67D2FFL});
     public static final BitSet FOLLOW_regex_in_subject_boundary703 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_Dollar_in_subject_boundary705 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_subject_boundary707 = new BitSet(new long[]{0x0000000000000002L});
@@ -5385,9 +5396,9 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_atom_in_synpred7_Regex360 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
     public static final BitSet FOLLOW_QuestionMark_in_synpred7_Regex362 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_literal_in_synpred13_Regex617 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_Hyphen_in_synpred13_Regex619 = new BitSet(new long[]{0x7FFDFB2FFF8ABF50L,0x001BFFFDFD6312FFL});
+    public static final BitSet FOLLOW_Hyphen_in_synpred13_Regex619 = new BitSet(new long[]{0x7FFDFB2FFF8ABF50L,0x001BFFFDFD6712FFL});
     public static final BitSet FOLLOW_literal_in_synpred13_Regex621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Caret_in_synpred14_Regex667 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD63D2FFL});
+    public static final BitSet FOLLOW_Caret_in_synpred14_Regex667 = new BitSet(new long[]{0x7FFDFBAFFF8ABF50L,0x001BFFFDFD67D2FFL});
     public static final BitSet FOLLOW_regex_in_synpred14_Regex669 = new BitSet(new long[]{0x0000000000000002L});
 
 }
