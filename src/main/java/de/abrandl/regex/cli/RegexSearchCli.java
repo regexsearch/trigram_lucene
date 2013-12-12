@@ -2,13 +2,17 @@ package de.abrandl.regex.cli;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
+import java.math.BigInteger;
+import java.util.*;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+
+import com.google.common.hash.Hasher;
+import com.google.common.hash.Hashing;
 
 import de.abrandl.regex.ExhaustiveSearchEngine;
 import de.abrandl.regex.RegexSearchEngine;
@@ -71,7 +75,29 @@ public class RegexSearchCli {
 		dc.put("action", "query");
 		dc.put("overall_runtime", runtime);
 		dc.put("matches", docs.size());
-		dc.put("docs", docs);
+		dc.put("docs_sha1", hash(docs));
+	}
+
+	private String hash(Collection<SimpleDocument> docs) {
+		List<SimpleDocument> sorted = new ArrayList<SimpleDocument>(docs.size());
+		sorted.addAll(docs);
+		Collections.sort(sorted, new Comparator<SimpleDocument>() {
+
+			@Override
+			public int compare(SimpleDocument arg0, SimpleDocument arg1) {
+				return arg0.getIdentifier().compareTo(arg1.getIdentifier());
+			}
+
+		});
+
+		Hasher hasher = Hashing.sha1().newHasher();
+
+		for (SimpleDocument doc : sorted) {
+			hasher.putString(doc.getIdentifier());
+		}
+
+		BigInteger i = new BigInteger(1, hasher.hash().asBytes());
+		return String.format("%1$032x", i);
 	}
 
 	/**
