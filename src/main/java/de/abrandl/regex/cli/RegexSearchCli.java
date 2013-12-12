@@ -15,6 +15,7 @@ import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 
 import de.abrandl.regex.ExhaustiveSearchEngine;
+import de.abrandl.regex.InMemorySearchEngine;
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
 import de.abrandl.regex.document.SimpleDocument;
@@ -123,9 +124,10 @@ public class RegexSearchCli {
 
 	/**
 	 * 
-	 * index: -engine (lucene|exhaustive) -index /tmp/emptydir -docs /tmp/mydocs
-	 * -action index query: -engine (lucene|exhaustive) -index /tmp/index -docs
-	 * /tmp/mydocs -action query -query "hello?( world)*"
+	 * index: -engine (lucene|exhaustive|inmemory) -index /tmp/emptydir -docs
+	 * /tmp/mydocs -action index query: -engine (lucene|exhaustive|inmemory)
+	 * -index /tmp/index -docs /tmp/mydocs -action query -query
+	 * "hello?( world)*"
 	 * 
 	 * 
 	 * @return
@@ -189,6 +191,8 @@ public class RegexSearchCli {
 		case "lucene":
 			Directory directory = FSDirectory.open(index);
 			return new LuceneRegexSearchEngine(Version.LUCENE_46, directory);
+		case "inmemory":
+			return new InMemorySearchEngine();
 		default:
 			throw new IllegalArgumentException("unknown engine: " + name);
 		}
@@ -199,7 +203,8 @@ public class RegexSearchCli {
 		Options options = new Options();
 
 		Option engine = OptionBuilder.withArgName("engine").hasArg().isRequired()
-				.withDescription("select either 'exhaustive' or 'lucene' regex search engine").create("engine");
+				.withDescription("select either 'exhaustive', 'lucene' or 'inmemory' regex search engine")
+				.create("engine");
 
 		options.addOption(engine);
 
