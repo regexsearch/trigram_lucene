@@ -124,10 +124,9 @@ public class RegexSearchCli {
 
 	/**
 	 * 
-	 * index: -engine (lucene|exhaustive|inmemory) -index /tmp/emptydir -docs
-	 * /tmp/mydocs -action index query: -engine (lucene|exhaustive|inmemory)
-	 * -index /tmp/index -docs /tmp/mydocs -action query -query
-	 * "hello?( world)*"
+	 * index: -engine (lucene|jgrep|inmemory) -index /tmp/emptydir -docs
+	 * /tmp/mydocs -action index query: -engine (lucene|jgrep|inmemory) -index
+	 * /tmp/index -docs /tmp/mydocs -action query -query "hello?( world)*"
 	 * 
 	 * 
 	 * @return
@@ -186,7 +185,7 @@ public class RegexSearchCli {
 
 	private static RegexSearchEngine createEngine(String name, File index) throws IOException {
 		switch (name) {
-		case "exhaustive":
+		case "jgrep":
 			return new ExhaustiveSearchEngine(index);
 		case "lucene":
 			Directory directory = FSDirectory.open(index);
@@ -203,8 +202,7 @@ public class RegexSearchCli {
 		Options options = new Options();
 
 		Option engine = OptionBuilder.withArgName("engine").hasArg().isRequired()
-				.withDescription("select either 'exhaustive', 'lucene' or 'inmemory' regex search engine")
-				.create("engine");
+				.withDescription("select either 'jgrep', 'lucene' or 'inmemory' regex search engine").create("engine");
 
 		options.addOption(engine);
 
