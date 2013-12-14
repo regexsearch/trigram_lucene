@@ -2,7 +2,8 @@ package de.abrandl.regex.cli;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 import org.apache.commons.cli.*;
@@ -10,9 +11,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-
-import com.google.common.hash.Hasher;
-import com.google.common.hash.Hashing;
 
 import de.abrandl.regex.ExhaustiveSearchEngine;
 import de.abrandl.regex.InMemorySearchEngine;
@@ -77,6 +75,7 @@ public class RegexSearchCli {
 		dc.put("overall_runtime", runtime);
 		dc.put("matches", docs.size());
 		dc.put("docs_sha1", hash(docs));
+		dc.put("docs", docs); // remove me
 	}
 
 	private String hash(Collection<SimpleDocument> docs) {
@@ -91,14 +90,28 @@ public class RegexSearchCli {
 
 		});
 
-		Hasher hasher = Hashing.sha1().newHasher();
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-1");
 
-		for (SimpleDocument doc : sorted) {
-			hasher.putString(doc.getIdentifier());
+			for (SimpleDocument doc : sorted) {
+				md.update(doc.getIdentifier().getBytes());
+			}
+
+			return byteArrayToHexString(md.digest());
+
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
 		}
 
-		BigInteger i = new BigInteger(1, hasher.hash().asBytes());
-		return String.format("%1$032x", i);
+	}
+
+	private static String byteArrayToHexString(byte[] b) {
+		String result = "";
+		for (int i = 0; i < b.length; i++) {
+			result += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
+		}
+		return result;
 	}
 
 	/**
@@ -142,10 +155,10 @@ public class RegexSearchCli {
 
 			String engineName = line.getOptionValue("engine");
 			File index = new File(line.getOptionValue("index"));
-
-			RegexSearchEngine engine = createEngine(engineName, index);
-
 			File docs = new File(line.getOptionValue("docs"));
+
+			RegexSearchEngine engine = createEngine(engineName, index, docs);
+
 			RegexSearchCli cli = new RegexSearchCli(engine, docs);
 
 			String action = line.getOptionValue("action");
@@ -183,7 +196,7 @@ public class RegexSearchCli {
 		}
 	}
 
-	private static RegexSearchEngine createEngine(String name, File index) throws IOException {
+	private static RegexSearchEngine createEngine(String name, File index, File docs) throws IOException {
 		switch (name) {
 		case "jgrep":
 			return new ExhaustiveSearchEngine(index);
@@ -191,7 +204,7 @@ public class RegexSearchCli {
 			Directory directory = FSDirectory.open(index);
 			return new LuceneRegexSearchEngine(Version.LUCENE_46, directory);
 		case "inmemory":
-			return new InMemorySearchEngine();
+			return new InMemorySearchEngine(docs);
 		default:
 			throw new IllegalArgumentException("unknown engine: " + name);
 		}
