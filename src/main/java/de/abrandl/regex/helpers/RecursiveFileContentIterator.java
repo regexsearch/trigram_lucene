@@ -83,7 +83,7 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 		reinitIterator();
 	}
 
-	public void reset(Integer limit) {
+	synchronized public void reset(Integer limit) {
 		this.files.clear();
 		this.limit = limit;
 		reinitIterator();
@@ -116,17 +116,17 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 		}
 	}
 
-	public int size() {
+	synchronized public int size() {
 		return files.size();
 	}
 
 	@Override
-	public boolean hasNext() {
+	synchronized public boolean hasNext() {
 		return fileIterator.hasNext();
 	}
 
 	@Override
-	public SimpleDocument next() {
+	synchronized public SimpleDocument next() {
 		File file = fileIterator.next();
 		if (file != null) {
 			try {
@@ -140,7 +140,7 @@ public class RecursiveFileContentIterator implements Iterator<SimpleDocument> {
 	}
 
 	@Override
-	public void remove() {
+	synchronized public void remove() {
 		fileIterator.remove();
 	}
 

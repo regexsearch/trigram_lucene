@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 import org.apache.lucene.document.*;
@@ -120,7 +123,14 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 	private class Writer implements RegexSearchEngine.Writer {
 
-		private IndexWriter writer = null;
+		private volatile IndexWriter writer = null;
+
+		private final int poolSize = 7;
+		private final ExecutorService pool;
+
+		private Writer() {
+			pool = Executors.newFixedThreadPool(poolSize);
+		}
 
 		@Override
 		public void close() throws IOException {
@@ -138,15 +148,53 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			}
 		}
 
+		private volatile IOException lastException;
+
+		private synchronized void setIOException(IOException e) {
+			lastException = e;
+		}
+
+		/**
+		 * Add a bunch of documents to the index. Note that the Iterator needs
+		 * to be thread-safe.
+		 */
 		@Override
-		public void add(Iterator<SimpleDocument> docs) throws IOException {
-			while (docs.hasNext()) {
-				add(docs.next());
+		public void add(final Iterator<SimpleDocument> docs) throws IOException {
+			open();
+
+			final CountDownLatch latch = new CountDownLatch(poolSize);
+
+			for (int i = 0; i < poolSize; i++) {
+				pool.execute(new Runnable() {
+
+					@Override
+					public void run() {
+						while (docs.hasNext() && lastException == null) {
+							try {
+								add(docs.next());
+							} catch (IOException e) {
+								setIOException(e);
+							}
+						}
+						latch.countDown();
+					}
+				});
 			}
+
+			try {
+				latch.await();
+			} catch (InterruptedException e) {
+			}
+
+			if (lastException != null) {
+				IOException e = lastException;
+				lastException = null;
+				throw e;
+			}
+
 		}
 
 		private void add(SimpleDocument document) throws IOException {
-			open();
 			String content = document.getContent();
 
 			Document ldoc = new org.apache.lucene.document.Document();
