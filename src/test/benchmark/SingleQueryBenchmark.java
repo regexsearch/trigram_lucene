@@ -5,7 +5,6 @@ import java.util.Iterator;
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
 import de.abrandl.regex.document.SimpleDocument;
-import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 
 public class SingleQueryBenchmark {
 
@@ -52,10 +51,8 @@ public class SingleQueryBenchmark {
 	private long index(Iterator<SimpleDocument> docs) throws IOException {
 		long startTime = System.currentTimeMillis();
 
-		if (!(engine instanceof LuceneRegexSearchEngine)) {
-			try (RegexSearchEngine.Writer writer = engine.getWriter()) {
-				writer.add(docs);
-			}
+		try (RegexSearchEngine.Writer writer = engine.getWriter()) {
+			writer.add(docs);
 		}
 
 		return System.currentTimeMillis() - startTime;

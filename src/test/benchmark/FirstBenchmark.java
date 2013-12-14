@@ -1,5 +1,6 @@
 import java.io.File;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
@@ -26,12 +27,12 @@ public class FirstBenchmark {
 
 		// File documentDirectory = new
 		// File("/home/abrandl/Dropbox/ma-thesis/data/spiegel2000");
-		File documentDirectory = new File("/mnt/msc/datasets/linux-3.11.4");
+		File documentDirectory = new File("/mnt/msc/datasets/linux-3.12.4");
 		Integer limit = null;
 
 		File luceneIndexPath = new File("/home/abrandl/tmp/lucene-benchmark");
 		if (luceneIndexPath.isDirectory()) {
-			// FileUtils.deleteDirectory(luceneIndexPath);
+			FileUtils.deleteDirectory(luceneIndexPath);
 		}
 		SingleQueryBenchmark lucene = new SingleQueryBenchmark(new LuceneRegexSearchEngine(Version.LUCENE_46,
 				FSDirectory.open(luceneIndexPath)));
