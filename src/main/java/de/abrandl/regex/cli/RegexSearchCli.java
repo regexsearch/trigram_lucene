@@ -75,7 +75,6 @@ public class RegexSearchCli {
 		dc.put("overall_runtime", runtime);
 		dc.put("matches", docs.size());
 		dc.put("docs_sha1", hash(docs));
-		dc.put("docs", docs); // remove me
 	}
 
 	private String hash(Collection<SimpleDocument> docs) {
