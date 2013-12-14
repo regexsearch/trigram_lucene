@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.not;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -128,6 +129,14 @@ public class RegexTreeTransfomerTest {
 		assertIdenticalTransform("[a-z]");
 		assertIdenticalTransform("[a-b0-9e-z]");
 		assertIdenticalTransform("[a-z]");
+		assertIdenticalTransform("[abc]");
+	}
+
+	@Test
+	public void characterClassWithRangesMustIncludeCharacterRange() throws RegexParsingException {
+		RegexNode tree = parse("[a-z0-9abc]");
+
+		assertTrue(tree.accept(new RegexNodeVisitorTypeCollector()).contains(CharacterRange.class));
 	}
 
 	@Test

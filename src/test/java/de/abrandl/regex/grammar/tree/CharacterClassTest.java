@@ -1,10 +1,12 @@
 package de.abrandl.regex.grammar.tree;
 
 import java.util.Collection;
+import java.util.List;
 
-import static de.abrandl.test.Helpers.asSet;
+import static org.hamcrest.CoreMatchers.is;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,12 +14,31 @@ public class CharacterClassTest {
 
 	@Test
 	public void enumerateCharacters() {
-		CharacterRange[] ranges = new CharacterRange[] { new CharacterRange(
-				'a', 'c') };
-		CharacterClass cclass = new CharacterClass(ranges);
-		Collection<Character> result = cclass.enumerateCharacters();
+		CharacterClass cclass = new CharacterClass();
+		cclass.addChars(new CharacterRange('a', 'c'));
+		cclass.addChars(new Literal("z"));
 
-		assertEquals(asSet('a', 'b', 'c'), result);
+		Collection<Character> chars = cclass.enumerateCharacters();
+
+		assertTrue(chars.contains('a'));
+		assertTrue(chars.contains('b'));
+		assertTrue(chars.contains('c'));
+		assertTrue(chars.contains('z'));
+
+		assertThat(chars.size(), is(4));
 	}
 
+	@Test
+	public void children() {
+		CharacterRange range = new CharacterRange('a', 'c');
+		Literal literal = new Literal("z");
+
+		CharacterClass cclass = new CharacterClass();
+		cclass.addChars(literal);
+		cclass.addChars(range);
+
+		List<RegexNode> children = cclass.getChildren();
+		assertTrue(children.contains(range));
+		assertTrue(children.contains(literal));
+	}
 }

@@ -7,3 +7,4 @@ salewa [a-z0-9]+ biking
 (salewa )+((b|h)iking ?)+
 ^(salewa )+((b|h)iking ?)+
 ^(salewa )+((b|h)iking ?)+$
+[sa-bew]alewa

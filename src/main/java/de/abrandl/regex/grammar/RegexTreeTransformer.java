@@ -75,17 +75,19 @@ class RegexTreeTransformer {
 		case RegexParser.OPTIONAL:
 			return new Optional(childTrees[0]);
 		case RegexParser.CHARACTER_CLASS:
-			CharacterRange[] ranges = new CharacterRange[childCount];
+			CharacterClass cc = new CharacterClass();
 			for (int i = 0; i < childTrees.length; i++) {
-				if (!(childTrees[i] instanceof CharacterRange)) {
-					// TODO: support character classes without range but only
-					// literals given
-					throw new RegexParsingException("Only expected children of type CharacterRange here, others given:"
-							+ childTrees[i].getClass());
+				if (childTrees[i] instanceof CharacterRange) {
+					cc.addChars((CharacterRange) childTrees[i]);
+				} else if (childTrees[i] instanceof Literal) {
+					cc.addChars((Literal) childTrees[i]);
+				} else {
+					throw new RegexParsingException(
+							"Only expected children of type CharacterRange or Literal here, others given:"
+									+ childTrees[i].getClass());
 				}
-				ranges[i] = (CharacterRange) childTrees[i];
 			}
-			return new CharacterClass(ranges);
+			return cc;
 		case RegexParser.RANGE:
 
 			char start = ((Literal) childTrees[0]).getChars().charAt(0);
@@ -117,6 +119,7 @@ class RegexTreeTransformer {
 				childTrees[childIndex] = childTree;
 				childIndex++;
 			}
+
 		}
 	}
 

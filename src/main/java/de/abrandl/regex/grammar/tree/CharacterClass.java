@@ -1,14 +1,22 @@
 package de.abrandl.regex.grammar.tree;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-// TODO: CharacterRange should be internal to CharacterClass, not reside in the tree
+import static com.google.common.base.Preconditions.checkArgument;
+
 public class CharacterClass extends RegexNode {
 
-	public CharacterClass(CharacterRange... ranges) {
-		addChildren(ranges);
+	private final Set<Character> chars = new HashSet<Character>();
+
+	public void addChars(CharacterRange range) {
+		chars.addAll(Arrays.asList(range.enumerateCharacters()));
+		addChild(range);
+	}
+
+	public void addChars(Literal literal) {
+		checkArgument(literal.getChars().length() == 1, "literal with other than one char");
+		chars.add(literal.getChars().charAt(0));
+		addChild(literal);
 	}
 
 	@Override
@@ -17,14 +25,7 @@ public class CharacterClass extends RegexNode {
 	}
 
 	public Collection<Character> enumerateCharacters() {
-		Set<Character> chars = new HashSet<Character>();
-		for (RegexNode node : getChildren()) {
-			CharacterRange range = (CharacterRange) node;
-			for (Character c : range.enumerateCharacters()) {
-				chars.add(c);
-			}
-		}
-		return chars;
+		return Collections.unmodifiableCollection(chars);
 	}
 
 }
