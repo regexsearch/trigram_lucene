@@ -186,6 +186,10 @@ public class RegexSearchCli {
 				throw new IllegalArgumentException("unknown action: " + action);
 			}
 
+			DetailsCollector.instance.put("heap_size", Runtime.getRuntime().totalMemory());
+			DetailsCollector.instance.put("heap_size_max", Runtime.getRuntime().maxMemory());
+			DetailsCollector.instance.put("heap_size_free", Runtime.getRuntime().freeMemory());
+
 		} catch (ParseException exp) {
 			// oops, something went wrong
 			System.err.println("Parsing cli options failed.  Reason: " + exp.getMessage());
