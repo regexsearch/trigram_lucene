@@ -2,11 +2,12 @@ package de.abrandl.regex.lucene;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.apache.lucene.document.*;
@@ -73,22 +74,29 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 			try {
 				open();
-				Collection<Document> hits = performSearch(regex);
-
-				return convertToSimpleDocument(hits);
+				return performSearch(regex);
 			} catch (RegexParsingException | IOException e) {
 				throw new SearchFailedException(e);
 			}
 		}
 
-		private Collection<Document> performSearch(String regex) throws RegexParsingException, IOException {
+		private Collection<SimpleDocument> performSearch(String regex) throws RegexParsingException, IOException {
 			IndexSearcher isearcher = new IndexSearcher(index);
 			timer.start();
 			Query query = constructQueryFromRegex(regex);
 			DetailsCollector.instance.put("query_transformation_time", timer.stop());
 			timer.reset();
 
-			PostFilterCollector collector = new PostFilterCollector("content", Pattern.compile(regex));
+			final Collection<SimpleDocument> matches = new LinkedList<SimpleDocument>();
+
+			PostFilterCollector collector = new PostFilterCollector("content", Pattern.compile(regex),
+					new PostFilterCollector.MatchCollector() {
+
+						@Override
+						public void collect(Document doc) {
+							matches.add(fromDocument(doc));
+						}
+					});
 
 			// perform search
 			timer.start();
@@ -96,18 +104,12 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			DetailsCollector.instance.put("search_time", timer.stop());
 			timer.reset();
 
-			return collector.getMatches();
+			return matches;
 		}
 
-		private Collection<SimpleDocument> convertToSimpleDocument(final Collection<Document> hits) {
-			final Collection<SimpleDocument> resultSet = new HashSet<SimpleDocument>(hits.size());
-
-			for (Document doc : hits) {
-				String identifier = doc.get("identifier");
-
-				resultSet.add(new FileDocument(identifier));
-			}
-			return resultSet;
+		private SimpleDocument fromDocument(Document doc) {
+			String identifier = doc.get("identifier");
+			return new FileDocument(identifier);
 		}
 
 	}
@@ -126,10 +128,9 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		private volatile IndexWriter writer = null;
 
 		private final int poolSize = 7;
-		private final ExecutorService pool;
 
 		private Writer() {
-			pool = Executors.newFixedThreadPool(poolSize);
+
 		}
 
 		@Override
@@ -162,6 +163,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		public void add(final Iterator<SimpleDocument> docs) throws IOException {
 			open();
 
+			final ExecutorService pool = Executors.newFixedThreadPool(poolSize);
 			final CountDownLatch latch = new CountDownLatch(poolSize);
 
 			for (int i = 0; i < poolSize; i++) {
@@ -179,6 +181,14 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 						latch.countDown();
 					}
 				});
+			}
+
+			while (!pool.isTerminated()) {
+				pool.shutdown();
+				try {
+					pool.awaitTermination(10, TimeUnit.MILLISECONDS);
+				} catch (InterruptedException e) {
+				}
 			}
 
 			try {

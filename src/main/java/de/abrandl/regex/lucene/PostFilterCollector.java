@@ -1,7 +1,6 @@
 package de.abrandl.regex.lucene;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -17,20 +16,25 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class PostFilterCollector extends Collector {
 
+	public interface MatchCollector {
+		void collect(Document doc);
+	}
+
 	private final String field;
 	private final Pattern pattern;
 
 	private AtomicReaderContext context;
 	private final List<Integer> candidates = new LinkedList<Integer>();
-	private Collection<Document> matches = new LinkedList<Document>();
+	private final MatchCollector collector;
 
 	private int candidateCounter = 0;
 
 	private final Timer timer = new Timer();
 
-	public PostFilterCollector(String field, Pattern pattern) {
+	public PostFilterCollector(String field, Pattern pattern, MatchCollector collector) {
 		this.field = checkNotNull(field);
 		this.pattern = checkNotNull(pattern);
+		this.collector = checkNotNull(collector);
 	}
 
 	@Override
@@ -38,22 +42,13 @@ public class PostFilterCollector extends Collector {
 		// not needed here
 	}
 
-	public Collection<Document> getMatches() throws IOException {
+	public void finish() throws IOException {
 		verifyCandidates(); // verify candidates of last segment
 		System.out.printf("candidates: %d\n", candidateCounter);
 		System.out.printf("candidate verification took %d ms\n", timer.getSum());
 
 		DetailsCollector.instance.put("candidate_count", candidateCounter);
 		DetailsCollector.instance.put("candidate_verification_time", timer.getSum());
-
-		return reset();
-	}
-
-	private Collection<Document> reset() {
-		Collection<Document> tmp = matches;
-		matches = new LinkedList<Document>();
-		candidateCounter = 0;
-		return tmp;
 	}
 
 	private void verifyCandidates() throws IOException {
@@ -64,7 +59,7 @@ public class PostFilterCollector extends Collector {
 			String content = document.get(field);
 			if (pattern.matcher(content).find()) {
 				// document qualifies
-				matches.add(document);
+				collector.collect(document);
 			}
 		}
 		candidates.clear();
