@@ -2,8 +2,8 @@ package de.abrandl.regex.lucene;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -87,7 +87,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			DetailsCollector.instance.put("query_transformation_time", timer.stop());
 			timer.reset();
 
-			final Collection<SimpleDocument> matches = new LinkedList<SimpleDocument>();
+			final Collection<SimpleDocument> matches = new HashSet<SimpleDocument>();
 
 			PostFilterCollector collector = new PostFilterCollector("content", Pattern.compile(regex),
 					new PostFilterCollector.MatchCollector() {
@@ -101,6 +101,8 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			// perform search
 			timer.start();
 			isearcher.search(query, collector);
+			collector.finish(); // TODO: interface quite bad, you might forget
+								// calling finish
 			DetailsCollector.instance.put("search_time", timer.stop());
 			timer.reset();
 

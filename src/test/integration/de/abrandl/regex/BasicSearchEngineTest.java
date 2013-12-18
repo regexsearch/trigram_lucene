@@ -14,6 +14,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public abstract class BasicSearchEngineTest {
@@ -50,6 +51,11 @@ public abstract class BasicSearchEngineTest {
 			String regex = queries.next();
 			searchDocuments(regex);
 		}
+	}
+
+	@Before
+	public void before() {
+		DetailsCollector.instance.flush(System.out);
 	}
 
 	private void searchDocuments(String regex) throws SearchFailedException, IOException {
