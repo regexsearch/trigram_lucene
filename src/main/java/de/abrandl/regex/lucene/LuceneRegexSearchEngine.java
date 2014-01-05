@@ -138,15 +138,10 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		@Override
 		public void close() throws IOException {
 			if (writer != null) {
-				Timer timer = new Timer();
-				timer.start();
 				writer.forceMerge(1);
 				writer.commit();
 				writer.close();
 				writer = null;
-				long result = timer.stop();
-
-				DetailsCollector.instance.put("lucene_close_writer", result);
 			}
 		}
 
