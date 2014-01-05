@@ -138,8 +138,15 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		@Override
 		public void close() throws IOException {
 			if (writer != null) {
+				Timer timer = new Timer();
+				timer.start();
+				writer.forceMerge(1);
+				writer.commit();
 				writer.close();
 				writer = null;
+				long result = timer.stop();
+
+				DetailsCollector.instance.put("lucene_close_writer", result);
 			}
 		}
 
@@ -147,6 +154,7 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		public void open() throws IOException {
 			if (writer == null) {
 				IndexWriterConfig config = new IndexWriterConfig(luceneVersion, analyzer);
+				config.setRAMBufferSizeMB(512.0d);
 				writer = new IndexWriter(directory, config);
 			}
 		}
@@ -203,6 +211,8 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				lastException = null;
 				throw e;
 			}
+
+			writer.commit();
 
 		}
 
