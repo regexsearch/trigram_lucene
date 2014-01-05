@@ -20,6 +20,7 @@ import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 import de.abrandl.regex.helpers.Timer;
+import de.abrandl.regex.lucene.InMemoryLuceneRegexSearchEngine;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -208,6 +209,8 @@ public class RegexSearchCli {
 			return new LuceneRegexSearchEngine(Version.LUCENE_46, directory);
 		case "inmemory":
 			return new InMemorySearchEngine(docs);
+		case "lucene_ram":
+			return new InMemoryLuceneRegexSearchEngine(Version.LUCENE_46, docs);
 		default:
 			throw new IllegalArgumentException("unknown engine: " + name);
 		}
