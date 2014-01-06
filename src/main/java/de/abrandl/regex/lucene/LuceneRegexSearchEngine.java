@@ -83,7 +83,11 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		private Collection<SimpleDocument> performSearch(String regex) throws RegexParsingException, IOException {
 			IndexSearcher isearcher = new IndexSearcher(index);
 			timer.start();
-			Query query = constructQueryFromRegex(regex);
+			/*
+			 * construct the lucene query given the _lowercase_ regex (i.e.
+			 * lucene search is always case insensitive, also see Writer#add)
+			 */
+			Query query = constructQueryFromRegex(regex.toLowerCase());
 			DetailsCollector.instance.put("query_transformation_time", timer.stop());
 			timer.reset();
 
@@ -217,7 +221,11 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 			Document ldoc = new org.apache.lucene.document.Document();
 			ldoc.add(new StringField("identifier", document.getIdentifier(), Store.YES));
 			ldoc.add(new StringField("content", content, Store.YES));
-			ldoc.add(new Field("trigrams", content, TextField.TYPE_STORED));
+
+			/*
+			 * convert to lowercase, i.e. all trigrams are lower case!
+			 */
+			ldoc.add(new Field("trigrams", content.toLowerCase(), TextField.TYPE_STORED));
 
 			writer.addDocument(ldoc);
 		}
