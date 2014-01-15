@@ -61,9 +61,15 @@ public class TarSearchEngine implements RegexSearchEngine {
 			while (documents.hasNext()) {
 				SimpleDocument document = documents.next();
 				File docPath = new File(document.getIdentifier());
-
 				tarStream.putNextEntry(new TarEntry(docPath, document.getIdentifier()));
-				tarStream.write(document.getContent().getBytes());
+
+				try (BufferedInputStream origin = new BufferedInputStream(new FileInputStream(docPath))) {
+					int count;
+					byte data[] = new byte[2048];
+					while ((count = origin.read(data)) != -1) {
+						tarStream.write(data, 0, count);
+					}
+				}
 				tarStream.flush();
 			}
 		}
