@@ -22,6 +22,7 @@ public abstract class BasicSearchEngineTest {
 	private RegexSearchEngine exhaustiveSearch;
 	private RegexSearchEngine luceneSearch;
 	private RegexSearchEngine inmemorySearch;
+	private RegexSearchEngine targrep;
 
 	private final TestDatasets dataset;
 
@@ -34,10 +35,12 @@ public abstract class BasicSearchEngineTest {
 		exhaustiveSearch = new ExhaustiveSearchEngine();
 		luceneSearch = new LuceneRegexSearchEngine(Version.LUCENE_46, new RAMDirectory());
 		inmemorySearch = new InMemorySearchEngine();
+		targrep = new TarSearchEngine();
 
 		dataset.createIndex(exhaustiveSearch);
 		dataset.createIndex(luceneSearch);
 		dataset.createIndex(inmemorySearch);
+		dataset.createIndex(targrep);
 	}
 
 	@Test
@@ -80,6 +83,13 @@ public abstract class BasicSearchEngineTest {
 		try (RegexSearchEngine.Reader reader = inmemorySearch.getReader()) {
 			Collection<SimpleDocument> result = reader.search(regex);
 			System.out.printf("inmemory     [%03d]:   %s\n", result.size(), result);
+			assertThat(result, equalTo(expected));
+			DetailsCollector.instance.flush(System.out);
+		}
+
+		try (RegexSearchEngine.Reader reader = targrep.getReader()) {
+			Collection<SimpleDocument> result = reader.search(regex);
+			System.out.printf("targrep     [%03d]:   %s\n", result.size(), result);
 			assertThat(result, equalTo(expected));
 			DetailsCollector.instance.flush(System.out);
 		}

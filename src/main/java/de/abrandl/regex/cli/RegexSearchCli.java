@@ -12,10 +12,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import de.abrandl.regex.ExhaustiveSearchEngine;
-import de.abrandl.regex.InMemorySearchEngine;
-import de.abrandl.regex.RegexSearchEngine;
-import de.abrandl.regex.SearchFailedException;
+import de.abrandl.regex.*;
 import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.helpers.DetailsCollector;
@@ -216,6 +213,8 @@ public class RegexSearchCli {
 		switch (name) {
 		case "jgrep":
 			return new ExhaustiveSearchEngine(index);
+		case "jgrep-tar":
+			return new TarSearchEngine(index);
 		case "lucene":
 			Directory directory = FSDirectory.open(index);
 			return new LuceneRegexSearchEngine(Version.LUCENE_46, directory);
