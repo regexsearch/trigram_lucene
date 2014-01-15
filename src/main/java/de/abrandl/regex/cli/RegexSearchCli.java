@@ -17,6 +17,7 @@ import de.abrandl.regex.InMemorySearchEngine;
 import de.abrandl.regex.RegexSearchEngine;
 import de.abrandl.regex.SearchFailedException;
 import de.abrandl.regex.document.SimpleDocument;
+import de.abrandl.regex.grammar.RegexParsingException;
 import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 import de.abrandl.regex.helpers.Timer;
@@ -131,8 +132,18 @@ public class RegexSearchCli {
 		writeQueryResults(runtime, result);
 	}
 
-	public void explain(String query) {
-		System.out.println(engine.explain(query));
+	public void explain(String query) throws RegexParsingException {
+		String explain = engine.explain(query);
+		System.out.println(explain);
+
+		RegexComplexity rc = new RegexComplexity(query);
+
+		DetailsCollector.instance.put("explain_plan", explain);
+		DetailsCollector.instance.put("automaton_dots", rc.automatonDots());
+		DetailsCollector.instance.put("number_of_states", rc.getNumberOfStates());
+		DetailsCollector.instance.put("number_of_transitions", rc.getNumberOfTransitions());
+		DetailsCollector.instance.put("length", rc.getLength());
+		DetailsCollector.instance.put("width", rc.getWidth());
 	}
 
 	/**
@@ -143,8 +154,9 @@ public class RegexSearchCli {
 	 * 
 	 * 
 	 * @return
+	 * @throws RegexParsingException
 	 */
-	public static void main(String[] args) throws IOException, SearchFailedException {
+	public static void main(String[] args) throws IOException, SearchFailedException, RegexParsingException {
 		// create the parser
 		CommandLineParser parser = new GnuParser();
 		Options options = commandLineOptions();
