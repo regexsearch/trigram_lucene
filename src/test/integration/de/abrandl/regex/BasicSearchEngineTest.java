@@ -10,6 +10,7 @@ import org.apache.lucene.util.Version;
 import de.abrandl.regex.document.SimpleDocument;
 import de.abrandl.regex.helpers.DetailsCollector;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
+import de.abrandl.regex.lucene.LuceneRegexpEngine;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import static org.junit.Assert.assertThat;
@@ -23,6 +24,7 @@ public abstract class BasicSearchEngineTest {
 	private RegexSearchEngine luceneSearch;
 	private RegexSearchEngine inmemorySearch;
 	private RegexSearchEngine targrep;
+	private RegexSearchEngine luceneRegexpSearch;
 
 	private final TestDatasets dataset;
 
@@ -36,11 +38,13 @@ public abstract class BasicSearchEngineTest {
 		luceneSearch = new LuceneRegexSearchEngine(Version.LUCENE_46, new RAMDirectory());
 		inmemorySearch = new InMemorySearchEngine();
 		targrep = new TarSearchEngine();
+		luceneRegexpSearch = new LuceneRegexpEngine(Version.LUCENE_46, new RAMDirectory());
 
 		dataset.createIndex(exhaustiveSearch);
 		dataset.createIndex(luceneSearch);
 		dataset.createIndex(inmemorySearch);
 		dataset.createIndex(targrep);
+		dataset.createIndex(luceneRegexpSearch);
 	}
 
 	@Test
@@ -91,6 +95,16 @@ public abstract class BasicSearchEngineTest {
 			Collection<SimpleDocument> result = reader.search(regex);
 			System.out.printf("targrep     [%03d]:   %s\n", result.size(), result);
 			assertThat(result, equalTo(expected));
+			DetailsCollector.instance.flush(System.out);
+		}
+
+		try (RegexSearchEngine.Reader reader = luceneRegexpSearch.getReader()) {
+			Collection<SimpleDocument> result = reader.search(regex);
+			System.out.printf("lucene-regexp     [%03d]:   %s\n", result.size(), result);
+			assertThat(result, equalTo(expected));
+		} catch (UnsupportedRegexException e) {
+			System.err.println("WARN: Unsupported regex -- " + e);
+		} finally {
 			DetailsCollector.instance.flush(System.out);
 		}
 	}

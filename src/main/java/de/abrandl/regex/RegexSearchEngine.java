@@ -40,7 +40,8 @@ public interface RegexSearchEngine {
 	 *
 	 * @param query
 	 * @return
+	 * @throws UnsupportedRegexException
 	 */
-	String explain(String query);
+	String explain(String query) throws UnsupportedRegexException;
 
 }

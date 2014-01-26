@@ -8,7 +8,6 @@ import java.util.*;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.io.FileUtils;
-import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
@@ -20,6 +19,7 @@ import de.abrandl.regex.helpers.RecursiveFileContentIterator;
 import de.abrandl.regex.helpers.Timer;
 import de.abrandl.regex.lucene.InMemoryLuceneRegexSearchEngine;
 import de.abrandl.regex.lucene.LuceneRegexSearchEngine;
+import de.abrandl.regex.lucene.LuceneRegexpEngine;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class RegexSearchCli {
@@ -129,7 +129,7 @@ public class RegexSearchCli {
 		writeQueryResults(runtime, result);
 	}
 
-	public void explain(String query) throws RegexParsingException {
+	public void explain(String query) throws RegexParsingException, UnsupportedRegexException {
 		String explain = engine.explain(query);
 		System.out.println(explain);
 
@@ -216,8 +216,9 @@ public class RegexSearchCli {
 		case "jgrep-tar":
 			return new TarSearchEngine(index);
 		case "lucene":
-			Directory directory = FSDirectory.open(index);
-			return new LuceneRegexSearchEngine(Version.LUCENE_46, directory);
+			return new LuceneRegexSearchEngine(Version.LUCENE_46, FSDirectory.open(index));
+		case "lucene_regexp":
+			return new LuceneRegexpEngine(Version.LUCENE_46, FSDirectory.open(index));
 		case "inmemory":
 			return new InMemorySearchEngine(docs);
 		case "lucene_ram":
