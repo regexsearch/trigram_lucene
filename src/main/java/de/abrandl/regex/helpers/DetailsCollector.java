@@ -64,4 +64,8 @@ public enum DetailsCollector {
 		reset();
 	}
 
+	public void put(String key, boolean val) {
+		object.key(key).value(val);
+	}
+
 }

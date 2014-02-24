@@ -42,12 +42,40 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 
 	private final Timer timer = new Timer();
 
+	private boolean parallelIndex = false;
+	private boolean forceMerge = false;
+	private int forceMergeSegments = 1;
+
 	public LuceneRegexSearchEngine(Version luceneVersion, Directory directory) {
 		this.luceneVersion = luceneVersion;
 		this.directory = directory;
 
 		analyzer = new NGramAnalyzer(luceneVersion);
 		queryTransformation = new NGramQueryTransformation();
+	}
+
+	public boolean isParallelIndex() {
+		return parallelIndex;
+	}
+
+	public void setParallelIndex(boolean parallelIndex) {
+		this.parallelIndex = parallelIndex;
+	}
+
+	public boolean isForceMerge() {
+		return forceMerge;
+	}
+
+	public void setForceMerge(boolean forceMerge) {
+		this.forceMerge = forceMerge;
+	}
+
+	public int getForceMergeSegments() {
+		return forceMergeSegments;
+	}
+
+	public void setForceMergeSegments(int forceMergeSegments) {
+		this.forceMergeSegments = forceMergeSegments;
 	}
 
 	private class Reader implements RegexSearchEngine.Reader {
@@ -138,7 +166,11 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		@Override
 		public void close() throws IOException {
 			if (writer != null) {
-				writer.forceMerge(1);
+				DetailsCollector.instance.put("forceMerge", isForceMerge());
+				if (isForceMerge()) {
+					DetailsCollector.instance.put("forceMergeSegments", getForceMergeSegments());
+					writer.forceMerge(getForceMergeSegments());
+				}
 				writer.commit();
 				writer.close();
 				writer = null;
@@ -166,6 +198,22 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 		 */
 		@Override
 		public void add(final Iterator<SimpleDocument> docs) throws IOException {
+			DetailsCollector.instance.put("parallelIndexing", parallelIndex);
+			if (parallelIndex) {
+				addParallel(docs);
+			} else {
+				addSequential(docs);
+			}
+			writer.commit();
+		}
+
+		private void addSequential(final Iterator<SimpleDocument> docs) throws IOException {
+			while (docs.hasNext()) {
+				add(docs.next());
+			}
+		}
+
+		private void addParallel(final Iterator<SimpleDocument> docs) throws IOException {
 			open();
 
 			final ExecutorService pool = Executors.newFixedThreadPool(poolSize);
@@ -206,9 +254,6 @@ public class LuceneRegexSearchEngine implements RegexSearchEngine {
 				lastException = null;
 				throw e;
 			}
-
-			writer.commit();
-
 		}
 
 		private void add(SimpleDocument document) throws IOException {

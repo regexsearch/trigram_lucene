@@ -166,7 +166,7 @@ public class RegexSearchCli {
 			File index = new File(line.getOptionValue("index"));
 			File docs = new File(line.getOptionValue("docs"));
 
-			RegexSearchEngine engine = createEngine(engineName, index, docs);
+			RegexSearchEngine engine = createEngine(engineName, index, docs, line);
 
 			RegexSearchCli cli = new RegexSearchCli(engine, docs);
 
@@ -209,14 +209,21 @@ public class RegexSearchCli {
 		}
 	}
 
-	private static RegexSearchEngine createEngine(String name, File index, File docs) throws IOException {
+	private static RegexSearchEngine createEngine(String name, File index, File docs, CommandLine options)
+			throws IOException {
 		switch (name) {
 		case "jgrep":
 			return new ExhaustiveSearchEngine(index);
 		case "jgrep-tar":
 			return new TarSearchEngine(index);
 		case "lucene":
-			return new LuceneRegexSearchEngine(Version.LUCENE_46, FSDirectory.open(index));
+			LuceneRegexSearchEngine engine = new LuceneRegexSearchEngine(Version.LUCENE_46, FSDirectory.open(index));
+			engine.setForceMerge(options.hasOption("forceMergeSegments"));
+			if (engine.isForceMerge()) {
+				engine.setForceMergeSegments(Integer.valueOf(options.getOptionValue("forceMergeSegments")));
+			}
+			engine.setParallelIndex("parallel".equals(options.getOptionValue("indexMode")));
+			return engine;
 		case "lucene_regexp":
 			return new LuceneRegexpEngine(Version.LUCENE_46, FSDirectory.open(index));
 		case "inmemory":
@@ -256,6 +263,11 @@ public class RegexSearchCli {
 				.withDescription("if action is 'index' supply path to documents here").create("docs");
 
 		options.addOption(docs);
+
+		options.addOption(OptionBuilder.withArgName("forceMergeSegments").hasArg()
+				.withDescription("force to n merge segments, n>=1").create("forceMergeSegments"));
+		options.addOption(OptionBuilder.withArgName("indexMode").hasArg()
+				.withDescription("create index in parallel threads: 'parallel'").create("indexMode"));
 
 		return options;
 
